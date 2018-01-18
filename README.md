@@ -1,18 +1,18 @@
-# ServerBD
-Refonte de mon serveur en Spring Boot
+Fonctionalités nécessaires :
+- 1 pile de pioche
+- 1 pile de selection d'invocations
+- 1 pile de selection d'environnement
 
-docker build -t serverbd .
+- 2 tableaux de cartes en main  (1 par joueur)
+- 2 tableaux de cartes en jeux (1 par joueur)
+- 2 tableaux de cimetière (1 par joueur)
+- 1 carte d'environnement courant
+---
+Piocher une carte random de la pioche et l'ajouter à la main d'un joueur
+piocher une carte radom des environnements et la rendre active
+piocher une carte spécifique des invocations et l'ajouter à la main d'un joueur
 
-docker run -P serverbd
+Afficher le cimetière d'un joueur
+afficher la main d'un joueur
+afficher les cartes en jeu d'un joueur
 
-
-
-#Lancer dockercompose :
-Mode container Linux
-si probleme de HNS lancer dans powershell : Get-NetNat | Remove-NetNat
-
-docker-compose up 
-Si probleme lancer 
-docker-compose down
-
-Penser à créer un répertoire partagé dans docker "appli"

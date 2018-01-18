@@ -1,14 +1,3 @@
 
-888b      88                                                                 ,ad8888ba,
-8888b     88                                         ,d                     d8"'    `"8b
-88 `8b    88                                         88                    d8'
-88  `8b   88  ,adPPYYba,  8b,dPPYba,  88       88  MM88MMM  ,adPPYba,      88             ,adPPYYba,  88,dPYba,,adPYba,    ,adPPYba,
-88   `8b  88  ""     `Y8  88P'   "Y8  88       88    88    a8"     "8a     88      88888  ""     `Y8  88P'   "88"    "8a  a8P_____88
-88    `8b 88  ,adPPPPP88  88          88       88    88    8b       d8     Y8,        88  ,adPPPPP88  88      88      88  8PP"""""""
-88     `8888  88,    ,88  88          "8a,   ,a88    88,   "8a,   ,a8"      Y8a.    .a88  88,    ,88  88      88      88  "8b,   ,aa
-88      `888  `"8bbdP"Y8  88           `"YbbdP'Y8    "Y888  `"YbbdP"'        `"Y88888P"   `"8bbdP"Y8  88      88      88   `"Ybbd8"'
-
-
-
 
 ${AnsiColor.BRIGHT_BLUE}:: Meow :: Running Spring Boot ${spring-boot.version} :: ${AnsiColor.BLACK}
