@@ -7,12 +7,19 @@ Fonctionalités nécessaires :
 - 2 tableaux de cartes en jeux (1 par joueur)
 - 2 tableaux de cimetière (1 par joueur)
 - 1 carte d'environnement courant
----
-Piocher une carte random de la pioche et l'ajouter à la main d'un joueur
-piocher une carte radom des environnements et la rendre active
-piocher une carte spécifique des invocations et l'ajouter à la main d'un joueur
 
-Afficher le cimetière d'un joueur
-afficher la main d'un joueur
-afficher les cartes en jeu d'un joueur
+
+[DONE] Piocher une carte random de la pioche et l'ajouter à la main d'un joueur
+ 
+[DONE] Démarrer une partie avec un environnement aléatoire
+
+Piocher une carte spécifique des invocations et l'ajouter à la main d'un joueur
+
+Deplacer une carte de la main d'un joueur vers le plateau
+
+Deplacer une carte du plateau vers un cimetière
+
+[DONE] Afficher le cimetière d'un joueur
+[DONE] afficher la main d'un joueur
+[DONE] afficher les cartes en jeu d'un joueur
 
