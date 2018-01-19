@@ -50,8 +50,8 @@ public class Game {
         Random rand = new Random();
         return rand.nextInt(stack.size() + 1);
     }
-    public void pickCardFromStackToPlayer(String stackName, int player) {
-        if(stackName.equals("pioche")){
+    public void pickCardFromStackToPlayer(StackConstants stackName, int player) {
+        if(stackName.equals(StackConstants.PIOCHE)){
             int randomPoition = getRandomPosition(pioche);
             mains[player].push( pioche.get(randomPoition));
             pioche.remove(randomPoition);

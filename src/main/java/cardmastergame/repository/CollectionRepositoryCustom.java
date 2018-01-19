@@ -1,8 +1,8 @@
 package cardmastergame.repository;
 
+import cardmastergame.bean.StackConstants;
 import cardmastergame.bean.Card;
 
-import java.io.IOException;
 import java.util.Stack;
 
 /**
@@ -13,9 +13,9 @@ public interface CollectionRepositoryCustom {
 
     void startNewGame();
 
-    Stack<Card> getStack(String stackName);
+    Stack<Card> getStack(StackConstants stackName);
 
     String getCardById(Integer id);
 
-    void pickCardFromStackToPlayer(String stackName, int player);
+    void pickCardFromStackToPlayer(StackConstants stackName, int player);
 }

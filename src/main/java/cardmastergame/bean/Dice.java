@@ -1,5 +1,8 @@
 package cardmastergame.bean;
 
+import org.jsondoc.core.annotation.ApiObject;
+
+@ApiObject
 public class Dice {
     private String expression;
     private long value;

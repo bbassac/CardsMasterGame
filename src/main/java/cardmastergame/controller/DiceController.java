@@ -5,19 +5,22 @@ import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
 import com.bernardomg.tabletop.dice.parser.DefaultDiceNotationExpressionParser;
 import com.bernardomg.tabletop.dice.parser.DiceNotationExpressionParser;
 import com.bernardomg.tabletop.dice.roller.DefaultRoller;
+import org.jsondoc.core.annotation.Api;
+import org.jsondoc.core.annotation.ApiMethod;
 import org.springframework.web.bind.annotation.*;
 
 import javax.websocket.server.PathParam;
 import java.io.IOException;
 
 @RestController
-@RequestMapping("/dice/{value}")
+@Api(name = "Dice API",description = "Api to parse Dice syntax and generate result")
 public class DiceController extends AbstractController{
 
 
     @CrossOrigin
-    @RequestMapping(method = RequestMethod.GET)
+    @RequestMapping(path = "/dice/{value}", method = RequestMethod.GET)
     @ResponseBody
+    @ApiMethod(description = "Throw a dice such as '1d6 or 4d10+3'")
     public Dice computeDice(@PathVariable("value") String value) throws IOException {
 
         final DiceNotationExpressionParser parser;

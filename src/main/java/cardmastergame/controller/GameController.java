@@ -1,21 +1,55 @@
 package cardmastergame.controller;
 
+import cardmastergame.bean.Card;
+import cardmastergame.bean.StackConstants;
+import org.jsondoc.core.annotation.Api;
+import org.jsondoc.core.annotation.ApiMethod;
+import org.jsondoc.core.annotation.ApiPathParam;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
+import java.util.Stack;
 
 @RestController
-@RequestMapping("/start")
+@Api(name = "Game API",description = "Api used to play the game")
 public class GameController extends AbstractController{
 
 
     @CrossOrigin
-    @RequestMapping(method = RequestMethod.GET)
+    @RequestMapping(path = "/restart",method = RequestMethod.GET)
     @ResponseBody
-    public String getCollections() throws IOException {
+    @ApiMethod(description = "URL used to restart a game")
+    public String restart() throws IOException {
 
         customRepo.startNewGame();
         return "Loaded";
     }
 
+    @CrossOrigin
+    @RequestMapping(path = "/card/{id}",method = RequestMethod.GET)
+    @ResponseBody
+    @ApiMethod(description = "URL used to retrieve a card path from it's ID")
+    public String getCardPath(@PathVariable("id") Integer id) throws IOException {
+
+        return customRepo.getCardById(id);
+    }
+
+    @CrossOrigin
+    @RequestMapping(path="/stack/{value}",method = RequestMethod.GET)
+    @ResponseBody
+    @ApiMethod(description = "return the content of provided stack")
+    public Stack<Card> getStack(@ApiPathParam(description = "The type of STACK",allowedvalues = "ENVIRONNEMENT,ENVIRONNEMENTS,PIOCHE,INVOCATIONS,CIMETIERE0,CIMETIERE1,PLATEAU0,PLATEAU1,MAIN0,MAIN11") @PathVariable("value") StackConstants stackName) throws IOException {
+
+        return customRepo.getStack(stackName);
+    }
+
+    @CrossOrigin
+    @RequestMapping(path="/stack/{value}/{player}",method = RequestMethod.GET)
+    @ResponseBody
+    @ApiMethod(description = "return the content of provided stack",summary = "ENVIRONNEMENT,ENVIRONNEMENTS,PIOCHE,INVOCATIONS,CIMETIERE0,CIMETIERE1,PLATEAU0,PLATEAU1,MAIN0,MAIN11")
+    public void pioche(@ApiPathParam(description = "The type of STACK", allowedvalues = "ENVIRONNEMENT,ENVIRONNEMENTS,PIOCHE,INVOCATIONS,CIMETIERE0,CIMETIERE1,PLATEAU0,PLATEAU1,MAIN0,MAIN11") @PathVariable("value") StackConstants stackName,
+                       @ApiPathParam(description = "The player ID", allowedvalues = "0,1") @PathVariable("player") int player) throws IOException {
+
+        customRepo.pickCardFromStackToPlayer(stackName,player);
+    }
 }

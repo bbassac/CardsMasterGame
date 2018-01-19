@@ -1,10 +1,10 @@
 package cardmastergame.repository;
 
+import cardmastergame.bean.StackConstants;
 import cardmastergame.bean.Card;
 import cardmastergame.bean.Game;
 import org.springframework.stereotype.Repository;
 
-import java.io.File;
 import java.util.*;
 
 /**
@@ -29,24 +29,28 @@ public class CollectionRepositoryImpl implements CollectionRepositoryCustom {
 
 
     @Override
-    public Stack<Card> getStack(String stackName) {
+    public Stack<Card> getStack(StackConstants stackName) {
         switch (stackName){
-            case "environnement":
+            case ENVIRONNEMENT:
                 return game.getCurrentEnvironnement();
-            case "environnements":
+            case ENVIRONNEMENTS:
                 return game.getEnvironnments();
-            case "pioche":
+            case PIOCHE:
                 return game.getPioche();
-            case "invocations":
+            case INVOCATIONS:
                 return game.getInvocations();
-            case "cimetiere0":
+            case CIMETIERE0:
                 return game.getCimetieres()[0];
-            case "cimetiere1":
+            case CIMETIERE1:
                 return game.getCimetieres()[1];
-            case "main0":
+            case MAIN0:
                 return game.getMains()[0];
-            case "main1":
+            case MAIN11:
                 return game.getMains()[1];
+            case PLATEAU0:
+                return game.getPlateaux()[0];
+            case PLATEAU1:
+                return game.getPlateaux()[1];
             default:
                 throw new UnsupportedOperationException();
         }
@@ -58,7 +62,7 @@ public class CollectionRepositoryImpl implements CollectionRepositoryCustom {
     }
 
     @Override
-    public void pickCardFromStackToPlayer(String stackName, int player) {
+    public void pickCardFromStackToPlayer(StackConstants stackName, int player) {
        game.pickCardFromStackToPlayer(stackName,player);
     }
 
