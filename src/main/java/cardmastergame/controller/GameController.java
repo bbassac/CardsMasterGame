@@ -15,6 +15,7 @@ import java.util.Stack;
 public class GameController extends AbstractController{
 
 
+
     @CrossOrigin
     @RequestMapping(path = "/restart",method = RequestMethod.GET)
     @ResponseBody
@@ -38,18 +39,9 @@ public class GameController extends AbstractController{
     @RequestMapping(path="/stack/{value}",method = RequestMethod.GET)
     @ResponseBody
     @ApiMethod(description = "return the content of provided stack")
-    public Stack<Card> getStack(@ApiPathParam(description = "The type of STACK",allowedvalues = "ENVIRONNEMENT,ENVIRONNEMENTS,PIOCHE,INVOCATIONS,CIMETIERE0,CIMETIERE1,PLATEAU0,PLATEAU1,MAIN0,MAIN11") @PathVariable("value") StackConstants stackName) throws IOException {
+    public Stack<Card> getStack(@ApiPathParam(description = "The type of STACK",allowedvalues = "ENVIRONNEMENT,ENVIRONNEMENTS,PIOCHE,INVOCATIONS") @PathVariable("value") StackConstants stackName) throws IOException {
 
         return customRepo.getStack(stackName);
     }
 
-    @CrossOrigin
-    @RequestMapping(path="/stack/{value}/{player}",method = RequestMethod.GET)
-    @ResponseBody
-    @ApiMethod(description = "return the content of provided stack",summary = "ENVIRONNEMENT,ENVIRONNEMENTS,PIOCHE,INVOCATIONS,CIMETIERE0,CIMETIERE1,PLATEAU0,PLATEAU1,MAIN0,MAIN11")
-    public void pioche(@ApiPathParam(description = "The type of STACK", allowedvalues = "ENVIRONNEMENT,ENVIRONNEMENTS,PIOCHE,INVOCATIONS,CIMETIERE0,CIMETIERE1,PLATEAU0,PLATEAU1,MAIN0,MAIN11") @PathVariable("value") StackConstants stackName,
-                       @ApiPathParam(description = "The player ID", allowedvalues = "0,1") @PathVariable("player") int player) throws IOException {
-
-        customRepo.pickCardFromStackToPlayer(stackName,player);
-    }
 }

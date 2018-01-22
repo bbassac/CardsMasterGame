@@ -11,15 +11,12 @@ public class Game {
     private Map<Integer, Card> allCards;
     private Stack<Card> environnments;
     private Stack<Card> pioche;
-
-
-
     private Stack<Card> invocations;
-
     private Stack<Card>[] cimetieres;
     private Stack<Card>[] mains;
     private Stack<Card>[] plateaux;
     private Stack<Card> currentEnvironnement;
+    private int[] pvs;
 
     public Game(){
         lastIndex = 0;
@@ -37,7 +34,7 @@ public class Game {
         plateaux[0] = new Stack<>();
         plateaux[1] = new Stack<>();
         allCards = new HashMap<>();
-
+        pvs = new int[]{20,20};
     }
 
 
@@ -50,12 +47,19 @@ public class Game {
         Random rand = new Random();
         return rand.nextInt(stack.size() + 1);
     }
-    public void pickCardFromStackToPlayer(StackConstants stackName, int player) {
-        if(stackName.equals(StackConstants.PIOCHE)){
+
+    public void updatePlayerPvs(int playerId, int newPVs){
+        pvs[playerId] = newPVs;
+    }
+
+    public int getPlayerPvs(int playerId){
+        return pvs[playerId];
+    }
+
+    public void pickCardFromStackToPlayer(int player) {
             int randomPoition = getRandomPosition(pioche);
             mains[player].push( pioche.get(randomPoition));
             pioche.remove(randomPoition);
-        }
     }
     public void loadStack(Stack<Card> stack, String folder) {
         String prop = System.getProperty("path");

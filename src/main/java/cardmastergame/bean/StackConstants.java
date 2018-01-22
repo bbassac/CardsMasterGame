@@ -3,7 +3,7 @@ package cardmastergame.bean;
 import org.jsondoc.core.annotation.ApiObject;
 import org.jsondoc.core.annotation.ApiObjectField;
 
-@ApiObject
+@ApiObject(name="StackConstants",description = "Constants for stacks")
 public enum StackConstants {
     @ApiObjectField(description = "Current environnement")
     ENVIRONNEMENT ,
@@ -24,5 +24,5 @@ public enum StackConstants {
     @ApiObjectField(description = "Main joueur 0")
     MAIN0,
     @ApiObjectField(description = "Main joueur 1")
-    MAIN11
+    MAIN1
 }

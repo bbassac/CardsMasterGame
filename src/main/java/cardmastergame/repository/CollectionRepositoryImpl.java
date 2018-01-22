@@ -1,11 +1,11 @@
 package cardmastergame.repository;
 
-import cardmastergame.bean.StackConstants;
 import cardmastergame.bean.Card;
 import cardmastergame.bean.Game;
+import cardmastergame.bean.StackConstants;
 import org.springframework.stereotype.Repository;
 
-import java.util.*;
+import java.util.Stack;
 
 /**
  * Created by b.bassac on 24/05/2016.
@@ -45,7 +45,7 @@ public class CollectionRepositoryImpl implements CollectionRepositoryCustom {
                 return game.getCimetieres()[1];
             case MAIN0:
                 return game.getMains()[0];
-            case MAIN11:
+            case MAIN1:
                 return game.getMains()[1];
             case PLATEAU0:
                 return game.getPlateaux()[0];
@@ -62,11 +62,19 @@ public class CollectionRepositoryImpl implements CollectionRepositoryCustom {
     }
 
     @Override
-    public void pickCardFromStackToPlayer(StackConstants stackName, int player) {
-       game.pickCardFromStackToPlayer(stackName,player);
+    public void pickCardFromStackToPlayer(int player) {
+       game.pickCardFromStackToPlayer(player);
     }
 
+    @Override
+    public void updatePlayerPvs(int player, int newPvs) {
+        game.updatePlayerPvs(player,newPvs);
+    }
 
+    @Override
+    public int getPlayerPvs(int player) {
+        return game.getPlayerPvs(player);
+    }
 
 
 }

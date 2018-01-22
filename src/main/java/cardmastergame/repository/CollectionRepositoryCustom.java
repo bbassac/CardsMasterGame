@@ -1,7 +1,7 @@
 package cardmastergame.repository;
 
-import cardmastergame.bean.StackConstants;
 import cardmastergame.bean.Card;
+import cardmastergame.bean.StackConstants;
 
 import java.util.Stack;
 
@@ -17,5 +17,9 @@ public interface CollectionRepositoryCustom {
 
     String getCardById(Integer id);
 
-    void pickCardFromStackToPlayer(StackConstants stackName, int player);
+    void pickCardFromStackToPlayer(int player);
+
+    void updatePlayerPvs(int player,int newPvs);
+
+    int getPlayerPvs(int player);
 }
