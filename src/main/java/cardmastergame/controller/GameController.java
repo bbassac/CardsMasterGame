@@ -39,7 +39,7 @@ public class GameController extends AbstractController{
     @RequestMapping(path="/stack/{value}",method = RequestMethod.GET)
     @ResponseBody
     @ApiMethod(description = "return the content of provided stack")
-    public Stack<Card> getStack(@ApiPathParam(description = "The type of STACK",allowedvalues = "ENVIRONNEMENT,ENVIRONNEMENTS,PIOCHE,INVOCATIONS") @PathVariable("value") StackConstants stackName) throws IOException {
+    public Stack<Card> getStack(@ApiPathParam(description = "The type of STACK",allowedvalues = "ENVIRONNEMENT,ENVIRONNEMENTS,DRAW,INVOCATIONS") @PathVariable("value") StackConstants stackName) throws IOException {
 
         return customRepo.getStack(stackName);
     }

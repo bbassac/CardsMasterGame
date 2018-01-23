@@ -3,6 +3,8 @@
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <head>
     <title>Card Master Game</title>
+    <link rel="stylesheet" href="css/Board.css" type="text/css" />
+    <link rel="stylesheet" href="css/DrawBoard.css" type="text/css" />
 </head>
 
 <body>
@@ -12,8 +14,35 @@
         <a  class="list-group-item" href="/jsondoc-ui.html?url=/jsondoc">Documentation</a>
     </div>
 </div>
+<div>
+    ID du joueur
+        <select id="currentPlayerId">
+            <option selected="selected" value="0">0</option>
+            <option value="1">1</option>
+        </select>
+    <button onclick="refreshBoard()">Refresh</button>
+</div>
 
+<Board>
+    <BoardOpp>Board Opponent</BoardOpp>
+    <GraveyardOpp>Graveyard Opponent</GraveyardOpp>
+    <PvOpp> Opponent Pvs:
+        <div id="oppPvsId"></div>
+    </PvOpp>
+    <BoardPlayer>Board Player</BoardPlayer>
+    <GraveyardPlayer>Graveyard Player</GraveyardPlayer>
+    <PvPlayer> Player Pvs:
+        <div id="playerPvsId"></div>
+    </PvPlayer>
+    <Hand> Main du joueur </Hand>
+</Board>
 
+<DrawBoard>
+    <Draw id="draw"></Draw>
+    <Invocations id="invocations"></Invocations>
+    <Environments id="environments"></Environments>
+    <CurrentEnvironment id="currentEnvironment"></CurrentEnvironment>
+</DrawBoard>
 
 
 

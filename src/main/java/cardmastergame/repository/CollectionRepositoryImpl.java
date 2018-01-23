@@ -35,21 +35,21 @@ public class CollectionRepositoryImpl implements CollectionRepositoryCustom {
                 return game.getCurrentEnvironnement();
             case ENVIRONNEMENTS:
                 return game.getEnvironnments();
-            case PIOCHE:
+            case DRAW:
                 return game.getPioche();
             case INVOCATIONS:
                 return game.getInvocations();
-            case CIMETIERE0:
+            case GRAVEYARD0:
                 return game.getCimetieres()[0];
-            case CIMETIERE1:
+            case GRAVEYARD1:
                 return game.getCimetieres()[1];
-            case MAIN0:
+            case HAND0:
                 return game.getMains()[0];
-            case MAIN1:
+            case HAND1:
                 return game.getMains()[1];
-            case PLATEAU0:
+            case BOARD0:
                 return game.getPlateaux()[0];
-            case PLATEAU1:
+            case BOARD1:
                 return game.getPlateaux()[1];
             default:
                 throw new UnsupportedOperationException();

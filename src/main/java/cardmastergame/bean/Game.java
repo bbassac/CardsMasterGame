@@ -45,7 +45,7 @@ public class Game {
 
     private int getRandomPosition(Stack<Card> stack) {
         Random rand = new Random();
-        return rand.nextInt(stack.size() + 1);
+        return rand.nextInt(stack.size() );
     }
 
     public void updatePlayerPvs(int playerId, int newPVs){
@@ -71,7 +71,8 @@ public class Game {
                 lastIndex++;
                 Card c = new Card();
                 c.setId(lastIndex);
-                c.setPath(listOfFiles[i].getAbsolutePath());
+                //c.setPath(listOfFiles[i].getAbsolutePath());
+                c.setPath(folder+"\\"+listOfFiles[i].getName());
                 allCards.put(c.getId(), c);
                 stack.push(c);
             }

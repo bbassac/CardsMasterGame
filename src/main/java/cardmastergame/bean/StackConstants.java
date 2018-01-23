@@ -10,19 +10,19 @@ public enum StackConstants {
     @ApiObjectField(description = "All environnements cards")
     ENVIRONNEMENTS ,
     @ApiObjectField(description = "All pioche")
-    PIOCHE,
+    DRAW,
     @ApiObjectField(description = "All invocation cards")
     INVOCATIONS,
     @ApiObjectField(description = "Cimetiere joueur 0")
-    CIMETIERE0,
+    GRAVEYARD0,
     @ApiObjectField(description = "Cimetiere joueur 1")
-    CIMETIERE1,
+    GRAVEYARD1,
     @ApiObjectField(description = "Plateau joueur 0")
-    PLATEAU0,
+    BOARD0,
     @ApiObjectField(description = "Plateau joueur 1")
-    PLATEAU1,
+    BOARD1,
     @ApiObjectField(description = "Main joueur 0")
-    MAIN0,
+    HAND0,
     @ApiObjectField(description = "Main joueur 1")
-    MAIN1
+    HAND1
 }

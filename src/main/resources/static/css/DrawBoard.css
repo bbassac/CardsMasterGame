@@ -1,37 +1,26 @@
-Board {
+DrawBoard {
     display: grid;
-    height: 800px;
-    border-width: 2px;
-    grid-template-columns: 80% 15% 5%;
-    grid-template-rows: 50% 50%;
+    height: 100px;
+    grid-template-columns: 25% 25% 25% 25%;
+    grid-template-rows: 100%;
 }
-BoardOpp {
+Draw {
     grid-column: 1; grid-row: 1;
-    background-color: red;
+    background-color: green;
 
 }
-GraveyardOpp {
+Invocations {
     grid-column: 2; grid-row: 1;
-    background-color: orange;
+    background-color: chartreuse;
 
 }
-PvOpp {
+Environments {
     grid-column: 3; grid-row: 1;
-    background-color: purple;
+    background-color: yellow;
 
 }
-BoardPlayer {
-    grid-column: 1; grid-row: 2;
-    background-color: blue;
-
-}
-GraveyardPlayer {
-    grid-column: 2; grid-row: 2;
-    background-color: aqua;
-
-}
-PvPlayer {
-    grid-column: 3; grid-row: 2;
-    background-color: aquamarine;
+CurrentEnvironment {
+    grid-column: 4; grid-row: 1;
+    background-color: yellowgreen;
 
 }
