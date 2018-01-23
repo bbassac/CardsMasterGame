@@ -1,0 +1,37 @@
+Board {
+    display: grid;
+    height: 800px;
+    border-width: 2px;
+    grid-template-columns: 80% 15% 5%;
+    grid-template-rows: 50% 50%;
+}
+BoardOpp {
+    grid-column: 1; grid-row: 1;
+    background-color: red;
+
+}
+GraveyardOpp {
+    grid-column: 2; grid-row: 1;
+    background-color: orange;
+
+}
+PvOpp {
+    grid-column: 3; grid-row: 1;
+    background-color: purple;
+
+}
+BoardPlayer {
+    grid-column: 1; grid-row: 2;
+    background-color: blue;
+
+}
+GraveyardPlayer {
+    grid-column: 2; grid-row: 2;
+    background-color: aqua;
+
+}
+PvPlayer {
+    grid-column: 3; grid-row: 2;
+    background-color: aquamarine;
+
+}
