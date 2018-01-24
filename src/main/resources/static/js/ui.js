@@ -7,10 +7,10 @@ function refreshBoard(){
     var currentOppId = Math.abs(1-currentPlayerId);
     fillPVs(currentPlayerId,"playerPvsId");
     fillPVs(currentOppId,"oppPvsId");
-    fillDeckImage(currentPlayerId,"draw","img/Back-Draw.png");
-    fillDeckImage(currentPlayerId,"invocations","img/Back-Select.png");
-    fillDeckImage(currentPlayerId,"environments","img/Back-Select3.png");
-    fillDeckImage(currentPlayerId,"currentEnvironment","img" + getCurrentEnvironmentCard());
+    fillDrawBoard(currentPlayerId,"draw","img/Back-Draw.png");
+    fillDrawBoard(currentPlayerId,"invocations","img/Back-Select.png");
+    fillDrawBoard(currentPlayerId,"environments","img/Back-Select3.png");
+    fillDrawBoard(currentPlayerId,"currentEnvironment","img" + getCurrentEnvironmentCard());
     fillDeck(currentPlayerId,"hand","hand");
     fillDeck(currentPlayerId,"boardPlayer","board");
     fillDeck(currentOppId,"boardOpp","board");
@@ -42,20 +42,25 @@ function fillDeck(playerId,section,stackName){
     src.innerHTML = '';
     for (var i=0; i< cards.length;i++){
         var img = document.createElement("img");
-        img.src = encodeURI("img/"+cards[i].path);
+        img.src = "img/"+encodeURI(cards[i].path);
         img.height = 200;
         img.hspace = 10;
+        img.title = cards[i].id;
+        img.setAttribute('onclick','displayPoP(this.src);');
         src.appendChild(img);
     }
 }
 
-function fillDeckImage(playerId,id,image){
+function fillDrawBoard(playerId, id, image){
     var img = document.createElement("img");
     img.src = encodeURI(image);
-    img.height = 100;
-    img.hspace = 60;
+    img.height = 80;
+    img.hspace = 1;
     var src = document.getElementById(id);
     src.innerHTML = '';
+    if(id=='currentEnvironment'){
+        img.setAttribute('onclick','displayPoP(this.src);');
+    }
     src.appendChild(img);
     if (id=="draw"){
         // 1. Create the button
@@ -71,5 +76,35 @@ function fillDeckImage(playerId,id,image){
             xhttp.send();
             refreshBoard();
         });
+    }else if (id=="invocations"){
+        var xhttp = new XMLHttpRequest();
+        xhttp.open("GET", "stack/INVOCATIONS", false);
+        xhttp.setRequestHeader("Content-type", "application/json");
+        xhttp.send();
+        var cards = JSON.parse(xhttp.responseText);
+        var selectList = document.createElement("select");
+        selectList.id = "selectInvocations";
+
+        src.appendChild(selectList);
+        for (var i=0; i< cards.length;i++){
+            var option = document.createElement("option");
+            option.value = cards[i].path;
+            option.text = cards[i].path;
+            selectList.appendChild(option);
+        }
     }
+}
+
+function displayPoP(src){
+
+    titre="Agrandissement";
+    w=open("",'image','toolbar=no,scrollbars=no,resizable=no');
+    w.document.write("<HTML><HEAD><TITLE>"+titre+"</TITLE></HEAD>");
+    w.document.write("<SCRIPT language=javascript>function checksize() { if (document.images[0].complete) { window.resizeTo((document.images[0].width/1)+40,(document.images[0].height/1)+70); window.focus();} else { setTimeout('checksize()',250) } }</"+"SCRIPT>");
+    w.document.write("<BODY onload='checksize()' onblur='window.close()' onclick='window.close()' leftMargin=0 topMargin=0 marginwidth=0 marginheight=0>");
+    w.document.write("<TABLE width='100%' border='0' cellspacing='0' cellpadding='0' height='100%'><TR>");
+    w.document.write("<TD valign='middle' align='center'><IMG src='"+decodeURI(src)+"' border=0 alt='Mon image' height='50%'>");
+    w.document.write("</TD></TR></TABLE>");
+    w.document.write("</BODY></HTML>");
+    w.document.close();
 }

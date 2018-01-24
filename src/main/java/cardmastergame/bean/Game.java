@@ -1,10 +1,7 @@
 package cardmastergame.bean;
 
 import java.io.File;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Random;
-import java.util.Stack;
+import java.util.*;
 
 public class Game {
     private int lastIndex;
@@ -56,7 +53,7 @@ public class Game {
         return pvs[playerId];
     }
 
-    public void pickCardFromStackToPlayer(int player) {
+    public void moveCardFromDrawToPlayer(int player) {
             int randomPoition = getRandomPosition(pioche);
             mains[player].push( pioche.get(randomPoition));
             pioche.remove(randomPoition);
@@ -77,6 +74,33 @@ public class Game {
                 stack.push(c);
             }
         }
+    }
+
+    private Card findCardInStackById(Stack<Card> stack , int cardId){
+        for (Card c : stack){
+            if(c.getId()== cardId){
+                return c;
+            }
+        }
+        throw new NoSuchElementException();
+    }
+
+    public void moveSpecificCardFromInvocationToPlayer(int playerId, int cardId) {
+        Card c = findCardInStackById(invocations, cardId);
+        invocations.remove(c);
+        mains[playerId].push(c);
+    }
+
+    public void moveCardFromHandToGameForPlayer(int playerId, int cardId) {
+        Card c = findCardInStackById(mains[playerId], cardId);
+        mains[playerId].remove(c);
+        plateaux[playerId].push(c);
+    }
+
+    public void moveCardFromGameToGraveyardForPlayer(int playerId, int cardId) {
+        Card c = findCardInStackById(plateaux[playerId], cardId);
+        plateaux[playerId].remove(c);
+        cimetieres[playerId].push(c);
     }
 
     public Map<Integer, Card> getAllCards() {

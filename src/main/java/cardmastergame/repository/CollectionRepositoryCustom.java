@@ -17,9 +17,15 @@ public interface CollectionRepositoryCustom {
 
     String getCardById(Integer id);
 
-    void pickCardFromStackToPlayer(int player);
+    void moveCardFromDrawToPlayer(int player);
 
     void updatePlayerPvs(int player,int newPvs);
 
     int getPlayerPvs(int player);
+
+    void moveSpecificCardFromInvocationToPlayer(int playerId, int cardId);
+
+    void moveCardFromHandToGameForPlayer(int playerId, int cardId);
+
+    void moveCardFromGameToGraveyardForPlayer(int playerId, int cardId);
 }

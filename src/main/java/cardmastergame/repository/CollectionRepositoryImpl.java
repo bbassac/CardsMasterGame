@@ -62,8 +62,8 @@ public class CollectionRepositoryImpl implements CollectionRepositoryCustom {
     }
 
     @Override
-    public void pickCardFromStackToPlayer(int player) {
-       game.pickCardFromStackToPlayer(player);
+    public void moveCardFromDrawToPlayer(int player) {
+       game.moveCardFromDrawToPlayer(player);
     }
 
     @Override
@@ -74,6 +74,21 @@ public class CollectionRepositoryImpl implements CollectionRepositoryCustom {
     @Override
     public int getPlayerPvs(int player) {
         return game.getPlayerPvs(player);
+    }
+
+    @Override
+    public void moveSpecificCardFromInvocationToPlayer(int playerId, int cardId) {
+        game.moveSpecificCardFromInvocationToPlayer(playerId,cardId);
+    }
+
+    @Override
+    public void moveCardFromHandToGameForPlayer(int playerId, int cardId) {
+        game.moveCardFromHandToGameForPlayer(playerId,cardId);
+    }
+
+    @Override
+    public void moveCardFromGameToGraveyardForPlayer(int playerId, int cardId) {
+        game.moveCardFromGameToGraveyardForPlayer(playerId,cardId);
     }
 
 

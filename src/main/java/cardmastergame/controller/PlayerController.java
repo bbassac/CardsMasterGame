@@ -66,7 +66,7 @@ public class PlayerController extends AbstractController{
     @ResponseBody
     @ApiMethod(description = "Pick a new card from pioche")
     public void pickNewCard(@ApiPathParam(description = "The player ID", allowedvalues = "0,1") @PathVariable("playerId") int playerId) throws IOException {
-       customRepo.pickCardFromStackToPlayer(playerId);
+       customRepo.moveCardFromDrawToPlayer(playerId);
     }
 
     @CrossOrigin
@@ -75,7 +75,8 @@ public class PlayerController extends AbstractController{
     @ApiMethod(description = "Pick a specific card from invocations")
     public void pickNamedCardFromDraw(@ApiPathParam(description = "The player ID", allowedvalues = "0,1") @PathVariable("playerId") int playerId,
                                       @ApiPathParam(description = "Card ID", allowedvalues = "int") @PathVariable("cardId") int cardId) throws IOException {
-        throw new UnsupportedOperationException();
+
+        customRepo.moveSpecificCardFromInvocationToPlayer(playerId,cardId);
     }
 
 
@@ -85,7 +86,7 @@ public class PlayerController extends AbstractController{
     @ApiMethod(description = "Move a card from the hand of a player to the board")
     public void moveCardFromHandToGame(@ApiPathParam(description = "The player ID", allowedvalues = "0,1") @PathVariable("playerId") int playerId,
                                        @ApiPathParam(description = "Card ID", allowedvalues = "int") @PathVariable("cardId") int cardId) throws IOException {
-       throw new UnsupportedOperationException();
+       customRepo.moveCardFromHandToGameForPlayer(playerId,cardId);
     }
 
     @CrossOrigin
@@ -94,6 +95,6 @@ public class PlayerController extends AbstractController{
     @ApiMethod(description = "Move a card from the board of a player to the graveyard")
     public void moveCardFromGameToGraveyard(@ApiPathParam(description = "The player ID", allowedvalues = "0,1") @PathVariable("playerId") int playerId,
                                        @ApiPathParam(description = "Card ID", allowedvalues = "int") @PathVariable("cardId") int cardId) throws IOException {
-        throw new UnsupportedOperationException();
+        customRepo.moveCardFromGameToGraveyardForPlayer(playerId,cardId);
     }
 }
