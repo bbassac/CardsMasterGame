@@ -88,11 +88,27 @@ function fillDrawBoard(playerId, id, image){
         src.appendChild(selectList);
         for (var i=0; i< cards.length;i++){
             var option = document.createElement("option");
-            option.value = cards[i].path;
+            option.value = cards[i].id;
             option.text = cards[i].path;
             selectList.appendChild(option);
         }
+
+        var buttonPickInvoc = document.createElement("button");
+        buttonPickInvoc.innerHTML = "Piocher Invocation";
+        src.appendChild(buttonPickInvoc);
+
+        buttonPickInvoc.setAttribute('onclick','pickInvocation(document.getElementById(\'selectInvocations\').value);');
     }
+}
+
+function pickInvocation(cardId){
+    var currentPlayerId = document.getElementById("currentPlayerId").value;
+
+    var xhttp = new XMLHttpRequest();
+    xhttp.open("GET", "player/"+currentPlayerId+"/invocations/"+cardId, false);
+    xhttp.setRequestHeader("Content-type", "application/json");
+    xhttp.send();
+    refreshBoard();
 }
 
 function displayPoP(src){
