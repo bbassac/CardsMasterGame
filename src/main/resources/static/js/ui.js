@@ -48,8 +48,45 @@ function fillDeck(playerId,section,stackName){
         img.title = cards[i].id;
         img.setAttribute('onclick','displayPoP(this.src);');
         src.appendChild(img);
+
+
+        if (section == "hand"){
+            var moveCardButton = document.createElement("button");
+            moveCardButton.innerHTML = "Play";
+            moveCardButton.setAttribute("id",cards[i].id);
+            src.appendChild(moveCardButton);
+
+            moveCardButton.setAttribute('onclick','moveCardToBoard(this.id);');
+        }else if (section=="boardPlayer"){
+            var moveCardButton = document.createElement("button");
+            moveCardButton.innerHTML = "Grave";
+            moveCardButton.setAttribute("id",cards[i].id);
+            src.appendChild(moveCardButton);
+
+            moveCardButton.setAttribute('onclick','moveCardToGraveyard(this.id);');
+        }
     }
 }
+function moveCardToBoard(cardId){
+    var currentPlayerId = document.getElementById("currentPlayerId").value;
+
+    var xhttp = new XMLHttpRequest();
+    xhttp.open("PUT", "player/"+currentPlayerId+"/board/"+cardId, false);
+    xhttp.setRequestHeader("Content-type", "application/json");
+    xhttp.send();
+    refreshBoard();
+}
+
+function moveCardToGraveyard(cardId){
+    var currentPlayerId = document.getElementById("currentPlayerId").value;
+
+    var xhttp = new XMLHttpRequest();
+    xhttp.open("PUT", "player/"+currentPlayerId+"/graveyard/"+cardId, false);
+    xhttp.setRequestHeader("Content-type", "application/json");
+    xhttp.send();
+    refreshBoard();
+}
+
 
 function fillDrawBoard(playerId, id, image){
     var img = document.createElement("img");
@@ -119,7 +156,7 @@ function displayPoP(src){
     w.document.write("<SCRIPT language=javascript>function checksize() { if (document.images[0].complete) { window.resizeTo((document.images[0].width/1)+40,(document.images[0].height/1)+70); window.focus();} else { setTimeout('checksize()',250) } }</"+"SCRIPT>");
     w.document.write("<BODY onload='checksize()' onblur='window.close()' onclick='window.close()' leftMargin=0 topMargin=0 marginwidth=0 marginheight=0>");
     w.document.write("<TABLE width='100%' border='0' cellspacing='0' cellpadding='0' height='100%'><TR>");
-    w.document.write("<TD valign='middle' align='center'><IMG src='"+decodeURI(src)+"' border=0 alt='Mon image' height='50%'>");
+    w.document.write("<TD valign='middle' align='center'><IMG src='"+src.replace(/'/g, '%27')+"' border=0 alt='Mon image' height='50%'>");
     w.document.write("</TD></TR></TABLE>");
     w.document.write("</BODY></HTML>");
     w.document.close();
