@@ -21,7 +21,33 @@ function fillPVs(playerId,componentId) {
     xhttp.open("GET", "player/"+playerId+"/pvs", false);
     xhttp.setRequestHeader("Content-type", "application/json");
     xhttp.send();
-    document.getElementById(componentId).textContent =  xhttp.responseText;
+    var component = document.getElementById(componentId);
+    component.textContent =  xhttp.responseText;
+    var linebreak = document.createElement("br");
+    component.appendChild(linebreak);
+    if (componentId=="playerPvsId"){
+        var buttonLessPv = document.createElement("button");
+        buttonLessPv.innerHTML = "-";
+        buttonLessPv.tag = parseInt(xhttp.responseText)-1;
+        buttonLessPv.setAttribute('onclick','updatePvs(this.tag);');
+        component.appendChild(buttonLessPv);
+
+        var buttonMorePv = document.createElement("button");
+        buttonMorePv.innerHTML = "+";
+        buttonMorePv.tag = parseInt(xhttp.responseText)+1;
+        buttonMorePv.setAttribute('onclick','updatePvs(this.tag);');
+        component.appendChild(buttonMorePv);
+    }
+}
+
+function updatePvs(newValue){
+    var currentPlayerId = document.getElementById("currentPlayerId").value;
+    console.log(newValue);
+    var xhttp = new XMLHttpRequest();
+    xhttp.open("PUT", "player/"+currentPlayerId+"/pvs/"+newValue, false);
+    xhttp.setRequestHeader("Content-type", "application/json");
+    xhttp.send();
+    fillPVs(currentPlayerId,"playerPvsId");
 }
 
 function getCurrentEnvironmentCard() {
@@ -52,14 +78,14 @@ function fillDeck(playerId,section,stackName){
 
         if (section == "hand"){
             var moveCardButton = document.createElement("button");
-            moveCardButton.innerHTML = "Play";
+            moveCardButton.innerHTML = "&uArr;";
             moveCardButton.setAttribute("id",cards[i].id);
             src.appendChild(moveCardButton);
 
             moveCardButton.setAttribute('onclick','moveCardToBoard(this.id);');
         }else if (section=="boardPlayer"){
             var moveCardButton = document.createElement("button");
-            moveCardButton.innerHTML = "Grave";
+            moveCardButton.innerHTML = "&rArr;";
             moveCardButton.setAttribute("id",cards[i].id);
             src.appendChild(moveCardButton);
 
