@@ -7,8 +7,15 @@ Board {
 }
 BoardOpp {
     grid-column: 1; grid-row: 1;
-    background-color: red;
+    background-color: lavender;
+    display: flex;
+}
 
+BoardOpp> div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 GraveyardOpp {
     grid-column: 2; grid-row: 1;
@@ -17,14 +24,23 @@ GraveyardOpp {
 }
 PvOpp {
     grid-column: 3; grid-row: 1;
-    background-color: purple;
+    background-color: lightpink;
 
 }
 BoardPlayer {
     grid-column: 1; grid-row: 2;
-    background-color: blue;
+    background-color: steelblue;
+    display: flex;
 
 }
+
+boardplayer> div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 GraveyardPlayer {
     grid-column: 2; grid-row: 2;
     background-color: aqua;
@@ -38,4 +54,12 @@ PvPlayer {
 Hand {
     grid-rows: 3; grid-column: 1 / 4;
     background-color: sandybrown;
+    display: flex;
+}
+
+Hand> div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }

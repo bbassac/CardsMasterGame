@@ -9,6 +9,8 @@ public class Card {
     private int id;
     @ApiObjectField(description = "path of the card")
     private String path;
+    @ApiObjectField(description = "number of damage on card")
+    private int dammagePoints = 0;
 
     public int getId() {
         return id;
@@ -24,5 +26,13 @@ public class Card {
 
     public void setPath(String path) {
         this.path = path;
+    }
+
+    public int getDammagePoints() {
+        return dammagePoints;
+    }
+
+    public void setDammagePoints(int dammagePoints) {
+        this.dammagePoints = dammagePoints;
     }
 }

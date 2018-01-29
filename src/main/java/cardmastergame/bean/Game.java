@@ -14,6 +14,7 @@ public class Game {
     private Stack<Card>[] plateaux;
     private Stack<Card> currentEnvironnement;
     private int[] pvs;
+    private int[] chakras;
 
     public Game(){
         lastIndex = 0;
@@ -32,6 +33,7 @@ public class Game {
         plateaux[1] = new Stack<>();
         allCards = new HashMap<>();
         pvs = new int[]{20,20};
+        chakras = new int[] {1,1};
     }
 
 
@@ -52,6 +54,8 @@ public class Game {
     public int getPlayerPvs(int playerId){
         return pvs[playerId];
     }
+
+
 
     public void moveCardFromDrawToPlayer(int player) {
             int randomPoition = getRandomPosition(pioche);
@@ -165,5 +169,23 @@ public class Game {
 
     public void setCurrentEnvironnement(Stack<Card> currentEnvironnement) {
         this.currentEnvironnement = currentEnvironnement;
+    }
+
+    public int updateDmgPointsOnCard(int playerId, int cardId, int value) {
+        findCardInStackById(plateaux[playerId],cardId).setDammagePoints(value);
+        return value;
+    }
+
+    public int getChakras(int playerId) {
+        return chakras[playerId];
+    }
+
+    public int updateChakras(int playerId, int value) {
+        chakras[playerId] = value;
+        return value;
+    }
+
+    public int getDmgOnCard(int playerId, int cardId) {
+        return  findCardInStackById(plateaux[playerId],cardId).getDammagePoints();
     }
 }

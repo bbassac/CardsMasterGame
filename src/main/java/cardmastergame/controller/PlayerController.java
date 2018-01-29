@@ -36,6 +36,25 @@ public class PlayerController extends AbstractController{
     }
 
     @CrossOrigin
+    @RequestMapping(path = "/player/{playerId}/chakra",method = RequestMethod.GET)
+    @ResponseBody
+    @ApiMethod(description = "Get Amount of chakra of player")
+    public int getChakra(@ApiPathParam(description = "The player ID", allowedvalues = "0,1") @PathVariable("playerId") int playerId) throws IOException {
+        return customRepo.getChakras(playerId);
+
+    }
+
+    @CrossOrigin
+    @RequestMapping(path = "/player/{playerId}/chakra/{value}",method = RequestMethod.PUT)
+    @ResponseBody
+    @ApiMethod(description = "Update Amount of chakras of player")
+    public int updateChakras(@ApiPathParam(description = "The player ID", allowedvalues = "0,1") @PathVariable("playerId") int playerId,
+                               @ApiPathParam(description = "new chakra value", allowedvalues = "0-20") @PathVariable("value") int value) throws IOException {
+        return customRepo.updateChakras(playerId,value);
+
+    }
+
+    @CrossOrigin
     @RequestMapping(path = "/player/{playerId}/hand",method = RequestMethod.GET)
     @ResponseBody
     @ApiMethod(description = "Hand of player")
@@ -96,5 +115,24 @@ public class PlayerController extends AbstractController{
     public void moveCardFromGameToGraveyard(@ApiPathParam(description = "The player ID", allowedvalues = "0,1") @PathVariable("playerId") int playerId,
                                        @ApiPathParam(description = "Card ID", allowedvalues = "int") @PathVariable("cardId") int cardId) throws IOException {
         customRepo.moveCardFromGameToGraveyardForPlayer(playerId,cardId);
+    }
+
+    @CrossOrigin
+    @RequestMapping(path = "/player/{playerId}/board/{cardId}/dmg/{value}",method = RequestMethod.PUT)
+    @ResponseBody
+    @ApiMethod(description = "Move a card from the hand of a player to the board")
+    public int updateDMGOnCard(@ApiPathParam(description = "The player ID", allowedvalues = "0,1") @PathVariable("playerId") int playerId,
+                               @ApiPathParam(description = "Card ID", allowedvalues = "int") @PathVariable("cardId") int cardId,
+                               @ApiPathParam(description = "New dmg counter", allowedvalues = "int") @PathVariable("value") int value) throws IOException {
+        return customRepo.updateDmgPointsOnCard(playerId,cardId,value);
+    }
+
+    @CrossOrigin
+    @RequestMapping(path = "/player/{playerId}/board/{cardId}/dmg",method = RequestMethod.GET)
+    @ResponseBody
+    @ApiMethod(description = "Move a card from the hand of a player to the board")
+    public int getDMGOnCard(@ApiPathParam(description = "The player ID", allowedvalues = "0,1") @PathVariable("playerId") int playerId,
+                               @ApiPathParam(description = "Card ID", allowedvalues = "int") @PathVariable("cardId") int cardId) throws IOException {
+        return customRepo.getDmgOnCard(playerId,cardId);
     }
 }

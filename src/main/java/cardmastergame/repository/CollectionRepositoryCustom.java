@@ -28,4 +28,12 @@ public interface CollectionRepositoryCustom {
     void moveCardFromHandToGameForPlayer(int playerId, int cardId);
 
     void moveCardFromGameToGraveyardForPlayer(int playerId, int cardId);
+
+    int updateDmgPointsOnCard(int playerId, int cardId, int value);
+
+    int getChakras(int playerId);
+
+    int updateChakras(int playerId, int value);
+
+    int getDmgOnCard(int playerId, int cardId);
 }

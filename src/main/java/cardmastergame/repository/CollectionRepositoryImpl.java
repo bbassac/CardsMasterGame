@@ -91,5 +91,25 @@ public class CollectionRepositoryImpl implements CollectionRepositoryCustom {
         game.moveCardFromGameToGraveyardForPlayer(playerId,cardId);
     }
 
+    @Override
+    public int updateDmgPointsOnCard(int playerId, int cardId, int value) {
+        return game.updateDmgPointsOnCard(playerId,cardId,value);
+    }
+
+    @Override
+    public int getChakras(int playerId) {
+        return game.getChakras(playerId);
+    }
+
+    @Override
+    public int updateChakras(int playerId, int value) {
+        return game.updateChakras(playerId,value);
+    }
+
+     @Override
+    public int getDmgOnCard(int playerId, int cardId) {
+         return game.getDmgOnCard(playerId,cardId);
+    }
+
 
 }

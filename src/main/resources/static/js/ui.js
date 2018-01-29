@@ -7,6 +7,7 @@ function refreshBoard(){
     var currentOppId = Math.abs(1-currentPlayerId);
     fillPVs(currentPlayerId,"playerPvsId");
     fillPVs(currentOppId,"oppPvsId");
+    fillChakras(currentPlayerId,"playerChakraId");
     fillDrawBoard(currentPlayerId,"draw","img/Back-Draw.png");
     fillDrawBoard(currentPlayerId,"invocations","img/Back-Select.png");
     fillDrawBoard(currentPlayerId,"environments","img/Back-Select3.png");
@@ -14,6 +15,30 @@ function refreshBoard(){
     fillDeck(currentPlayerId,"hand","hand");
     fillDeck(currentPlayerId,"boardPlayer","board");
     fillDeck(currentOppId,"boardOpp","board");
+}
+
+function fillChakras(playerId,componentId) {
+    var xhttp = new XMLHttpRequest();
+    xhttp.open("GET", "player/"+playerId+"/chakra", false);
+    xhttp.setRequestHeader("Content-type", "application/json");
+    xhttp.send();
+    var component = document.getElementById(componentId);
+    component.textContent =  xhttp.responseText;
+    var linebreak = document.createElement("br");
+    component.appendChild(linebreak);
+
+    var buttonLessChakra = document.createElement("button");
+    buttonLessChakra.innerHTML = "-";
+    buttonLessChakra.tag = parseInt(xhttp.responseText)-1;
+    buttonLessChakra.setAttribute('onclick','updateChakras(this.tag);');
+    component.appendChild(buttonLessChakra);
+
+    var buttonMoreChakra = document.createElement("button");
+    buttonMoreChakra.innerHTML = "+";
+    buttonMoreChakra.tag = parseInt(xhttp.responseText)+1;
+    buttonMoreChakra.setAttribute('onclick','updateChakras(this.tag);');
+    component.appendChild(buttonMoreChakra);
+
 }
 
 function fillPVs(playerId,componentId) {
@@ -50,6 +75,16 @@ function updatePvs(newValue){
     fillPVs(currentPlayerId,"playerPvsId");
 }
 
+function updateChakras(newValue){
+    var currentPlayerId = document.getElementById("currentPlayerId").value;
+    console.log(newValue);
+    var xhttp = new XMLHttpRequest();
+    xhttp.open("PUT", "player/"+currentPlayerId+"/chakra/"+newValue, false);
+    xhttp.setRequestHeader("Content-type", "application/json");
+    xhttp.send();
+    fillChakras(currentPlayerId,"playerChakraId");
+}
+
 function getCurrentEnvironmentCard() {
     var xhttp = new XMLHttpRequest();
     xhttp.open("GET", "stack/ENVIRONNEMENT", false);
@@ -66,33 +101,73 @@ function fillDeck(playerId,section,stackName){
     var cards = JSON.parse(xhttp.responseText);
     var src = document.getElementById(section);
     src.innerHTML = '';
+
     for (var i=0; i< cards.length;i++){
+        var cardDiv = document.createElement("div");
         var img = document.createElement("img");
         img.src = "img/"+encodeURI(cards[i].path);
         img.height = 200;
         img.hspace = 10;
         img.title = cards[i].id;
         img.setAttribute('onclick','displayPoP(this.src);');
-        src.appendChild(img);
+        cardDiv.appendChild(img);
 
 
         if (section == "hand"){
+            var div = document.createElement("ctrl-"+ cards[i].id);
             var moveCardButton = document.createElement("button");
             moveCardButton.innerHTML = "&uArr;";
             moveCardButton.setAttribute("id",cards[i].id);
-            src.appendChild(moveCardButton);
-
+            cardDiv.appendChild(moveCardButton);
             moveCardButton.setAttribute('onclick','moveCardToBoard(this.id);');
+            cardDiv.appendChild(div);
         }else if (section=="boardPlayer"){
+            var div = document.createElement("div-"+ cards[i].id);
             var moveCardButton = document.createElement("button");
             moveCardButton.innerHTML = "&rArr;";
             moveCardButton.setAttribute("id",cards[i].id);
-            src.appendChild(moveCardButton);
-
+            cardDiv.appendChild(moveCardButton);
             moveCardButton.setAttribute('onclick','moveCardToGraveyard(this.id);');
+
+            //Manage dmg points
+            var xhttpDmg = new XMLHttpRequest();
+            xhttpDmg.open("GET", "player/"+playerId+"/board/"+cards[i].id+"/dmg", false);
+            xhttpDmg.setRequestHeader("Content-type", "application/json");
+            xhttpDmg.send();
+
+            var buttonLessDmg = document.createElement("button");
+            buttonLessDmg.innerHTML = "-";
+            buttonLessDmg.tag = parseInt(xhttpDmg.responseText)-1;
+            buttonLessDmg.setAttribute("id",cards[i].id);
+            buttonLessDmg.setAttribute('onclick','updateDmgPoints(this.id,this.tag);');
+            div.appendChild(buttonLessDmg);
+
+            var nbChakra = document.createTextNode("  " + xhttpDmg.responseText+"  ");
+            div.appendChild(nbChakra);
+
+            var buttonMoreDmg = document.createElement("button");
+            buttonMoreDmg.innerHTML = "+";
+            buttonMoreDmg.tag = parseInt(xhttpDmg.responseText)+1;
+            buttonMoreDmg.setAttribute("id",cards[i].id);
+            buttonMoreDmg.setAttribute('onclick','updateDmgPoints(this.id,this.tag);');
+            div.appendChild(buttonMoreDmg);
+            cardDiv.appendChild(div);
         }
+
+        src.appendChild(cardDiv);
     }
 }
+
+function updateDmgPoints(cardId,newDmgPoint){
+    var currentPlayerId = document.getElementById("currentPlayerId").value;
+
+    var xhttp = new XMLHttpRequest();
+    xhttp.open("PUT", "player/"+currentPlayerId+"/board/"+cardId+"/dmg/"+newDmgPoint, false);
+    xhttp.setRequestHeader("Content-type", "application/json");
+    xhttp.send();
+    refreshBoard();
+}
+
 function moveCardToBoard(cardId){
     var currentPlayerId = document.getElementById("currentPlayerId").value;
 
@@ -121,15 +196,17 @@ function fillDrawBoard(playerId, id, image){
     img.hspace = 1;
     var src = document.getElementById(id);
     src.innerHTML = '';
+    var div = document.createElement("div");
+    src.appendChild(div);
     if(id=='currentEnvironment'){
         img.setAttribute('onclick','displayPoP(this.src);');
     }
-    src.appendChild(img);
+    div.appendChild(img);
     if (id=="draw"){
         // 1. Create the button
         var button = document.createElement("button");
         button.innerHTML = "Piocher";
-        src.appendChild(button);
+        div.appendChild(button);
 
         // 3. Add event handler
         button.addEventListener ("click", function() {
@@ -148,7 +225,7 @@ function fillDrawBoard(playerId, id, image){
         var selectList = document.createElement("select");
         selectList.id = "selectInvocations";
 
-        src.appendChild(selectList);
+        div.appendChild(selectList);
         for (var i=0; i< cards.length;i++){
             var option = document.createElement("option");
             option.value = cards[i].id;
@@ -158,7 +235,7 @@ function fillDrawBoard(playerId, id, image){
 
         var buttonPickInvoc = document.createElement("button");
         buttonPickInvoc.innerHTML = "Piocher Invocation";
-        src.appendChild(buttonPickInvoc);
+        div.appendChild(buttonPickInvoc);
 
         buttonPickInvoc.setAttribute('onclick','pickInvocation(document.getElementById(\'selectInvocations\').value);');
     }
