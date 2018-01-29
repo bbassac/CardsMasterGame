@@ -1,6 +1,6 @@
 Board {
     display: grid;
-    height: 750px;
+    height: 770px;
     border: 1px solid black;
     grid-template-columns: 75% 15% 10%;
     grid-template-rows: 33% 33% 33%;
@@ -20,8 +20,16 @@ BoardOpp> div {
 GraveyardOpp {
     grid-column: 2; grid-row: 1;
     background-color: orange;
-
+    display: flex;
 }
+
+GraveyardOpp> div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 PvOpp {
     grid-column: 3; grid-row: 1;
     background-color: lightpink;
@@ -44,8 +52,16 @@ boardplayer> div {
 GraveyardPlayer {
     grid-column: 2; grid-row: 2;
     background-color: aqua;
-
+    display: flex;
 }
+
+GraveyardPlayer> div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 PvPlayer {
     grid-column: 3; grid-row: 2;
     background-color: aquamarine;

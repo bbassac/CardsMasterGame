@@ -2,6 +2,8 @@ document.addEventListener('DOMContentLoaded', function() {
     refreshBoard();
 }, false);
 
+
+
 function refreshBoard(){
     var currentPlayerId = document.getElementById("currentPlayerId").value;
     var currentOppId = Math.abs(1-currentPlayerId);
@@ -12,9 +14,33 @@ function refreshBoard(){
     fillDrawBoard(currentPlayerId,"invocations","img/Back-Select.png");
     fillDrawBoard(currentPlayerId,"environments","img/Back-Select3.png");
     fillDrawBoard(currentPlayerId,"currentEnvironment","img" + getCurrentEnvironmentCard());
+    fillGraveyard(currentPlayerId,"graveyardId");
+    fillGraveyard(currentOppId,"graveyardOppId");
     fillDeck(currentPlayerId,"hand","hand");
     fillDeck(currentPlayerId,"boardPlayer","board");
     fillDeck(currentOppId,"boardOpp","board");
+}
+
+function fillGraveyard(playerId, graveId) {
+    var xhttp = new XMLHttpRequest();
+    xhttp.open("GET", "player/"+playerId+"/graveyard", false);
+    xhttp.setRequestHeader("Content-type", "application/json");
+    xhttp.send();
+    var graveZone = document.getElementById(graveId);
+    graveZone.innerHTML="";
+    var cards = JSON.parse(xhttp.responseText);
+    if (cards.length>0) {
+
+        var cardDiv = document.createElement("div");
+        var img = document.createElement("img");
+        img.src = "img/" + encodeURI(cards[cards.length-1].path);
+        img.height = 200;
+        img.hspace = 10;
+        img.title = cards[cards.length-1].id;
+        img.setAttribute('onclick', 'displayPoP(this.src);');
+        cardDiv.appendChild(img);
+        graveZone.appendChild(cardDiv);
+    }
 }
 
 function fillChakras(playerId,componentId) {
