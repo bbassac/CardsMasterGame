@@ -2,7 +2,7 @@ Board {
     display: grid;
     height: 770px;
     border: 1px solid black;
-    grid-template-columns: 75% 15% 10%;
+    grid-template-columns: 84% 10% 6%;
     grid-template-rows: 33% 33% 33%;
 }
 BoardOpp {
