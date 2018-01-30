@@ -55,13 +55,8 @@ function fillDeck(playerId,section,stackName){
             cardDiv.appendChild(div);
         }else if (section=="boardPlayer"){
             var div = document.createElement("div-"+ cards[i].id);
-            var moveCardButton = document.createElement("button");
-            moveCardButton.innerHTML = "&rArr;";
-            moveCardButton.setAttribute("id",cards[i].id);
-            cardDiv.appendChild(moveCardButton);
-            moveCardButton.setAttribute('onclick','moveCardToGraveyard(this.id);');
 
-            //Manage dmg points
+                      //Manage dmg points
             var xhttpDmg = new XMLHttpRequest();
             xhttpDmg.open("GET", "player/"+playerId+"/board/"+cards[i].id+"/dmg", false);
             xhttpDmg.setRequestHeader("Content-type", "application/json");
@@ -83,6 +78,19 @@ function fillDeck(playerId,section,stackName){
             buttonMoreDmg.setAttribute("id",cards[i].id);
             buttonMoreDmg.setAttribute('onclick','updateDmgPoints(this.id,this.tag);');
             div.appendChild(buttonMoreDmg);
+            //empty block
+            var emptyBlock = document.createElement("span");
+
+            emptyBlock.innerHTML="&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp";
+            div.appendChild(emptyBlock);
+
+            //Move button
+            var moveCardButton = document.createElement("button");
+            moveCardButton.innerHTML = "&rArr;";
+            moveCardButton.setAttribute("id",cards[i].id);
+            moveCardButton.setAttribute('onclick','moveCardToGraveyard(this.id);');
+            div.appendChild(moveCardButton);
+
             cardDiv.appendChild(div);
         }else if (section=="boardOpp"){
             var div = document.createElement("div");

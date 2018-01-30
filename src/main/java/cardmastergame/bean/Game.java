@@ -188,4 +188,10 @@ public class Game {
     public int getDmgOnCard(int playerId, int cardId) {
         return  findCardInStackById(plateaux[playerId],cardId).getDammagePoints();
     }
+
+    public void moveCardFromGraveyardToPlayerHand(int playerId, int cardId) {
+        Card c = findCardInStackById(cimetieres[playerId], cardId);
+        cimetieres[playerId].remove(c);
+        mains[playerId].push(c);
+    }
 }

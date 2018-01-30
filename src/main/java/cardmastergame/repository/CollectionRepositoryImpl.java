@@ -111,5 +111,10 @@ public class CollectionRepositoryImpl implements CollectionRepositoryCustom {
          return game.getDmgOnCard(playerId,cardId);
     }
 
+    @Override
+    public void moveCardFromGraveyardToPlayerHand(int playerId, int cardId) {
+        game.moveCardFromGraveyardToPlayerHand(playerId,cardId);
+    }
+
 
 }

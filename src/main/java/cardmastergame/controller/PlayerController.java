@@ -118,6 +118,15 @@ public class PlayerController extends AbstractController{
     }
 
     @CrossOrigin
+    @RequestMapping(path = "/player/{playerId}/graveyard/{cardId}",method = RequestMethod.GET)
+    @ResponseBody
+    @ApiMethod(description = "Move a card from the graveyard of a player to the hand")
+    public void moveCardFromGraveyardToHand(@ApiPathParam(description = "The player ID", allowedvalues = "0,1") @PathVariable("playerId") int playerId,
+                                            @ApiPathParam(description = "Card ID", allowedvalues = "int") @PathVariable("cardId") int cardId) throws IOException {
+        customRepo.moveCardFromGraveyardToPlayerHand(playerId,cardId);
+    }
+
+    @CrossOrigin
     @RequestMapping(path = "/player/{playerId}/board/{cardId}/dmg/{value}",method = RequestMethod.PUT)
     @ResponseBody
     @ApiMethod(description = "Move a card from the hand of a player to the board")

@@ -36,4 +36,6 @@ public interface CollectionRepositoryCustom {
     int updateChakras(int playerId, int value);
 
     int getDmgOnCard(int playerId, int cardId);
+
+    void moveCardFromGraveyardToPlayerHand(int playerId, int cardId);
 }
