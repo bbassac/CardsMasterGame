@@ -17,13 +17,14 @@ public class CollectionRepositoryImpl implements CollectionRepositoryCustom {
     Game game;
 
     @Override
-    public void startNewGame() {
-       game = new Game();
-
-        game.loadStack(game.getEnvironnments(), "/Back-Select");
-        game.loadStack(game.getInvocations(), "/Back-Select3");
-        game.loadStack(game.getPioche(), "/Back-Draw");
-        game.selectCurrentEnvironnement();
+    public int startNewGame() {
+        game = new Game();
+        int nbCards = 0;
+        nbCards+= game.loadStack(game.getEnvironnments(), "/Back-Select");
+        nbCards+= game.loadStack(game.getInvocations(), "/Back-Select3");
+        nbCards+= game.loadStack(game.getPioche(), "/Back-Draw");
+        nbCards+= game.selectCurrentEnvironnement();
+        return nbCards;
     }
 
 

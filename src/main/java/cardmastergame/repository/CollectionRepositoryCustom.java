@@ -11,7 +11,7 @@ import java.util.Stack;
 public interface CollectionRepositoryCustom {
 
 
-    void startNewGame();
+    int startNewGame();
 
     Stack<Card> getStack(StackConstants stackName);
 

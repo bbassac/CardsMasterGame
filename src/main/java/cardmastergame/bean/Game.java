@@ -37,9 +37,10 @@ public class Game {
     }
 
 
-    public void selectCurrentEnvironnement() {
+    public int selectCurrentEnvironnement() {
         int nombreAleatoire = getRandomPosition(environnments);
         currentEnvironnement.push(environnments.get(nombreAleatoire));
+        return 1;
     }
 
     private int getRandomPosition(Stack<Card> stack) {
@@ -62,7 +63,7 @@ public class Game {
             mains[player].push( pioche.get(randomPoition));
             pioche.remove(randomPoition);
     }
-    public void loadStack(Stack<Card> stack, String folder) {
+    public int loadStack(Stack<Card> stack, String folder) {
         String prop = System.getProperty("path");
         File path = new File(prop + folder);
         File[] listOfFiles = path.listFiles();
@@ -78,6 +79,7 @@ public class Game {
                 stack.push(c);
             }
         }
+        return listOfFiles.length;
     }
 
     private Card findCardInStackById(Stack<Card> stack , int cardId){

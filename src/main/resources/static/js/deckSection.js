@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', function() {
 }, false);
 
 
-var gameImageHeight = 210;
+var gameImageHeight = 225;
 
 function refreshBoard(){
     var currentPlayerId = document.getElementById("currentPlayerId").value;
@@ -11,6 +11,7 @@ function refreshBoard(){
     fillPVs(currentPlayerId,"playerPvsId");
     fillPVs(currentOppId,"oppPvsId");
     fillChakras(currentPlayerId,"playerChakraId");
+    fillDiceArea(currentPlayerId,"diceId");
     fillDrawBoard(currentPlayerId,"draw","img/Back-Draw.png");
     fillDrawBoard(currentPlayerId,"invocations","img/Back-Select.png");
     fillDrawBoard(currentPlayerId,"environments","img/Back-Select3.png");
@@ -39,7 +40,7 @@ function fillDeck(playerId,section,stackName){
         var img = document.createElement("img");
         img.src = "img/"+encodeURI(cards[i].path);
         img.height = gameImageHeight;
-        img.hspace = 10;
+        img.hspace = 5;
         img.title = cards[i].id;
         img.setAttribute('onclick','displayPoP(this.src);');
         cardDiv.appendChild(img);

@@ -12,7 +12,7 @@ function fillGraveyard(playerId, graveId) {
         var img = document.createElement("img");
         img.src = "img/" + encodeURI(cards[cards.length-1].path);
         img.height = gameImageHeight;
-        img.hspace = 10;
+        img.hspace = 5;
         img.title = cards[cards.length-1].id;
         img.setAttribute('onclick', 'displayPoP(this.src);');
         cardDiv.appendChild(img);
@@ -27,6 +27,31 @@ function fillGraveyard(playerId, graveId) {
     }
 }
 
+function fillDiceArea(currentPlayerId,diceId){
+    var divDice = document.createElement("div");
+    //text area
+    var textArea = document.createElement("INPUT");
+    textArea.setAttribute("id","diceAreaId");
+    textArea.size = 7;
+    textArea.setAttribute('onkeypress','throwDice(event,this.value);');
+    divDice.appendChild(textArea);
+
+    var diceArea = document.getElementById(diceId);
+    diceArea.innerHTML="";
+    diceArea.appendChild(divDice);
+}
+
+function throwDice(event,diceExp){
+    if (event.keyCode === 13) {
+        var xhttp = new XMLHttpRequest();
+        xhttp.open("GET", "dice/" + diceExp, false);
+        xhttp.setRequestHeader("Content-type", "application/json");
+        xhttp.send();
+        var result = JSON.parse(xhttp.responseText);
+        document.getElementById("diceResultId").textContent = "Result :" + result.value;
+    }
+}
+
 function displayGrave(){
     var currentPlayerId = document.getElementById("currentPlayerId").value;
 
@@ -38,7 +63,7 @@ function displayGrave(){
 
 
 
-    var w=open("",'image','toolbar=no,scrollbars=no,resizable=no,left=10,top=10,height=700,width=1500');
+    var w=open("",'image','toolbar=no,scrollbars=no,resizable=no,left=10,top=10,height=700,width=1530');
     w.document.write("<HTML><HEAD><TITLE>Graveyard</TITLE></HEAD>");
     w.document.write("<BODY>");
 
@@ -49,6 +74,8 @@ function displayGrave(){
         "    xhttp.open(\"GET\", \"player/\"+currentPlayerId+\"/graveyard/\"+cardId, false);\n" +
         "    xhttp.setRequestHeader(\"Content-type\", \"application/json\");\n" +
         "    xhttp.send();\n" +
+        "    document.getElementById(\"c-\"+cardId).style.display = \"none\";"+
+        "    document.getElementById(cardId).style.display = \"none\";"+
         "}");
     w.document.write("</script>");
 
@@ -56,11 +83,11 @@ function displayGrave(){
         var imgDiv = document.createElement("div");
         var img = document.createElement("img");
         img.src = "img/"+encodeURI(cards[i].path);
-        img.height = 300;
+        img.height = 330;
         img.hspace = 5;
         img.vspace = 5;
         img.title = cards[i].id;
-
+        img.setAttribute("id","c-"+cards[i].id);
         imgDiv.appendChild(img);
         w.document.write(imgDiv.innerHTML);
 
