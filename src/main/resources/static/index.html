@@ -9,12 +9,10 @@
 
 <body>
 
-<div class="container">
-    <div class="list-group">
-        <a  class="list-group-item" href="/jsondoc-ui.html?url=/jsondoc">Documentation</a>
-    </div>
-</div>
-<div>
+<Doc >
+    <a  class="list-group-item" href="/jsondoc-ui.html?url=/jsondoc">Documentation</a>
+</Doc>
+<Header>
     ID du joueur
         <select id="currentPlayerId">
             <option selected="selected" value="0">0</option>
@@ -22,7 +20,7 @@
         </select>
         <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
     <button onclick="refreshBoard()">Refresh</button>
-</div>
+</Header>
 
 <Board>
     <BoardOpp id="boardOpp">Board Opponent</BoardOpp>
