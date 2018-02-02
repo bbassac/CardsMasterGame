@@ -1,6 +1,10 @@
 package cardmastergame.bean;
 
+import cardmastergame.Start;
+
 import java.io.File;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.util.*;
 
 public class Game {
@@ -64,7 +68,7 @@ public class Game {
             pioche.remove(randomPoition);
     }
     public int loadStack(Stack<Card> stack, String folder) {
-        String prop = System.getProperty("path");
+        String prop = getCurrentRootPath();
         File path = new File(prop + folder);
         File[] listOfFiles = path.listFiles();
         StringBuilder builder = new StringBuilder();
@@ -81,6 +85,55 @@ public class Game {
         }
         return listOfFiles.length;
     }
+
+    private String getCurrentRootPath() {
+        String imgDir = "\\static\\img";
+        String prop="";
+        File currentDire = null;
+        try {
+            currentDire = getJarFile(Start.class);
+        } catch (Exception e) {
+            System.out.println("Error loding root path " + e.getMessage());
+        }
+        if(currentDire.isFile()){
+            prop=currentDire.getParentFile()+"\\classes"+imgDir;
+
+        }else if (currentDire.isDirectory()){
+            prop =  currentDire.getPath()+"\\..\\"+imgDir;
+
+        }
+        return prop;
+    }
+
+    public static java.io.File getJarFile(Class _class) throws Exception {
+        String path = _class.getPackage().getName().replace(".","/");
+        String url = _class.getClassLoader().getResource(path).toString();
+        url = url.replace(" ","%20");
+        java.net.URI uri = new java.net.URI(url);
+        if (uri.getPath()==null){
+            path = uri.toString();
+            if (path.startsWith("jar:file:")){
+
+                //Update Path and Define Zipped File
+                path = path.substring(path.indexOf("file:/"));
+                path = path.substring(0,path.toLowerCase().indexOf(".jar")+4);
+
+                if (path.startsWith("file://")){ //UNC Path
+                    path = "C:/" + path.substring(path.indexOf("file:/")+7);
+                    path = "/" + new java.net.URI(path).getPath();
+                }
+                else{
+                    path = new java.net.URI(path).getPath();
+                }
+                return new java.io.File(path);
+            }
+        }
+        else{
+            return new java.io.File(uri);
+        }
+        return null;
+    }
+
 
     private Card findCardInStackById(Stack<Card> stack , int cardId){
         for (Card c : stack){
