@@ -1,5 +1,6 @@
 package cardmastergame.bean;
 
+import cardmastergame.FileUtils;
 import cardmastergame.Start;
 
 import java.io.File;
@@ -40,7 +41,6 @@ public class Game {
         chakras = new int[] {1,1};
     }
 
-
     public int selectCurrentEnvironnement() {
         int nombreAleatoire = getRandomPosition(environnments);
         currentEnvironnement.push(environnments.get(nombreAleatoire));
@@ -60,15 +60,14 @@ public class Game {
         return pvs[playerId];
     }
 
-
-
     public void moveCardFromDrawToPlayer(int player) {
             int randomPoition = getRandomPosition(pioche);
             mains[player].push( pioche.get(randomPoition));
             pioche.remove(randomPoition);
     }
+
     public int loadStack(Stack<Card> stack, String folder) {
-        String prop = getCurrentRootPath();
+        String prop = FileUtils.getCurrentJarPath();
         File path = new File(prop + folder);
         File[] listOfFiles = path.listFiles();
         StringBuilder builder = new StringBuilder();
@@ -77,7 +76,6 @@ public class Game {
                 lastIndex++;
                 Card c = new Card();
                 c.setId(lastIndex);
-                //c.setPath(listOfFiles[i].getAbsolutePath());
                 c.setPath(folder+"\\"+listOfFiles[i].getName());
                 allCards.put(c.getId(), c);
                 stack.push(c);
@@ -85,55 +83,6 @@ public class Game {
         }
         return listOfFiles.length;
     }
-
-    private String getCurrentRootPath() {
-        String imgDir = "\\static\\img";
-        String prop="";
-        File currentDire = null;
-        try {
-            currentDire = getJarFile(Start.class);
-        } catch (Exception e) {
-            System.out.println("Error loding root path " + e.getMessage());
-        }
-        if(currentDire.isFile()){
-            prop=currentDire.getParentFile()+"\\classes"+imgDir;
-
-        }else if (currentDire.isDirectory()){
-            prop =  currentDire.getPath()+"\\..\\"+imgDir;
-
-        }
-        return prop;
-    }
-
-    public static java.io.File getJarFile(Class _class) throws Exception {
-        String path = _class.getPackage().getName().replace(".","/");
-        String url = _class.getClassLoader().getResource(path).toString();
-        url = url.replace(" ","%20");
-        java.net.URI uri = new java.net.URI(url);
-        if (uri.getPath()==null){
-            path = uri.toString();
-            if (path.startsWith("jar:file:")){
-
-                //Update Path and Define Zipped File
-                path = path.substring(path.indexOf("file:/"));
-                path = path.substring(0,path.toLowerCase().indexOf(".jar")+4);
-
-                if (path.startsWith("file://")){ //UNC Path
-                    path = "C:/" + path.substring(path.indexOf("file:/")+7);
-                    path = "/" + new java.net.URI(path).getPath();
-                }
-                else{
-                    path = new java.net.URI(path).getPath();
-                }
-                return new java.io.File(path);
-            }
-        }
-        else{
-            return new java.io.File(uri);
-        }
-        return null;
-    }
-
 
     private Card findCardInStackById(Stack<Card> stack , int cardId){
         for (Card c : stack){
@@ -162,8 +111,41 @@ public class Game {
         cimetieres[playerId].push(c);
     }
 
+    public int updateDmgPointsOnCard(int playerId, int cardId, int value) {
+        findCardInStackById(plateaux[playerId],cardId).setDammagePoints(value);
+        return value;
+    }
+
+    public int getChakras(int playerId) {
+        return chakras[playerId];
+    }
+
+    public int updateChakras(int playerId, int value) {
+        chakras[playerId] = value;
+        return value;
+    }
+
+    public int getDmgOnCard(int playerId, int cardId) {
+        return  findCardInStackById(plateaux[playerId],cardId).getDammagePoints();
+    }
+
+    public void moveCardFromGraveyardToPlayerHand(int playerId, int cardId) {
+        Card c = findCardInStackById(cimetieres[playerId], cardId);
+        cimetieres[playerId].remove(c);
+        mains[playerId].push(c);
+    }
+
     public Map<Integer, Card> getAllCards() {
         return allCards;
+    }
+
+    public boolean updateActivatedOnCard(int playerId, int cardId, boolean value) {
+        findCardInStackById(plateaux[playerId],cardId).setActivated(value);
+        return value;
+    }
+
+    public boolean getActivatedOnCard(int playerId, int cardId) {
+        return findCardInStackById(plateaux[playerId],cardId).isActivated();
     }
 
     public void setAllCards(Map<Integer, Card> allCards) {
@@ -224,29 +206,5 @@ public class Game {
 
     public void setCurrentEnvironnement(Stack<Card> currentEnvironnement) {
         this.currentEnvironnement = currentEnvironnement;
-    }
-
-    public int updateDmgPointsOnCard(int playerId, int cardId, int value) {
-        findCardInStackById(plateaux[playerId],cardId).setDammagePoints(value);
-        return value;
-    }
-
-    public int getChakras(int playerId) {
-        return chakras[playerId];
-    }
-
-    public int updateChakras(int playerId, int value) {
-        chakras[playerId] = value;
-        return value;
-    }
-
-    public int getDmgOnCard(int playerId, int cardId) {
-        return  findCardInStackById(plateaux[playerId],cardId).getDammagePoints();
-    }
-
-    public void moveCardFromGraveyardToPlayerHand(int playerId, int cardId) {
-        Card c = findCardInStackById(cimetieres[playerId], cardId);
-        cimetieres[playerId].remove(c);
-        mains[playerId].push(c);
     }
 }

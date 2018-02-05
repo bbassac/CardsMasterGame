@@ -11,6 +11,8 @@ public class Card {
     private String path;
     @ApiObjectField(description = "number of damage on card")
     private int dammagePoints = 0;
+    @ApiObjectField(description = "true if power has already been activated")
+    private boolean activated = false;
 
     public int getId() {
         return id;
@@ -34,5 +36,13 @@ public class Card {
 
     public void setDammagePoints(int dammagePoints) {
         this.dammagePoints = dammagePoints;
+    }
+
+    public boolean isActivated() {
+        return activated;
+    }
+
+    public void setActivated(boolean activated) {
+        this.activated = activated;
     }
 }

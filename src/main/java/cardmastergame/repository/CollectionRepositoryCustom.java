@@ -38,4 +38,8 @@ public interface CollectionRepositoryCustom {
     int getDmgOnCard(int playerId, int cardId);
 
     void moveCardFromGraveyardToPlayerHand(int playerId, int cardId);
+
+    boolean updateActivatedOnCard(int playerId, int cardId, boolean value);
+
+    boolean getActivatedOnCard(int playerId, int cardId);
 }

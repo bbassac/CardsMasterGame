@@ -44,6 +44,9 @@ function fillDeck(playerId,section,stackName){
         img.title = cards[i].id;
         img.setAttribute('onclick','displayPoP(this.src);');
         cardDiv.appendChild(img);
+        if(cards[i].activated){
+            img.setAttribute('style', 'transform:rotate(90deg);'); // the 90deg parameter may be changed to whatever angle you want to rotate to
+        }
 
 
         if (section == "hand"){
@@ -85,6 +88,13 @@ function fillDeck(playerId,section,stackName){
             emptyBlock.innerHTML="&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp";
             div.appendChild(emptyBlock);
 
+            //Activate Button
+            var flipButton = document.createElement("button");
+            flipButton.innerHTML = "&#8631";
+            flipButton.tag = cards[i].activated;
+            flipButton.setAttribute("id",cards[i].id);
+            flipButton.setAttribute('onclick','flipCard(this.id,this.tag);');
+            div.appendChild(flipButton)
             //Move button
             var moveCardButton = document.createElement("button");
             moveCardButton.innerHTML = "&rArr;";
@@ -108,6 +118,16 @@ function fillDeck(playerId,section,stackName){
 
         src.appendChild(cardDiv);
     }
+}
+
+function flipCard(cardId,curentvalue){
+    var currentPlayerId = document.getElementById("currentPlayerId").value;
+
+    var xhttp = new XMLHttpRequest();
+    xhttp.open("PUT", "player/"+currentPlayerId+"/board/"+cardId+"/activated/"+!curentvalue, false);
+    xhttp.setRequestHeader("Content-type", "application/json");
+    xhttp.send();
+    refreshBoard();
 }
 
 function updateDmgPoints(cardId,newDmgPoint){

@@ -117,5 +117,15 @@ public class CollectionRepositoryImpl implements CollectionRepositoryCustom {
         game.moveCardFromGraveyardToPlayerHand(playerId,cardId);
     }
 
+    @Override
+    public boolean updateActivatedOnCard(int playerId, int cardId, boolean value) {
+       return game.updateActivatedOnCard(playerId,cardId,value);
+    }
+
+    @Override
+    public boolean getActivatedOnCard(int playerId, int cardId) {
+        return game.getActivatedOnCard(playerId,cardId);
+    }
+
 
 }
