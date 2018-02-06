@@ -127,5 +127,10 @@ public class CollectionRepositoryImpl implements CollectionRepositoryCustom {
         return game.getActivatedOnCard(playerId,cardId);
     }
 
+    @Override
+    public void moveCardFromOtherGraveyardToHand(int playerId, int cardId, int oppPlayerId) {
+        game.moveCardFromOtherGraveyardToHand(playerId,cardId,oppPlayerId);
+    }
+
 
 }

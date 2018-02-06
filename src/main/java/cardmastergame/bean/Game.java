@@ -135,6 +135,12 @@ public class Game {
         mains[playerId].push(c);
     }
 
+    public void moveCardFromOtherGraveyardToHand(int playerId, int cardId, int oppPlayerId) {
+        Card c = findCardInStackById(cimetieres[oppPlayerId], cardId);
+        cimetieres[oppPlayerId].remove(c);
+        mains[playerId].push(c);
+    }
+
     public Map<Integer, Card> getAllCards() {
         return allCards;
     }
@@ -207,4 +213,6 @@ public class Game {
     public void setCurrentEnvironnement(Stack<Card> currentEnvironnement) {
         this.currentEnvironnement = currentEnvironnement;
     }
+
+
 }

@@ -41,4 +41,14 @@ public class GraveyardController extends AbstractController{
                                             @ApiPathParam(description = "Card ID", allowedvalues = "int") @PathVariable("cardId") int cardId) throws IOException {
         customRepo.moveCardFromGraveyardToPlayerHand(playerId,cardId);
     }
+
+    @CrossOrigin
+    @RequestMapping(path = "/opponent/{oppPlayerId}/graveyard/{cardId}/player/{playerId}",method = RequestMethod.GET)
+    @ResponseBody
+    @ApiMethod(description = "Move a card from the graveyard of a player to the hand")
+    public void moveCardFromOtherGraveyardToHand(@ApiPathParam(description = "The player ID", allowedvalues = "0,1") @PathVariable("playerId") int playerId,
+                                                 @ApiPathParam(description = "Card ID", allowedvalues = "int") @PathVariable("cardId") int cardId,
+                                                 @ApiPathParam(description = "The opponent player ID", allowedvalues = "0,1") @PathVariable("oppPlayerId") int oppPlayerId) throws IOException {
+        customRepo.moveCardFromOtherGraveyardToHand(playerId,cardId,oppPlayerId);
+    }
 }

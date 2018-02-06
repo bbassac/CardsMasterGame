@@ -20,7 +20,11 @@ function fillGraveyard(playerId, graveId) {
         //bouton tout afficher
         var buttonDisplayGraveyard = document.createElement("button");
         buttonDisplayGraveyard.innerHTML = "Oo";
-        buttonDisplayGraveyard.setAttribute('onclick','displayGrave();');
+        if(graveId=="graveyardId") {
+            buttonDisplayGraveyard.setAttribute('onclick', 'displayGrave(\"me\");');
+        }else{
+            buttonDisplayGraveyard.setAttribute('onclick', 'displayGrave(\"you\");');
+        }
 
         cardDiv.appendChild(buttonDisplayGraveyard);
         graveZone.appendChild(cardDiv);
@@ -52,11 +56,16 @@ function throwDice(event,diceExp){
     }
 }
 
-function displayGrave(){
+function displayGrave(who){
     var currentPlayerId = document.getElementById("currentPlayerId").value;
+    var oppPlayerId = Math.abs(1-currentPlayerId);
 
     var xhttp = new XMLHttpRequest();
-    xhttp.open("GET", "player/"+currentPlayerId+"/graveyard", false);
+    if(who=="me") {
+        xhttp.open("GET", "player/" + currentPlayerId + "/graveyard", false);
+    }else{
+        xhttp.open("GET", "player/" + oppPlayerId + "/graveyard", false);
+    }
     xhttp.setRequestHeader("Content-type", "application/json");
     xhttp.send();
     var cards = JSON.parse(xhttp.responseText);
@@ -68,8 +77,8 @@ function displayGrave(){
     w.document.write("<BODY>");
 
     w.document.write("<script>");
+    if(who=="me"){
     w.document.write("function addCardToPlayer(currentPlayerId, cardId){\n" +
-        "    console.log(\"addCardToplayer \"+currentPlayerId+\" / \" + cardId);" +
         "    var xhttp = new XMLHttpRequest();\n" +
         "    xhttp.open(\"GET\", \"player/\"+currentPlayerId+\"/graveyard/\"+cardId, false);\n" +
         "    xhttp.setRequestHeader(\"Content-type\", \"application/json\");\n" +
@@ -77,6 +86,17 @@ function displayGrave(){
         "    document.getElementById(\"c-\"+cardId).style.display = \"none\";"+
         "    document.getElementById(cardId).style.display = \"none\";"+
         "}");
+    }else{
+        w.document.write("function addCardToPlayer(currentPlayerId, cardId){\n" +
+            "    var oppPlayerId = Math.abs(1-currentPlayerId); \n"+
+            "    var xhttp = new XMLHttpRequest();\n" +
+            "    xhttp.open(\"GET\", \"opponent/\"+oppPlayerId+\"/graveyard/\"+cardId+\"/player/\"+currentPlayerId, false);\n" +
+            "    xhttp.setRequestHeader(\"Content-type\", \"application/json\");\n" +
+            "    xhttp.send();\n" +
+            "    document.getElementById(\"c-\"+cardId).style.display = \"none\";"+
+            "    document.getElementById(cardId).style.display = \"none\";"+
+            "}");
+    }
     w.document.write("</script>");
 
     for (var i=0; i< cards.length;i++) {
@@ -151,6 +171,14 @@ function fillPVs(playerId,componentId) {
         buttonMorePv.tag = parseInt(xhttp.responseText)+1;
         buttonMorePv.setAttribute('onclick','updatePvs(this.tag);');
         component.appendChild(buttonMorePv);
+    }else {
+        var xhttpChakras = new XMLHttpRequest();
+        xhttpChakras.open("GET", "player/"+playerId+"/chakra", false);
+        xhttpChakras.setRequestHeader("Content-type", "application/json");
+        xhttpChakras.send();
+        var componentChakra = document.createTextNode("Chakras : " + xhttpChakras.responseText);
+
+        component.appendChild(componentChakra);
     }
 }
 

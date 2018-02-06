@@ -42,4 +42,6 @@ public interface CollectionRepositoryCustom {
     boolean updateActivatedOnCard(int playerId, int cardId, boolean value);
 
     boolean getActivatedOnCard(int playerId, int cardId);
+
+    void moveCardFromOtherGraveyardToHand(int playerId, int cardId, int oppPlayerId);
 }
