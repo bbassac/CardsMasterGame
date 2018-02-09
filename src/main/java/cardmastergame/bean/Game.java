@@ -37,8 +37,8 @@ public class Game {
         plateaux[0] = new Stack<>();
         plateaux[1] = new Stack<>();
         allCards = new HashMap<>();
-        pvs = new int[]{20,20};
-        chakras = new int[] {1,1};
+        pvs = new int[]{30,30};
+        chakras = new int[] {0,0};
     }
 
     public int selectCurrentEnvironnement() {
