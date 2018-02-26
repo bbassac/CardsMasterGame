@@ -11,7 +11,8 @@ Board {
 BoardOpp {
     grid-column: 1; grid-row: 1;
     -ms-grid-column: 1; -ms-grid-row: 1;
-    background-color: lavender;
+    background-color: red;
+    border: 1px solid black;
     display: flex;
 }
 
@@ -24,7 +25,8 @@ BoardOpp> div {
 GraveyardOpp {
     grid-column: 2; grid-row: 1;
     -ms-grid-column: 2; -ms-grid-row: 1;
-    background-color: orange;
+    background-color: red;
+    border: 1px solid black;
     display: flex;
 }
 
@@ -38,14 +40,16 @@ GraveyardOpp> div {
 PvOpp {
     grid-column: 3; grid-row: 1;
     -ms-grid-column: 3; -ms-grid-row: 1;
-    background-color: lightpink;
+    background-color: red;
+    border: 1px solid black;
     display: block;
 
 }
 BoardPlayer {
     grid-column: 1; grid-row: 2;
     -ms-grid-column: 1; -ms-grid-row: 2;
-    background-color: steelblue;
+    background-color: cornflowerblue;
+    border: 1px solid black;
     display: flex;
 
 }
@@ -60,7 +64,8 @@ boardplayer> div {
 GraveyardPlayer {
     grid-column: 2; grid-row: 2;
     -ms-grid-column: 2; -ms-grid-row: 2;
-    background-color: aqua;
+    background-color: cornflowerblue;
+    border: 1px solid black;
     display: flex;
 }
 
@@ -74,13 +79,15 @@ GraveyardPlayer> div {
 PvPlayer {
     grid-column: 3; grid-row: 2;
     -ms-grid-column: 3; -ms-grid-row: 2;
-    background-color: aquamarine;
+    background-color: cornflowerblue;
+    border: 1px solid black;
     display: block;
 }
 Hand {
     grid-row: 3; grid-column: 1 / 4;
     -ms-grid-row: 3; -ms-grid-column: 1;-ms-grid-column-span: 3;
-    background-color: sandybrown;
+    background-color: cornflowerblue;
+    border: 1px solid black;
     display: flex;
 }
 
