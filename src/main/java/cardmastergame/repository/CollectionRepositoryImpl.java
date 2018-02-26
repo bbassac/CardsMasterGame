@@ -3,6 +3,7 @@ package cardmastergame.repository;
 import cardmastergame.bean.Card;
 import cardmastergame.bean.Game;
 import cardmastergame.bean.StackConstants;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.Stack;
@@ -14,11 +15,12 @@ import java.util.Stack;
 
 public class CollectionRepositoryImpl implements CollectionRepositoryCustom {
 
+    @Autowired
     Game game;
 
     @Override
     public int startNewGame() {
-        game = new Game();
+        game.startNewGame();
         int nbCards = 0;
         nbCards+= game.loadStack(game.getEnvironnments(), "/Back-Select");
         nbCards+= game.loadStack(game.getInvocations(), "/Back-Select3");

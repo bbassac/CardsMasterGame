@@ -1,13 +1,13 @@
 package cardmastergame.bean;
 
 import cardmastergame.FileUtils;
-import cardmastergame.Start;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 
 import java.io.File;
-import java.net.URISyntaxException;
-import java.net.URL;
 import java.util.*;
 
+@Component
 public class Game {
     private int lastIndex;
     private Map<Integer, Card> allCards;
@@ -21,7 +21,13 @@ public class Game {
     private int[] pvs;
     private int[] chakras;
 
-    public Game(){
+    @Value( "${game.chakra.max}" )
+    private int MAX_CHAKRA;
+
+    @Value( "${game.pv.max}" )
+    private int MAX_PV;
+
+    public void startNewGame(){
         lastIndex = 0;
         environnments = new Stack<>();
         currentEnvironnement = new Stack<>();
@@ -37,7 +43,7 @@ public class Game {
         plateaux[0] = new Stack<>();
         plateaux[1] = new Stack<>();
         allCards = new HashMap<>();
-        pvs = new int[]{30,30};
+        pvs = new int[]{MAX_PV, MAX_PV};
         chakras = new int[] {0,0};
     }
 
@@ -121,8 +127,10 @@ public class Game {
     }
 
     public int updateChakras(int playerId, int value) {
-        chakras[playerId] = value;
-        return value;
+        if(value<= MAX_CHAKRA) {
+            chakras[playerId] = value;
+        }
+        return  chakras[playerId];
     }
 
     public int getDmgOnCard(int playerId, int cardId) {
