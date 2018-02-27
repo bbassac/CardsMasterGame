@@ -12,24 +12,28 @@ DrawBoard {
 Draw {
     grid-column: 1; grid-row: 1;
     -ms-grid-column: 1; -ms-grid-row: 1;
-    background-color: green;
+    border: 1px solid black;
+    background-color: #9ACD32b3;
     display: flex;
 }
 Invocations {
     grid-column: 2; grid-row: 1;
     -ms-grid-column: 2; -ms-grid-row: 1;
-    background-color: chartreuse;
+    border: 1px solid black;
+    background-color: #9ACD32b3;
     display: flex;
 }
 Environments {
     grid-column: 3; grid-row: 1;
     -ms-grid-column: 3; -ms-grid-row: 1;
-    background-color: yellow;
+    border: 1px solid black;
+    background-color: #9ACD32b3;
     display: flex;
 }
 CurrentEnvironment {
     grid-column: 4; grid-row: 1;
     -ms-grid-column: 4; -ms-grid-row: 1;
-    background-color: yellowgreen;
+    background-color: #9ACD32b3;
+    border: 1px solid black;
     display: flex;
 }

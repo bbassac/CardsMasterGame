@@ -3,15 +3,16 @@ Board {
     display: -ms-grid;
     height: 770px;
     border: 1px solid black;
-    grid-template-columns: 84% 10% 6%;
+    grid-template-columns: auto 174px 105px;
     grid-template-rows: 33% 33% 33%;
-    -ms-grid-columns: 84% 10% 6%;
+    -ms-grid-columns: auto 174px 105px;
     -ms-grid-rows: 33% 33% 33%;
+    background-image:url("../img/Fond.png");
 }
 BoardOpp {
     grid-column: 1; grid-row: 1;
     -ms-grid-column: 1; -ms-grid-row: 1;
-    background-color: red;
+    background-color: #ff0000b3;
     border: 1px solid black;
     display: flex;
 }
@@ -25,7 +26,7 @@ BoardOpp> div {
 GraveyardOpp {
     grid-column: 2; grid-row: 1;
     -ms-grid-column: 2; -ms-grid-row: 1;
-    background-color: red;
+    background-color: #ff0000b3;
     border: 1px solid black;
     display: flex;
 }
@@ -40,7 +41,7 @@ GraveyardOpp> div {
 PvOpp {
     grid-column: 3; grid-row: 1;
     -ms-grid-column: 3; -ms-grid-row: 1;
-    background-color: red;
+    background-color: #ff0000b3;
     border: 1px solid black;
     display: block;
 
@@ -48,7 +49,7 @@ PvOpp {
 BoardPlayer {
     grid-column: 1; grid-row: 2;
     -ms-grid-column: 1; -ms-grid-row: 2;
-    background-color: cornflowerblue;
+    background-color: #6596EBb3;
     border: 1px solid black;
     display: flex;
 
@@ -64,7 +65,7 @@ boardplayer> div {
 GraveyardPlayer {
     grid-column: 2; grid-row: 2;
     -ms-grid-column: 2; -ms-grid-row: 2;
-    background-color: cornflowerblue;
+    background-color: #6596EBb3;
     border: 1px solid black;
     display: flex;
 }
@@ -79,14 +80,14 @@ GraveyardPlayer> div {
 PvPlayer {
     grid-column: 3; grid-row: 2;
     -ms-grid-column: 3; -ms-grid-row: 2;
-    background-color: cornflowerblue;
+    background-color: #6596EBb3;
     border: 1px solid black;
     display: block;
 }
 Hand {
     grid-row: 3; grid-column: 1 / 4;
     -ms-grid-row: 3; -ms-grid-column: 1;-ms-grid-column-span: 3;
-    background-color: cornflowerblue;
+    background-color: #6596EBb3;
     border: 1px solid black;
     display: flex;
 }
