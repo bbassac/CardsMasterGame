@@ -7,12 +7,13 @@ Board {
     grid-template-rows: 33% 33% 33%;
     -ms-grid-columns: auto 174px 105px;
     -ms-grid-rows: 33% 33% 33%;
-    background-image:url("../img/Fond.png");
+    background: url("../img/Fond.png") no-repeat;
+    background-size: cover;
 }
 BoardOpp {
     grid-column: 1; grid-row: 1;
     -ms-grid-column: 1; -ms-grid-row: 1;
-    background-color: #ff0000b3;
+    background-color: #ff000055;
     border: 1px solid black;
     display: flex;
 }
@@ -26,7 +27,7 @@ BoardOpp> div {
 GraveyardOpp {
     grid-column: 2; grid-row: 1;
     -ms-grid-column: 2; -ms-grid-row: 1;
-    background-color: #ff0000b3;
+    background-color: #ff000055;
     border: 1px solid black;
     display: flex;
 }
@@ -41,7 +42,7 @@ GraveyardOpp> div {
 PvOpp {
     grid-column: 3; grid-row: 1;
     -ms-grid-column: 3; -ms-grid-row: 1;
-    background-color: #ff0000b3;
+    background-color: #ff000055;
     border: 1px solid black;
     display: block;
 

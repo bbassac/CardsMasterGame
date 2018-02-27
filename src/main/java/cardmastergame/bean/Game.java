@@ -76,7 +76,6 @@ public class Game {
         String prop = FileUtils.getCurrentJarPath();
         File path = new File(prop + folder);
         File[] listOfFiles = path.listFiles();
-        StringBuilder builder = new StringBuilder();
         for (int i = 0; i < listOfFiles.length; i++) {
             if (listOfFiles[i].isFile()) {
                 lastIndex++;
