@@ -14,7 +14,7 @@ function refreshBoard(){
     fillDiceArea(currentPlayerId,"diceId");
     fillDrawBoard(currentPlayerId,"draw","img/Back-Draw.png");
     fillDrawBoard(currentPlayerId,"invocations","img/Back-Select.png");
-    fillDrawBoard(currentPlayerId,"environments","img/Back-Select3.png");
+    // fillDrawBoard(currentPlayerId,"environments","img/Back-Select3.png");
     fillDrawBoard(currentPlayerId,"currentEnvironment","img" + getCurrentEnvironmentCard());
     fillGraveyard(currentPlayerId,"graveyardId");
     fillGraveyard(currentOppId,"graveyardOppId");
