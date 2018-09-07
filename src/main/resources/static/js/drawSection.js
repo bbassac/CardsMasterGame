@@ -56,8 +56,13 @@ function fillDrawBoard(playerId, id, image){
         var buttonPickInvoc = document.createElement("button");
         buttonPickInvoc.innerHTML = "Piocher Invocation";
         div.appendChild(buttonPickInvoc);
-
         buttonPickInvoc.setAttribute('onclick','pickInvocation(document.getElementById(\'selectInvocations\').value);');
+
+        var buttonDisplayInvoc = document.createElement("button");
+        buttonDisplayInvoc.innerHTML = "Display Invocation";
+        div.appendChild(buttonDisplayInvoc);
+        //buttonDisplayInvoc.setAttribute('onclick','displayPop(document.getElementById(\'selectInvocations\').options[document.getElementById(\'selectInvocations\').value].text);');
+        buttonDisplayInvoc.setAttribute('onclick','displayPoP(\'img\' + encodeURI(document.getElementById(\'selectInvocations\').options[document.getElementById(\'selectInvocations\').selectedIndex].text));');
     }
 }
 
