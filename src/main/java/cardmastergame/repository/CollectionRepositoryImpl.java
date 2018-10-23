@@ -54,6 +54,10 @@ public class CollectionRepositoryImpl implements CollectionRepositoryCustom {
                 return game.getPlateaux()[0];
             case BOARD1:
                 return game.getPlateaux()[1];
+            case TRAP0:
+                return game.getPieges()[0];
+            case TRAP1:
+                return game.getPieges()[1];
             default:
                 throw new UnsupportedOperationException();
         }
@@ -132,6 +136,16 @@ public class CollectionRepositoryImpl implements CollectionRepositoryCustom {
     @Override
     public void moveCardFromOtherGraveyardToHand(int playerId, int cardId, int oppPlayerId) {
         game.moveCardFromOtherGraveyardToHand(playerId,cardId,oppPlayerId);
+    }
+
+    @Override
+    public void moveCardFromHandToTrapForPlayer(int playerId, int cardId) {
+        game.moveCardFromHandToPiegeForPlayer(playerId,cardId);
+    }
+
+    @Override
+    public void moveCardFromTrapToGraveyard(int playerId, int cardId) {
+        game.moveCardFromPiegeToGraveyardForPlayer(playerId,cardId);
     }
 
 

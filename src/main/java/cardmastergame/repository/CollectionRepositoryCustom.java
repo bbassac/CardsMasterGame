@@ -44,4 +44,8 @@ public interface CollectionRepositoryCustom {
     boolean getActivatedOnCard(int playerId, int cardId);
 
     void moveCardFromOtherGraveyardToHand(int playerId, int cardId, int oppPlayerId);
+
+    void moveCardFromHandToTrapForPlayer(int playerId, int cardId);
+
+    void moveCardFromTrapToGraveyard(int playerId, int cardId);
 }

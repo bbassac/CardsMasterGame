@@ -125,16 +125,16 @@ CurrentEnvironment {
     margin-left: 70%;
     width: auto;
     background-color: #6596EBb3;
-    border: 1px solid black;
+
     display: flex;
 }
-Blank1 {
-    grid-column: 2; grid-row: 4;
-    -ms-grid-column: 2; -ms-grid-row: 4;
+Traps {
+    grid-row: 4; grid-column: 2 / 4;
+    -ms-grid-row: 4; -ms-grid-column: 1;-ms-grid-column-span: 1;
+    display: flex;
+
+    align-items: center;
+    flex-direction: row-reverse;
     background-color: #6596EBb3;
-}
-Blank2 {
-    grid-column: 3; grid-row: 4;
-    -ms-grid-column: 3; -ms-grid-row: 4;
-    background-color: #6596EBb3;
+
 }

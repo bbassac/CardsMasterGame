@@ -17,6 +17,9 @@ public class Game {
     private Stack<Card>[] cimetieres;
     private Stack<Card>[] mains;
     private Stack<Card>[] plateaux;
+
+    private Stack<Card>[] pieges;
+
     private Stack<Card> currentEnvironnement;
     private int[] pvs;
     private int[] chakras;
@@ -27,6 +30,9 @@ public class Game {
     @Value( "${game.pv.max}" )
     private int MAX_PV;
 
+    @Value("${game.trap.max}")
+    private int MAX_TRAP;
+
     public void startNewGame(){
         lastIndex = 0;
         environnments = new Stack<>();
@@ -36,6 +42,9 @@ public class Game {
         cimetieres = new Stack[2];
         cimetieres[0] = new Stack<>();
         cimetieres[1] = new Stack<>();
+        pieges = new Stack[2];
+        pieges[0] = new Stack<>();
+        pieges[1] = new Stack<>();
         mains = new Stack[2];
         mains[0] = new Stack<>();
         mains[1] = new Stack<>();
@@ -110,6 +119,20 @@ public class Game {
         plateaux[playerId].push(c);
     }
 
+    public void moveCardFromHandToPiegeForPlayer(int playerId, int cardId) {
+        if (pieges[playerId].size() < MAX_TRAP) {
+            Card c = findCardInStackById(mains[playerId], cardId);
+            mains[playerId].remove(c);
+            pieges[playerId].push(c);
+        }
+    }
+    public void moveCardFromPiegeToGraveyardForPlayer(int playerId, int cardId) {
+        Card c = findCardInStackById(pieges[playerId], cardId);
+        pieges[playerId].remove(c);
+        cimetieres[playerId].push(c);
+    }
+
+
     public void moveCardFromGameToGraveyardForPlayer(int playerId, int cardId) {
         Card c = findCardInStackById(plateaux[playerId], cardId);
         plateaux[playerId].remove(c);
@@ -141,6 +164,8 @@ public class Game {
         cimetieres[playerId].remove(c);
         mains[playerId].push(c);
     }
+
+
 
     public void moveCardFromOtherGraveyardToHand(int playerId, int cardId, int oppPlayerId) {
         Card c = findCardInStackById(cimetieres[oppPlayerId], cardId);
@@ -220,6 +245,14 @@ public class Game {
     public void setCurrentEnvironnement(Stack<Card> currentEnvironnement) {
         this.currentEnvironnement = currentEnvironnement;
     }
+    public Stack<Card>[] getPieges() {
+        return pieges;
+    }
+
+    public void setPieges(Stack<Card>[] pieges) {
+        this.pieges = pieges;
+    }
+
 
 
 }

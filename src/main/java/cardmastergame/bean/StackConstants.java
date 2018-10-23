@@ -24,5 +24,9 @@ public enum StackConstants {
     @ApiObjectField(description = "Main joueur 0")
     HAND0,
     @ApiObjectField(description = "Main joueur 1")
-    HAND1
+    HAND1,
+    @ApiObjectField(description = "Pile pièges joueur 0")
+    TRAP0,
+    @ApiObjectField(description = "Pile pièges  joueur 1")
+    TRAP1
 }

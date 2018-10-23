@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', function() {
 }, false);
 
 
-var gameImageHeight = 225;
+
 
 function refreshBoard(){
     var currentPlayerId = document.getElementById("currentPlayerId").value;
@@ -18,15 +18,16 @@ function refreshBoard(){
     fillDrawBoard(currentPlayerId,"currentEnvironment","img" + getCurrentEnvironmentCard());
     fillGraveyard(currentPlayerId,"graveyardId");
     fillGraveyard(currentOppId,"graveyardOppId");
-    fillDeck(currentPlayerId,"hand","hand");
-    fillDeck(currentPlayerId,"boardPlayer","board");
-    fillDeck(currentOppId,"boardOpp","board");
+    fillDeck(currentPlayerId,"hand","hand",225);
+    fillDeck(currentPlayerId,"boardPlayer","board",225);
+    fillDeck(currentOppId,"boardOpp","board",225);
+    fillDeck(currentPlayerId,"traps","traps",100);
 }
 
 
 
 
-function fillDeck(playerId,section,stackName){
+function fillDeck(playerId,section,stackName,gameImageHeight){
     var xhttp = new XMLHttpRequest();
     xhttp.open("GET", "player/"+playerId+"/"+stackName, false);
     xhttp.setRequestHeader("Content-type", "application/json");

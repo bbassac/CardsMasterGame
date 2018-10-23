@@ -45,4 +45,6 @@ public class Card {
     public void setActivated(boolean activated) {
         this.activated = activated;
     }
+
+
 }
