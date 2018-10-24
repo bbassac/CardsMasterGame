@@ -3,11 +3,11 @@ Board {
     display: -ms-grid;
     height: 930px;
     border: 1px solid black;
-    grid-template-columns: auto 174px 105px;
+    grid-template-columns: auto 170px 115px;
     grid-template-rows: 27% 27% 27% 19%;
     -ms-grid-columns: auto 174px 105px;
     -ms-grid-rows: 29% 29% 30% 12%;
-    background: url("../img/Fond.png") no-repeat;
+    background: url("../img/Fond2.png") no-repeat;
     background-size: 100% 100%;
 }
 BoardOpp {

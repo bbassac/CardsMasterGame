@@ -2,9 +2,9 @@ document.addEventListener('DOMContentLoaded', function() {
     refreshBoard();
 }, false);
 
-
-
-
+const drawImageHeight = 170;
+const gameImageHeight = 225;
+const trapImageHeight = 160;
 function refreshBoard(){
     var currentPlayerId = document.getElementById("currentPlayerId").value;
     var currentOppId = Math.abs(1-currentPlayerId);
@@ -13,15 +13,19 @@ function refreshBoard(){
     fillNbTraps(currentOppId, "nbTrapsId");
     fillChakras(currentPlayerId,"playerChakraId");
     fillDiceArea(currentPlayerId,"diceId");
-    fillDrawBoard(currentPlayerId,"draw","img/Back-Draw.png");
-    fillDrawBoard(currentPlayerId,"invocations","img/Back-Select.png");
-    fillDrawBoard(currentPlayerId,"currentEnvironment","img" + getCurrentEnvironmentCard());
-    fillGraveyard(currentPlayerId,"graveyardId",225);
-    fillGraveyard(currentOppId,"graveyardOppId",225);
-    fillDeck(currentPlayerId,"hand","hand",225);
-    fillDeck(currentPlayerId,"boardPlayer","board",225);
-    fillDeck(currentOppId,"boardOpp","board",225);
-    fillDeck(currentPlayerId,"traps","traps",140);
+
+
+
+    fillDrawBoard(currentPlayerId,"draw","img/Back-Draw.png",drawImageHeight);
+    fillDrawBoard(currentPlayerId,"invocations","img/Back-Select.png",drawImageHeight);
+    fillDrawBoard(currentPlayerId,"currentEnvironment","img" + getCurrentEnvironmentCard(),drawImageHeight);
+
+    fillGraveyard(currentPlayerId,"graveyardId",gameImageHeight);
+    fillGraveyard(currentOppId,"graveyardOppId",gameImageHeight);
+    fillDeck(currentPlayerId,"hand","hand",gameImageHeight);
+    fillDeck(currentPlayerId,"boardPlayer","board",gameImageHeight);
+    fillDeck(currentOppId,"boardOpp","board",gameImageHeight);
+    fillDeck(currentPlayerId,"traps","traps",trapImageHeight);
 }
 
 

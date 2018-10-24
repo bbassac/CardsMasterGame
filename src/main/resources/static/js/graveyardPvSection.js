@@ -132,7 +132,7 @@ function fillChakras(playerId,componentId) {
     xhttp.setRequestHeader("Content-type", "application/json");
     xhttp.send();
     var component = document.getElementById(componentId);
-    component.textContent =  xhttp.responseText;
+    component.textContent =  "Chakras : " + xhttp.responseText;
     var linebreak = document.createElement("br");
     component.appendChild(linebreak);
 
@@ -170,7 +170,7 @@ function fillPVs(playerId,componentId) {
     xhttp.setRequestHeader("Content-type", "application/json");
     xhttp.send();
     var component = document.getElementById(componentId);
-    component.textContent =  xhttp.responseText;
+    component.textContent =  "Player Pvs : " + xhttp.responseText;
     var linebreak = document.createElement("br");
     component.appendChild(linebreak);
     if (componentId=="playerPvsId"){

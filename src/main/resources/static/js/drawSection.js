@@ -1,4 +1,4 @@
-var drawImageHeight = 160;
+
 
 function getCurrentEnvironmentCard() {
     var xhttp = new XMLHttpRequest();
@@ -9,7 +9,7 @@ function getCurrentEnvironmentCard() {
 }
 
 
-function fillDrawBoard(playerId, id, image){
+function fillDrawBoard(playerId, id, image,drawImageHeight){
     var img = document.createElement("img");
     img.src = encodeURI(image);
     img.height = drawImageHeight;
