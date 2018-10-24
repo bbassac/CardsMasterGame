@@ -47,6 +47,14 @@ PvOpp {
     display: block;
 
 }
+
+#nbTrapsId {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 BoardPlayer {
     grid-column: 1; grid-row: 2;
     -ms-grid-column: 1; -ms-grid-row: 2;

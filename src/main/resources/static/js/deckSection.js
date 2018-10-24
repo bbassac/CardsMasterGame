@@ -5,16 +5,15 @@ document.addEventListener('DOMContentLoaded', function() {
 const drawImageHeight = 170;
 const gameImageHeight = 225;
 const trapImageHeight = 160;
+const trapIconHeight = 50;
 function refreshBoard(){
     var currentPlayerId = document.getElementById("currentPlayerId").value;
     var currentOppId = Math.abs(1-currentPlayerId);
     fillPVs(currentPlayerId,"playerPvsId");
     fillPVs(currentOppId,"oppPvsId");
-    fillNbTraps(currentOppId, "nbTrapsId");
+    fillNbTraps(currentOppId, "nbTrapsId",trapIconHeight);
     fillChakras(currentPlayerId,"playerChakraId");
     fillDiceArea(currentPlayerId,"diceId");
-
-
 
     fillDrawBoard(currentPlayerId,"draw","img/Back-Draw.png",drawImageHeight);
     fillDrawBoard(currentPlayerId,"invocations","img/Back-Select.png",drawImageHeight);
@@ -22,6 +21,7 @@ function refreshBoard(){
 
     fillGraveyard(currentPlayerId,"graveyardId",gameImageHeight);
     fillGraveyard(currentOppId,"graveyardOppId",gameImageHeight);
+
     fillDeck(currentPlayerId,"hand","hand",gameImageHeight);
     fillDeck(currentPlayerId,"boardPlayer","board",gameImageHeight);
     fillDeck(currentOppId,"boardOpp","board",gameImageHeight);
