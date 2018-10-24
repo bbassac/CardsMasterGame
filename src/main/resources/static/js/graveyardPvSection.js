@@ -1,4 +1,4 @@
-function fillGraveyard(playerId, graveId) {
+function fillGraveyard(playerId, graveId,gameImageHeight) {
     var xhttp = new XMLHttpRequest();
     xhttp.open("GET", "player/"+playerId+"/graveyard", false);
     xhttp.setRequestHeader("Content-type", "application/json");
@@ -147,6 +147,20 @@ function fillChakras(playerId,componentId) {
     buttonMoreChakra.tag = parseInt(xhttp.responseText)+1;
     buttonMoreChakra.setAttribute('onclick','updateChakras(this.tag);');
     component.appendChild(buttonMoreChakra);
+
+}
+
+function fillNbTraps(oppPlayerId, componentId){
+    var xhttp = new XMLHttpRequest();
+    xhttp.open("GET", "player/"+oppPlayerId+"/traps", false);
+    xhttp.setRequestHeader("Content-type", "application/json");
+    xhttp.send();
+    var traps = JSON.parse(xhttp.responseText);
+
+    var component = document.getElementById(componentId);
+
+    component.innerHTML = traps.length + " pièges";
+
 
 }
 

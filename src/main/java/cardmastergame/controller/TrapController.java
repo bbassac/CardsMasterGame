@@ -31,7 +31,7 @@ public class TrapController extends AbstractController{
     public Stack<Card> displayTraps(@ApiPathParam(description = "The player ID", allowedvalues = "0,1") @PathVariable("playerId") int playerId) throws IOException {
         return playerId == 0 ? customRepo.getStack(StackConstants.TRAP0) : customRepo.getStack(StackConstants.TRAP1);
     }
-    
+
     @CrossOrigin
     @RequestMapping(path = "/player/{playerId}/trap/{cardId}/graveyard",method = RequestMethod.PUT)
     @ResponseBody

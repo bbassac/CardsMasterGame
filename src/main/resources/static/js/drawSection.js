@@ -1,4 +1,4 @@
-var drawImageHeight = 100;
+var drawImageHeight = 160;
 
 function getCurrentEnvironmentCard() {
     var xhttp = new XMLHttpRequest();

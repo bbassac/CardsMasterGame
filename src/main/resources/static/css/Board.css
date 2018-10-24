@@ -1,10 +1,10 @@
 Board {
     display: grid;
     display: -ms-grid;
-    height: 900px;
+    height: 930px;
     border: 1px solid black;
     grid-template-columns: auto 174px 105px;
-    grid-template-rows: 29% 29% 30% 12%;
+    grid-template-rows: 27% 27% 27% 19%;
     -ms-grid-columns: auto 174px 105px;
     -ms-grid-rows: 29% 29% 30% 12%;
     background: url("../img/Fond.png") no-repeat;
@@ -122,7 +122,7 @@ Invocations {
 CurrentEnvironment {
     grid-column: 1; grid-row: 4;
     -ms-grid-column: 1; -ms-grid-row: 4;
-    margin-left: 70%;
+    margin-left: 75%;
     width: auto;
     background-color: #6596EBb3;
 
@@ -137,4 +137,10 @@ Traps {
     flex-direction: row-reverse;
     background-color: #6596EBb3;
 
+}
+Traps> div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
