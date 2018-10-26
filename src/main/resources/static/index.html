@@ -14,12 +14,13 @@
         <a  class="list-group-item" href="/jsondoc-ui.html?url=/jsondoc">Documentation</a>
     </Doc>
     ID du joueur
-        <select id="currentPlayerId">
+        <select id="currentPlayerId" onchange="refreshBoard()">
             <option selected="selected" value="0">0</option>
             <option value="1">1</option>
         </select>
         <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-    <button onclick="refreshBoard()">Refresh</button>
+
+    <button style="background: url(img/reload.png);height: 20px;width: 20px" onclick="refreshBoard()"  > </button>
 </Header>
 
 <Board>

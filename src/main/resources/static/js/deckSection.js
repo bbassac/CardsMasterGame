@@ -2,30 +2,47 @@ document.addEventListener('DOMContentLoaded', function() {
     refreshBoard();
 }, false);
 
+setInterval(refreshOpponentBoard, 2000);
+
 const drawImageHeight = 170;
 const gameImageHeight = 225;
 const trapImageHeight = 160;
 const trapIconHeight = 50;
+
+var oldNbTrapsOpp=0 ;
+var oldLastGraveyardOp = 0;
+
 function refreshBoard(){
     var currentPlayerId = document.getElementById("currentPlayerId").value;
-    var currentOppId = Math.abs(1-currentPlayerId);
-    fillPVs(currentPlayerId,"playerPvsId");
-    fillPVs(currentOppId,"oppPvsId");
-    fillNbTraps(currentOppId, "nbTrapsId",trapIconHeight);
-    fillChakras(currentPlayerId,"playerChakraId");
-    fillDiceArea(currentPlayerId,"diceId");
+
 
     fillDrawBoard(currentPlayerId,"draw","img/Back-Draw.png",drawImageHeight);
     fillDrawBoard(currentPlayerId,"invocations","img/Back-Select.png",drawImageHeight);
     fillDrawBoard(currentPlayerId,"currentEnvironment","img" + getCurrentEnvironmentCard(),drawImageHeight);
 
-    fillGraveyard(currentPlayerId,"graveyardId",gameImageHeight);
-    fillGraveyard(currentOppId,"graveyardOppId",gameImageHeight);
+    refreshOpponentBoard();
+    refreshPlayerBoard();
+}
 
+function refreshOpponentBoard(){
+    var currentPlayerId = document.getElementById("currentPlayerId").value;
+    var currentOppId = Math.abs(1-currentPlayerId);
+    fillPVs(currentOppId,"oppPvsId");
+    fillNbTraps(currentOppId, "nbTrapsId",trapIconHeight);
+    fillDeck(currentOppId,"boardOpp","board",gameImageHeight);
+    fillGraveyard(currentOppId,"graveyardOppId",gameImageHeight);
+}
+
+function refreshPlayerBoard(){
+    var currentPlayerId = document.getElementById("currentPlayerId").value;
+
+    fillPVs(currentPlayerId,"playerPvsId");
+    fillGraveyard(currentPlayerId,"graveyardId",gameImageHeight);
     fillDeck(currentPlayerId,"hand","hand",gameImageHeight);
     fillDeck(currentPlayerId,"boardPlayer","board",gameImageHeight);
-    fillDeck(currentOppId,"boardOpp","board",gameImageHeight);
     fillDeck(currentPlayerId,"traps","traps",trapImageHeight);
+    fillChakras(currentPlayerId,"playerChakraId");
+    fillDiceArea(currentPlayerId,"diceId");
 }
 
 
@@ -155,7 +172,7 @@ function flipCard(cardId,curentvalue){
     xhttp.open("PUT", "player/"+currentPlayerId+"/board/"+cardId+"/activated/"+!curentvalue, false);
     xhttp.setRequestHeader("Content-type", "application/json");
     xhttp.send();
-    refreshBoard();
+    refreshPlayerBoard(currentPlayerId)
 }
 
 function updateDmgPoints(cardId,newDmgPoint){
@@ -165,7 +182,7 @@ function updateDmgPoints(cardId,newDmgPoint){
     xhttp.open("PUT", "player/"+currentPlayerId+"/board/"+cardId+"/dmg/"+newDmgPoint, false);
     xhttp.setRequestHeader("Content-type", "application/json");
     xhttp.send();
-    refreshBoard();
+    refreshPlayerBoard(currentPlayerId)
 }
 
 function moveCardToBoard(cardId){
@@ -175,7 +192,7 @@ function moveCardToBoard(cardId){
     xhttp.open("PUT", "player/"+currentPlayerId+"/board/"+cardId, false);
     xhttp.setRequestHeader("Content-type", "application/json");
     xhttp.send();
-    refreshBoard();
+    refreshPlayerBoard(currentPlayerId)
 }
 
 function moveCardToTrap(cardId){
@@ -185,7 +202,7 @@ function moveCardToTrap(cardId){
     xhttp.open("PUT", "player/"+currentPlayerId+"/trap/"+cardId, false);
     xhttp.setRequestHeader("Content-type", "application/json");
     xhttp.send();
-    refreshBoard();
+    refreshPlayerBoard(currentPlayerId)
 }
 
 function moveCardToGraveyard(cardId){
@@ -195,7 +212,7 @@ function moveCardToGraveyard(cardId){
     xhttp.open("PUT", "player/"+currentPlayerId+"/graveyard/"+cardId, false);
     xhttp.setRequestHeader("Content-type", "application/json");
     xhttp.send();
-    refreshBoard();
+    refreshPlayerBoard(currentPlayerId)
 }
 
 function moveCardFromTrapsToGraveyard(cardId){
@@ -205,7 +222,7 @@ function moveCardFromTrapsToGraveyard(cardId){
     xhttp.open("PUT", "player/"+currentPlayerId+"/trap/"+cardId+"/graveyard", false);
     xhttp.setRequestHeader("Content-type", "application/json");
     xhttp.send();
-    refreshBoard();
+    refreshPlayerBoard(currentPlayerId)
 }
 
 

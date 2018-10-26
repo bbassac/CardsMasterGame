@@ -4,30 +4,33 @@ function fillGraveyard(playerId, graveId,gameImageHeight) {
     xhttp.setRequestHeader("Content-type", "application/json");
     xhttp.send();
     var graveZone = document.getElementById(graveId);
-    graveZone.innerHTML="";
     var cards = JSON.parse(xhttp.responseText);
-    if (cards.length>0) {
-        //Appercu dessus de la pile
-        var cardDiv = document.createElement("div");
-        var img = document.createElement("img");
-        img.src = "img/" + encodeURI(cards[cards.length-1].path);
-        img.height = gameImageHeight;
-        img.hspace = 5;
-        img.title = cards[cards.length-1].id;
-        img.setAttribute('onclick', 'displayPoP(this.src);');
-        cardDiv.appendChild(img);
+    if (cards.length > 0 && oldLastGraveyardOp !== cards[cards.length-1].id) {
+        oldLastGraveyardOp = cards[cards.length-1].id;
+        graveZone.innerHTML = "";
+        if (cards.length > 0) {
+            //Appercu dessus de la pile
+            var cardDiv = document.createElement("div");
+            var img = document.createElement("img");
+            img.src = "img/" + encodeURI(cards[cards.length - 1].path);
+            img.height = gameImageHeight;
+            img.hspace = 5;
+            img.title = cards[cards.length - 1].id;
+            img.setAttribute('onclick', 'displayPoP(this.src);');
+            cardDiv.appendChild(img);
 
-        //bouton tout afficher
-        var buttonDisplayGraveyard = document.createElement("button");
-        buttonDisplayGraveyard.innerHTML = "Oo";
-        if(graveId=="graveyardId") {
-            buttonDisplayGraveyard.setAttribute('onclick', 'displayGrave(\"me\");');
-        }else{
-            buttonDisplayGraveyard.setAttribute('onclick', 'displayGrave(\"you\");');
+            //bouton tout afficher
+            var buttonDisplayGraveyard = document.createElement("button");
+            buttonDisplayGraveyard.innerHTML = "Oo";
+            if (graveId == "graveyardId") {
+                buttonDisplayGraveyard.setAttribute('onclick', 'displayGrave(\"me\");');
+            } else {
+                buttonDisplayGraveyard.setAttribute('onclick', 'displayGrave(\"you\");');
+            }
+
+            cardDiv.appendChild(buttonDisplayGraveyard);
+            graveZone.appendChild(cardDiv);
         }
-
-        cardDiv.appendChild(buttonDisplayGraveyard);
-        graveZone.appendChild(cardDiv);
     }
 }
 
@@ -150,29 +153,28 @@ function fillChakras(playerId,componentId) {
 
 }
 
-function fillNbTraps(oppPlayerId, componentId,trapSize){
+function fillNbTraps(oppPlayerId, componentId,trapSize) {
     var xhttp = new XMLHttpRequest();
-    xhttp.open("GET", "player/"+oppPlayerId+"/traps", false);
+    xhttp.open("GET", "player/" + oppPlayerId + "/traps", false);
     xhttp.setRequestHeader("Content-type", "application/json");
     xhttp.send();
     var traps = JSON.parse(xhttp.responseText);
 
     var component = document.getElementById(componentId);
     var nbTraps = traps.length;
+    if (nbTraps !== oldNbTrapsOpp) {
+        oldNbTrapsOpp = nbTraps;
+        component.innerText = "";
+        for (var i = 0; i < nbTraps; i++) {
+            var imgDiv = document.createElement("div");
+            var img = document.createElement("img");
+            img.src = "img/Star.png";
+            img.height = trapSize;
+            imgDiv.appendChild(img);
 
-    component.innerText="";
-    for (var i=0; i< nbTraps;i++) {
-        var imgDiv = document.createElement("div");
-        var img = document.createElement("img");
-        img.src = "img/Star.png";
-        img.height = trapSize;
-        imgDiv.appendChild(img);
-
-
-
-        component.appendChild(imgDiv);
+            component.appendChild(imgDiv);
+        }
     }
-
 }
 
 function fillPVs(playerId,componentId) {
