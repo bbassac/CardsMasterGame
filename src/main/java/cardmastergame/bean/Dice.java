@@ -1,13 +1,11 @@
 package cardmastergame.bean;
 
-import org.jsondoc.core.annotation.ApiObject;
-import org.jsondoc.core.annotation.ApiObjectField;
+import io.swagger.annotations.ApiModelProperty;
 
-@ApiObject(description = "Representation of a dice")
 public class Dice {
-    @ApiObjectField(description = "Original expression used for dice throw")
+    @ApiModelProperty(notes = "Dice expression")
     private String expression;
-    @ApiObjectField(description = "Int value of the throw")
+    @ApiModelProperty(notes = "Result")
     private long value;
 
     public String getExpression() {

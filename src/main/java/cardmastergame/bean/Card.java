@@ -1,17 +1,15 @@
 package cardmastergame.bean;
 
-import org.jsondoc.core.annotation.ApiObject;
-import org.jsondoc.core.annotation.ApiObjectField;
+import io.swagger.annotations.ApiModelProperty;
 
-@ApiObject(description = "Representation of a Card")
 public class Card {
-    @ApiObjectField(description = "Unique id to find cards")
+    @ApiModelProperty(notes = "Card ID")
     private int id;
-    @ApiObjectField(description = "path of the card")
+    @ApiModelProperty(notes = "Card Picture Path")
     private String path;
-    @ApiObjectField(description = "number of damage on card")
+    @ApiModelProperty(notes = "Card Damage Point")
     private int dammagePoints = 0;
-    @ApiObjectField(description = "true if power has already been activated")
+    @ApiModelProperty(notes = "Dice Orientation (activated or not")
     private boolean activated = false;
 
     public int getId() {
