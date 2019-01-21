@@ -9,7 +9,7 @@ public class Card {
     private String path;
     @ApiModelProperty(notes = "Card Damage Point")
     private int dammagePoints = 0;
-    @ApiModelProperty(notes = "Dice Orientation (activated or not")
+    @ApiModelProperty(notes = "Card Orientation (activated or not")
     private boolean activated = false;
 
     public int getId() {

@@ -2,24 +2,25 @@ package cardmastergame.controller;
 
 import cardmastergame.bean.Card;
 import cardmastergame.bean.StackConstants;
-
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import org.springframework.web.bind.annotation.*;
 
-import java.io.IOException;
 import java.util.Stack;
 
 @RestController
-@Api(value = "Board API",description = "Used for all board actions")
+@Api(description = "Board API Used for all board actions")
 public class BoardController extends AbstractController{
 
     @CrossOrigin
     @RequestMapping(path = "/player/{playerId}/hand",method = RequestMethod.GET)
     @ResponseBody
-   
     @ApiOperation(value="Hand of player",response = Stack.class)
-    public Stack<Card> displayHand( @PathVariable("playerId") int playerId) throws IOException {
+    public Stack<Card> displayHand(
+            @ApiParam(value = "Player Id ", allowableValues ="0,1",required = true)
+            @PathVariable("playerId") int playerId) {
+
          return playerId == 0 ? customRepo.getStack(StackConstants.HAND0) : customRepo.getStack(StackConstants.HAND1);
 
     }
@@ -27,8 +28,10 @@ public class BoardController extends AbstractController{
     @CrossOrigin
     @RequestMapping(path = "/player/{playerId}/board",method = RequestMethod.GET)
     @ResponseBody
-    @ApiOperation(value = "Plateau  of player")
-    public Stack<Card> displayBoard( @PathVariable("playerId") int playerId) throws IOException {
+    @ApiOperation(value = "Plateau  of player",response = Stack.class)
+    public Stack<Card> displayBoard(
+            @ApiParam(value = "Player Id ", allowableValues ="0,1",required = true)
+            @PathVariable("playerId") int playerId) {
         return playerId == 0 ? customRepo.getStack(StackConstants.BOARD0) : customRepo.getStack(StackConstants.BOARD1);
     }
 
@@ -36,7 +39,9 @@ public class BoardController extends AbstractController{
     @RequestMapping(path = "/player/{playerId}/newcard",method = RequestMethod.GET)
     @ResponseBody
     @ApiOperation(value = "Pick a new card from pioche")
-    public void pickNewCard(@PathVariable("playerId") int playerId) throws IOException {
+    public void pickNewCard(
+            @ApiParam(value = "Player Id ", allowableValues ="0,1",required = true)
+            @PathVariable("playerId") int playerId) {
        customRepo.moveCardFromDrawToPlayer(playerId);
     }
 
@@ -44,8 +49,12 @@ public class BoardController extends AbstractController{
     @RequestMapping(path = "/player/{playerId}/invocations/{cardId}",method = RequestMethod.GET)
     @ResponseBody
     @ApiOperation(value = "Pick a specific card from invocations")
-    public void pickNamedCardFromDraw(@PathVariable("playerId") int playerId,
-                                       @PathVariable("cardId") int cardId) throws IOException {
+    public void pickNamedCardFromDraw(
+            @ApiParam(value = "Player Id ", allowableValues ="0,1",required = true)
+            @PathVariable("playerId") int playerId,
+
+            @ApiParam(value = "Card Id ", type = "int", required = true)
+            @PathVariable("cardId") int cardId) {
 
         customRepo.moveSpecificCardFromInvocationToPlayer(playerId,cardId);
     }
@@ -55,8 +64,13 @@ public class BoardController extends AbstractController{
     @RequestMapping(path = "/player/{playerId}/board/{cardId}",method = RequestMethod.PUT)
     @ResponseBody
     @ApiOperation(value = "Move a card from the hand of a player to the board")
-    public void moveCardFromHandToGame( @PathVariable("playerId") int playerId,
-                                        @PathVariable("cardId") int cardId) throws IOException {
+    public void moveCardFromHandToGame(
+            @ApiParam(value = "Player Id ", allowableValues ="0,1",required = true)
+            @PathVariable("playerId") int playerId,
+
+            @ApiParam(value = "Card Id ", type = "int", required = true)
+            @PathVariable("cardId") int cardId) {
+
        customRepo.moveCardFromHandToGameForPlayer(playerId,cardId);
     }
 

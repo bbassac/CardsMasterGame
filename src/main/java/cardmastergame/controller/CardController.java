@@ -1,42 +1,69 @@
 package cardmastergame.controller;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import org.springframework.web.bind.annotation.*;
 
-import java.io.IOException;
-
 @RestController
+@Api(description = "Card API Used for all card actions")
 public class CardController extends AbstractController{
-
-
 
 
     @CrossOrigin
     @RequestMapping(path = "/player/{playerId}/board/{cardId}/dmg/{value}",method = RequestMethod.PUT)
     @ResponseBody
-    public int updateDMGOnCard( @PathVariable("playerId") int playerId,
-                               @PathVariable("cardId") int cardId,
-                               @PathVariable("value") int value) throws IOException {
+    @ApiOperation(value = "Update damage points on card",response = int.class)
+    public int updateDMGOnCard(
+            @ApiParam(value = "Player Id ", allowableValues ="0,1",required = true)
+            @PathVariable("playerId") int playerId,
+
+            @ApiParam(value = "Card Id ", type = "int", required = true)
+            @PathVariable("cardId") int cardId,
+
+            @PathVariable("value") int value)  {
         return customRepo.updateDmgPointsOnCard(playerId,cardId,value);
     }
 
     @CrossOrigin
     @RequestMapping(path = "/player/{playerId}/board/{cardId}/dmg",method = RequestMethod.GET)
     @ResponseBody
-    public int getDMGOnCard( @PathVariable("playerId") int playerId, @PathVariable("cardId") int cardId) throws IOException {
+    @ApiOperation(value = "Get damage points on card",response = int.class)
+    public int getDMGOnCard(
+            @ApiParam(value = "Player Id ", allowableValues ="0,1",required = true)
+            @PathVariable("playerId") int playerId,
+
+            @ApiParam(value = "Card Id ", type = "int", required = true)
+            @PathVariable("cardId") int cardId)  {
         return customRepo.getDmgOnCard(playerId,cardId);
     }
 
     @CrossOrigin
     @RequestMapping(path = "/player/{playerId}/board/{cardId}/activated/{value}",method = RequestMethod.PUT)
     @ResponseBody
-    public boolean updateActivatedOnCard(@PathVariable("playerId") int playerId,@PathVariable("cardId") int cardId,@PathVariable("value") boolean value) throws IOException {
+    @ApiOperation(value = "Change status of card : activated = true ",response = boolean.class)
+    public boolean updateActivatedOnCard(
+            @ApiParam(value = "Player Id ", allowableValues ="0,1",required = true)
+            @PathVariable("playerId") int playerId,
+
+            @ApiParam(value = "Card Id ", type = "int", required = true)
+            @PathVariable("cardId") int cardId,
+
+            @ApiParam(value = "value ", type = "boolean", required = true)
+            @PathVariable("value") boolean value){
         return customRepo.updateActivatedOnCard(playerId,cardId,value);
     }
 
     @CrossOrigin
     @RequestMapping(path = "/player/{playerId}/board/{cardId}/activated",method = RequestMethod.GET)
     @ResponseBody
-    public boolean getActivatedOnCard(@PathVariable("playerId") int playerId, @PathVariable("cardId") int cardId) throws IOException {
+    @ApiOperation(value = "Get status of card : activated = true ",response = boolean.class)
+    public boolean getActivatedOnCard(
+            @ApiParam(value = "Player Id ", allowableValues ="0,1",required = true)
+            @PathVariable("playerId") int playerId,
+
+            @ApiParam(value = "Card Id ", type = "int", required = true)
+            @PathVariable("cardId") int cardId) {
         return customRepo.getActivatedOnCard(playerId,cardId);
     }
 
