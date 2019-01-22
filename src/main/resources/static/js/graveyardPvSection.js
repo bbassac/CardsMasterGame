@@ -48,6 +48,16 @@ function fillDiceArea(currentPlayerId,diceId){
     diceArea.appendChild(divDice);
 }
 
+function refreshLastDiceThrow(){
+    var xhttp = new XMLHttpRequest();
+    xhttp.open("GET", "lastdice" , false);
+    xhttp.setRequestHeader("Content-type", "application/json");
+    xhttp.send();
+    var result = JSON.parse(xhttp.responseText);
+    document.getElementById("diceResultId").textContent = "Result :" + result.value;
+
+}
+
 function throwDice(event,diceExp){
     if (event.keyCode === 13) {
         var xhttp = new XMLHttpRequest();

@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 @Api(description = "Api to parse Dice syntax and generate result")
 public class DiceController extends AbstractController{
 
-    private Dice lastResult;
+    private Dice lastResult = new Dice();
 
     @CrossOrigin
     @RequestMapping(path = "/lastdice", method = RequestMethod.GET)

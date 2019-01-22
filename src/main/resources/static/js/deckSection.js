@@ -31,6 +31,7 @@ function refreshOpponentBoard(){
     fillNbTraps(currentOppId, "nbTrapsId",trapIconHeight);
     fillDeck(currentOppId,"boardOpp","board",gameImageHeight);
     fillGraveyard(currentOppId,"graveyardOppId",gameImageHeight);
+    refreshLastDiceThrow();
 }
 
 function refreshPlayerBoard(){
