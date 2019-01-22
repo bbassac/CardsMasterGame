@@ -1,13 +1,14 @@
 package cardmastergame.bean;
 
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-
+@ApiModel(value="Card model", description="Sample model for a card")
 public class Card {
-    @ApiModelProperty(notes = "Card ID")
+    @ApiModelProperty(notes = "Card ID",example = "1")
     private int id;
     @ApiModelProperty(notes = "Card Picture Path")
     private String path;
-    @ApiModelProperty(notes = "Card Damage Point")
+    @ApiModelProperty(notes = "Card Damage Point",example = "1")
     private int dammagePoints = 0;
     @ApiModelProperty(notes = "Card Orientation (activated or not")
     private boolean activated = false;

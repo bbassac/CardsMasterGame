@@ -12,5 +12,6 @@
         <Logger name="CardMasterGame" level="warn" additivity="false">
             <AppenderRef ref="Console" />
         </Logger>
+
     </Loggers>
 </Configuration>

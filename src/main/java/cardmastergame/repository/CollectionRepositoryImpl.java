@@ -1,12 +1,13 @@
 package cardmastergame.repository;
 
 import cardmastergame.bean.Card;
+import cardmastergame.bean.Deck;
 import cardmastergame.bean.Game;
 import cardmastergame.bean.StackConstants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import java.util.Stack;
+
 
 /**
  * Created by b.bassac on 24/05/2016.
@@ -32,7 +33,7 @@ public class CollectionRepositoryImpl implements CollectionRepositoryCustom {
 
 
     @Override
-    public Stack<Card> getStack(StackConstants stackName) {
+    public Deck<Card> getStack(StackConstants stackName) {
         switch (stackName){
             case ENVIRONNEMENT:
                 return game.getCurrentEnvironnement();

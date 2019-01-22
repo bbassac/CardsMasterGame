@@ -1,14 +1,12 @@
 package cardmastergame.controller;
 
 import cardmastergame.bean.Card;
+import cardmastergame.bean.Deck;
 import cardmastergame.bean.StackConstants;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.web.bind.annotation.*;
-
-
-import java.util.Stack;
 
 @RestController
 @Api(description = "Trap API for card movements")
@@ -31,8 +29,8 @@ public class TrapController extends AbstractController{
     @CrossOrigin
     @RequestMapping(path = "/player/{playerId}/traps",method = RequestMethod.GET)
     @ResponseBody
-    @ApiOperation(value = "Get Trap list",response = Stack.class)
-    public Stack<Card> displayTraps(
+    @ApiOperation(value = "Get Trap list",response = Deck.class)
+    public Deck<Card> displayTraps(
             @ApiParam(value = "Player Id ", allowableValues ="0,1",required = true)
             @PathVariable("playerId") int playerId) {
         return playerId == 0 ? customRepo.getStack(StackConstants.TRAP0) : customRepo.getStack(StackConstants.TRAP1);

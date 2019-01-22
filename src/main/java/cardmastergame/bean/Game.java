@@ -5,22 +5,25 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import java.io.File;
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.NoSuchElementException;
+import java.util.Random;
 
 @Component
 public class Game {
     private int lastIndex;
     private Map<Integer, Card> allCards;
-    private Stack<Card> environnments;
-    private Stack<Card> pioche;
-    private Stack<Card> invocations;
-    private Stack<Card>[] cimetieres;
-    private Stack<Card>[] mains;
-    private Stack<Card>[] plateaux;
+    private Deck<Card> environnments;
+    private Deck<Card> pioche;
+    private Deck<Card> invocations;
+    private Deck<Card>[] cimetieres;
+    private Deck<Card>[] mains;
+    private Deck<Card>[] plateaux;
 
-    private Stack<Card>[] pieges;
+    private Deck<Card>[] pieges;
 
-    private Stack<Card> currentEnvironnement;
+    private Deck<Card> currentEnvironnement;
     private int[] pvs;
     private int[] chakras;
 
@@ -35,22 +38,22 @@ public class Game {
 
     public void startNewGame(){
         lastIndex = 0;
-        environnments = new Stack<>();
-        currentEnvironnement = new Stack<>();
-        pioche = new Stack<>();
-        invocations = new Stack<>();
-        cimetieres = new Stack[2];
-        cimetieres[0] = new Stack<>();
-        cimetieres[1] = new Stack<>();
-        pieges = new Stack[2];
-        pieges[0] = new Stack<>();
-        pieges[1] = new Stack<>();
-        mains = new Stack[2];
-        mains[0] = new Stack<>();
-        mains[1] = new Stack<>();
-        plateaux = new Stack[2];
-        plateaux[0] = new Stack<>();
-        plateaux[1] = new Stack<>();
+        environnments = new Deck<>();
+        currentEnvironnement = new Deck<>();
+        pioche = new Deck<>();
+        invocations = new Deck<>();
+        cimetieres = new Deck[2];
+        cimetieres[0] = new Deck<>();
+        cimetieres[1] = new Deck<>();
+        pieges = new Deck[2];
+        pieges[0] = new Deck<>();
+        pieges[1] = new Deck<>();
+        mains = new Deck[2];
+        mains[0] = new Deck<>();
+        mains[1] = new Deck<>();
+        plateaux = new Deck[2];
+        plateaux[0] = new Deck<>();
+        plateaux[1] = new Deck<>();
         allCards = new HashMap<>();
         pvs = new int[]{MAX_PV, MAX_PV};
         chakras = new int[] {0,0};
@@ -62,7 +65,7 @@ public class Game {
         return 1;
     }
 
-    private int getRandomPosition(Stack<Card> stack) {
+    private int getRandomPosition(Deck<Card> stack) {
         Random rand = new Random();
         return rand.nextInt(stack.size() );
     }
@@ -81,7 +84,7 @@ public class Game {
             pioche.remove(randomPoition);
     }
 
-    public int loadStack(Stack<Card> stack, String folder) {
+    public int loadStack(Deck<Card> stack, String folder) {
         String prop = FileUtils.getCurrentJarPath();
         File path = new File(prop + folder);
         File[] listOfFiles = path.listFiles();
@@ -98,7 +101,7 @@ public class Game {
         return listOfFiles.length;
     }
 
-    private Card findCardInStackById(Stack<Card> stack , int cardId){
+    private Card findCardInStackById(Deck<Card> stack , int cardId){
         for (Card c : stack){
             if(c.getId()== cardId){
                 return c;
@@ -190,66 +193,66 @@ public class Game {
         this.allCards = allCards;
     }
 
-    public Stack<Card> getEnvironnments() {
+    public Deck<Card> getEnvironnments() {
         return environnments;
     }
 
-    public void setEnvironnments(Stack<Card> environnments) {
+    public void setEnvironnments(Deck<Card> environnments) {
         this.environnments = environnments;
     }
 
-    public Stack<Card> getPioche() {
+    public Deck<Card> getPioche() {
         return pioche;
     }
 
-    public void setPioche(Stack<Card> pioche) {
+    public void setPioche(Deck<Card> pioche) {
         this.pioche = pioche;
     }
 
-    public Stack<Card> getInvocations() {
+    public Deck<Card> getInvocations() {
         return invocations;
     }
 
-    public void setInvocations(Stack<Card> invocations) {
+    public void setInvocations(Deck<Card> invocations) {
         this.invocations = invocations;
     }
 
-    public Stack<Card>[] getCimetieres() {
+    public Deck<Card>[] getCimetieres() {
         return cimetieres;
     }
 
-    public void setCimetieres(Stack<Card>[] cimetieres) {
+    public void setCimetieres(Deck<Card>[] cimetieres) {
         this.cimetieres = cimetieres;
     }
 
-    public Stack<Card>[] getMains() {
+    public Deck<Card>[] getMains() {
         return mains;
     }
 
-    public void setMains(Stack<Card>[] mains) {
+    public void setMains(Deck<Card>[] mains) {
         this.mains = mains;
     }
 
-    public Stack<Card>[] getPlateaux() {
+    public Deck<Card>[] getPlateaux() {
         return plateaux;
     }
 
-    public void setPlateaux(Stack<Card>[] plateaux) {
+    public void setPlateaux(Deck<Card>[] plateaux) {
         this.plateaux = plateaux;
     }
 
-    public Stack<Card> getCurrentEnvironnement() {
+    public Deck<Card> getCurrentEnvironnement() {
         return currentEnvironnement;
     }
 
-    public void setCurrentEnvironnement(Stack<Card> currentEnvironnement) {
+    public void setCurrentEnvironnement(Deck<Card> currentEnvironnement) {
         this.currentEnvironnement = currentEnvironnement;
     }
-    public Stack<Card>[] getPieges() {
+    public Deck<Card>[] getPieges() {
         return pieges;
     }
 
-    public void setPieges(Stack<Card>[] pieges) {
+    public void setPieges(Deck<Card>[] pieges) {
         this.pieges = pieges;
     }
 

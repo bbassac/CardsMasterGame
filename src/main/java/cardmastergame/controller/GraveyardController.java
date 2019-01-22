@@ -1,13 +1,12 @@
 package cardmastergame.controller;
 
 import cardmastergame.bean.Card;
+import cardmastergame.bean.Deck;
 import cardmastergame.bean.StackConstants;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.Stack;
 
 @RestController
 @Api(description = "Graveyard API used for all interractions")
@@ -17,8 +16,8 @@ public class GraveyardController extends AbstractController{
     @CrossOrigin
     @RequestMapping(path = "/player/{playerId}/graveyard",method = RequestMethod.GET)
     @ResponseBody
-    @ApiOperation(value = "Retrieve the gravewward of player",response = Stack.class)
-    public Stack<Card> cimetary(
+    @ApiOperation(value = "Retrieve the gravewward of player",response = Deck.class)
+    public Deck<Card> cimetary(
             @ApiParam(value = "Player Id ", allowableValues ="0,1",required = true)
             @PathVariable("playerId") int playerId)  {
         return playerId == 0 ? customRepo.getStack(StackConstants.GRAVEYARD0) : customRepo.getStack(StackConstants.GRAVEYARD1);

@@ -1,13 +1,13 @@
 package cardmastergame.controller;
 
 import cardmastergame.bean.Card;
+import cardmastergame.bean.Deck;
 import cardmastergame.bean.StackConstants;
+
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.Stack;
 
 @RestController
 @Api(description = "Board API Used for all board actions")
@@ -16,8 +16,8 @@ public class BoardController extends AbstractController{
     @CrossOrigin
     @RequestMapping(path = "/player/{playerId}/hand",method = RequestMethod.GET)
     @ResponseBody
-    @ApiOperation(value="Hand of player",response = Stack.class)
-    public Stack<Card> displayHand(
+    @ApiOperation(value="Hand of player",response = Deck.class)
+    public Deck<Card> displayHand(
             @ApiParam(value = "Player Id ", allowableValues ="0,1",required = true)
             @PathVariable("playerId") int playerId) {
 
@@ -28,8 +28,8 @@ public class BoardController extends AbstractController{
     @CrossOrigin
     @RequestMapping(path = "/player/{playerId}/board",method = RequestMethod.GET)
     @ResponseBody
-    @ApiOperation(value = "Plateau  of player",response = Stack.class)
-    public Stack<Card> displayBoard(
+    @ApiOperation(value = "Plateau  of player",response = Deck.class)
+    public Deck<Card> displayBoard(
             @ApiParam(value = "Player Id ", allowableValues ="0,1",required = true)
             @PathVariable("playerId") int playerId) {
         return playerId == 0 ? customRepo.getStack(StackConstants.BOARD0) : customRepo.getStack(StackConstants.BOARD1);
