@@ -35,7 +35,7 @@ public class Game {
 
     @Value("${game.trap.max}")
     private int MAX_TRAP;
-
+     
     public void startNewGame(){
         lastIndex = 0;
         environnments = new Deck<>();

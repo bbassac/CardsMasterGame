@@ -29,7 +29,7 @@ public class DiceController extends AbstractController{
     @ResponseBody
     @ApiOperation(value="Compute a Dice Expression ",response = Dice.class)
     public Dice computeDice(
-            @ApiParam(value = "value ", allowableValues ="1D6,3D12+4",type ="String",required = true)
+            @ApiParam(value = "value ", example ="3D12+4",type ="String",required = true)
             @PathVariable("value") String value) {
 
         final DiceNotationExpressionParser parser;
