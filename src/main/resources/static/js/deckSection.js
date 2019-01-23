@@ -29,7 +29,7 @@ function refreshOpponentBoard(){
     var currentOppId = Math.abs(1-currentPlayerId);
     fillPVs(currentOppId,"oppPvsId");
     fillNbTraps(currentOppId, "nbTrapsId",trapIconHeight);
-    fillDeck(currentOppId,"boardOpp","board",gameImageHeight);
+    fillDeckOpp(currentOppId,"boardOpp","board",gameImageHeight);
     fillGraveyard(currentOppId,"graveyardOppId",gameImageHeight);
     refreshLastDiceThrow();
 }
@@ -46,7 +46,49 @@ function refreshPlayerBoard(){
     fillDiceArea(currentPlayerId,"diceId");
 }
 
+function fillDeckOpp(playerId,section,stackName,gameImageHeight){
+    var xhttp = new XMLHttpRequest();
+    xhttp.open("GET", "player/"+playerId+"/"+stackName, false);
+    xhttp.setRequestHeader("Content-type", "application/json");
+    xhttp.send();
+    //Ici j'ai toutes les cartes que je dois afficher
+    var cards = JSON.parse(xhttp.responseText);
+    //Je récupère le bloc contenant toutes les cartes
+    var src = document.getElementById(section);
 
+    //J'éfface tout le contenu (c'est ce qu'il ne faudra plus faire)
+    src.innerHTML = '';
+
+    for (var i=0; i< cards.length;i++){
+
+        // Je crée un div pour un bloc de carte
+        var cardDiv = document.createElement("div");
+        var img = document.createElement("img");
+        img.src = "img/"+encodeURI(cards[i].path);
+        img.height = gameImageHeight;
+        img.hspace = 5;
+        img.title = cards[i].id;
+        img.setAttribute('onclick','displayPoP(this.src);');
+
+        //J'ajoute l'image au bloc
+        cardDiv.appendChild(img);
+
+        //Si besoin je tourne la carte
+        if(cards[i].activated){
+            img.setAttribute('style', 'transform:rotate(90deg);'); // the 90deg parameter may be changed to whatever angle you want to rotate to
+        }
+
+        //Je crée un sous-bloc pour l'affichage des dégats
+        var div = document.createElement("div");
+        var nbDmg = document.createTextNode("  " + cards[i].dammagePoints+"  ");
+
+        //Ajout bloc dmg au div
+        div.appendChild(nbDmg);
+        cardDiv.appendChild(div);
+
+        src.appendChild(cardDiv);
+    }
+}
 
 
 function fillDeck(playerId,section,stackName,gameImageHeight){

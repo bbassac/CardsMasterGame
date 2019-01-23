@@ -34,40 +34,7 @@ function fillGraveyard(playerId, graveId,gameImageHeight) {
     }
 }
 
-function fillDiceArea(currentPlayerId,diceId){
-    var divDice = document.createElement("div");
-    //text area
-    var textArea = document.createElement("INPUT");
-    textArea.setAttribute("id","diceAreaId");
-    textArea.size = 7;
-    textArea.setAttribute('onkeypress','throwDice(event,this.value);');
-    divDice.appendChild(textArea);
 
-    var diceArea = document.getElementById(diceId);
-    diceArea.innerHTML="";
-    diceArea.appendChild(divDice);
-}
-
-function refreshLastDiceThrow(){
-    var xhttp = new XMLHttpRequest();
-    xhttp.open("GET", "lastdice" , false);
-    xhttp.setRequestHeader("Content-type", "application/json");
-    xhttp.send();
-    var result = JSON.parse(xhttp.responseText);
-    document.getElementById("diceResultId").textContent = "Result :" + result.value;
-
-}
-
-function throwDice(event,diceExp){
-    if (event.keyCode === 13) {
-        var xhttp = new XMLHttpRequest();
-        xhttp.open("GET", "dice/" + diceExp, false);
-        xhttp.setRequestHeader("Content-type", "application/json");
-        xhttp.send();
-        var result = JSON.parse(xhttp.responseText);
-        document.getElementById("diceResultId").textContent = "Result :" + result.value;
-    }
-}
 
 function displayGrave(who){
     var currentPlayerId = document.getElementById("currentPlayerId").value;
@@ -139,103 +106,7 @@ function displayGrave(who){
 
 
 
-function fillChakras(playerId,componentId) {
-    var xhttp = new XMLHttpRequest();
-    xhttp.open("GET", "player/"+playerId+"/chakra", false);
-    xhttp.setRequestHeader("Content-type", "application/json");
-    xhttp.send();
-    var component = document.getElementById(componentId);
-    component.textContent =  "Chakras : " + xhttp.responseText;
-    var linebreak = document.createElement("br");
-    component.appendChild(linebreak);
 
-    var buttonLessChakra = document.createElement("button");
-    buttonLessChakra.innerHTML = "-";
-    buttonLessChakra.tag = parseInt(xhttp.responseText)-1;
-    buttonLessChakra.setAttribute('onclick','updateChakras(this.tag);');
-    component.appendChild(buttonLessChakra);
-
-    var buttonMoreChakra = document.createElement("button");
-    buttonMoreChakra.innerHTML = "+";
-    buttonMoreChakra.tag = parseInt(xhttp.responseText)+1;
-    buttonMoreChakra.setAttribute('onclick','updateChakras(this.tag);');
-    component.appendChild(buttonMoreChakra);
-
-}
-
-function fillNbTraps(oppPlayerId, componentId,trapSize) {
-    var xhttp = new XMLHttpRequest();
-    xhttp.open("GET", "player/" + oppPlayerId + "/traps", false);
-    xhttp.setRequestHeader("Content-type", "application/json");
-    xhttp.send();
-    var traps = JSON.parse(xhttp.responseText);
-
-    var component = document.getElementById(componentId);
-    var nbTraps = traps.length;
-    if (nbTraps !== oldNbTrapsOpp) {
-        oldNbTrapsOpp = nbTraps;
-        component.innerText = "";
-        for (var i = 0; i < nbTraps; i++) {
-            var imgDiv = document.createElement("div");
-            var img = document.createElement("img");
-            img.src = "img/Star.png";
-            img.height = trapSize;
-            imgDiv.appendChild(img);
-
-            component.appendChild(imgDiv);
-        }
-    }
-}
-
-function fillPVs(playerId,componentId) {
-    var xhttp = new XMLHttpRequest();
-    xhttp.open("GET", "player/"+playerId+"/pvs", false);
-    xhttp.setRequestHeader("Content-type", "application/json");
-    xhttp.send();
-    var component = document.getElementById(componentId);
-    component.textContent =  "Player Pvs : " + xhttp.responseText;
-    var linebreak = document.createElement("br");
-    component.appendChild(linebreak);
-    if (componentId=="playerPvsId"){
-        var buttonLessPv = document.createElement("button");
-        buttonLessPv.innerHTML = "-";
-        buttonLessPv.tag = parseInt(xhttp.responseText)-1;
-        buttonLessPv.setAttribute('onclick','updatePvs(this.tag);');
-        component.appendChild(buttonLessPv);
-
-        var buttonMorePv = document.createElement("button");
-        buttonMorePv.innerHTML = "+";
-        buttonMorePv.tag = parseInt(xhttp.responseText)+1;
-        buttonMorePv.setAttribute('onclick','updatePvs(this.tag);');
-        component.appendChild(buttonMorePv);
-    }else {
-        var xhttpChakras = new XMLHttpRequest();
-        xhttpChakras.open("GET", "player/"+playerId+"/chakra", false);
-        xhttpChakras.setRequestHeader("Content-type", "application/json");
-        xhttpChakras.send();
-        var componentChakra = document.createTextNode("Chakras : " + xhttpChakras.responseText);
-
-        component.appendChild(componentChakra);
-    }
-}
-
-function updatePvs(newValue){
-    var currentPlayerId = document.getElementById("currentPlayerId").value;
-    var xhttp = new XMLHttpRequest();
-    xhttp.open("PUT", "player/"+currentPlayerId+"/pvs/"+newValue, false);
-    xhttp.setRequestHeader("Content-type", "application/json");
-    xhttp.send();
-    fillPVs(currentPlayerId,"playerPvsId");
-}
-
-function updateChakras(newValue){
-    var currentPlayerId = document.getElementById("currentPlayerId").value;
-    var xhttp = new XMLHttpRequest();
-    xhttp.open("PUT", "player/"+currentPlayerId+"/chakra/"+newValue, false);
-    xhttp.setRequestHeader("Content-type", "application/json");
-    xhttp.send();
-    fillChakras(currentPlayerId,"playerChakraId");
-}
 
 
 

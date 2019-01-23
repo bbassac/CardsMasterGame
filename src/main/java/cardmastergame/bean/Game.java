@@ -35,7 +35,9 @@ public class Game {
 
     @Value("${game.trap.max}")
     private int MAX_TRAP;
-     
+
+    private Random rand = new Random();
+
     public void startNewGame(){
         lastIndex = 0;
         environnments = new Deck<>();
@@ -66,7 +68,6 @@ public class Game {
     }
 
     private int getRandomPosition(Deck<Card> stack) {
-        Random rand = new Random();
         return rand.nextInt(stack.size() );
     }
 
@@ -88,12 +89,12 @@ public class Game {
         String prop = FileUtils.getCurrentJarPath();
         File path = new File(prop + folder);
         File[] listOfFiles = path.listFiles();
-        for (int i = 0; i < listOfFiles.length; i++) {
-            if (listOfFiles[i].isFile()) {
+        for (File listOfFile : listOfFiles) {
+            if (listOfFile.isFile()) {
                 lastIndex++;
                 Card c = new Card();
                 c.setId(lastIndex);
-                c.setPath(folder+"\\"+listOfFiles[i].getName());
+                c.setPath(folder + "\\" + listOfFile.getName());
                 allCards.put(c.getId(), c);
                 stack.push(c);
             }
@@ -189,73 +190,36 @@ public class Game {
         return findCardInStackById(plateaux[playerId],cardId).isActivated();
     }
 
-    public void setAllCards(Map<Integer, Card> allCards) {
-        this.allCards = allCards;
-    }
-
     public Deck<Card> getEnvironnments() {
         return environnments;
-    }
-
-    public void setEnvironnments(Deck<Card> environnments) {
-        this.environnments = environnments;
     }
 
     public Deck<Card> getPioche() {
         return pioche;
     }
 
-    public void setPioche(Deck<Card> pioche) {
-        this.pioche = pioche;
-    }
-
     public Deck<Card> getInvocations() {
         return invocations;
-    }
-
-    public void setInvocations(Deck<Card> invocations) {
-        this.invocations = invocations;
     }
 
     public Deck<Card>[] getCimetieres() {
         return cimetieres;
     }
 
-    public void setCimetieres(Deck<Card>[] cimetieres) {
-        this.cimetieres = cimetieres;
-    }
-
     public Deck<Card>[] getMains() {
         return mains;
-    }
-
-    public void setMains(Deck<Card>[] mains) {
-        this.mains = mains;
     }
 
     public Deck<Card>[] getPlateaux() {
         return plateaux;
     }
 
-    public void setPlateaux(Deck<Card>[] plateaux) {
-        this.plateaux = plateaux;
-    }
-
     public Deck<Card> getCurrentEnvironnement() {
         return currentEnvironnement;
     }
 
-    public void setCurrentEnvironnement(Deck<Card> currentEnvironnement) {
-        this.currentEnvironnement = currentEnvironnement;
-    }
     public Deck<Card>[] getPieges() {
         return pieges;
     }
-
-    public void setPieges(Deck<Card>[] pieges) {
-        this.pieges = pieges;
-    }
-
-
 
 }
