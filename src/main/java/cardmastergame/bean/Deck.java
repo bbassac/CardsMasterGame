@@ -3,10 +3,12 @@ package cardmastergame.bean;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
+import java.util.ArrayDeque;
 import java.util.Date;
-import java.util.LinkedList;
+import java.util.Stack;
+
 @ApiModel(value="Deck model", description="Sample model for deck of cards",discriminator = "lastmodified")
-public class Deck<Card> extends LinkedList<Card> {
+public class Deck<Card> extends Stack<Card> {
 
     @ApiModelProperty(notes = "Date de modification de la liste",example = "12/15/2016T16h30h22")
     private Date lastModified;
