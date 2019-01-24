@@ -32,21 +32,12 @@ function needUpdate(card,slot){
 
 }
 
-function fillDeckOpp(playerId,section,stackName,gameImageHeight){
-    var xhttp = new XMLHttpRequest();
-    xhttp.open("GET", "player/"+playerId+"/"+stackName, false);
-    xhttp.setRequestHeader("Content-type", "application/json");
-    xhttp.send();
-    //Ici j'ai toutes les cartes que je dois afficher
-    var cards = JSON.parse(xhttp.responseText);
-    //Je récupère le bloc contenant toutes les cartes
-    var src = document.getElementById(section);
-
-    for (var i=0; i< cards.length;i++) {
+function cleanAllIfNeeded(cards, src) {
+    for (var i = 0; i < cards.length; i++) {
 
         var indexedSlot = src.childNodes[i];
 
-        if (cards.length != src.childNodes.length){
+        if (cards.length != src.childNodes.length) {
             src.innerHTML = '';
             break;
         }
@@ -59,7 +50,19 @@ function fillDeckOpp(playerId,section,stackName,gameImageHeight){
             break;
         }
     }
-    //src.innerHTML = '';
+}
+
+function fillDeckOpp(playerId,section,stackName,gameImageHeight){
+    var xhttp = new XMLHttpRequest();
+    xhttp.open("GET", "player/"+playerId+"/"+stackName, false);
+    xhttp.setRequestHeader("Content-type", "application/json");
+    xhttp.send();
+    //Ici j'ai toutes les cartes que je dois afficher
+    var cards = JSON.parse(xhttp.responseText);
+    //Je récupère le bloc contenant toutes les cartes
+    var src = document.getElementById(section);
+
+    cleanAllIfNeeded(cards, src);
 
     for (var i=0; i< cards.length;i++){
 
@@ -102,11 +105,6 @@ function fillDeckOpp(playerId,section,stackName,gameImageHeight){
 
             src.appendChild(cardDiv);
         }
-        //si cartes en trop -> les effacer
-
-        //Si carte existante, lmettre à jour orientation / points
-
-
 
 
     }

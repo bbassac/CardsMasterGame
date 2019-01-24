@@ -3,7 +3,6 @@ package cardmastergame.bean;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
-import java.util.ArrayDeque;
 import java.util.Date;
 import java.util.Stack;
 
