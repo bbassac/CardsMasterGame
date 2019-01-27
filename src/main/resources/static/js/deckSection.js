@@ -19,7 +19,7 @@ function refreshBoard(){
     fillDrawBoard(currentPlayerId,"draw","img/Back-Draw.png",drawImageHeight);
     fillDrawBoard(currentPlayerId,"invocations","img/Back-Select.png",drawImageHeight);
     fillDrawBoard(currentPlayerId,"currentEnvironment","img" + getCurrentEnvironmentCard(),drawImageHeight);
-
+	fillGraveyard(currentPlayerId,"graveyardId",gameImageHeight);
     refreshOpponentBoard();
     refreshPlayerBoard();
 }
@@ -31,6 +31,7 @@ function refreshOpponentBoard(){
     fillNbTraps(currentOppId, "nbTrapsId",trapIconHeight);
     fillDeckOpp(currentOppId,"boardOpp","board",gameImageHeight);
     fillGraveyard(currentOppId,"graveyardOppId",gameImageHeight);
+	
     refreshLastDiceThrow();
 }
 

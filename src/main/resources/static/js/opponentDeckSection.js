@@ -33,7 +33,12 @@ function needUpdate(card,slot){
 }
 
 function cleanAllIfNeeded(cards, src) {
-    for (var i = 0; i < cards.length; i++) {
+    
+	if (cards.length != src.childNodes.length) {
+		src.innerHTML = '';
+	}
+	
+	for (var i = 0; i < cards.length; i++) {
 
         var indexedSlot = src.childNodes[i];
 
