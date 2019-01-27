@@ -18,3 +18,8 @@ piège givrant : allié
 geole de paille : les dégats sont comptabilisés et le controle est fait apres
 Aoba : quand il subit des dégats
 
+
+
+Passer a 40 pv
+
+expliciter le cas infini et instantanné, voir les 2 dans certains cas
