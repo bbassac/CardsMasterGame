@@ -1,6 +1,6 @@
 # Bugs
-- [x] cimetiere vers main -> doit refresh la main
-- [ ] mise en relief des points de dmg
+- [ ] cimetiere vers main -> doit refresh la main
+- [x] mise en relief des points de dmg
 
 # Règles
 ## Début de partie
@@ -17,19 +17,23 @@
 
 ## Définition des symboles
 
-#### Symbole activation
+#### Symbole activation ![alt text](https://raw.githubusercontent.com/vpoiaghi/CardsMaster/master/data/Resources/Symbols/activate.png)
 * Le sort ne peut être lancé qu'au tour suivant l'invocation de l'allié
 * Si un ninja lance un sort par activation, il peut également attaquer le même tour
 
-#### Symbole infini
+#### Symbole infini ![alt text](https://raw.githubusercontent.com/vpoiaghi/CardsMaster/master/data/Resources/Symbols/permanent.png)
 * chaque tour mais apres un tour d'invocation
 
-#### Symbole éclair
+#### Symbole éclair ![alt text](https://raw.githubusercontent.com/vpoiaghi/CardsMaster/master/data/Resources/Symbols/Instantané.png)
 
-#### Symbole point d'exclamation
+#### Symbole point d'exclamation ![alt text](https://raw.githubusercontent.com/vpoiaghi/CardsMaster/master/data/Resources/Symbols/Spécial.png)
+
+#### Symbole de conditions ![alt text](https://raw.githubusercontent.com/vpoiaghi/CardsMaster/master/data/Resources/Symbols/Conditions.png)
 
 #### Cumul des symboles
-* Infini + instantané : Ninjutsu déclenchable à chaque tour, y compris celui de pose 
+* ![alt text](https://raw.githubusercontent.com/vpoiaghi/CardsMaster/master/data/Resources/Symbols/permanent.png)
+  ![alt text](https://raw.githubusercontent.com/vpoiaghi/CardsMaster/master/data/Resources/Symbols/Instantané.png) : Ninjutsu déclenchable à chaque tour, y compris celui de pose 
 
 ## Cas particuliers
-<ul> Quand un ninja donne un bonus à d'autres, lui-même n'en bénéficie pas
+* Quand un ninja donne un bonus à d'autres, lui-même ne peut en bénéficier
+
