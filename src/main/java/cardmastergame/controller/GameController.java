@@ -34,6 +34,21 @@ public class GameController extends AbstractController{
     }
 
     @CrossOrigin
+    @RequestMapping(path="/maxchakra",method = RequestMethod.GET)
+    @ResponseBody
+    @ApiOperation(value = "Get the max value of chakra")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Success", response = Integer.class),
+            @ApiResponse(code = 401, message = "401"),
+            @ApiResponse(code = 403, message = "403"),
+            @ApiResponse(code = 404, message = "404"),
+            @ApiResponse(code = 500, message = "500")})
+    public int getMaxChakra() {
+
+        return customRepo.getMaxChakra();
+    }
+
+    @CrossOrigin
     @RequestMapping(path="/stack/{value}",method = RequestMethod.GET)
     @ResponseBody
     @ApiOperation(value = "Get a given stack")

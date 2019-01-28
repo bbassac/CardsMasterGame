@@ -4,8 +4,21 @@ function fillChakras(playerId,componentId) {
     xhttp.open("GET", "player/"+playerId+"/chakra", false);
     xhttp.setRequestHeader("Content-type", "application/json");
     xhttp.send();
+
+    var xhttpMaxChakra = new XMLHttpRequest();
+    xhttpMaxChakra.open("GET", "maxchakra", false);
+    xhttpMaxChakra.setRequestHeader("Content-type", "application/json");
+    xhttpMaxChakra.send();
+    var maxChakra = xhttpMaxChakra.responseText
+
+
     var component = document.getElementById(componentId);
-    component.textContent =  "Chakras : " + xhttp.responseText;
+    component.textContent = "Chakras : " + xhttp.responseText;
+    if (Number(xhttp.responseText)> Number(maxChakra)) {
+        component.style.color="red";
+    }else{
+        component.style.color="black";
+    }
     var linebreak = document.createElement("br");
     component.appendChild(linebreak);
 

@@ -153,9 +153,8 @@ public class Game {
     }
 
     public int updateChakras(int playerId, int value) {
-        if(value<= MAX_CHAKRA) {
-            chakras[playerId] = value;
-        }
+
+        chakras[playerId] = value;
         return  chakras[playerId];
     }
 
@@ -222,4 +221,7 @@ public class Game {
         return pieges;
     }
 
+    public int getMaxChakra() {
+        return MAX_CHAKRA;
+    }
 }

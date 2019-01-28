@@ -105,24 +105,27 @@ function fillDeck(playerId,section,stackName,gameImageHeight){
             var div = document.createElement("div-"+ cards[i].id);
 
                       //Manage dmg points
-            var xhttpDmg = new XMLHttpRequest();
-            xhttpDmg.open("GET", "player/"+playerId+"/board/"+cards[i].id+"/dmg", false);
-            xhttpDmg.setRequestHeader("Content-type", "application/json");
-            xhttpDmg.send();
 
             var buttonLessDmg = document.createElement("button");
             buttonLessDmg.innerHTML = "-";
-            buttonLessDmg.tag = parseInt(xhttpDmg.responseText)-1;
+            buttonLessDmg.tag = parseInt(cards[i].dammagePoints)-1;
             buttonLessDmg.setAttribute("id",cards[i].id);
             buttonLessDmg.setAttribute('onclick','updateDmgPoints(this.id,this.tag);');
             div.appendChild(buttonLessDmg);
 
-            var nbDmg = document.createTextNode("  " + xhttpDmg.responseText+"  ");
-            div.appendChild(nbDmg);
+            var bold = document.createElement("b");
+            var nbDmg = document.createTextNode("  " + cards[i].dammagePoints+"  ");
+            bold.style.fontSize = "medium";
+            if (cards[i].dammagePoints>0){
+                bold.style.color = 'red';
+            }
+
+            bold.appendChild(nbDmg);
+            div.appendChild(bold);
 
             var buttonMoreDmg = document.createElement("button");
             buttonMoreDmg.innerHTML = "+";
-            buttonMoreDmg.tag = parseInt(xhttpDmg.responseText)+1;
+            buttonMoreDmg.tag = parseInt(cards[i].dammagePoints)+1;
             buttonMoreDmg.setAttribute("id",cards[i].id);
             buttonMoreDmg.setAttribute('onclick','updateDmgPoints(this.id,this.tag);');
             div.appendChild(buttonMoreDmg);

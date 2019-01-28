@@ -25,9 +25,27 @@ function fillPVs(playerId,componentId) {
         xhttpChakras.open("GET", "player/"+playerId+"/chakra", false);
         xhttpChakras.setRequestHeader("Content-type", "application/json");
         xhttpChakras.send();
-        var componentChakra = document.createTextNode("Chakras : " + xhttpChakras.responseText);
 
-        component.appendChild(componentChakra);
+
+
+        var xhttpMaxChakra = new XMLHttpRequest();
+        xhttpMaxChakra.open("GET", "maxchakra", false);
+        xhttpMaxChakra.setRequestHeader("Content-type", "application/json");
+        xhttpMaxChakra.send();
+        var maxChakra = xhttpMaxChakra.responseText
+
+
+        var component = document.getElementById(componentId);
+        var capsule = document.createElement("span");
+        var componentChakra = document.createTextNode("Chakras : " + xhttpChakras.responseText);
+        if (Number(xhttpChakras.responseText)> Number(maxChakra)) {
+            capsule.style.color="red";
+        }else{
+            capsule.style.color="black";
+        }
+        capsule.appendChild(componentChakra);
+
+        component.appendChild(capsule);
     }
 }
 

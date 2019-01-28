@@ -102,10 +102,15 @@ function fillDeckOpp(playerId,section,stackName,gameImageHeight){
 
             //Je crée un sous-bloc pour l'affichage des dégats
             var div = document.createElement("div");
+            var bold = document.createElement("b");
             var nbDmg = document.createTextNode("  " + cards[i].dammagePoints + "  ");
-
+            bold.appendChild(nbDmg);
+            bold.style.fontSize = "medium";
+            if (cards[i].dammagePoints>0){
+                bold.style.color = 'red';
+            }
             //Ajout bloc dmg au div
-            div.appendChild(nbDmg);
+            div.appendChild(bold);
             cardDiv.appendChild(div);
 
             src.appendChild(cardDiv);
