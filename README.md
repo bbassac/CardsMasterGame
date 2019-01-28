@@ -17,22 +17,22 @@
 
 ## Définition des symboles
 
-#### Symbole activation ![alt text](https://raw.githubusercontent.com/vpoiaghi/CardsMaster/master/data/Resources/Symbols/activate.png)
+#### Symbole activation <img src="https://raw.githubusercontent.com/vpoiaghi/CardsMaster/master/data/Resources/Symbols/activate.png" height="20" width="20">
 * Le sort ne peut être lancé qu'au tour suivant l'invocation de l'allié
 * Si un ninja lance un sort par activation, il peut également attaquer le même tour
 
-#### Symbole infini ![alt text](https://raw.githubusercontent.com/vpoiaghi/CardsMaster/master/data/Resources/Symbols/permanent.png)
+#### Symbole infini <img src="https://raw.githubusercontent.com/vpoiaghi/CardsMaster/master/data/Resources/Symbols/permanent.png" height="20" width="20">
 * chaque tour mais apres un tour d'invocation
 
-#### Symbole éclair ![alt text](https://raw.githubusercontent.com/vpoiaghi/CardsMaster/master/data/Resources/Symbols/Instantané.png)
+#### Symbole éclair <img src="https://raw.githubusercontent.com/vpoiaghi/CardsMaster/master/data/Resources/Symbols/Instantané.png" height="20" width="20">
 
-#### Symbole point d'exclamation ![alt text](https://raw.githubusercontent.com/vpoiaghi/CardsMaster/master/data/Resources/Symbols/Spécial.png)
+#### Symbole point d'exclamation <img src="https://raw.githubusercontent.com/vpoiaghi/CardsMaster/master/data/Resources/Symbols/Spécial.png" height="20" width="20">
 
-#### Symbole de conditions ![alt text](https://raw.githubusercontent.com/vpoiaghi/CardsMaster/master/data/Resources/Symbols/Conditions.png)
+#### Symbole de conditions <img src="https://raw.githubusercontent.com/vpoiaghi/CardsMaster/master/data/Resources/Symbols/Conditions.png" height="20" width="20">
 
 #### Cumul des symboles
-* ![alt text](https://raw.githubusercontent.com/vpoiaghi/CardsMaster/master/data/Resources/Symbols/permanent.png)
-  ![alt text](https://raw.githubusercontent.com/vpoiaghi/CardsMaster/master/data/Resources/Symbols/Instantané.png) : Ninjutsu déclenchable à chaque tour, y compris celui de pose 
+* <img src="https://raw.githubusercontent.com/vpoiaghi/CardsMaster/master/data/Resources/Symbols/permanent.png" height="20" width="20">
+  <img src="https://raw.githubusercontent.com/vpoiaghi/CardsMaster/master/data/Resources/Symbols/Instantané.png" height="20" width="20"> : Ninjutsu déclenchable à chaque tour, y compris celui de pose 
 
 ## Cas particuliers
 * Quand un ninja donne un bonus à d'autres, lui-même ne peut en bénéficier
