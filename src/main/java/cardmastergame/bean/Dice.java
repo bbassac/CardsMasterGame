@@ -10,6 +10,9 @@ public class Dice {
     @ApiModelProperty(notes = "Result",example = "15")
     private long value;
 
+    @ApiModelProperty(notes = "dice detail", example = "5 6 7")
+    private String detail;
+
     public String getExpression() {
         return expression;
     }
@@ -24,5 +27,13 @@ public class Dice {
 
     public void setValue(long value) {
         this.value = value;
+    }
+
+    public String getDetail() {
+        return detail;
+    }
+
+    public void setDetail(String detail) {
+        this.detail = detail;
     }
 }
