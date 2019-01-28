@@ -4,13 +4,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
 setInterval(refreshOpponentBoard, 500);
 
-const drawImageHeight = 170;
-const gameImageHeight = 225;
+const drawImageHeight = 180;
+const gameImageHeight = 255;
 const trapImageHeight = 160;
 const trapIconHeight = 50;
-
+const nbCardsHeight = 30;
 var oldNbTrapsOpp=0 ;
 var oldLastGraveyardOp = 0;
+var oldNbCards=-1;
 
 function refreshBoard(){
     var currentPlayerId = document.getElementById("currentPlayerId").value;
@@ -29,6 +30,7 @@ function refreshOpponentBoard(){
     var currentOppId = Math.abs(1-currentPlayerId);
     fillPVs(currentOppId,"oppPvsId");
     fillNbTraps(currentOppId, "nbTrapsId",trapIconHeight);
+    fillNbCards(currentOppId,"nbCardsId",nbCardsHeight)
     fillDeckOpp(currentOppId,"boardOpp","board",gameImageHeight);
     fillGraveyard(currentOppId,"graveyardOppId",gameImageHeight);
 	

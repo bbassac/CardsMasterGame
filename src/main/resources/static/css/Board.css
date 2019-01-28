@@ -1,9 +1,9 @@
 Board {
     display: grid;
     display: -ms-grid;
-    height: 930px;
+    height: 1040px;
     border: 1px solid black;
-    grid-template-columns: auto 170px 115px;
+    grid-template-columns: auto 190px 115px;
     grid-template-rows: 27% 27% 27% 19%;
     -ms-grid-columns: auto 174px 105px;
     -ms-grid-rows: 29% 29% 30% 12%;
@@ -151,4 +151,11 @@ Traps> div {
     justify-content: center;
     align-items: center;
     flex-direction: column;
+}
+
+#nbCardsId {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }

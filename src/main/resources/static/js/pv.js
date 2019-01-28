@@ -21,6 +21,7 @@ function fillPVs(playerId,componentId) {
         buttonMorePv.setAttribute('onclick','updatePvs(this.tag);');
         component.appendChild(buttonMorePv);
     }else {
+        //Opponent
         var xhttpChakras = new XMLHttpRequest();
         xhttpChakras.open("GET", "player/"+playerId+"/chakra", false);
         xhttpChakras.setRequestHeader("Content-type", "application/json");
