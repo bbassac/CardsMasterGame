@@ -1,5 +1,6 @@
 # Bugs
 - [ ] cimetiere vers main -> doit refresh la main
+- [ ] izanagi de Danzo !!
 - [x] mise en relief des points de dmg
 
 # Règles
