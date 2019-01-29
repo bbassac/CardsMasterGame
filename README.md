@@ -3,11 +3,11 @@
 ## Bugs
 
 - [ ] cimetiere vers main -> doit refresh la main
-- [ ] izanagi de Danzo !!
-- [x] mise en relief des points de dmg
-- [ ]remplacer les +1/+1 par +1 ATK / +1 PV
-- [ ] remplacer les nature genjutsu par Spécial et élément Genjutsu
 - [ ] ajouter des sorts de destruction d'équipement
+- [X] izanagi de Danzo !!
+- [x] mise en relief des points de dmg
+- [X]remplacer les +1/+1 par +1 ATK / +1 PV
+- [X] remplacer les nature genjutsu par Spécial et élément Genjutsu
 
 ## Règles
 
