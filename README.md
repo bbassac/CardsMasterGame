@@ -67,7 +67,7 @@
 
 ## Détail des extentions
 
-- Naruto Shippuden <img src="https://raw.githubusercontent.com/vpoiaghi/CardsMaster/master/data/Resources/Elements/konoha.png" height="20" width="20">
+- Naruto Shippuden <img src="https://raw.githubusercontent.com/vpoiaghi/CardsMaster/master/data/Resources/Elements/Shippuden.png" height="20" width="20">
     
     - Tous les personnages apparaissant dans la série Naruto Shippuden
 
