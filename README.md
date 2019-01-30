@@ -4,10 +4,10 @@
 
 - [ ] cimetiere vers main -> doit refresh la main
 - [ ] ajouter des sorts de destruction d'équipement
-- [X] izanagi de Danzo !!
+- [x] izanagi de Danzo !!
 - [x] mise en relief des points de dmg
-- [X]remplacer les +1/+1 par +1 ATK / +1 PV
-- [X] remplacer les nature genjutsu par Spécial et élément Genjutsu
+- [x] remplacer les +1/+1 par +1 ATK / +1 PV
+- [x] remplacer les nature genjutsu par Spécial et élément Genjutsu
 
 ## Règles
 
@@ -68,14 +68,23 @@
 ## Détail des extentions
 
 - Naruto Shippuden <img src="https://raw.githubusercontent.com/vpoiaghi/CardsMaster/master/data/Resources/Elements/konoha.png" height="20" width="20">
-    -- Tous les personnages apparaissant dans la série Naruto Shippuden
-- Boruto <img src="https://raw.githubusercontent.com/vpoiaghi/CardsMaster/master/data/Resources/Elements/konoha.png" height="20" width="20">
-    -- Tous les personnages apparaissant dans la série Boruto
+    
+    - Tous les personnages apparaissant dans la série Naruto Shippuden
+
+- Boruto <img src="https://raw.githubusercontent.com/vpoiaghi/CardsMaster/master/data/Resources/Elements/Boruto.png" height="20" width="20">
+    
+    - Tous les personnages apparaissant dans la série Boruto
+
 - Ninja Armory <img src="https://raw.githubusercontent.com/vpoiaghi/CardsMaster/master/data/Resources/Elements/Weapon.png" height="20" width="20">
-    --  Contient l'ensemble des équipements nécéssaire à tout bon ninja : Armes, Armures, accessoires ....
--* Ninja Scrolls <img src="https://raw.githubusercontent.com/vpoiaghi/CardsMaster/master/data/Resources/Elements/Scrolls.png" height="20" width="20">
-    -- De puissants Ninjutsu ont été redécouverts, mais le prix à payer peut être lourd ! 
+    
+    -  Contient l'ensemble des équipements nécéssaire à tout bon ninja : Armes, Armures, accessoires ....
+- Ninja Scrolls <img src="https://raw.githubusercontent.com/vpoiaghi/CardsMaster/master/data/Resources/Elements/Scrolls.png" height="20" width="20">
+    
+    - De puissants Ninjutsu ont été redécouverts, mais le prix à payer peut être lourd ! 
+
 - Naruto Stories <img src="https://raw.githubusercontent.com/vpoiaghi/CardsMaster/master/data/Resources/Elements/Book.png" height="20" width="20">
-    -- Les plus grandes quêtes de l'histoire de Naruto enfin disponibles dans le jeu
+    
+    - Les plus grandes quêtes de l'histoire de Naruto enfin disponibles dans le jeu
+
 - Naruto's Ambush <img src="https://raw.githubusercontent.com/vpoiaghi/CardsMaster/master/data/Resources/Elements/Trap.png" height="20" width="20">
-    -- Saurez vous déjouer les pièges les plus sournois ?
+    - Saurez vous déjouer les pièges les plus sournois ?

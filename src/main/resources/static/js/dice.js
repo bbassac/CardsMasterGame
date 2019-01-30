@@ -18,7 +18,11 @@ function refreshLastDiceThrow(){
     xhttp.setRequestHeader("Content-type", "application/json");
     xhttp.send();
     var result = JSON.parse(xhttp.responseText);
-    document.getElementById("diceResultId").textContent = "Result :" + result.value;
+    var detailedResult = result.value;
+    if (result.detail != null){
+        detailedResult += ("(" + result.detail + ")");
+    }
+    document.getElementById("diceResultId").textContent = "Result :" +detailedResult ;
 
 }
 
@@ -29,6 +33,10 @@ function throwDice(event,diceExp){
         xhttp.setRequestHeader("Content-type", "application/json");
         xhttp.send();
         var result = JSON.parse(xhttp.responseText);
-        document.getElementById("diceResultId").textContent = "Result :" + result.value;
+        var detailedResult = result.value;
+        if (result.detail != null){
+            detailedResult += ("(" + result.detail + ")");
+        }
+        document.getElementById("diceResultId").textContent = "Result :" +detailedResult ;
     }
 }
