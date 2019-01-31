@@ -20,6 +20,7 @@ function refreshImages() {
         var div = document.createElement("div");
         div.id="pic"+i;
         var table = document.createElement("TABLE");
+        table.className="table";
         var row = table.insertRow(0);
         var columnindex = 0;
         var img = document.createElement("img");
