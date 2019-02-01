@@ -19,41 +19,34 @@ function refreshImages() {
 
         var div = document.createElement("div");
         div.id="pic"+i;
-        var table = document.createElement("TABLE");
-        table.className="table";
-        var row = table.insertRow(0);
-        var columnindex = 0;
+
+
         var img = document.createElement("img");
         img.src = "img/"+encodeURI(cards[i].path);
+        div.appendChild(img);
 
+        var div2 = document.createElement("div");
         if(i>0) {
             var a1 = document.createElement("a");
             a1.className = "previous";
             a1.href = "#pic" + (i - 1);
             a1.textContent = "<";
-            //div.appendChild(a1);
-
-            var cell1 = row.insertCell(columnindex);
-            columnindex++;
-            cell1.appendChild(a1)
+            div2.appendChild(a1);
         }
-        var cellImg = row.insertCell(columnindex);
-        columnindex++;
-        cellImg.appendChild(img);
 
+        var span = document.createElement("span");
+        span.className="spacer";
+        div2.appendChild(span);
 
         if (i<=cards.length-1) {
             var a2 = document.createElement("a");
             a2.className = "next";
             a2.href = "#pic" + (i + 1);
             a2.textContent = ">";
-            div.appendChild(a2);
-            var cell2 = row.insertCell(columnindex);
-            columnindex++;
-            cell2.appendChild(a2)
+            div2.appendChild(a2);
         }
 
-        div.appendChild(table);
+        div.appendChild(div2);
         src.appendChild(div);
 
     }
