@@ -8,3 +8,10 @@ h1 {
     text-align: center;
     font-size: xx-large;
 }
+
+body {
+    background-image: url("../img/fond.png");
+    background-size: 200%;
+    /*background-repeat: repeat-y;*/
+
+}
