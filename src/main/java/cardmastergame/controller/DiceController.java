@@ -38,7 +38,7 @@ public class DiceController extends AbstractController{
 
         Dice dice = new Dice();
         dice.setExpression(value);
-        dice.setDetail(history.getHistoryText());
+        dice.setDetail(history.toString());
         dice.setValue(history.getTotalRoll());
         lastResult=dice;
         return dice;
