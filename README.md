@@ -80,6 +80,7 @@
 - Ninja Armory <img src="https://raw.githubusercontent.com/vpoiaghi/CardsMaster/master/data/Resources/Elements/Weapon.png" height="20" width="20">
     
     -  Contient l'ensemble des équipements nécéssaire à tout bon ninja : Armes, Armures, accessoires ....
+
 - Ninja Scrolls <img src="https://raw.githubusercontent.com/vpoiaghi/CardsMaster/master/data/Resources/Elements/Scrolls.png" height="20" width="20">
     
     - De puissants Ninjutsu ont été redécouverts, mais le prix à payer peut être lourd ! 
@@ -89,4 +90,6 @@
     - Les plus grandes quêtes de l'histoire de Naruto enfin disponibles dans le jeu
 
 - Naruto's Ambush <img src="https://raw.githubusercontent.com/vpoiaghi/CardsMaster/master/data/Resources/Elements/Trap.png" height="20" width="20">
+    
     - Saurez vous déjouer les pièges les plus sournois ?
+    - Vous pouvez poser faces cachées jusqu'à 3 cartes pièges qui peuvent se déclencher pendant le tour adverse, plongeant l'adversaire dans le tourment

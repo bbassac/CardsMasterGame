@@ -1,0 +1,10 @@
+@font-face {
+	font-family: "naruto";
+	src: url('njnaruto.ttf');
+}
+
+h1 {
+    font-family: "naruto", Helvetica, Arial, sans-serif;
+    text-align: center;
+    font-size: -webkit-xxx-large;
+}

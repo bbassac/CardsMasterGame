@@ -137,6 +137,7 @@
                 <configuration>
                     <inputDirectory>${basedir}</inputDirectory>
                     <outputDirectory>${basedir}/target/rules</outputDirectory>
+                    <headerHtmlFile>${project.basedir}/src/main/resources/static/header.html</headerHtmlFile>
                     <inputEncoding>UTF-8</inputEncoding>
                     <outputEncoding>UTF-8</outputEncoding>
                 </configuration>
