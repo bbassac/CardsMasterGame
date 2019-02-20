@@ -69,27 +69,27 @@
 
 ## Détail des extentions
 
-- Naruto Shippuden <img src="https://raw.githubusercontent.com/vpoiaghi/CardsMaster/master/data/Resources/Elements/Shippuden.png" height="20" width="20">
+### Naruto Shippuden <img src="https://raw.githubusercontent.com/vpoiaghi/CardsMaster/master/data/Resources/Elements/Shippuden.png" height="20" width="20">
     
     - Tous les personnages apparaissant dans la série Naruto Shippuden
 
-- Boruto <img src="https://raw.githubusercontent.com/vpoiaghi/CardsMaster/master/data/Resources/Elements/Boruto.png" height="20" width="20">
+### Boruto <img src="https://raw.githubusercontent.com/vpoiaghi/CardsMaster/master/data/Resources/Elements/Boruto.png" height="20" width="20">
     
     - Tous les personnages apparaissant dans la série Boruto
 
-- Ninja Armory <img src="https://raw.githubusercontent.com/vpoiaghi/CardsMaster/master/data/Resources/Elements/Weapon.png" height="20" width="20">
+### Ninja Armory <img src="https://raw.githubusercontent.com/vpoiaghi/CardsMaster/master/data/Resources/Elements/Weapon.png" height="20" width="20">
     
     -  Contient l'ensemble des équipements nécéssaire à tout bon ninja : Armes, Armures, accessoires ....
 
-- Ninja Scrolls <img src="https://raw.githubusercontent.com/vpoiaghi/CardsMaster/master/data/Resources/Elements/Scrolls.png" height="20" width="20">
+### Ninja Scrolls <img src="https://raw.githubusercontent.com/vpoiaghi/CardsMaster/master/data/Resources/Elements/Scrolls.png" height="20" width="20">
     
     - De puissants Ninjutsu ont été redécouverts, mais le prix à payer peut être lourd ! 
 
-- Naruto Stories <img src="https://raw.githubusercontent.com/vpoiaghi/CardsMaster/master/data/Resources/Elements/Book.png" height="20" width="20">
+### Naruto Stories <img src="https://raw.githubusercontent.com/vpoiaghi/CardsMaster/master/data/Resources/Elements/Book.png" height="20" width="20">
     
     - Les plus grandes quêtes de l'histoire de Naruto enfin disponibles dans le jeu
 
-- Naruto's Ambush <img src="https://raw.githubusercontent.com/vpoiaghi/CardsMaster/master/data/Resources/Elements/Trap.png" height="20" width="20">
+### Naruto's Ambush <img src="https://raw.githubusercontent.com/vpoiaghi/CardsMaster/master/data/Resources/Elements/Trap.png" height="20" width="20">
     
     - Saurez vous déjouer les pièges les plus sournois ?
     - Vous pouvez poser faces cachées jusqu'à 3 cartes pièges qui peuvent se déclencher pendant le tour adverse, plongeant l'adversaire dans le tourment
