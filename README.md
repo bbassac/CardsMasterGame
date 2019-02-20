@@ -3,13 +3,13 @@
 ## Bugs
 
 - [ ] Homogénéiser le sort de soin  (permanent VS activate 1x/tour)
-- [ ] cimetiere vers main -> doit refresh la main
-- [ ] ajouter des sorts de destruction d'équipement
-- [ ] ajouter https://fr.wikipedia.org/wiki/Personnages_secondaires_du_Pays_des_Neiges
-- [x] izanagi de Danzo !!
-- [x] mise en relief des points de dmg
-- [x] remplacer les +1/+1 par +1 ATK / +1 PV
-- [x] remplacer les nature genjutsu par Spécial et élément Genjutsu
+- [ ] Cimetiere vers main -> doit refresh la main
+- [ ] Ajouter des sorts de destruction d'équipement
+- [ ] Ajouter https://fr.wikipedia.org/wiki/Personnages_secondaires_du_Pays_des_Neiges
+- [x] Izanagi de Danzo !!
+- [x] Mise en relief des points de dmg
+- [x] Remplacer les +1/+1 par +1 ATK / +1 PV
+- [x] Remplacer les nature genjutsu par Spécial et élément Genjutsu
 
 ## Règles
 

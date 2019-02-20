@@ -3,15 +3,43 @@
 	src: url('njnaruto.ttf');
 }
 
+
 h1 {
     font-family: "naruto", Helvetica, Arial, sans-serif;
     text-align: center;
-    font-size: xx-large;
+    font-size: 70px;
+    border:5px solid black;
+    padding:3px;
+    counter-reset: section;
 }
+
+h2 {
+    /*text-decoration: underline;*/
+    border-bottom: double 3px;
+    counter-increment: section;
+    counter-reset: subsection;
+}
+h2:before {
+    content: counter(section) ". ";
+}
+
+
+h3{
+    text-indent: 10px;
+    counter-increment: subsection;
+}
+h3:before {
+    content: counter(section) "." counter(subsection) ". " ;
+}
+
+h4 {
+    text-indent: 15px;
+}
+
 
 body {
     background-image: url("../img/fond.png");
     background-size: 200%;
-    /*background-repeat: repeat-y;*/
+
 
 }
