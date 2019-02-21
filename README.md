@@ -24,11 +24,11 @@ Tous les coups sont permis .... surtout les pires !
 
 ### Les cartes d'environnement
 
-<img src="https://raw.githubusercontent.com/bbassac/CardsMasterGame/tree/master/src/main/resources/static/img/doc/environnement.png">
+<img src="https://raw.githubusercontent.com/bbassac/CardsMasterGame/master/src/main/resources/static/img/doc/environnement.png">
 
 ### Les cartes de ninjas
 
-<img src="https://raw.githubusercontent.com/bbassac/CardsMasterGame/tree/master/src/main/resources/static/img/doc/ninja.png">
+<img src="https://raw.githubusercontent.com/bbassac/CardsMasterGame/master/src/main/resources/static/img/doc/ninja.png">
 
 #### La protection
 
@@ -37,24 +37,24 @@ Cette compétence n'affecte pas les ninjutsus ou les compétences des alliés, s
 
 ### Les cartes d'équipement
 
-<img src="https://raw.githubusercontent.com/bbassac/CardsMasterGame/tree/master/src/main/resources/static/img/doc/arme.png">
-<img src="https://raw.githubusercontent.com/bbassac/CardsMasterGame/tree/master/src/main/resources/static/img/doc/armure.png">
+<img src="https://raw.githubusercontent.com/bbassac/CardsMasterGame/master/src/main/resources/static/img/doc/arme.png">
+<img src="https://raw.githubusercontent.com/bbassac/CardsMasterGame/master/src/main/resources/static/img/doc/armure.png">
 
 ### Les cartes de quêtes
 
-<img src="https://raw.githubusercontent.com/bbassac/CardsMasterGame/tree/master/src/main/resources/static/img/doc/quete.png">
+<img src="https://raw.githubusercontent.com/bbassac/CardsMasterGame/master/src/main/resources/static/img/doc/quete.png">
 
 ### Les cartes de ninjutsu
 
-<img src="https://raw.githubusercontent.com/bbassac/CardsMasterGame/tree/master/src/main/resources/static/img/doc/kinjutsu.png">
+<img src="https://raw.githubusercontent.com/bbassac/CardsMasterGame/master/src/main/resources/static/img/doc/kinjutsu.png">
 
 ### Les cartes d'invocation
 
-<img src="https://raw.githubusercontent.com/bbassac/CardsMasterGame/tree/master/src/main/resources/static/img/doc/invocation.png">
+<img src="https://raw.githubusercontent.com/bbassac/CardsMasterGame/master/src/main/resources/static/img/doc/invocation.png">
 
 ### Les cartes pièges
 
-<img src="https://raw.githubusercontent.com/bbassac/CardsMasterGame/tree/master/src/main/resources/static/img/doc/piege.png">
+<img src="https://raw.githubusercontent.com/bbassac/CardsMasterGame/master/src/main/resources/static/img/doc/piege.png">
 
 ## Règles
 
