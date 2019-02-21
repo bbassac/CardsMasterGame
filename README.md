@@ -37,8 +37,9 @@ Cette compétence n'affecte pas les ninjutsus ou les compétences des alliés, s
 
 ### Les cartes d'équipement
 
-<img src="https://raw.githubusercontent.com/bbassac/CardsMasterGame/master/src/main/resources/static/img/doc/arme.png" width="250px">
-<img src="https://raw.githubusercontent.com/bbassac/CardsMasterGame/master/src/main/resources/static/img/doc/armure.png" width="250px">
+Carte d'arme                        |  Carte d'armure
+:----------------------------------:|:----------------------------------:
+<img src="https://raw.githubusercontent.com/bbassac/CardsMasterGame/master/src/main/resources/static/img/doc/arme.png" width="250px"> | <img src="https://raw.githubusercontent.com/bbassac/CardsMasterGame/master/src/main/resources/static/img/doc/armure.png" width="250px">
 
 ### Les cartes de quêtes
 
