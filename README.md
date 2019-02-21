@@ -11,6 +11,34 @@
 - [x] Remplacer les +1/+1 par +1 ATK / +1 PV
 - [x] Remplacer les nature genjutsu par Spécial et élément Genjutsu
 
+## Background
+
+Alerte !  Le pays est attaqué !  
+Organisez la défense de votre térritoire à l'aide des ressources mises à votre disposition,
+et anéantissez le héros adverse qui cherchera à en faire autant contre vous !  
+Vous aurez l'occasion de combatre dans tous les lieux renommés de Naruto avec tous les personnages rencontrés lors de ses aventures.  
+Equipez vous d'armes légendaires, recrutez de puissants mercenaires, lancez de puissants ninjutsus ...  
+Tous les coups sont permis .... surtout les pires !
+
+## Présentation du jeux
+
+### Les cartes d'environnement
+
+### Les cartes de ninjas
+
+### La protection
+
+Cette compétence particulière oblige l'adversaire à éliminer tous les alliés disposant de protection avec de pouvoir attaquer les autres ou même le héros au corps à corps ou à distance.  
+Cette compétence n'affecte pas les ninjutsus ou les compétences des alliés, sauf si celles-ci sont en rapport avec du combat au corps à corps ou à distance
+
+### Les cartes d'équipement
+
+### Les cartes de quêtes
+
+### Les cartes de ninjutsu
+
+### Les cartes d'invocation
+
 ## Règles
 
 ### Début de partie
