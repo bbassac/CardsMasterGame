@@ -24,20 +24,37 @@ Tous les coups sont permis .... surtout les pires !
 
 ### Les cartes d'environnement
 
+<img src="https://raw.githubusercontent.com/bbassac/CardsMasterGame/tree/master/src/main/resources/static/img/doc/environnement.png">
+
 ### Les cartes de ninjas
 
-### La protection
+<img src="https://raw.githubusercontent.com/bbassac/CardsMasterGame/tree/master/src/main/resources/static/img/doc/ninja.png">
+
+#### La protection
 
 Cette compétence particulière oblige l'adversaire à éliminer tous les alliés disposant de protection avec de pouvoir attaquer les autres ou même le héros au corps à corps ou à distance.  
 Cette compétence n'affecte pas les ninjutsus ou les compétences des alliés, sauf si celles-ci sont en rapport avec du combat au corps à corps ou à distance
 
 ### Les cartes d'équipement
 
+<img src="https://raw.githubusercontent.com/bbassac/CardsMasterGame/tree/master/src/main/resources/static/img/doc/arme.png">
+<img src="https://raw.githubusercontent.com/bbassac/CardsMasterGame/tree/master/src/main/resources/static/img/doc/armure.png">
+
 ### Les cartes de quêtes
+
+<img src="https://raw.githubusercontent.com/bbassac/CardsMasterGame/tree/master/src/main/resources/static/img/doc/quete.png">
 
 ### Les cartes de ninjutsu
 
+<img src="https://raw.githubusercontent.com/bbassac/CardsMasterGame/tree/master/src/main/resources/static/img/doc/kinjutsu.png">
+
 ### Les cartes d'invocation
+
+<img src="https://raw.githubusercontent.com/bbassac/CardsMasterGame/tree/master/src/main/resources/static/img/doc/invocation.png">
+
+### Les cartes pièges
+
+<img src="https://raw.githubusercontent.com/bbassac/CardsMasterGame/tree/master/src/main/resources/static/img/doc/piege.png">
 
 ## Règles
 
