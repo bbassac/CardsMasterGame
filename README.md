@@ -23,24 +23,14 @@ Tous les coups sont permis .... surtout les pires !
 ## Présentation du jeux
 
 ### Les cartes d'environnement
-
-<img src="https://raw.githubusercontent.com/bbassac/CardsMasterGame/master/src/main/resources/static/img/doc/environnement.png" width="350px">
-
-A. Nom du lieu  
-B. Nature de l'affinité du lieu  
-C. Intitullé du pouvoir pour l'ensemble de la partie  
+Exemple de carte                        | Description
+:--------------------------------------:|----------------------------------
+<img src="https://raw.githubusercontent.com/bbassac/CardsMasterGame/master/src/main/resources/static/img/doc/environnement.png" width="350px"> | A. Nom du lieu  <br />B. Nature de l'affinité du lieu  <br />C. Intitullé du pouvoir pour l'ensemble de la partie  
 
 ### Les cartes de ninjas
-
-<img src="https://raw.githubusercontent.com/bbassac/CardsMasterGame/master/src/main/resources/static/img/doc/ninja.png" width="350px">
-
-A. Nom du ninja  
-B. Coût de la carte  
-C. Nature de l'affinité de l'invocation  
-D. Valeur de l'attaque de base du ninja  
-E. Intitullé du pouvoir du ninja  
-F. Nom de l'extension dans laquelle apparaît la carte  
-G. Nombre de PV de la carte  
+Exemple de carte                        | Description
+:--------------------------------------:|----------------------------------
+<img src="https://raw.githubusercontent.com/bbassac/CardsMasterGame/master/src/main/resources/static/img/doc/ninja.png" width="350px"> | A. Nom du ninja  <br />B. Coût de la carte  <br />C. Nature de l'affinité de l'invocation  <br />D. Valeur de l'attaque de base du ninja  <br />E. Intitullé du pouvoir du ninja  <br />F. Nom de l'extension dans laquelle apparaît la carte  <br />G. Nombre de PV de la carte  
 
 #### La protection
 
@@ -49,54 +39,29 @@ Cette compétence n'affecte pas les ninjutsus ou les compétences des alliés, s
 
 ### Les cartes d'équipement
 
-Carte d'arme                        |  Carte d'armure
-:----------------------------------:|:----------------------------------:
+Exemple de carte                        | Description
+:--------------------------------------:|----------------------------------
 <img src="https://raw.githubusercontent.com/bbassac/CardsMasterGame/master/src/main/resources/static/img/doc/arme.png" width="350px"> | <img src="https://raw.githubusercontent.com/bbassac/CardsMasterGame/master/src/main/resources/static/img/doc/armure.png" width="350px">
 
 ### Les cartes de quêtes
-
-<img src="https://raw.githubusercontent.com/bbassac/CardsMasterGame/master/src/main/resources/static/img/doc/quete.png" width="350px">
-
-A. Nom de la quête  
-B. Les cartes de quête n'ont pas de coût, elle se mettent en jeu sitôt les conditions réunies  
-C. Rappel du type de carte  
-D. Condition(s) de déclenchement de la quête  
-E. Récompense d'accomplissement de la quête  
-F. Nom de l'extension dans laquelle apparaît la carte  
+Exemple de carte                        | Description
+:--------------------------------------:|----------------------------------
+<img src="https://raw.githubusercontent.com/bbassac/CardsMasterGame/master/src/main/resources/static/img/doc/quete.png" width="350px"> | A. Nom de la quête <br/>B. Les cartes de quête n'ont pas de coût, elle se mettent en jeu sitôt les conditions réunies <br />  C. Rappel du type de carte  <br />D. Condition(s) de déclenchement de la quête  <br />E. Récompense d'accomplissement de la quête  <br />F. Nom de l'extension dans laquelle apparaît la carte  
 
 ### Les cartes de ninjutsu
-
-<img src="https://raw.githubusercontent.com/bbassac/CardsMasterGame/master/src/main/resources/static/img/doc/kinjutsu.png" width="350px">
-
-A. Nom du ninjutsu  
-B. Coût de la carte ninjutsu  
-C. Nature du ninjutsu  
-D. Conditions d'utilisation et effets  
-E. Parfois les sorts ont un effet négatif à appliquer selon la règle écrite  
-F. Nom de l'extension dans laquelle apparaît la carte  
+Exemple de carte                        | Description
+:--------------------------------------:|----------------------------------
+<img src="https://raw.githubusercontent.com/bbassac/CardsMasterGame/master/src/main/resources/static/img/doc/kinjutsu.png" width="350px"> | A. Nom du ninjutsu  <br>B. Coût de la carte <br>ninjutsu  <br>C. Nature du ninjutsu  <br>D. Conditions d'utilisation et effets  <br>E. Parfois les sorts ont un effet négatif à appliquer selon la règle écrite  <br>F. Nom de l'extension dans laquelle apparaît la carte  
 
 ### Les cartes d'invocation
-
-<img src="https://raw.githubusercontent.com/bbassac/CardsMasterGame/master/src/main/resources/static/img/doc/invocation.png" width="350px">
-
-A. Nom de l'invocation  
-B. Les cartes d'invocation n'ont pas de coût  
-C. Nature de l'affinité de l'invocation  
-D. Rareté de la carte  
-E. Intitulé du pouvoir de l'invocation  
-F. Valeur de l'attaque de base de l'invocation  
-G. Nom de l'extension dans laquelle apparaît la carte  
-H. Nombre de PV de la carte  
+Exemple de carte                        | Description
+:--------------------------------------:|----------------------------------
+<img src="https://raw.githubusercontent.com/bbassac/CardsMasterGame/master/src/main/resources/static/img/doc/invocation.png" width="350px"> | A. Nom de l'invocation  <br />B. Les cartes d'invocation n'ont pas de coût  <br />C. Nature de l'affinité de l'invocation  <br />D. Rareté de la carte  <br />E. Intitulé du pouvoir de l'invocation  <br />F. Valeur de l'attaque de base de l'invocation  <br />G. Nom de l'extension dans laquelle apparaît la carte  <br />H. Nombre de PV de la carte  
 
 ### Les cartes pièges
-
-<img src="https://raw.githubusercontent.com/bbassac/CardsMasterGame/master/src/main/resources/static/img/doc/piege.png" width="350px">
-
-A. Nom de la carte piège  
-B. Coût de la carte piège  
-C. Nature du piège  
-D. Conditions de déclenchement du piège  
-E. Nom de l'extension dans laquelle apparaît la carte  
+Exemple de carte                        | Description
+:--------------------------------------:|----------------------------------
+<img src="https://raw.githubusercontent.com/bbassac/CardsMasterGame/master/src/main/resources/static/img/doc/piege.png" width="350px"> | A. Nom de la carte piège  <br />B. Coût de la carte piège  <br />C. Nature du piège <br />D. Conditions de déclenchement du piège  <br /> E. Nom de l'extension dans laquelle apparaît la carte  
 
 ## Règles
 
