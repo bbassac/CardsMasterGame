@@ -41,7 +41,7 @@ Cette compétence n'affecte pas les ninjutsus ou les compétences des alliés, s
 
 Exemple de carte                        | Description
 :--------------------------------------:|----------------------------------
-<img src="https://raw.githubusercontent.com/bbassac/CardsMasterGame/master/src/main/resources/static/img/doc/arme.png" width="350px"> | A. Nom de l'équipement <br/>B. Coût de la carte équipement<br />  C. Restriction sur l'emplacement de l'équipement (1 max) <br />D. Rareté de la carte <br />E. Valeur d'attaque de l'équipement  <br />F. Descriptif de l'équipement  <br />G. Nom de l'extension dans laquelle apparaît la carte  
+<img src="https://raw.githubusercontent.com/bbassac/CardsMasterGame/master/src/main/resources/static/img/doc/arme.png" width="350px"> | A. Nom de l'équipement <br/>B. Coût de la carte équipement<br />  C. Restriction sur l'emplacement de l'équipement (1 max) <br /> D. Valeur d'attaque de l'équipement  <br />E. Descriptif de l'équipement  <br />F. Nom de l'extension dans laquelle apparaît la carte  
 
 ### Les cartes de quêtes
 Exemple de carte                        | Description
