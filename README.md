@@ -1,5 +1,23 @@
 # Jeux Naruto
 
+  * [Bugs](#bugs)
+  * [Background](#background)
+  * [Présentation du jeux](#présentation-du-jeux)
+    + [Les cartes d'environnement](#les-cartes-d'environnement)
+    + [Les cartes de ninjas](#les-cartes-de-ninjas)
+      - [La protection](#la-protection)
+    + [Les cartes d'équipement](#les-cartes-d'équipement)
+    + [Les cartes de quêtes](#les-cartes-de-quêtes)
+    + [Les cartes de ninjutsu](#les-cartes-de-ninjutsu)
+    + [Les cartes d'invocation](#les-cartes-d'invocation)
+    + [Les cartes pièges](#les-cartes-pièges)
+  * [Règles](#règles)
+    + [Début de partie](#début-de-partie)
+    + [Déroulement d'un tour](#déroulement-d'un-tour)
+    + [Définition des symboles](#définition-des-symboles)
+    + [Cas particuliers](#cas-particuliers)
+  * [Détail des extentions](#détail-des-extentions)
+  
 ## Bugs
 
 - [ ] Homogénéiser le sort de soin  (permanent VS activate 1x/tour)
