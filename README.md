@@ -1,5 +1,8 @@
+
 # Jeux Naruto
 
+[TOC levels=1-3]: # "#### Table of Contents"
+#### Table of Contents
   * [Bugs](#bugs)
   * [Background](#background)
   * [Présentation du jeux](#présentation-du-jeux)
