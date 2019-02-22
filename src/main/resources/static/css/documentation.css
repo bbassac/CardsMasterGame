@@ -40,6 +40,8 @@ h4 {
 body {
     background-image: url("../img/doc/fond.png");
     background-size: 200%;
+}
 
-
+table, th, td {
+  border: 1px solid black;
 }
