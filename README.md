@@ -1,8 +1,8 @@
 
-# Jeux Naruto
+<h1>Jeux Naruto</h1>
 
-[TOC levels=1-3]: # "#### Table of Contents"
-#### Table of Contents
+[TOC levels=2-3]: # "#### Sommaire"
+## Table of Contents
   * [Bugs](#bugs)
   * [Background](#background)
   * [Présentation du jeux](#présentation-du-jeux)
@@ -12,7 +12,7 @@
     + [Les cartes d'équipement](#les-cartes-d'équipement)
     + [Les cartes de quêtes](#les-cartes-de-quêtes)
     + [Les cartes de ninjutsu](#les-cartes-de-ninjutsu)
-    + [Les cartes d'invocation](#les-cartes-d'invocation)
+    + [Les cartes d'invocation](#les-cartes-dinvocation)
     + [Les cartes pièges](#les-cartes-pièges)
   * [Règles](#règles)
     + [Début de partie](#début-de-partie)
