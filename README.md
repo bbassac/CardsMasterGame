@@ -51,11 +51,11 @@ Cette compétence n'affecte pas les ninjutsus ou les compétences des alliés, s
 
 Carte d'arme                        |  Carte d'armure
 :----------------------------------:|:----------------------------------:
-<img src="https://raw.githubusercontent.com/bbassac/CardsMasterGame/master/src/main/resources/static/img/doc/arme.png" width="300px"> | <img src="https://raw.githubusercontent.com/bbassac/CardsMasterGame/master/src/main/resources/static/img/doc/armure.png" width="350px">
+<img src="https://raw.githubusercontent.com/bbassac/CardsMasterGame/master/src/main/resources/static/img/doc/arme.png" width="350px"> | <img src="https://raw.githubusercontent.com/bbassac/CardsMasterGame/master/src/main/resources/static/img/doc/armure.png" width="350px">
 
 ### Les cartes de quêtes
 
-<img src="https://raw.githubusercontent.com/bbassac/CardsMasterGame/master/src/main/resources/static/img/doc/quete.png" width="300px">
+<img src="https://raw.githubusercontent.com/bbassac/CardsMasterGame/master/src/main/resources/static/img/doc/quete.png" width="350px">
 
 A. Nom de la quête  
 B. Les cartes de quête n'ont pas de coût, elle se mettent en jeu sitôt les conditions réunies  
