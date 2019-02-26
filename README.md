@@ -55,8 +55,8 @@ Exemple de carte                        | Description
 
 #### La protection
 
-Cette compétence particulière oblige l'adversaire à éliminer tous les alliés disposant de protection avec de pouvoir attaquer les autres ou même le héros au corps à corps ou à distance.  
-Cette compétence n'affecte pas les ninjutsus ou les compétences des alliés, sauf si celles-ci sont en rapport avec du combat au corps à corps ou à distance
+* Cette compétence particulière oblige l'adversaire à éliminer tous les alliés disposant de protection avec de pouvoir attaquer les autres ou même le héros au corps à corps ou à distance.  
+* Cette compétence n'affecte pas les ninjutsus ou les compétences des alliés, sauf si celles-ci sont en rapport avec du combat au corps à corps ou à distance
 
 ### Les cartes d'équipement
 
@@ -139,31 +139,31 @@ Exemple de carte                        | Description
 
 ### Cas particuliers
 
-    * Quand un ninja donne un bonus à d'autres, lui-même ne peut en bénéficier
+* Quand un ninja donne un bonus à d'autres, lui-même ne peut en bénéficier
 
 ## Détail des extentions
 
 ### Naruto Shippuden <img src="https://raw.githubusercontent.com/vpoiaghi/CardsMaster/master/data/Resources/Elements/Shippuden.png" height="20" width="20">
 
-    * Tous les personnages apparaissant dans la série Naruto Shippuden
+* Tous les personnages apparaissant dans la série Naruto Shippuden
 
 ### Boruto <img src="https://raw.githubusercontent.com/vpoiaghi/CardsMaster/master/data/Resources/Elements/Boruto.png" height="20" width="20">
 
-    * Tous les personnages apparaissant dans la série Boruto
+* Tous les personnages apparaissant dans la série Boruto
 
 ### Ninja Armory <img src="https://raw.githubusercontent.com/vpoiaghi/CardsMaster/master/data/Resources/Elements/Weapon.png" height="20" width="20">
 
-    *  L'amurerie ninja met à votre disposition toute une panoplie d'équipements afin d'affronter votre adversaire comme des armes, des armures,des accessoires ....
+* L'amurerie ninja met à votre disposition toute une panoplie d'équipements afin d'affronter votre adversaire comme des armes, des armures,des accessoires ....
 
 ### Ninja Scrolls <img src="https://raw.githubusercontent.com/vpoiaghi/CardsMaster/master/data/Resources/Elements/Scrolls.png" height="20" width="20">
 
-    * De puissants Ninjutsu ont été redécouverts, mais le prix à payer peut être lourd ! 
+* De puissants Ninjutsu ont été redécouverts, mais le prix à payer peut être lourd ! 
 
 ### Naruto Stories <img src="https://raw.githubusercontent.com/vpoiaghi/CardsMaster/master/data/Resources/Elements/Book.png" height="20" width="20">
 
-    * Les plus grandes quêtes de l'histoire de Naruto enfin disponibles dans le jeu
+* Les plus grandes quêtes de l'histoire de Naruto enfin disponibles dans le jeu
 
 ### Naruto's Ambush <img src="https://raw.githubusercontent.com/vpoiaghi/CardsMaster/master/data/Resources/Elements/Trap.png" height="20" width="20">  
 
-    * Saurez vous déjouer les pièges les plus sournois ?
-    * Vous pouvez poser faces cachées jusqu'à 3 cartes pièges qui peuvent se déclencher pendant le tour adverse, plongeant l'adversaire dans le tourment
+* Saurez vous déjouer les pièges les plus sournois ?
+* Vous pouvez poser faces cachées jusqu'à 3 cartes pièges qui peuvent se déclencher pendant le tour adverse, plongeant l'adversaire dans le tourment
