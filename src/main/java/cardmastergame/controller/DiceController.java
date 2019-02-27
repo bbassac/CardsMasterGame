@@ -4,7 +4,6 @@ import cardmastergame.bean.Dice;
 import com.bernardomg.tabletop.dice.history.RollHistory;
 import com.bernardomg.tabletop.dice.interpreter.DiceInterpreter;
 import com.bernardomg.tabletop.dice.interpreter.DiceRoller;
-import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
 import com.bernardomg.tabletop.dice.parser.DefaultDiceParser;
 import com.bernardomg.tabletop.dice.parser.DiceParser;
 
@@ -40,8 +39,7 @@ public class DiceController extends AbstractController{
             @PathVariable("value") String value) {
 
 
-        final DiceNotationExpression  parsed = parser.parse(value);
-        final RollHistory history = roller.transform(parsed);
+        final RollHistory history = parser.parse(value, roller);
 
         Dice dice = new Dice();
         dice.setExpression(value);
