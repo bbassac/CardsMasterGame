@@ -2,9 +2,11 @@ package cardmastergame.controller;
 
 import cardmastergame.bean.Dice;
 import com.bernardomg.tabletop.dice.history.RollHistory;
+import com.bernardomg.tabletop.dice.interpreter.DiceInterpreter;
 import com.bernardomg.tabletop.dice.interpreter.DiceRoller;
-import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
 import com.bernardomg.tabletop.dice.parser.DefaultDiceParser;
+import com.bernardomg.tabletop.dice.parser.DiceParser;
+
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -15,6 +17,10 @@ import org.springframework.web.bind.annotation.*;
 public class DiceController extends AbstractController{
 
     private Dice lastResult = new Dice();
+
+    private final DiceParser parser     = new DefaultDiceParser();
+    
+    private final DiceInterpreter<RollHistory> roller = new DiceRoller();
 
     @CrossOrigin
     @RequestMapping(path = "/lastdice", method = RequestMethod.GET)
@@ -33,8 +39,7 @@ public class DiceController extends AbstractController{
             @PathVariable("value") String value) {
 
 
-        final DiceNotationExpression  parsed = new DefaultDiceParser().parse(value);
-        final RollHistory history = new DiceRoller().transform(parsed);
+        final RollHistory history = parser.parse(value, roller);
 
         Dice dice = new Dice();
         dice.setExpression(value);
