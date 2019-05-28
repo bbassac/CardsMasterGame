@@ -37,6 +37,12 @@ function  fillNbCards(currentOppId,componentId,nbCardsHeight){
         var bold = document.createElement("b");
         var nb = document.createTextNode(nbCards + " card(s)");
 
+        var img = document.createElement("img");
+        img.id="handImgId";
+        img.src = "img/hand.png";
+        img.height = handIconSize;
+        component.appendChild(img);
+
         bold.appendChild(nb);
 
         component.appendChild(bold);

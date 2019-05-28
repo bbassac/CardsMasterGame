@@ -154,8 +154,12 @@ Traps> div {
 }
 
 #nbCardsId {
-    display: flex;
+    display: block;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
+}
+
+#handImgId {
+    vertical-align : middle;
 }
