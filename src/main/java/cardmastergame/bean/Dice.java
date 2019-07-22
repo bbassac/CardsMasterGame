@@ -5,12 +5,12 @@ import io.swagger.annotations.ApiModelProperty;
 
 @ApiModel(value="Dice model", description="Sample model for a dice")
 public class Dice {
-    @ApiModelProperty(notes = "Dice expression")
+    @ApiModelProperty(notes = "Dice expression", example="3D12+4")
     private String expression;
-    @ApiModelProperty(notes = "Result",example = "15")
+    @ApiModelProperty(notes = "Result", example = "29")
     private long value;
 
-    @ApiModelProperty(notes = "dice detail", example = "5 6 7")
+    @ApiModelProperty(notes = "dice detail", example = "[3, 11, 11] + 4")
     private String detail;
 
     public String getExpression() {
