@@ -10,7 +10,7 @@ public class Dice {
     @ApiModelProperty(notes = "Result", example = "29")
     private long value;
 
-    @ApiModelProperty(notes = "dice detail", example = "[3, 11, 11] + 4")
+    @ApiModelProperty(notes = "dice detail", example = "3 11 11 + 4")
     private String detail;
 
     public String getExpression() {
