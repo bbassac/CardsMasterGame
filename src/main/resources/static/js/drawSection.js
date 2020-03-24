@@ -23,13 +23,9 @@ function fillDrawBoard(playerId, id, image,drawImageHeight){
     }
     div.appendChild(img);
     if (id=="draw"){
-        // 1. Create the button
-        var button = document.createElement("button");
-        button.innerHTML = "Piocher";
-        div.appendChild(button);
-
         // 3. Add event handler
-        button.addEventListener ("click", function() {
+        img.setAttribute('title', "Piocher une carte");
+        img.addEventListener ("click", function() {
             var xhttp = new XMLHttpRequest();
             xhttp.open("GET", "player/"+playerId+"/newcard", false);
             xhttp.setRequestHeader("Content-type", "application/json");
