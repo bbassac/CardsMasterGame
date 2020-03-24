@@ -23,9 +23,16 @@
   
 ## Bugs
 
+* [ ] Chiyo : invocation manquante ?
+* [ ] Texte protection : on peut choisir si il protege ou pas
 * [ ] Homogénéiser le sort de soin  (permanent VS activate 1x/tour)
 * [ ] Cimetiere vers main -> doit refresh la main (bug cimetiere refresh adversaire)
 * [ ] Ajouter des sorts de destruction d'équipement
+* [ ] Ajouter la notion de carte désactivée 
+* [ ] Nagato augmenter son prix
+* [ ] Mirroir de Yata -> Armure
+* [ ] Gants - > paire de gants -> mainS
+* [ ] Io -> activation
 * [ ] Documentation : Expliquer immobiliser-> pas d'attaque directes(jutsu autorisé)
 * [X] Ajouter https://fr.wikipedia.org/wiki/Personnages_secondaires_du_Pays_des_Neiges
 * [X] Reprendre carte intrigue à Tanzakugai + conditions quand jouable
