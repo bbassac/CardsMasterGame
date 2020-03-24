@@ -154,5 +154,10 @@ public class CollectionRepositoryImpl implements CollectionRepositoryCustom {
         return game.getMaxChakra();
     }
 
+    @Override
+    public void moveCardFromHandToGraveyardForPlayer(int playerId, int cardId) {
+        game.moveCardFromHandToGraveyardForPlayer(playerId,  cardId);
+    }
+
 
 }

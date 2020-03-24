@@ -145,6 +145,14 @@ public class Game {
         cimetieres[playerId].push(c);
     }
 
+    public void moveCardFromHandToGraveyardForPlayer(int playerId, int cardId) {
+        Card c = findCardInStackById(mains[playerId], cardId);
+        c.setDammagePoints(0);
+        c.setActivated(false);
+        mains[playerId].remove(c);
+        cimetieres[playerId].push(c);
+    }
+
     public int updateDmgPointsOnCard(int playerId, int cardId, int value) {
         findCardInStackById(plateaux[playerId],cardId).setDammagePoints(value);
         return value;
@@ -226,4 +234,6 @@ public class Game {
     public int getMaxChakra() {
         return MAX_CHAKRA;
     }
+
+
 }

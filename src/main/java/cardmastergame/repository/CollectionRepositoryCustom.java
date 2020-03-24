@@ -49,4 +49,6 @@ public interface CollectionRepositoryCustom {
     void moveCardFromTrapToGraveyard(int playerId, int cardId);
 
     int getMaxChakra();
+
+    void moveCardFromHandToGraveyardForPlayer(int playerId, int cardId);
 }

@@ -163,3 +163,11 @@ Traps> div {
 #handImgId {
     vertical-align : middle;
 }
+
+.grave-button {
+    height: 22.5px;
+    text-align: center;
+    margin-top: -1px;
+    display: inline;
+    vertical-align: text-top;
+}

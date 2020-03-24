@@ -38,6 +38,19 @@ public class GraveyardController extends AbstractController{
     }
 
     @CrossOrigin
+    @RequestMapping(path = "/player/{playerId}/hand-to-graveyard/{cardId}",method = RequestMethod.PUT)
+    @ResponseBody
+    @ApiOperation(value = "Move the card from hand to Graveyard for the specified player")
+    public void moveCardFromHandToGraveyard(
+            @ApiParam(value = "Player Id ", allowableValues ="0,1",required = true)
+            @PathVariable("playerId") int playerId,
+
+            @ApiParam(value = "Card Id ", type = "int", required = true)
+            @PathVariable("cardId") int cardId)  {
+        customRepo.moveCardFromHandToGraveyardForPlayer(playerId,cardId);
+    }
+
+    @CrossOrigin
     @RequestMapping(path = "/player/{playerId}/graveyard/{cardId}",method = RequestMethod.GET)
     @ResponseBody
     @ApiOperation(value = "Move the card from Graveyard to the hand of the specified player")

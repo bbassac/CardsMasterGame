@@ -92,14 +92,23 @@ function fillDeck(playerId,section,stackName,gameImageHeight){
             moveTrapButton.setAttribute('onclick','moveCardToTrap(this.id);');
             divBlock.appendChild(moveTrapButton);
 
+            //Move button
+            var moveGrave = document.createElement("button");
+            moveGrave.innerHTML = "&#9760;";
+            moveGrave.setAttribute("id",cards[i].id);
+            moveGrave.setAttribute("class","grave-button");
+            moveGrave.setAttribute('onclick','moveHandCardToGraveyard(this.id);');
+            divBlock.appendChild(moveGrave);
+
             cardDiv.appendChild(divBlock);
 
         }else if (section=="traps"){
             var divBlock = document.createElement("tr-"+ cards[i].id);
 
             var moveCardButton = document.createElement("button");
-            moveCardButton.innerHTML = "o";
+            moveCardButton.innerHTML = "&#9760;";
             moveCardButton.setAttribute("id",cards[i].id);
+            moveCardButton.setAttribute("class","grave-button");
             moveCardButton.setAttribute('onclick','moveCardFromTrapsToGraveyard(this.id);');
             divBlock.appendChild(moveCardButton);
             cardDiv.appendChild(divBlock);
@@ -147,8 +156,9 @@ function fillDeck(playerId,section,stackName,gameImageHeight){
             div.appendChild(flipButton)
             //Move button
             var moveCardButton = document.createElement("button");
-            moveCardButton.innerHTML = "&rArr;";
+            moveCardButton.innerHTML = "&#9760;";
             moveCardButton.setAttribute("id",cards[i].id);
+            moveCardButton.setAttribute("class","grave-button");
             moveCardButton.setAttribute('onclick','moveCardToGraveyard(this.id);');
             div.appendChild(moveCardButton);
 
@@ -205,6 +215,16 @@ function moveCardToTrap(cardId){
 
     var xhttp = new XMLHttpRequest();
     xhttp.open("PUT", "player/"+currentPlayerId+"/trap/"+cardId, false);
+    xhttp.setRequestHeader("Content-type", "application/json");
+    xhttp.send();
+    refreshPlayerBoard(currentPlayerId)
+}
+
+function moveHandCardToGraveyard(cardId){
+    var currentPlayerId = document.getElementById("currentPlayerId").value;
+
+    var xhttp = new XMLHttpRequest();
+    xhttp.open("PUT", "player/"+currentPlayerId+"/hand-to-graveyard/"+cardId, false);
     xhttp.setRequestHeader("Content-type", "application/json");
     xhttp.send();
     refreshPlayerBoard(currentPlayerId)

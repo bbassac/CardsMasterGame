@@ -24,13 +24,20 @@
 ## Bugs
 
 * [ ] Homogénéiser le sort de soin  (permanent VS activate 1x/tour)
-* [ ] Cimetiere vers main -> doit refresh la main
+* [ ] Cimetiere vers main -> doit refresh la main (bug cimetiere refresh adversaire)
 * [ ] Ajouter des sorts de destruction d'équipement
 * [ ] Ajouter https://fr.wikipedia.org/wiki/Personnages_secondaires_du_Pays_des_Neiges
-* [x] Izanagi de Danzo !!
-* [x] Mise en relief des points de dmg
-* [x] Remplacer les +1/+1 par +1 ATK / +1 PV
-* [x] Remplacer les nature genjutsu par Spécial et élément Genjutsu
+* [ ] Reprendre carte intrigue à Tanzakugai + conditions quand jouable
+* [ ] reprendre carte Piège de renvoi -> ne subit aucun dmg
+* [ ] Chino Chinoike ': Si' + ennemi-> adversaire
+* [ ] Documentation : Expliquer immobiliser-> pas d'attaque directes(jutsu autorisé)
+* [ ] Cartes Quetes : expliciter quand jouable au tour adverse
+* [ ] Cartes Daimos : expliquer le cas de la mort avec le surplus
+* [ ] Carte Kinkaku : "Dans son camp" -> en jeu
+* [ ] Chamu et Kiki -> détailler que ca ignore les personnages avec protection ET le matériel qui protege des coups
+* [ ] Kawaki : la seule mort définitive est un sort qui envoie directement au cimetière
+* [ ] Kinjustsus : spécifier si pendant son tour ou n'importe quel tour
+
 
 ## Background
 
