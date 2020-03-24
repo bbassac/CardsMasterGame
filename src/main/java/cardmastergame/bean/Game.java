@@ -139,6 +139,8 @@ public class Game {
 
     public void moveCardFromGameToGraveyardForPlayer(int playerId, int cardId) {
         Card c = findCardInStackById(plateaux[playerId], cardId);
+        c.setDammagePoints(0);
+        c.setActivated(false);
         plateaux[playerId].remove(c);
         cimetieres[playerId].push(c);
     }
