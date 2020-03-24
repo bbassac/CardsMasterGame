@@ -2,6 +2,12 @@ document.addEventListener('DOMContentLoaded', function() {
     refreshBoard();
 }, false);
 
+window.addEventListener("focus", function(event)
+{
+    refreshBoard();
+}, false);
+
+
 setInterval(refreshOpponentBoard, 500);
 
 const drawImageHeight = 180;
