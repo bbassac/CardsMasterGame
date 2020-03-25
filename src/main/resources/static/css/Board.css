@@ -171,3 +171,13 @@ Traps> div {
     display: inline;
     vertical-align: text-top;
 }
+
+#selectInvocations {
+    transform: translateY(-60px);
+    margin-left: 30px;
+    margin-right: 30px;
+}
+
+#buttonDisplayInvoc {
+    transform: translateY(-60px);
+}

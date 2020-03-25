@@ -33,6 +33,10 @@ function fillDrawBoard(playerId, id, image,drawImageHeight){
             refreshBoard();
         });
     }else if (id=="invocations"){
+
+        img.setAttribute('title', "Piocher une carte");
+        img.setAttribute('onclick','pickInvocation(document.getElementById(\'selectInvocations\').value);');
+
         var xhttp = new XMLHttpRequest();
         xhttp.open("GET", "stack/INVOCATIONS", false);
         xhttp.setRequestHeader("Content-type", "application/json");
@@ -49,15 +53,10 @@ function fillDrawBoard(playerId, id, image,drawImageHeight){
             selectList.appendChild(option);
         }
 
-        var buttonPickInvoc = document.createElement("button");
-        buttonPickInvoc.innerHTML = "Piocher Invocation";
-        div.appendChild(buttonPickInvoc);
-        buttonPickInvoc.setAttribute('onclick','pickInvocation(document.getElementById(\'selectInvocations\').value);');
-
         var buttonDisplayInvoc = document.createElement("button");
         buttonDisplayInvoc.innerHTML = "Display Invocation";
+        buttonDisplayInvoc.id = "buttonDisplayInvoc"
         div.appendChild(buttonDisplayInvoc);
-        //buttonDisplayInvoc.setAttribute('onclick','displayPop(document.getElementById(\'selectInvocations\').options[document.getElementById(\'selectInvocations\').value].text);');
         buttonDisplayInvoc.setAttribute('onclick','displayPoP(\'img\' + encodeURI(document.getElementById(\'selectInvocations\').options[document.getElementById(\'selectInvocations\').selectedIndex].text));');
     }
 }
