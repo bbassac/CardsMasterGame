@@ -10,7 +10,7 @@ window.addEventListener("focus", function(event)
 
 setInterval(refreshOpponentBoard, 500);
 
-const drawImageHeight = 180;
+const drawImageHeight = 198;
 const gameImageHeight = 255;
 const trapImageHeight = 160;
 const trapIconHeight = 50;
