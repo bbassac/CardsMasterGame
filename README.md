@@ -23,17 +23,17 @@
   
 ## Bugs
 
-* [ ] Chiyo : invocation manquante ?
-* [ ] Texte protection : on peut choisir si il protege ou pas
 * [ ] Homogénéiser le sort de soin  (permanent VS activate 1x/tour)
 * [ ] Cimetiere vers main -> doit refresh la main (bug cimetiere refresh adversaire)
 * [ ] Ajouter des sorts de destruction d'équipement
 * [ ] Ajouter la notion de carte désactivée 
-* [ ] Nagato augmenter son prix
-* [ ] Mirroir de Yata -> Armure
-* [ ] Gants - > paire de gants -> mainS
-* [ ] Io -> activation
-* [ ] Documentation : Expliquer immobiliser-> pas d'attaque directes(jutsu autorisé)
+* [X] Nagato augmenter son prix
+* [X] Mirroir de Yata -> Armure
+* [X] Gants - > paire de gants -> mainS
+* [X] Io -> activation
+* [X] Chiyo : invocation manquante ?
+* [X] Texte protection : on peut choisir si il protege ou pas
+* [X] Documentation : Expliquer immobiliser-> pas d'attaque directes(jutsu autorisé)
 * [X] Ajouter https://fr.wikipedia.org/wiki/Personnages_secondaires_du_Pays_des_Neiges
 * [X] Reprendre carte intrigue à Tanzakugai + conditions quand jouable
 * [X] reprendre carte Piège de renvoi -> ne subit aucun dmg
@@ -99,6 +99,15 @@ Exemple de carte                        | Description
 <img src="https://raw.githubusercontent.com/bbassac/CardsMasterGame/master/src/main/resources/static/img/doc/piege.png" width="350px"> | A. Nom de la carte piège  <br />B. Coût de la carte piège  <br />C. Nature du piège <br />D. Conditions de déclenchement du piège  <br /> E. Nom de l'extension dans laquelle apparaît la carte  
 
 ## Règles
+
+### Glossaire et mécaniques
+
+* Protection :
+    * Sur un équipement, permet de pouvoir absorber (ou pas au choix) des dégâts. L'excédant de dégats est infligé au porteur
+    * Sur un personnage, celui peut s'interposer (ou pas au choix) et subir les dégats à la place du personnage ciblé
+
+* Immobiliser : Un personnage ne peut lancer d'attaque directe (corps à corps) s'il est immobilisé, mais peut toujours lancer des sorts
+
 
 ### Début de partie
 
