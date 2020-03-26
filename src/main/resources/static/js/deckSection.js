@@ -66,7 +66,7 @@ function fillDeck(playerId,section,stackName,gameImageHeight){
         img.height = gameImageHeight;
         img.hspace = 5;
         img.title = cards[i].id;
-        img.setAttribute('onclick','displayPoP(this.src);');
+        img.setAttribute('onclick','showCardPopin(this.src);');
         cardDiv.appendChild(img);
         if(cards[i].activated){
             img.setAttribute('style', 'transform:rotate(90deg);'); // the 90deg parameter may be changed to whatever angle you want to rotate to
