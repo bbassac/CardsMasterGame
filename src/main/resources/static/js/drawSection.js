@@ -49,7 +49,8 @@ function fillDrawBoard(playerId, id, image,drawImageHeight){
         for (var i=0; i< cards.length;i++){
             var option = document.createElement("option");
             option.value = cards[i].id;
-            option.text = cards[i].path;
+            option.tag=cards[i].path;
+            option.text = cards[i].path.substring(14);
             selectList.appendChild(option);
         }
 
@@ -57,7 +58,7 @@ function fillDrawBoard(playerId, id, image,drawImageHeight){
         buttonDisplayInvoc.innerHTML = "Display Invocation";
         buttonDisplayInvoc.id = "buttonDisplayInvoc"
         div.appendChild(buttonDisplayInvoc);
-        buttonDisplayInvoc.setAttribute('onclick','displayPoP(\'img\' + encodeURI(document.getElementById(\'selectInvocations\').options[document.getElementById(\'selectInvocations\').selectedIndex].text));');
+        buttonDisplayInvoc.setAttribute('onclick','displayPoP(\'img\' + encodeURI(document.getElementById(\'selectInvocations\').options[document.getElementById(\'selectInvocations\').selectedIndex].tag));');
     }
 }
 
