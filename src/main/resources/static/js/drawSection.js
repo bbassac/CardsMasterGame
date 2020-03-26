@@ -19,7 +19,7 @@ function fillDrawBoard(playerId, id, image,drawImageHeight){
     var div = document.createElement("div");
     src.appendChild(div);
     if(id=='currentEnvironment'){
-        img.setAttribute('onclick','displayPoP(this.src);');
+        img.setAttribute('onclick','showCardPopin(this.src);');
     }
     div.appendChild(img);
     if (id=="draw"){

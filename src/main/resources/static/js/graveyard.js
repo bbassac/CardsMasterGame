@@ -16,7 +16,7 @@ function fillGraveyard(playerId, graveId,gameImageHeight) {
             img.height = gameImageHeight;
             img.hspace = 5;
             img.title = cards[cards.length - 1].id;
-            img.setAttribute('onclick', 'displayPoP(this.src);');
+            img.setAttribute('onclick', 'showCardPopin(this.src);');
             cardDiv.appendChild(img);
 
             //bouton tout afficher
