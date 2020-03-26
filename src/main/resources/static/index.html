@@ -4,6 +4,7 @@
 <head>
     <title>Card Master Game</title>
     <link rel="stylesheet" href="css/Board.css" type="text/css" />
+    <link rel="stylesheet" href="css/popins.css" type="text/css" />
 </head>
 
 <body>
@@ -50,9 +51,22 @@
     <CurrentEnvironment id="currentEnvironment"></CurrentEnvironment>
     <Traps id="traps"></Traps>
 
+
+	<!-- div pour "griser" l'écran principal en arrière plan -->
+	<div id="popinGrayBackDiv" class="popin_gray_back"></div>	 
+	
+	<!-- div de la popin de carte -->
+	<div id="popinCardDiv" class="popin_card">
+		<img id="popinCardImg" border=0 alt='Mon image' height='100%' onclick="hideCardPopin()"></img>
+	</div>
+
+	<!-- div de la popin de cimetière -->
+	<div id="popinGraveyardDiv" class="popin_card">
+		Popin de carte
+		<p onclick="hideGraveyardPopin()">Fermer</p>
+	</div>
+
 </Board>
-
-
 
 
 
@@ -64,6 +78,8 @@
 <script src="js/chakra.js"></script>
 <script src="js/trap.js"></script>
 <script src="js/opponentDeckSection.js"></script>
+<script src="js/popins.js"></script>
+
 </body>
 </html>
 
