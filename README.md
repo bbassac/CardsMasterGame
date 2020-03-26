@@ -108,6 +108,11 @@ Exemple de carte                        | Description
 
 * Immobiliser : Un personnage ne peut lancer d'attaque directe (corps à corps) s'il est immobilisé, mais peut toujours lancer des sorts
 
+* Piège : carte posée face cachée qui se déclenche automatiquement la première fois que les conditions sont remplies
+
+* Armes de héros  : Si le héros utilise son arme pour attaquer, celle-ci ne sera pas utilisable lors de la défense.
+
+* Bonus de Ninja :  Sauf si précisé, quand un ninja donne un bonus à d'autres, lui-même ne peut en bénéficier
 
 ### Début de partie
 
@@ -130,7 +135,7 @@ Exemple de carte                        | Description
 6. Lancements des sorts
 
 7. Attaque du héros au corps à corps
-    * Si le héros utilise son arme pour attaquer, celle-ci ne sera pas utilisable lors de la défense.
+    
 
 ### Définition des symboles
 
@@ -142,7 +147,7 @@ Exemple de carte                        | Description
 
 #### Symbole infini <img src="https://raw.githubusercontent.com/vpoiaghi/CardsMaster/master/data/Resources/Symbols/permanent.png" height="20" width="20">
 
-* Le sort n'est déclenchable qu'au tour suivant la pose ou celui de l'adversaire dans le cas de la Protection 
+* Le sort n'est déclenchable/applicable qu'au tour suivant la pose ou celui de l'adversaire
 * Il peut être actif soit à chaque tour, soit à chaque tour de chaque joueur, soit tout le temps suivant le pouvoir de la carte
 
 #### Symbole éclair <img src="https://raw.githubusercontent.com/vpoiaghi/CardsMaster/master/data/Resources/Symbols/Instantané.png" height="20" width="20">
@@ -158,11 +163,9 @@ Exemple de carte                        | Description
 #### Cumul des symboles
 
 * <img src="https://raw.githubusercontent.com/vpoiaghi/CardsMaster/master/data/Resources/Symbols/permanent.png" height="20" width="20">
-  <img src="https://raw.githubusercontent.com/vpoiaghi/CardsMaster/master/data/Resources/Symbols/Instantané.png" height="20" width="20"> : Ninjutsu déclenchable à chaque tour, y compris celui de pose 
+  <img src="https://raw.githubusercontent.com/vpoiaghi/CardsMaster/master/data/Resources/Symbols/Instantané.png" height="20" width="20"> 
+  : Ninjutsu permanent et actif immédiatement 
 
-### Cas particuliers
-
-* Quand un ninja donne un bonus à d'autres, lui-même ne peut en bénéficier
 
 ## Détail des extentions
 
