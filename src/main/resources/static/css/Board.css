@@ -16,6 +16,7 @@ BoardOpp {
     background-color: #ff000055;
     border: 1px solid black;
     display: flex;
+    overflow-x: auto;
 }
 
 BoardOpp> div {
@@ -61,6 +62,7 @@ BoardPlayer {
     background-color: #6596EBb3;
     border: 1px solid black;
     display: flex;
+    overflow-x: auto;
 
 }
 
@@ -99,6 +101,7 @@ Hand {
     background-color: #6596EBb3;
     border: 1px solid black;
     display: flex;
+    overflow-x: auto;
 }
 
 Hand> div {

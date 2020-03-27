@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', function() {
 setInterval(refreshOpponentBoard, 500);
 
 const drawImageHeight = 198;
-const gameImageHeight = 255;
+const gameImageHeight = 235;
 const trapImageHeight = 160;
 const trapIconHeight = 50;
 const nbCardsHeight = 30;
@@ -20,10 +20,26 @@ function refreshBoard(){
 
     fillDrawBoard(currentPlayerId,"draw","img/Back-Draw.png",drawImageHeight);
     fillDrawBoard(currentPlayerId,"invocations","img/Back-Select.png",drawImageHeight);
-    fillDrawBoard(currentPlayerId,"currentEnvironment","img" + getCurrentEnvironmentCard(),drawImageHeight);
+    refreshEnvironment(drawImageHeight);
 	fillGraveyard(currentPlayerId,"graveyardId",gameImageHeight);
     refreshOpponentBoard();
     refreshPlayerBoard();
+}
+
+function refreshEnvironment(drawImageHeight) {
+	fillDrawBoard(currentPlayerId,"currentEnvironment","img" + getCurrentEnvironmentCard(),drawImageHeight);
+	
+	var envCard = document.getElementById("currentEnvironment");
+	var envCardDiv = null;
+	
+	if (envCard) {
+		envCardDiv = envCard.children[0];
+	}
+
+	if (envCardDiv) {
+		envCardDiv.style += "transform: translateY(-60px);";
+	}	
+	
 }
 
 function refreshOpponentBoard(){
