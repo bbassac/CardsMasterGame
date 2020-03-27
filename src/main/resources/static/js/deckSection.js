@@ -28,8 +28,7 @@ function refreshBoard(){
 
 function refreshEnvironment(drawImageHeight) {
 	fillDrawBoard(currentPlayerId,"currentEnvironment","img" + getCurrentEnvironmentCard(),drawImageHeight);
-<<<<<<< HEAD
-		
+
 	var envCard = document.getElementById("currentEnvironment");
 	if (envCard) {
 		envCard.setAttribute('onmouseenter','maximizeEnvironment()');
