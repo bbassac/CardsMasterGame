@@ -90,14 +90,14 @@ function fillDeckOpp(playerId,section,stackName,gameImageHeight){
             img.id=cards[i].id;
             img.title = cards[i].id;
             img.tag = cards[i].activated;
-            img.setAttribute('onclick', 'displayPoP(this.src);');
+            img.setAttribute('onclick', 'showCardPopin(this.src);');
 
             //J'ajoute l'image au bloc
             cardDiv.appendChild(img);
 
             //Si besoin je tourne la carte
             if (cards[i].activated) {
-                img.setAttribute('style', 'transform:rotate(90deg);'); // the 90deg parameter may be changed to whatever angle you want to rotate to
+                img.setAttribute('style', 'transform:rotate(90deg);margin-left:38px;margin-right:38px;'); // the 90deg parameter may be changed to whatever angle you want to rotate to
             }
 
             if (cards[i].used){

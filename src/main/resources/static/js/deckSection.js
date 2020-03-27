@@ -133,7 +133,7 @@ function fillDeck(playerId,section,stackName,gameImageHeight){
         img.setAttribute('onclick','showCardPopin(this.src);');
         cardDiv.appendChild(img);
         if(cards[i].activated){
-            img.setAttribute('style', 'transform:rotate(90deg);'); // the 90deg parameter may be changed to whatever angle you want to rotate to
+            img.setAttribute('style', 'transform:rotate(90deg);margin-left:38px;margin-right:38px;'); // the 90deg parameter may be changed to whatever angle you want to rotate to
         }
         if (cards[i].used){
             img.setAttribute("class","usedCard")
