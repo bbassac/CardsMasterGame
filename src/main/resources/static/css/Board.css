@@ -190,3 +190,7 @@ Traps> div {
     border-style: dashed;
     border-color: yellow;
 }
+
+#extraOppId,#extraPlayerId {
+    margin-top: 20px;
+}

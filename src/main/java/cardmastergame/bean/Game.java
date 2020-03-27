@@ -26,6 +26,7 @@ public class Game {
     private Deck<Card> currentEnvironnement;
     private int[] pvs;
     private int[] chakras;
+    private String[] extraInfos;
 
     @Value( "${game.chakra.max}" )
     private int MAX_CHAKRA;
@@ -59,6 +60,7 @@ public class Game {
         allCards = new HashMap<>();
         pvs = new int[]{MAX_PV, MAX_PV};
         chakras = new int[] {0,0};
+        extraInfos = new String[] {"",""};
     }
 
     public int selectCurrentEnvironnement() {
@@ -77,6 +79,16 @@ public class Game {
 
     public int getPlayerPvs(int playerId){
         return pvs[playerId];
+    }
+
+    public String getExtra(int playerId) {
+        return  extraInfos[playerId];
+    }
+
+    public String updateExtra(int playerId, String value) {
+        extraInfos[playerId]=value;
+        return value;
+
     }
 
     public void moveCardFromDrawToPlayer(int player) {
@@ -248,4 +260,6 @@ public class Game {
     public boolean getUsedOnCard(int playerId, int cardId) {
         return  findCardInStackById(plateaux[playerId],cardId).isUsed();
     }
+
+
 }

@@ -52,6 +52,7 @@ function refreshOpponentBoard(){
     fillGraveyard(currentOppId,"graveyardOppId",gameImageHeight);
 	
     refreshLastDiceThrow();
+    displayOppExtra(currentOppId);
 }
 
 function refreshPlayerBoard(){
@@ -64,6 +65,7 @@ function refreshPlayerBoard(){
     fillDeck(currentPlayerId,"traps","traps",trapImageHeight);
     fillChakras(currentPlayerId,"playerChakraId");
     fillDiceArea(currentPlayerId,"diceId");
+    displayExtraArea(currentPlayerId,"extraPlayerId");
 }
 
 function fillDeck(playerId,section,stackName,gameImageHeight){

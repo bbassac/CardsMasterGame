@@ -60,4 +60,30 @@ public class PlayerController extends AbstractController{
 
     }
 
+    @CrossOrigin
+    @RequestMapping(path = "/player/{playerId}/extra",method = RequestMethod.GET)
+    @ResponseBody
+    @ApiOperation(value = "Get player extra infos ",response = String.class)
+    public String getExtra(
+            @ApiParam(value = "Player Id ", allowableValues ="0,1",required = true)
+            @PathVariable("playerId") int playerId)  {
+        return customRepo.getExtra(playerId);
+
+    }
+
+    @CrossOrigin
+    @RequestMapping(path = "/player/{playerId}/extra/{value}",method = RequestMethod.PUT)
+    @ResponseBody
+    @ApiOperation(value = "Update player extra info ",response = String.class)
+    public String updateExtra(
+            @ApiParam(value = "Player Id ", allowableValues ="0,1",required = true)
+            @PathVariable("playerId") int playerId,
+
+            @ApiParam(value = "Extra value", type = "String",required = true)
+            @PathVariable("value") String value){
+        return customRepo.updateExtra(playerId,value);
+
+    }
+
+
 }

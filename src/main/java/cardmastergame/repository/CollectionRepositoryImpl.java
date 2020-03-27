@@ -80,6 +80,16 @@ public class CollectionRepositoryImpl implements CollectionRepositoryCustom {
     }
 
     @Override
+    public String getExtra(int playerId) {
+        return game.getExtra(playerId);
+    }
+
+    @Override
+    public String updateExtra(int playerId, String value) {
+        return game.updateExtra(playerId,value);
+    }
+
+    @Override
     public int getPlayerPvs(int player) {
         return game.getPlayerPvs(player);
     }

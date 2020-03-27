@@ -22,15 +22,18 @@ public interface CollectionRepositoryCustom {
     int getPlayerPvs(int player);
     void updatePlayerPvs(int player,int newPvs);
 
+    String getExtra(int playerId);
+    String updateExtra(int playerId, String value);
+
     /*Card Zone*/
     int updateDmgPointsOnCard(int playerId, int cardId, int value);
+
     int getDmgOnCard(int playerId, int cardId);
 
     String getCardById(Integer id);
-
     boolean updateActivatedOnCard(int playerId, int cardId, boolean value);
-    boolean getActivatedOnCard(int playerId, int cardId);
 
+    boolean getActivatedOnCard(int playerId, int cardId);
     void moveCardFromOtherGraveyardToHand(int playerId, int cardId, int oppPlayerId);
     void moveCardFromDrawToPlayer(int player);
     void moveSpecificCardFromInvocationToPlayer(int playerId, int cardId);
@@ -39,8 +42,9 @@ public interface CollectionRepositoryCustom {
     void moveCardFromGraveyardToPlayerHand(int playerId, int cardId);
     void moveCardFromHandToTrapForPlayer(int playerId, int cardId);
     void moveCardFromTrapToGraveyard(int playerId, int cardId);
-    void moveCardFromHandToGraveyardForPlayer(int playerId, int cardId);
 
+    void moveCardFromHandToGraveyardForPlayer(int playerId, int cardId);
     boolean updateUsedOnCard(int playerId, int cardId, boolean value);
+
     boolean getUsedOnCard(int playerId, int cardId);
 }
