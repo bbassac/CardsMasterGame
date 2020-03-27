@@ -90,5 +90,3 @@ function hidePopin(popinDivId) {
 	}
 
 }
-
-hideAllPopins();

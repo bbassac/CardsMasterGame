@@ -1,4 +1,4 @@
-function fillGraveyard(playerId, graveId,gameImageHeight) {
+function fillGraveyard(playerId, graveId, gameImageHeight) {
     var xhttp = new XMLHttpRequest();
     xhttp.open("GET", "player/"+playerId+"/graveyard", false);
     xhttp.setRequestHeader("Content-type", "application/json");
@@ -9,14 +9,24 @@ function fillGraveyard(playerId, graveId,gameImageHeight) {
         oldLastGraveyardOp = cards[cards.length-1].id;
         graveZone.innerHTML = "";
         if (cards.length > 0) {
+        
             //Appercu dessus de la pile
             var cardDiv = document.createElement("div");
             var img = document.createElement("img");
+            
+            if (graveId == "graveyardId") {
+                cardDiv.id="divGraveyardMe"
+            } else {
+                cardDiv.id="divGraveyardYou"
+            }           
+            
             img.src = "img/" + encodeURI(cards[cards.length - 1].path);
             img.height = gameImageHeight;
             img.hspace = 5;
             img.title = cards[cards.length - 1].id;
             img.setAttribute('onclick', 'showCardPopin(this.src);');
+            img.setAttribute('onmouseenter', 'maximizeGraveyard(\"' + cardDiv.id + '\");');
+            img.setAttribute('onmouseleave', 'minimizeGraveyard(\"' + cardDiv.id + '\");');
             cardDiv.appendChild(img);
 
             //bouton tout afficher
@@ -34,7 +44,53 @@ function fillGraveyard(playerId, graveId,gameImageHeight) {
     }
 }
 
+/**
+ * Applique un zoom sur la carte de cimetière
+ */
+function maximizeGraveyard(divGraveYardId) {
+console.log("max");
+	var divGraveyard = document.getElementById(divGraveYardId);
+	var imgGraveyard = divGraveyard.children[0];
 
+	if (imgGraveyard) {
+		
+		var zoom = 2;
+		
+		var oldHeight = gameImageHeight;
+		var newHeight = (gameImageHeight * zoom);
+		
+		var oldWidth = imgGraveyard.width;
+		var newWidth = imgGraveyard.width * zoom;
+		
+		var translateX = oldWidth - newWidth;
+		var translateY = oldHeight / 2;
+		
+		divGraveyard.style.transform = "translate(" + translateX + "px, " + translateY + "px)";		
+		imgGraveyard.style.height = newHeight + "px";
+	}		
+
+}
+
+/**
+ * Annule zoom sur la carte de cimetière
+ */
+function minimizeGraveyard(divGraveYardId) {
+console.log("min");
+	var divGraveyard = document.getElementById(divGraveYardId);
+	var imgGraveyard = divGraveyard.children[0];
+
+	if (imgGraveyard) {
+		
+		var zoom = 2;		
+		
+		var oldHeight = (gameImageHeight * zoom);
+		var newHeight = gameImageHeight;
+
+		divGraveyard.style.transform ="";		
+		imgGraveyard.style.height = newHeight + "px";
+	}		
+
+}
 
 function displayGrave(who){
     var currentPlayerId = document.getElementById("currentPlayerId").value;
