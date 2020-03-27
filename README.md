@@ -26,7 +26,9 @@
 * [ ] Homogénéiser le sort de soin  (permanent VS activate 1x/tour)
 * [ ] Cimetiere vers main -> doit refresh la main (bug cimetiere refresh adversaire)
 * [ ] Ajouter des sorts de destruction d'équipement
-* [ ] Ajouter la notion de carte désactivée 
+* [ ] Ajouter un champs texte libre par joueur
+* [ ] Decaller les cartes tournées pour ne pas chevaucher
+* [X] Ajouter la notion de carte désactivée 
 * [X] Nagato augmenter son prix
 * [X] Mirroir de Yata -> Armure
 * [X] Gants - > paire de gants -> mainS

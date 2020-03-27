@@ -67,4 +67,33 @@ public class CardController extends AbstractController{
         return customRepo.getActivatedOnCard(playerId,cardId);
     }
 
+    @CrossOrigin
+    @RequestMapping(path = "/player/{playerId}/board/{cardId}/used/{value}",method = RequestMethod.PUT)
+    @ResponseBody
+    @ApiOperation(value = "Change status of card : used = true ",response = boolean.class)
+    public boolean updateUsedOnCard(
+            @ApiParam(value = "Player Id ", allowableValues ="0,1",required = true)
+            @PathVariable("playerId") int playerId,
+
+            @ApiParam(value = "Card Id ", type = "int", required = true)
+            @PathVariable("cardId") int cardId,
+
+            @ApiParam(value = "value ", type = "boolean", required = true)
+            @PathVariable("value") boolean value){
+        return customRepo.updateUsedOnCard(playerId,cardId,value);
+    }
+
+    @CrossOrigin
+    @RequestMapping(path = "/player/{playerId}/board/{cardId}/used",method = RequestMethod.GET)
+    @ResponseBody
+    @ApiOperation(value = "Get status of card : used = true ",response = boolean.class)
+    public boolean getUsedOnCard(
+            @ApiParam(value = "Player Id ", allowableValues ="0,1",required = true)
+            @PathVariable("playerId") int playerId,
+
+            @ApiParam(value = "Card Id ", type = "int", required = true)
+            @PathVariable("cardId") int cardId) {
+        return customRepo.getUsedOnCard(playerId,cardId);
+    }
+
 }

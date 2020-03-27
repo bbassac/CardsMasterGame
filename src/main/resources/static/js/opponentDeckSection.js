@@ -100,6 +100,10 @@ function fillDeckOpp(playerId,section,stackName,gameImageHeight){
                 img.setAttribute('style', 'transform:rotate(90deg);'); // the 90deg parameter may be changed to whatever angle you want to rotate to
             }
 
+            if (cards[i].used){
+                img.setAttribute("class","usedCard")
+            }
+
             //Je crée un sous-bloc pour l'affichage des dégats
             var div = document.createElement("div");
             var bold = document.createElement("b");

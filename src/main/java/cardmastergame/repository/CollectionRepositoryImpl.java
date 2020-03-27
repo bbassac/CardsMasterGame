@@ -80,6 +80,16 @@ public class CollectionRepositoryImpl implements CollectionRepositoryCustom {
     }
 
     @Override
+    public String getExtra(int playerId) {
+        return game.getExtra(playerId);
+    }
+
+    @Override
+    public String updateExtra(int playerId, String value) {
+        return game.updateExtra(playerId,value);
+    }
+
+    @Override
     public int getPlayerPvs(int player) {
         return game.getPlayerPvs(player);
     }
@@ -157,6 +167,16 @@ public class CollectionRepositoryImpl implements CollectionRepositoryCustom {
     @Override
     public void moveCardFromHandToGraveyardForPlayer(int playerId, int cardId) {
         game.moveCardFromHandToGraveyardForPlayer(playerId,  cardId);
+    }
+
+    @Override
+    public boolean updateUsedOnCard(int playerId, int cardId, boolean value) {
+        return game.updateUsedOnCard(playerId,cardId,value);
+    }
+
+    @Override
+    public boolean getUsedOnCard(int playerId, int cardId) {
+        return game.getUsedOnCard(playerId,cardId);
     }
 
 
