@@ -4,9 +4,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
 setInterval(refreshOpponentBoard, 500);
 
-const drawImageHeight = 198;
-const gameImageHeight = 235;
-const trapImageHeight = 160;
+const drawImageHeight = 140;
+const gameImageHeight = 255;
+const trapImageHeight = 150;
 const trapIconHeight = 50;
 const nbCardsHeight = 30;
 var oldNbTrapsOpp=0 ;
@@ -28,18 +28,64 @@ function refreshBoard(){
 
 function refreshEnvironment(drawImageHeight) {
 	fillDrawBoard(currentPlayerId,"currentEnvironment","img" + getCurrentEnvironmentCard(),drawImageHeight);
-	
+		
+	var envCard = document.getElementById("currentEnvironment");
+	if (envCard) {
+		envCard.setAttribute('onmouseenter','maximizeEnvironment()');
+		envCard.setAttribute('onmouseleave','minimizeEnvironment()');
+	}
+}
+
+/**
+ * Applique un zoom sur la carte d'environnement
+ */
+function maximizeEnvironment() {
+
 	var envCard = document.getElementById("currentEnvironment");
 	var envCardDiv = null;
+	var envCardImg = null;
 	
 	if (envCard) {
 		envCardDiv = envCard.children[0];
 	}
 
 	if (envCardDiv) {
-		envCardDiv.style += "transform: translateY(-60px);";
-	}	
+		envCardImg = envCardDiv.children[0];
+	}
 	
+	if (envCardImg) {
+		var oldHeight = drawImageHeight;
+		var newHeight = (gameImageHeight * 2);
+		envCardDiv.style.transform ="translateY(" + (oldHeight - newHeight) + "px)";		
+		envCardImg.style.height = newHeight + "px";
+	}		
+
+}
+
+/**
+ * Annule zoom sur la carte d'environnement
+ */
+function minimizeEnvironment() {
+
+	var envCard = document.getElementById("currentEnvironment");
+	var envCardDiv = null;
+	var envCardImg = null;
+	
+	if (envCard) {
+		envCardDiv = envCard.children[0];
+	}
+
+	if (envCardDiv) {
+		envCardImg = envCardDiv.children[0];
+	}
+	
+	if (envCardImg) {
+		var oldHeight = (gameImageHeight * 2);
+		var newHeight = drawImageHeight;
+		envCardDiv.style.transform ="";		
+		envCardImg.style.height = newHeight + "px";
+	}		
+
 }
 
 function refreshOpponentBoard(){
