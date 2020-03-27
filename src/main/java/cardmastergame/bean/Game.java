@@ -139,16 +139,20 @@ public class Game {
 
     public void moveCardFromGameToGraveyardForPlayer(int playerId, int cardId) {
         Card c = findCardInStackById(plateaux[playerId], cardId);
-        c.setDammagePoints(0);
-        c.setActivated(false);
+        cleanCard(c);
         plateaux[playerId].remove(c);
         cimetieres[playerId].push(c);
     }
 
-    public void moveCardFromHandToGraveyardForPlayer(int playerId, int cardId) {
-        Card c = findCardInStackById(mains[playerId], cardId);
+    private void cleanCard(Card c) {
         c.setDammagePoints(0);
         c.setActivated(false);
+        c.setUsed(false);
+    }
+
+    public void moveCardFromHandToGraveyardForPlayer(int playerId, int cardId) {
+        Card c = findCardInStackById(mains[playerId], cardId);
+        cleanCard(c);
         mains[playerId].remove(c);
         cimetieres[playerId].push(c);
     }
@@ -236,4 +240,12 @@ public class Game {
     }
 
 
+    public boolean updateUsedOnCard(int playerId, int cardId,boolean value) {
+        findCardInStackById(plateaux[playerId],cardId).setUsed(value);
+        return value;
+    }
+
+    public boolean getUsedOnCard(int playerId, int cardId) {
+        return  findCardInStackById(plateaux[playerId],cardId).isUsed();
+    }
 }

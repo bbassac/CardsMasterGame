@@ -170,7 +170,7 @@ Traps> div {
     margin-top: -1px;
     display: inline;
     vertical-align: text-top;
-    margin-left: 26px;
+    margin-left: 10px;
 }
 
 #selectInvocations {
@@ -181,4 +181,9 @@ Traps> div {
 
 #buttonDisplayInvoc {
     transform: translateY(-60px);
+}
+
+.usedCard {
+    border-style: dashed;
+    border-color: brown;
 }

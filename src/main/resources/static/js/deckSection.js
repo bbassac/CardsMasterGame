@@ -71,6 +71,9 @@ function fillDeck(playerId,section,stackName,gameImageHeight){
         if(cards[i].activated){
             img.setAttribute('style', 'transform:rotate(90deg);'); // the 90deg parameter may be changed to whatever angle you want to rotate to
         }
+        if (cards[i].used){
+            img.setAttribute("class","usedCard")
+        }
 
 
         if (section == "hand"){
@@ -154,6 +157,14 @@ function fillDeck(playerId,section,stackName,gameImageHeight){
             flipButton.setAttribute("id",cards[i].id);
             flipButton.setAttribute('onclick','flipCard(this.id,this.tag);');
             div.appendChild(flipButton)
+
+            //use button
+            var useButton = document.createElement("button");
+            useButton.innerHTML = "%";
+            useButton.tag = cards[i].used;
+            useButton.setAttribute("id",cards[i].id);
+            useButton.setAttribute('onclick','useCard(this.id,this.tag);');
+            div.appendChild(useButton)
             //Move button
             var moveCardButton = document.createElement("button");
             moveCardButton.innerHTML = "&#9760;";
@@ -185,6 +196,16 @@ function flipCard(cardId,curentvalue){
 
     var xhttp = new XMLHttpRequest();
     xhttp.open("PUT", "player/"+currentPlayerId+"/board/"+cardId+"/activated/"+!curentvalue, false);
+    xhttp.setRequestHeader("Content-type", "application/json");
+    xhttp.send();
+    refreshPlayerBoard(currentPlayerId)
+}
+
+function useCard(cardId,curentvalue){
+    var currentPlayerId = document.getElementById("currentPlayerId").value;
+
+    var xhttp = new XMLHttpRequest();
+    xhttp.open("PUT", "player/"+currentPlayerId+"/board/"+cardId+"/used/"+!curentvalue, false);
     xhttp.setRequestHeader("Content-type", "application/json");
     xhttp.send();
     refreshPlayerBoard(currentPlayerId)
