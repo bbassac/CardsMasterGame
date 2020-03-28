@@ -29,6 +29,7 @@ function fillChakras(playerId,componentId) {
     component.appendChild(buttonLessChakra);
 
     var buttonMoreChakra = document.createElement("button");
+    buttonMoreChakra.id = "ButtonMoreChakraID";
     buttonMoreChakra.innerHTML = "+";
     buttonMoreChakra.tag = parseInt(xhttp.responseText)+1;
     buttonMoreChakra.setAttribute('onclick','updateChakras(this.tag);');

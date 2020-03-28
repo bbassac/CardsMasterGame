@@ -47,4 +47,6 @@ public interface CollectionRepositoryCustom {
     boolean updateUsedOnCard(int playerId, int cardId, boolean value);
 
     boolean getUsedOnCard(int playerId, int cardId);
+
+    void setAllcardsNonActive(int playerId);
 }

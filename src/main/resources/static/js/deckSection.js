@@ -14,6 +14,27 @@ var oldLastGraveyardOp = 0;
 var oldNbCards=-1;
 var handIconSize = 30;
 
+function newTurn() {
+    var currentPlayerId = document.getElementById("currentPlayerId").value;
+    //Piocher une carte
+    var xhttp = new XMLHttpRequest();
+    xhttp.open("GET", "player/"+currentPlayerId+"/newcard", false);
+    xhttp.setRequestHeader("Content-type", "application/json");
+    xhttp.send();
+
+    //tourner les cartes du board
+    var xhttp2 = new XMLHttpRequest();
+    xhttp2.open("PUT", "/player/"+currentPlayerId+"/board/set-not-active", false);
+    xhttp2.setRequestHeader("Content-type", "application/json");
+    xhttp2.send();
+
+    //+1 au chakra
+    buttonMoreChakra = document.getElementById("ButtonMoreChakraID");
+    updateChakras(buttonMoreChakra.tag);
+
+    refreshBoard();
+}
+
 function refreshBoard(){
     var currentPlayerId = document.getElementById("currentPlayerId").value;
 

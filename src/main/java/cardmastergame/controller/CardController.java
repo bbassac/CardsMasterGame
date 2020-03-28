@@ -67,6 +67,18 @@ public class CardController extends AbstractController{
         return customRepo.getActivatedOnCard(playerId,cardId);
     }
 
+
+    @CrossOrigin
+    @RequestMapping(path = "/player/{playerId}/board/set-not-active",method = RequestMethod.PUT)
+    @ResponseBody
+    @ApiOperation(value = "Set all cards to not activated ",response = boolean.class)
+    public void setAllcardsNonActive(
+            @ApiParam(value = "Player Id ", allowableValues ="0,1",required = true)
+            @PathVariable("playerId") int playerId){
+        customRepo.setAllcardsNonActive(playerId);
+    }
+
+
     @CrossOrigin
     @RequestMapping(path = "/player/{playerId}/board/{cardId}/used/{value}",method = RequestMethod.PUT)
     @ResponseBody
