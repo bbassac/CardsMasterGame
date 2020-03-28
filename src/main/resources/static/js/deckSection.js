@@ -24,7 +24,7 @@ function newTurn() {
 
     //tourner les cartes du board
     var xhttp2 = new XMLHttpRequest();
-    xhttp2.open("PUT", "/player/"+currentPlayerId+"/board/set-not-active", false);
+    xhttp2.open("PUT", "player/"+currentPlayerId+"/board/set-not-active", false);
     xhttp2.setRequestHeader("Content-type", "application/json");
     xhttp2.send();
 
