@@ -76,9 +76,6 @@ function zoomCard(cardImg, translateMode) {
 				moveY = -(sizeChange.newHeight - sizeChange.oldHeight) / 2;
 			}
 	
-var h1 = window.getComputedStyle(divToZoom).getPropertyValue("height");
-var w1 = window.getComputedStyle(divToZoom).getPropertyValue("width");
-	
 			moveX += getMargin(divToZoom, "top");
 			moveY += getMargin(divToZoom, "left");
 		
@@ -94,13 +91,6 @@ var w1 = window.getComputedStyle(divToZoom).getPropertyValue("width");
 
 			divToZoom.style.zIndex = "1000";
 			cardImg.style.zIndex = "1000";
-
-
-var h2 = window.getComputedStyle(divToZoom).getPropertyValue("height");
-var w2 = window.getComputedStyle(divToZoom).getPropertyValue("width");
-
-//alert("height = " + h1 + ", " + h2 + ";   width=" + w1 + ", " + w2);
-
 		}		
 	}
 }

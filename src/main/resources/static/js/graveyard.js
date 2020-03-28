@@ -13,9 +13,9 @@ function fillGraveyard(playerId, graveId, gameImageHeight) {
             //Appercu dessus de la pile
             var cardDiv = document.createElement("div");
             if (graveId == "graveyardId") {
-                cardDiv.id="divGraveyardMe"
+                cardDiv.id="divGraveyardMe";
             } else {
-                cardDiv.id="divGraveyardYou"
+                cardDiv.id="divGraveyardYou";
             }
                        
             var img = document.createElement("img");            
@@ -57,6 +57,7 @@ function fillGraveyard(playerId, graveId, gameImageHeight) {
 }
 
 function displayGrave(who){
+
     var currentPlayerId = document.getElementById("currentPlayerId").value;
     var oppPlayerId = Math.abs(1-currentPlayerId);
 
@@ -71,55 +72,104 @@ function displayGrave(who){
     var cards = JSON.parse(xhttp.responseText);
 
 
+	showGraveyardPopin();
 
-    var w=open("",'image','toolbar=no,scrollbars=no,resizable=no,left=10,top=10,height=700,width=1530');
-    w.document.write("<HTML><HEAD><TITLE>Graveyard</TITLE></HEAD>");
-    w.document.write("<BODY>");
-
-    w.document.write("<script>");
-    if(who=="me"){
-    w.document.write("function addCardToPlayer(currentPlayerId, cardId){\n" +
-        "    var xhttp = new XMLHttpRequest();\n" +
-        "    xhttp.open(\"GET\", \"player/\"+currentPlayerId+\"/graveyard/\"+cardId, false);\n" +
-        "    xhttp.setRequestHeader(\"Content-type\", \"application/json\");\n" +
-        "    xhttp.send();\n" +
-        "    document.getElementById(\"c-\"+cardId).style.display = \"none\";"+
-        "    document.getElementById(cardId).style.display = \"none\";"+
-        "}");
-    }else{
-        w.document.write("function addCardToPlayer(currentPlayerId, cardId){\n" +
-            "    var oppPlayerId = Math.abs(1-currentPlayerId); \n"+
-            "    var xhttp = new XMLHttpRequest();\n" +
-            "    xhttp.open(\"GET\", \"opponent/\"+oppPlayerId+\"/graveyard/\"+cardId+\"/player/\"+currentPlayerId, false);\n" +
-            "    xhttp.setRequestHeader(\"Content-type\", \"application/json\");\n" +
-            "    xhttp.send();\n" +
-            "    document.getElementById(\"c-\"+cardId).style.display = \"none\";"+
-            "    document.getElementById(cardId).style.display = \"none\";"+
-            "}");
-    }
-    w.document.write("</script>");
+	var popinDiv = document.getElementById("popinGraveyardCardsArea");
+	popinDiv.innerHTML = ""; 
 
     for (var i=0; i< cards.length;i++) {
+
+		// une div par carte         
+        var cardDiv = document.createElement("div");
+        cardDiv.classList.add("graveyarcCardDiv");
+		cardDiv.style.position = "relative";        
+        cardDiv.setAttribute('onmouseenter','showAddButton(\"buttonDiv' + cards[i].id + '\")');
+        cardDiv.setAttribute('onmouseleave','hideAddButton(\"buttonDiv' + cards[i].id + '\")');
+        
+        
+        // image de la carte
         var imgDiv = document.createElement("div");
+        
         var img = document.createElement("img");
         img.src = "img/"+encodeURI(cards[i].path);
         img.height = 330;
         img.hspace = 5;
         img.vspace = 5;
+        img.setAttribute("position", "absolute");
         img.title = cards[i].id;
         img.setAttribute("id","c-"+cards[i].id);
         imgDiv.appendChild(img);
-        w.document.write(imgDiv.innerHTML);
+        cardDiv.appendChild(imgDiv);
 
-        var buttonDiv = document.createElement("button");
-        buttonDiv.innerHTML = "+";
-        buttonDiv.setAttribute("id",cards[i].id);
-        buttonDiv.title = parseInt(currentPlayerId);
+		// bouton d'ajout vers un joueur
+		var buttonDiv = document.createElement("div");
+		buttonDiv.setAttribute("id" , "buttonDiv" + cards[i].id);
+        buttonDiv.style.position = "absolute";		
+		buttonDiv.style.width = "100%";
+		buttonDiv.style.top = "0px";
+		buttonDiv.style.display = "none";
+        cardDiv.appendChild(buttonDiv);
+
+        var button = document.createElement("button");
+        button.innerHTML = "+";
+        button.setAttribute("id",cards[i].id);
+        button.title = parseInt(currentPlayerId);
+        button.setAttribute('onclick','putCardFromGraveyardToPlayer(this.title,this.id,\"' + who + '\")');
+        button.style.width = "100%";
+        buttonDiv.appendChild(button);        
+
+		// ajout de la carte à la popin
+		popinDiv.appendChild(cardDiv);
+
         console.log("player id = "+currentPlayerId);
-        buttonDiv.setAttribute('onclick','addCardToPlayer(this.title,this.id);');
-
-        w.document.write(buttonDiv.outerHTML);
     }
-    w.document.write("</BODY></HTML>");
+}
 
+function showAddButton(divId) {
+	document.getElementById(divId).style.display = 'block';
+}
+
+function hideAddButton(divId) {
+	document.getElementById(divId).style.display = 'none';
+}
+
+function putCardFromGraveyardToPlayer(currentPlayerId, cardId, who) {
+	
+	if(who=="me"){
+		addCardToMe(currentPlayerId, cardId);
+	} else {
+		addCardToYou(currentPlayerId, cardId);	
+	}
+	
+	document.getElementById("c-" + cardId).style.display = "none";
+	//document.getElementById(cardId).style.display = "none";
+
+	hideGraveyardPopin();
+	refreshBoard();
+}
+
+/**
+ * Ajoute une carte d'un cimetière dans la main du joueur courant
+ */
+function addCardToMe(currentPlayerId, cardId) {
+	
+	var xhttp = new XMLHttpRequest();
+	xhttp.open("GET", "player/" + currentPlayerId + "/graveyard/" + cardId, false);
+	xhttp.setRequestHeader("Content-type", "application/json");
+	xhttp.send();
+	
+}
+
+/**
+ * Ajoute une carte d'un cimetière dans la main de l'adversaire du joueur courant
+ */
+function addCardToYou(currentPlayerId, cardId) {
+
+	var oppPlayerId = Math.abs(1-currentPlayerId);
+	
+	var xhttp = new XMLHttpRequest();
+	xhttp.open("GET", "opponent/" + oppPlayerId + "/graveyard/" + cardId + "/player/" + currentPlayerId, false);
+	xhttp.setRequestHeader("Content-type", "application/json");
+	xhttp.send();
+	
 }

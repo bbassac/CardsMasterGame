@@ -1,5 +1,11 @@
 @charset "ISO-8859-1";
 
+	.closePopin {
+		position: absolute;
+		height: 30px;
+		right: 0px;
+	}
+
 	.popin_gray_back {
 		position: absolute;
 		background-color: grey;
@@ -14,12 +20,14 @@
 	.popin_graveyard {
 		position: absolute;
 		background-color: white;
-		border-color: black;
-		top: 30%;
-		left: 25%;
-		width: 50%;
-		height: 40%;
+		border: 2px solid white;
+		top: 20px;
+		left: 10%;
+		width: 1510px;
+		height: 1000px;
 		display:none;
+		background-image: url("../img/Graveyard-2.png");
+		background-size: 1510px 1000px;
 	}
 
 	.popin_card {
@@ -31,4 +39,17 @@
 		width: 300px;
 		height: 600px;
 		display: none;
+	}
+	
+	.popinGraveyardCardsArea {
+		position: absolute;
+		top: 30px;
+		left: 5px;
+		width: 1505px;
+		height: 970px;
+		overflow-y: auto;
+	}
+	
+	.graveyarcCardDiv {
+		float:left;	
 	}
