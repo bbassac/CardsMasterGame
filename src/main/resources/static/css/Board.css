@@ -5,8 +5,8 @@ Board {
     border: 1px solid black;
     grid-template-columns: 220px auto 400px 198px 115px;
     grid-template-rows: 298px 298px 298px 146px;
-    -ms-grid-columns: auto 174px 105px;
-    -ms-grid-rows: 29% 29% 30% 12%;
+    -ms-grid-columns: 220px auto 400px 198px 115px;
+    -ms-grid-rows: 298px 298px 298px 146px;
     background: url("../img/Fond2.png") no-repeat;
     background-size: 100% 100%;
 }
@@ -26,6 +26,7 @@ BoardOpp> div {
     align-items: center;
 }
 GraveyardOpp {
+	position: relative;
     grid-column: 4; grid-row: 1;
     -ms-grid-column: 4; -ms-grid-row: 1;
     background-color: #ff000055;
@@ -34,10 +35,7 @@ GraveyardOpp {
 }
 
 GraveyardOpp> div {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+	margin: auto;
 }
 
 PvOpp {
@@ -74,6 +72,7 @@ boardplayer> div {
 }
 
 GraveyardPlayer {
+	position: relative;
     grid-column: 4; grid-row: 2;
     -ms-grid-column: 4; -ms-grid-row: 2;
     background-color: #6596EBb3;
@@ -82,10 +81,7 @@ GraveyardPlayer {
 }
 
 GraveyardPlayer> div {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+	margin: auto;
 }
 
 PvPlayer {
@@ -189,4 +185,23 @@ Traps> div {
 
 #extraOppId,#extraPlayerId {
     margin-top: 20px;
+}
+
+.graveyardStack {
+	margin: auto;
+}
+
+.toGraveyardDiv {
+	position: absolute;	
+	bottom: 2px;
+	width: 100%;
+}
+
+.toGraveyardDiv> div {
+	margin: auto;
+	width: 60px;
+}
+
+.toGraveyardButton {
+	width: 100%;
 }
