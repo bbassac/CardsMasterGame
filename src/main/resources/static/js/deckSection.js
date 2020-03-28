@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', function() {
     refreshBoard();
 }, false);
 
-setInterval(refreshOpponentBoard, 500);
+setInterval(refreshByInterval, 500);
 
 const drawImageHeight = 140;
 const gameImageHeight = 255;
@@ -14,14 +14,21 @@ var oldLastGraveyard = [0, 0];
 var oldNbCards=-1;
 var handIconSize = 30;
 
-function refreshBoard(){
+function refreshByInterval() {
+	var currentPlayerId = document.getElementById("currentPlayerId").value;
+	
+	refreshOpponentBoard();
+	fillGraveyard(currentPlayerId,"graveyardId",gameImageHeight);
+}
+
+function refreshBoard(forceUpdate){
     var currentPlayerId = document.getElementById("currentPlayerId").value;
 
     fillDrawBoard(currentPlayerId,"draw","img/Back-Draw.png",drawImageHeight);
     fillDrawBoard(currentPlayerId,"invocations","img/Back-Select.png",drawImageHeight);
     refreshEnvironment(drawImageHeight);
-    refreshOpponentBoard();
-    refreshPlayerBoard();
+    refreshOpponentBoard(forceUpdate);
+    refreshPlayerBoard(forceUpdate);
 }
 
 function refreshEnvironment(drawImageHeight) {
@@ -34,24 +41,24 @@ function refreshEnvironment(drawImageHeight) {
 	}
 }
 
-function refreshOpponentBoard(){
+function refreshOpponentBoard(forceUpdate){
     var currentPlayerId = document.getElementById("currentPlayerId").value;
     var currentOppId = Math.abs(1-currentPlayerId);
     fillPVs(currentOppId,"oppPvsId");
     fillNbTraps(currentOppId, "nbTrapsId",trapIconHeight);
     fillNbCards(currentOppId,"nbCardsId",nbCardsHeight)
     fillDeckOpp(currentOppId,"boardOpp","board",gameImageHeight);
-    fillGraveyard(currentOppId,"graveyardOppId",gameImageHeight);
+    fillGraveyard(currentOppId,"graveyardOppId",gameImageHeight, forceUpdate);
 	
     refreshLastDiceThrow();
     displayOppExtra(currentOppId);
 }
 
-function refreshPlayerBoard(){
+function refreshPlayerBoard(forceUpdate){
     var currentPlayerId = document.getElementById("currentPlayerId").value;
 
     fillPVs(currentPlayerId,"playerPvsId");
-    fillGraveyard(currentPlayerId,"graveyardId",gameImageHeight);
+    fillGraveyard(currentPlayerId,"graveyardId",gameImageHeight, forceUpdate);
     fillDeck(currentPlayerId,"hand","hand",gameImageHeight);
     fillDeck(currentPlayerId,"boardPlayer","board",gameImageHeight);
     fillDeck(currentPlayerId,"traps","traps",trapImageHeight);

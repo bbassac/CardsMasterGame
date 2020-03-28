@@ -1,4 +1,4 @@
-function fillGraveyard(playerId, graveId, gameImageHeight) {
+function fillGraveyard(playerId, graveId, gameImageHeight, forceUpdate) {
 
     // Récupération des cartes du cimetière
     var xhttp = new XMLHttpRequest();
@@ -8,19 +8,26 @@ function fillGraveyard(playerId, graveId, gameImageHeight) {
     var cards = JSON.parse(xhttp.responseText);
 
 	// Réinit de l'affichage de la pile cimetière
-    var graveZone = document.getElementById(graveId);
+    var graveyardArea = document.getElementById(graveId);
     
-    
-    console.log("joueur " + playerId + " : " + cards.length + ", " + oldLastGraveyard[playerId] + ", " + cards[cards.length-1].id + ", " + graveId);
-    
-    // Si il y a des cartes dans le cimetière et que la carte du haut de la pile a changé
-    // Mise à jour de l'affichage de la pile cimetière
+
     if (cards.length == 0) {
-		graveZone.innerHTML = "";    
-    }else if (oldLastGraveyard[playerId] !== cards[cards.length-1].id) {
+    	// Si il n'y a plus de carte dans le cimetière on efface la pile cimetière
+		graveyardArea.innerHTML = "";
+
+		console.log("etat cimetière joueur " + playerId + " : nbCartes=" + cards.length + ", ancienId=" + oldLastGraveyard[playerId] + ", idCarteDessusCimetiere=undefined" + ", divId=" + graveId);		
+		console.log("-> aucune carte dans cimetiere, on efface la pile");
+
+    }else if (forceUpdate || oldLastGraveyard[playerId] !== cards[cards.length-1].id) {
+	    // Si il y a des cartes dans le cimetière et que la carte du haut de la pile a changé
+	    // Mise à jour de l'affichage de la pile cimetière
+
         oldLastGraveyard[playerId] = cards[cards.length-1].id;
+
+		console.log("etat cimetière joueur " + playerId + " : nbCartes=" + cards.length + ", ancienId=" + oldLastGraveyard[playerId] + ", idCarteDessusCimetiere=" + cards[cards.length-1].id + ", divId=" + graveId);
+		console.log("-> mise à jour de la pile");
  
-		graveZone.innerHTML = "";
+		graveyardArea.innerHTML = "";
     
         //Appercu dessus de la pile
         var cardDiv = document.createElement("div");
@@ -59,11 +66,12 @@ function fillGraveyard(playerId, graveId, gameImageHeight) {
             buttonDisplayGraveyard.setAttribute('onclick', 'displayGrave(\"you\");');
         }
 
-        graveZone.appendChild(cardDiv);
+        graveyardArea.appendChild(cardDiv);
         
         divButtonDisplayGraveyard2.appendChild(buttonDisplayGraveyard);
         divButtonDisplayGraveyard1.appendChild(divButtonDisplayGraveyard2);
-        graveZone.appendChild(divButtonDisplayGraveyard1);
+        graveyardArea.appendChild(divButtonDisplayGraveyard1);
+    
     }
 }
 
