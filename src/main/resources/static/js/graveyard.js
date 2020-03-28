@@ -12,84 +12,48 @@ function fillGraveyard(playerId, graveId, gameImageHeight) {
         
             //Appercu dessus de la pile
             var cardDiv = document.createElement("div");
-            var img = document.createElement("img");
-            
             if (graveId == "graveyardId") {
                 cardDiv.id="divGraveyardMe"
             } else {
                 cardDiv.id="divGraveyardYou"
-            }           
-            
+            }
+                       
+            var img = document.createElement("img");            
             img.src = "img/" + encodeURI(cards[cards.length - 1].path);
             img.height = gameImageHeight;
-            img.hspace = 5;
+            //img.hspace = 5;
             img.title = cards[cards.length - 1].id;
             img.setAttribute('onclick', 'showCardPopin(this.src);');
-            img.setAttribute('onmouseenter', 'maximizeGraveyard(\"' + cardDiv.id + '\");');
-            img.setAttribute('onmouseleave', 'minimizeGraveyard(\"' + cardDiv.id + '\");');
+            
+            if (graveId == "graveyardId") {
+				img.setAttribute('onmouseenter', 'zoomCard(this, TRANSLATE_CENTER)');
+			} else {
+				img.setAttribute('onmouseenter', 'zoomCard(this, TRANSLATE_DOWN_LEFT)');
+			}
+            img.setAttribute('onmouseleave', 'unzoomCard(this)');
+            img.classList.add("graveyardStack");
             cardDiv.appendChild(img);
 
             //bouton tout afficher
+            var divButtonDisplayGraveyard1 = document.createElement("div");
+            divButtonDisplayGraveyard1.classList.add("toGraveyardDiv");
+            var divButtonDisplayGraveyard2 = document.createElement("div");
             var buttonDisplayGraveyard = document.createElement("button");
             buttonDisplayGraveyard.innerHTML = "Oo";
+            buttonDisplayGraveyard.classList.add("toGraveyardButton");
             if (graveId == "graveyardId") {
                 buttonDisplayGraveyard.setAttribute('onclick', 'displayGrave(\"me\");');
             } else {
                 buttonDisplayGraveyard.setAttribute('onclick', 'displayGrave(\"you\");');
             }
 
-            cardDiv.appendChild(buttonDisplayGraveyard);
             graveZone.appendChild(cardDiv);
+            
+            divButtonDisplayGraveyard2.appendChild(buttonDisplayGraveyard);
+            divButtonDisplayGraveyard1.appendChild(divButtonDisplayGraveyard2);
+            graveZone.appendChild(divButtonDisplayGraveyard1);
         }
     }
-}
-
-/**
- * Applique un zoom sur la carte de cimetière
- */
-function maximizeGraveyard(divGraveYardId) {
-console.log("max");
-	var divGraveyard = document.getElementById(divGraveYardId);
-	var imgGraveyard = divGraveyard.children[0];
-
-	if (imgGraveyard) {
-		
-		var zoom = 2;
-		
-		var oldHeight = gameImageHeight;
-		var newHeight = (gameImageHeight * zoom);
-		
-		var oldWidth = imgGraveyard.width;
-		var newWidth = imgGraveyard.width * zoom;
-		
-		var translateX = oldWidth - newWidth;
-		var translateY = oldHeight / 2;
-		
-		divGraveyard.style.transform = "translate(" + translateX + "px, " + translateY + "px)";		
-		imgGraveyard.style.height = newHeight + "px";
-	}		
-
-}
-
-/**
- * Annule zoom sur la carte de cimetière
- */
-function minimizeGraveyard(divGraveYardId) {
-console.log("min");
-	var divGraveyard = document.getElementById(divGraveYardId);
-	var imgGraveyard = divGraveyard.children[0];
-
-	if (imgGraveyard) {
-		
-		var zoom = 2;		
-		
-		var oldHeight = (gameImageHeight * zoom);
-		var newHeight = gameImageHeight;
-
-		divGraveyard.style.transform ="";		
-		imgGraveyard.style.height = newHeight + "px";
-	}		
-
 }
 
 function displayGrave(who){
@@ -158,24 +122,4 @@ function displayGrave(who){
     }
     w.document.write("</BODY></HTML>");
 
-}
-
-
-
-
-
-
-
-function displayPoP(src){
-
-    titre="Agrandissement";
-    w=open("",'image','toolbar=no,scrollbars=no,resizable=no');
-    w.document.write("<HTML><HEAD><TITLE>"+titre+"</TITLE></HEAD>");
-    w.document.write("<SCRIPT language=javascript>function checksize() { if (document.images[0].complete) { window.resizeTo((document.images[0].width/1)+40,(document.images[0].height/1)+70); window.focus();} else { setTimeout('checksize()',250) } }</"+"SCRIPT>");
-    w.document.write("<BODY onload='checksize()' onblur='window.close()' onclick='window.close()' leftMargin=0 topMargin=0 marginwidth=0 marginheight=0>");
-    w.document.write("<TABLE width='100%' border='0' cellspacing='0' cellpadding='0' height='100%'><TR>");
-    w.document.write("<TD valign='middle' align='center'><IMG src='"+src.replace(/'/g, '%27')+"' border=0 alt='Mon image' height='50%'>");
-    w.document.write("</TD></TR></TABLE>");
-    w.document.write("</BODY></HTML>");
-    w.document.close();
 }
