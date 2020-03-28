@@ -10,18 +10,16 @@ const trapImageHeight = 150;
 const trapIconHeight = 50;
 const nbCardsHeight = 30;
 var oldNbTrapsOpp=0 ;
-var oldLastGraveyardOp = 0;
+var oldLastGraveyard = [0, 0];
 var oldNbCards=-1;
 var handIconSize = 30;
 
 function refreshBoard(){
     var currentPlayerId = document.getElementById("currentPlayerId").value;
 
-
     fillDrawBoard(currentPlayerId,"draw","img/Back-Draw.png",drawImageHeight);
     fillDrawBoard(currentPlayerId,"invocations","img/Back-Select.png",drawImageHeight);
     refreshEnvironment(drawImageHeight);
-	fillGraveyard(currentPlayerId,"graveyardId",gameImageHeight);
     refreshOpponentBoard();
     refreshPlayerBoard();
 }

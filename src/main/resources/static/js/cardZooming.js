@@ -86,9 +86,6 @@ function zoomCard(cardImg, translateMode) {
 			cardImg.style.height = sizeChange.newHeight + "px";
 			cardImg.style.width = sizeChange.newWidth + "px";
 
-			divToZoom.style.height = h1;
-			divToZoom.style.width = w1;
-
 			divToZoom.style.zIndex = "1000";
 			cardImg.style.zIndex = "1000";
 		}		
