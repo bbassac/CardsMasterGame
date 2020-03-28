@@ -65,7 +65,6 @@ function fillDrawBoard(playerId, id, image,drawImageHeight){
 function displayInvocation() {
 	var selectBox = document.getElementById('selectInvocations');
 	var imgPath = 'img' + encodeURI(selectBox.options[selectBox.selectedIndex].tag); 
-	//displayPoP(imgPath);
 	showCardPopin(imgPath);
 }
 
