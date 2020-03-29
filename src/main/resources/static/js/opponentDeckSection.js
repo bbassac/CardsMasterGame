@@ -24,6 +24,12 @@ function needUpdate(card,slot){
         if (card.activated != slot.firstChild.tag) {
             return true;
         }
+
+        if (card.used != slot.firstChild.used){
+            return true;
+        }
+        if (card.used )
+
         if (card.dammagePoints != slot.children[1].innerText){
             return true;
         }
@@ -90,6 +96,8 @@ function fillDeckOpp(playerId,section,stackName,gameImageHeight){
             img.id=cards[i].id;
             img.title = cards[i].id;
             img.tag = cards[i].activated;
+            img.used = cards[i].used
+
             img.setAttribute('onclick', 'showCardPopin(this.src);');
 
             //J'ajoute l'image au bloc
