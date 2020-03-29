@@ -36,8 +36,8 @@ function refreshEnvironment(drawImageHeight) {
 
 	var imgEnvCard = document.getElementById("imgcurrentEnvironment");
 	if (imgEnvCard) {
-		imgEnvCard.setAttribute('onmouseenter','zoomCard(this, TRANSLATE_TOP)');
-		imgEnvCard.setAttribute('onmouseleave','unzoomCard(this)');
+		imgEnvCard.setAttribute('onmouseenter','zoomCard(this, TRANSLATE_TOP, 3)');
+		imgEnvCard.setAttribute('onmouseleave','unzoomCard(this, 3)');
 	}
 }
 

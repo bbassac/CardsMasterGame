@@ -12,12 +12,12 @@ const TRANSLATE_DOWN_LEFT = 7;
 const TRANSLATE_LEFT = 8;
 const TRANSLATE_CENTER = 9;
 
-const zoom = 2;
+const defaultZoom = 2;
  
  /**
  * Applique un zoom sur la carte d'environnement
  */
-function zoomCard(cardImg, translateMode) {
+function zoomCard(cardImg, translateMode, zoom) {
 
 	if (cardImg) {
 	
@@ -25,6 +25,10 @@ function zoomCard(cardImg, translateMode) {
 			translateMode = TRANSLATE_CENTER;
 		}
 	
+		if (zoom == null) {
+			zoom = defaultZoom;
+		}
+
 		var divToZoom = cardImg.parentElement;
 		
 		if (divToZoom) {
@@ -95,7 +99,7 @@ function zoomCard(cardImg, translateMode) {
 /**
  * Annule le zoom sur la carte d'environnement
  */
-function unzoomCard(cardImg) {
+function unzoomCard(cardImg, zoom) {
 
 	var divToZoom = cardImg.parentElement;
 	
@@ -103,6 +107,10 @@ function unzoomCard(cardImg) {
 		cardImg = divToZoom.children[0];
 	}
 		
+	if (zoom == null) {
+		zoom = defaultZoom;
+	}
+
 	if (cardImg) {
 	
 		var sizeChange = {
