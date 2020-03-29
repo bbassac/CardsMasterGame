@@ -16,7 +16,7 @@
         <a  class="list-group-item" href="./README.html">Règles du jeu</a>
     </Doc>
     ID du joueur
-        <select id="currentPlayerId" onchange="refreshBoard()">
+        <select id="currentPlayerId" onchange="refreshBoard(true)">
             <option selected="selected" value="0">0</option>
             <option value="1">1</option>
         </select>
@@ -68,9 +68,10 @@
 	</div>
 
 	<!-- div de la popin de cimetière -->
-	<div id="popinGraveyardDiv" class="popin_card">
-		Popin de carte
-		<p onclick="hideGraveyardPopin()">Fermer</p>
+	<div id="popinGraveyardDiv" class="popin_graveyard">
+		<img class="closePopin" src="../img/ClosePopin.png" onclick="hideGraveyardPopin()"></img>
+		<div id="popinGraveyardCardsArea" class="popinGraveyardCardsArea">
+		</div>
 	</div>
 
 </Board>
