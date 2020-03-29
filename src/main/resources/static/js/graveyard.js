@@ -15,18 +15,12 @@ function fillGraveyard(playerId, graveId, gameImageHeight, forceUpdate) {
     	// Si il n'y a plus de carte dans le cimetière on efface la pile cimetière
 		graveyardArea.innerHTML = "";
 
-		console.log("etat cimetière joueur " + playerId + " : nbCartes=" + cards.length + ", ancienId=" + oldLastGraveyard[playerId] + ", idCarteDessusCimetiere=undefined" + ", divId=" + graveId);		
-		console.log("-> aucune carte dans cimetiere, on efface la pile");
-
     }else if (forceUpdate || oldLastGraveyard[playerId] !== cards[cards.length-1].id) {
 	    // Si il y a des cartes dans le cimetière et que la carte du haut de la pile a changé
 	    // Mise à jour de l'affichage de la pile cimetière
 
         oldLastGraveyard[playerId] = cards[cards.length-1].id;
 
-		console.log("etat cimetière joueur " + playerId + " : nbCartes=" + cards.length + ", ancienId=" + oldLastGraveyard[playerId] + ", idCarteDessusCimetiere=" + cards[cards.length-1].id + ", divId=" + graveId);
-		console.log("-> mise à jour de la pile");
- 
 		graveyardArea.innerHTML = "";
     
         //Appercu dessus de la pile
@@ -46,32 +40,17 @@ function fillGraveyard(playerId, graveId, gameImageHeight, forceUpdate) {
         
         if (graveId == "graveyardId") {
 			img.setAttribute('onmouseenter', 'zoomCard(this, TRANSLATE_CENTER)');
-		} else {
-			img.setAttribute('onmouseenter', 'zoomCard(this, TRANSLATE_DOWN_LEFT)');
-		}
+            img.setAttribute('onclick', 'displayGrave(\"me\");');
+        } else {
+            img.setAttribute('onmouseenter', 'zoomCard(this, TRANSLATE_DOWN_LEFT)');
+            img.setAttribute('onclick', 'displayGrave(\"you\");');
+        }
         img.setAttribute('onmouseleave', 'unzoomCard(this)');
         img.classList.add("graveyardStack");
         cardDiv.appendChild(img);
 
-        //bouton tout afficher
-        var divButtonDisplayGraveyard1 = document.createElement("div");
-        divButtonDisplayGraveyard1.classList.add("toGraveyardDiv");
-        var divButtonDisplayGraveyard2 = document.createElement("div");
-        var buttonDisplayGraveyard = document.createElement("button");
-        buttonDisplayGraveyard.innerHTML = "Oo";
-        buttonDisplayGraveyard.classList.add("toGraveyardButton");
-        if (graveId == "graveyardId") {
-            buttonDisplayGraveyard.setAttribute('onclick', 'displayGrave(\"me\");');
-        } else {
-            buttonDisplayGraveyard.setAttribute('onclick', 'displayGrave(\"you\");');
-        }
-
         graveyardArea.appendChild(cardDiv);
-        
-        divButtonDisplayGraveyard2.appendChild(buttonDisplayGraveyard);
-        divButtonDisplayGraveyard1.appendChild(divButtonDisplayGraveyard2);
-        graveyardArea.appendChild(divButtonDisplayGraveyard1);
-    
+
     }
 }
 
@@ -123,24 +102,19 @@ function displayGrave(who){
 		// bouton d'ajout vers un joueur
 		var buttonDiv = document.createElement("div");
 		buttonDiv.setAttribute("id" , "buttonDiv" + cards[i].id);
-        buttonDiv.style.position = "absolute";		
-		buttonDiv.style.width = "100%";
-		buttonDiv.style.top = "0px";
-		buttonDiv.style.display = "none";
+		buttonDiv.classList.add('graveDivButtonClass')
         cardDiv.appendChild(buttonDiv);
 
         var button = document.createElement("button");
         button.innerHTML = "+";
         button.setAttribute("id",cards[i].id);
-        button.title = parseInt(currentPlayerId);
-        button.setAttribute('onclick','putCardFromGraveyardToPlayer(this.title,this.id,\"' + who + '\")');
-        button.style.width = "100%";
+        button.setAttribute('onclick','putCardFromGraveyardToPlayer(' + parseInt(currentPlayerId) + ',this.id,\"' + who + '\")');
+        button.classList.add('graveButtonClass');
         buttonDiv.appendChild(button);        
 
 		// ajout de la carte à la popin
 		popinDiv.appendChild(cardDiv);
 
-        console.log("player id = "+currentPlayerId);
     }
 }
 
@@ -153,8 +127,6 @@ function hideAddButton(divId) {
 }
 
 function putCardFromGraveyardToPlayer(playerId, cardId, who) {
-	
-	console.log('Ajout de la carte ' + cardId + ' du joueur ' + playerId + ' vers ' + who);
 	
 	if(who=="me"){
 		addCardToMe(playerId, cardId);

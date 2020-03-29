@@ -10,37 +10,46 @@ Board {
     background: url("../img/Fond2.png") no-repeat;
     background-size: 100% 100%;
 }
+
 BoardOpp {
-    grid-column: 1 / span 3; grid-row: 1;
-    -ms-grid-column: 1;-ms-grid-column-span: 3; -ms-grid-row: 1;
+    grid-column: 1 / span 3;
+    grid-row: 1;
+    -ms-grid-column: 1;
+    -ms-grid-column-span: 3;
+    -ms-grid-row: 1;
     background-color: #ff000055;
     border: 1px solid black;
     display: flex;
     overflow-x: auto;
 }
 
-BoardOpp> div {
+BoardOpp > div {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
+
 GraveyardOpp {
-	position: relative;
-    grid-column: 4; grid-row: 1;
-    -ms-grid-column: 4; -ms-grid-row: 1;
+    position: relative;
+    grid-column: 4;
+    grid-row: 1;
+    -ms-grid-column: 4;
+    -ms-grid-row: 1;
     background-color: #ff000055;
     border: 1px solid black;
     display: flex;
 }
 
-GraveyardOpp> div {
-	margin: auto;
+GraveyardOpp > div {
+    margin: auto;
 }
 
 PvOpp {
-    grid-column: 5; grid-row: 1;
-    -ms-grid-column: 5; -ms-grid-row: 1;
+    grid-column: 5;
+    grid-row: 1;
+    -ms-grid-column: 5;
+    -ms-grid-row: 1;
     background-color: #ff000055;
     border: 1px solid black;
     display: block;
@@ -55,8 +64,11 @@ PvOpp {
 }
 
 BoardPlayer {
-    grid-column: 1 / span 3; grid-row: 2;
-    -ms-grid-column: 1;-ms-grid-column-span: 3; -ms-grid-row: 2;
+    grid-column: 1 / span 3;
+    grid-row: 2;
+    -ms-grid-column: 1;
+    -ms-grid-column-span: 3;
+    -ms-grid-row: 2;
     background-color: #6596EBb3;
     border: 1px solid black;
     display: flex;
@@ -64,7 +76,7 @@ BoardPlayer {
 
 }
 
-boardplayer> div {
+boardplayer > div {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -72,35 +84,43 @@ boardplayer> div {
 }
 
 GraveyardPlayer {
-	position: relative;
-    grid-column: 4; grid-row: 2;
-    -ms-grid-column: 4; -ms-grid-row: 2;
+    position: relative;
+    grid-column: 4;
+    grid-row: 2;
+    -ms-grid-column: 4;
+    -ms-grid-row: 2;
     background-color: #6596EBb3;
     border: 1px solid black;
     display: flex;
 }
 
-GraveyardPlayer> div {
-	margin: auto;
+GraveyardPlayer > div {
+    margin: auto;
 }
 
 PvPlayer {
-    grid-column: 5; grid-row: 2;
-    -ms-grid-column: 5; -ms-grid-row: 2;
+    grid-column: 5;
+    grid-row: 2;
+    -ms-grid-column: 5;
+    -ms-grid-row: 2;
     background-color: #6596EBb3;
     border: 1px solid black;
     display: block;
 }
+
 Hand {
-    grid-row: 3; grid-column: 1 / span 5;
-    -ms-grid-row: 3; -ms-grid-column: 1;-ms-grid-column-span: 5;
+    grid-row: 3;
+    grid-column: 1 / span 5;
+    -ms-grid-row: 3;
+    -ms-grid-column: 1;
+    -ms-grid-column-span: 5;
     background-color: #6596EBb3;
     border: 1px solid black;
     display: flex;
     overflow-x: auto;
 }
 
-Hand> div {
+Hand > div {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -109,31 +129,41 @@ Hand> div {
 
 
 Draw {
-    grid-column: 1; grid-row: 4;
-    -ms-grid-column: 1; -ms-grid-row: 4;
+    grid-column: 1;
+    grid-row: 4;
+    -ms-grid-column: 1;
+    -ms-grid-row: 4;
     border: 1px solid black;
     background-color: #6596EBb3;
     display: flex;
 }
+
 Invocations {
-    grid-column: 2; grid-row: 4;
-    -ms-grid-column: 2; -ms-grid-row: 4;
+    grid-column: 2;
+    grid-row: 4;
+    -ms-grid-column: 2;
+    -ms-grid-row: 4;
     border: 1px solid black;
     background-color: #6596EBb3;
     display: flex;
 }
 
 CurrentEnvironment {
-    grid-column: 3; grid-row: 4;
-    -ms-grid-column: 3; -ms-grid-row: 4;
+    grid-column: 3;
+    grid-row: 4;
+    -ms-grid-column: 3;
+    -ms-grid-row: 4;
     border: 1px solid black;
     background-color: #6596EBb3;
     display: flex;
 }
 
 Traps {
-    grid-row: 4; grid-column: 4 / span 2;
-    -ms-grid-row: 4; -ms-grid-column: 4;-ms-grid-column-span: 2;
+    grid-row: 4;
+    grid-column: 4 / span 2;
+    -ms-grid-row: 4;
+    -ms-grid-column: 4;
+    -ms-grid-column-span: 2;
     border: 1px solid black;
     background-color: #6596EBb3;
     display: flex;
@@ -141,7 +171,8 @@ Traps {
     align-items: center;
     flex-direction: row-reverse;
 }
-Traps> div {
+
+Traps > div {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -156,7 +187,7 @@ Traps> div {
 }
 
 #handImgId {
-    vertical-align : middle;
+    vertical-align: middle;
 }
 
 .grave-button {
@@ -183,25 +214,51 @@ Traps> div {
     border-color: yellow;
 }
 
-#extraOppId,#extraPlayerId {
+#extraOppId, #extraPlayerId {
     margin-top: 20px;
 }
 
 .graveyardStack {
-	margin: auto;
+    margin: auto;
 }
 
 .toGraveyardDiv {
-	position: absolute;	
-	bottom: 2px;
-	width: 100%;
+    position: absolute;
+    bottom: 2px;
+    width: 100%;
 }
 
-.toGraveyardDiv> div {
-	margin: auto;
-	width: 60px;
+.toGraveyardDiv > div {
+    margin: auto;
+    width: 60px;
 }
 
 .toGraveyardButton {
-	width: 100%;
+    width: 100%;
+}
+
+.graveDivButtonClass {
+    position: absolute;
+    width: 50px;
+    top: 0px;
+    display: none;
+    margin-left: 191px;
+    margin-top: 313px;
+}
+
+.graveButtonClass {
+    width: 40px;
+    border: 0;
+    height: 18px;
+    margin-top: 1px;
+    margin-left: 9px;
+    font-size: 1rem;
+    text-align: center;
+    color: #fff;
+    text-shadow: 1px 1px 1px #000;
+    border-radius: 10px;
+    background-color: rgba(0, 220, 0, 1);
+    background-image: linear-gradient(to top left, rgba(0, 0, 0, .2), rgba(0, 0, 0, .2) 30%, rgba(0, 0, 0, 0));
+    box-shadow: inset 2px 2px 3px rgba(255, 255, 255, .6), inset -2px -2px 3px rgba(0, 0, 0, .6);
+
 }
