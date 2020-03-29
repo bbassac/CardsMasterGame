@@ -43,10 +43,6 @@ function newTurn() {
     refreshBoard();
 }
 
-function refreshBoard(){
-    var currentPlayerId = document.getElementById("currentPlayerId").value;
-
-
 function refreshBoard(forceUpdate){
     var currentPlayerId = document.getElementById("currentPlayerId").value;
 

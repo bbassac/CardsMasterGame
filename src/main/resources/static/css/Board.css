@@ -266,6 +266,36 @@ Traps > div {
     inset -2px -2px 3px rgba(0, 0, 0, .6);
 }
 
+.newTurnButton {
+    border: 0;
+    height: 40px;
+    padding: 0 6px;
+    margin-top: 35px;
+    margin-left: 15px;
+    font-size: 1rem;
+    text-align: center;
+    color: #fff;
+    text-shadow: 1px 1px 1px #000;
+    border-radius: 10px;
+    background-color: rgba(0, 220, 0, 1);
+    background-image: linear-gradient(to top left,
+    rgba(0, 0, 0, .2),
+    rgba(0, 0, 0, .2) 30%,
+    rgba(0, 0, 0, 0));
+    box-shadow: inset 2px 2px 3px rgba(255, 255, 255, .6),
+    inset -2px -2px 3px rgba(0, 0, 0, .6);
+}
+
+.newTurnButton:hover {
+    background-color: rgba(0, 255, 0, 1);
+}
+
+.newTurnButton:active {
+    box-shadow: inset -2px -2px 3px rgba(255, 255, 255, .6),
+    inset 2px 2px 3px rgba(0, 0, 0, .6);
+}
+}
+
 .newTurnButton:hover {
     background-color: rgba(0, 255, 0, 1);
 }
