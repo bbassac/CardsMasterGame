@@ -179,5 +179,10 @@ public class CollectionRepositoryImpl implements CollectionRepositoryCustom {
         return game.getUsedOnCard(playerId,cardId);
     }
 
+    @Override
+    public void setAllcardsNonActive(int playerId) {
+        game.setAllcardsNonActive(playerId);
+    }
+
 
 }

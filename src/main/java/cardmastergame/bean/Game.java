@@ -262,4 +262,9 @@ public class Game {
     }
 
 
+    public void setAllcardsNonActive(int playerId) {
+        for ( Card c : plateaux[playerId]) {
+            c.setActivated(false);
+        }
+    }
 }
