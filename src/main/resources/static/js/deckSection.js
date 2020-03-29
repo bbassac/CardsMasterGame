@@ -169,7 +169,11 @@ function fillDeck(playerId,section,stackName,gameImageHeight){
 
             //Activate Button
             var flipButton = document.createElement("button");
-            flipButton.innerHTML = "&#8631";
+            if (cards[i].activated){
+                flipButton.innerHTML = "&#8634";
+            }else {
+                flipButton.innerHTML = "&#8631";
+            }
             flipButton.tag = cards[i].activated;
             flipButton.setAttribute("id",cards[i].id);
             flipButton.setAttribute('onclick','flipCard(this.id,this.tag);');
