@@ -24,9 +24,9 @@
 ## Bugs
 
 * [ ] Homogénéiser le sort de soin  (permanent VS activate 1x/tour)
-* [ ] Cimetiere vers main -> doit refresh la main (bug cimetiere refresh adversaire)
 * [ ] Ajouter des sorts de destruction d'équipement
-* [ ] Bouton nouveau tour
+* [X] Cimetiere vers main -> doit refresh la main (bug cimetiere refresh adversaire)
+* [X] Bouton nouveau tour
 * [X] Ajouter un champs texte libre par joueur
 * [X] Decaller les cartes tournées pour ne pas chevaucher
 * [X] Ajouter la notion de carte désactivée 
