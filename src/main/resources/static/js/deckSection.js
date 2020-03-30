@@ -36,9 +36,17 @@ function newTurn() {
     xhttp2.setRequestHeader("Content-type", "application/json");
     xhttp2.send();
 
-    //+1 au chakra
+    //+1 au chakra si < MAX
+    var xhttp3 = new XMLHttpRequest();
+    xhttp3.open("GET", "maxchakra", false);
+    xhttp3.setRequestHeader("Content-type", "application/json");
+    xhttp3.send();
+    var maxChakra = xhttp3.responseText;
+
     buttonMoreChakra = document.getElementById("ButtonMoreChakraID");
-    updateChakras(buttonMoreChakra.tag);
+    if (buttonMoreChakra.tag <= maxChakra) {
+        updateChakras(buttonMoreChakra.tag);
+    }
 
     refreshBoard();
 }
