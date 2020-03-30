@@ -153,15 +153,7 @@ function fillDeck(playerId,section,stackName,gameImageHeight){
             cardDiv.appendChild(divBlock);
 
         }else if (section=="traps"){
-            var divBlock = document.createElement("tr-"+ cards[i].id);
-
-            var moveCardButton = document.createElement("button");
-            moveCardButton.innerHTML = "&#9760;";
-            moveCardButton.setAttribute("id",cards[i].id);
-            moveCardButton.setAttribute("class","grave-button");
-            moveCardButton.setAttribute('onclick','moveCardFromTrapsToGraveyard(this.id);');
-            divBlock.appendChild(moveCardButton);
-            cardDiv.appendChild(divBlock);
+            img.setAttribute('onclick','moveCardFromTrapsToGraveyard('+cards[i].id+');');
 
         }else if (section=="boardPlayer"){
             var div = document.createElement("div-"+ cards[i].id);
