@@ -20,7 +20,7 @@ function needUpdate(card,slot){
     }
 
     if (card.id == slot.firstChild.id){
-        console.log("Same card");
+
         if (card.activated != slot.firstChild.tag) {
             return true;
         }
@@ -28,7 +28,6 @@ function needUpdate(card,slot){
         if (card.used != slot.firstChild.used){
             return true;
         }
-        if (card.used )
 
         if (card.dammagePoints != slot.children[1].innerText){
             return true;
