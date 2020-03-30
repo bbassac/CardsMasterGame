@@ -15,6 +15,7 @@
     + [Les cartes d'invocation](#les-cartes-dinvocation)
     + [Les cartes pièges](#les-cartes-pièges)
   * [Règles](#règles)
+    + [Glossaire](#Glossaire-et-mécaniques)
     + [Début de partie](#début-de-partie)
     + [Déroulement d'un tour](#déroulement-d'un-tour)
     + [Définition des symboles](#définition-des-symboles)
@@ -26,6 +27,7 @@
 * [ ] Homogénéiser le sort de soin  (permanent VS activate 1x/tour)
 * [ ] Ajouter des sorts de destruction d'équipement
 * [ ] Autozoom sur les pieges
+* [ ] Aligner la carte de pioche
 * [ ] Généraliser les auto-zooms homogènes
 * [ ] Probleme de scroll bar quand cartes used
 * [X] Cimetiere vers main -> doit refresh la main (bug cimetiere refresh adversaire)
@@ -110,7 +112,8 @@ Exemple de carte                        | Description
 
 * Protection :
     * Sur un équipement, permet de pouvoir absorber (ou pas au choix) des dégâts. L'excédant de dégats est infligé au porteur
-    * Sur un personnage, celui peut s'interposer (ou pas au choix) et subir les dégats à la place du personnage ciblé
+    * Sur un personnage, celui peut s'interposer (ou pas au choix) et subir les dégats à la place du personnage ciblé, que ce soit pour une 
+    attaque au corps à corps comme à distance
 
 * Immobiliser : Un personnage ne peut lancer d'attaque directe (corps à corps) s'il est immobilisé, mais peut toujours lancer des sorts
 
@@ -119,6 +122,8 @@ Exemple de carte                        | Description
 * Armes de héros  : Si le héros utilise son arme pour attaquer, celle-ci ne sera pas utilisable lors de la défense.
 
 * Bonus de Ninja :  Sauf si précisé, quand un ninja donne un bonus à d'autres, lui-même ne peut en bénéficier
+
+* Arme à distance : Attaque éffectuée sans contre-attaque possible
 
 ### Début de partie
 
