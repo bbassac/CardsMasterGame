@@ -102,14 +102,14 @@ function fillDeckOpp(playerId,section,stackName,gameImageHeight){
             //J'ajoute l'image au bloc
             cardDiv.appendChild(img);
 
-            //Si besoin je tourne la carte
-            if (cards[i].activated) {
-                img.setAttribute('style', 'transform:rotate(90deg);margin-left:38px;margin-right:38px;'); // the 90deg parameter may be changed to whatever angle you want to rotate to
-            }
-
-            if (cards[i].used){
-                img.setAttribute("class","usedCard")
-            }
+	        //Si besoin je tourne la carte
+	        if (cards[i].activated) {
+	            img.classList.add("activatedCard");
+	        }
+	        
+	        if (cards[i].used){
+	        	img.classList.add("usedCard");
+	        }
 
             //Je crée un sous-bloc pour l'affichage des dégats
             var div = document.createElement("div");
