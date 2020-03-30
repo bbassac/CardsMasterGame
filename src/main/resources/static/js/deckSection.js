@@ -14,7 +14,6 @@ var oldLastGraveyard = [0, 0];
 var oldNbCards=-1;
 var handIconSize = 30;
 
-
 function refreshByInterval() {
 	var currentPlayerId = document.getElementById("currentPlayerId").value;
 	
@@ -115,13 +114,15 @@ function fillDeck(playerId,section,stackName,gameImageHeight){
         img.title = cards[i].id;
         img.setAttribute('onclick','showCardPopin(this.src);');
         cardDiv.appendChild(img);
-        if(cards[i].activated){
-            img.setAttribute('style', 'transform:rotate(90deg);margin-left:38px;margin-right:38px;'); // the 90deg parameter may be changed to whatever angle you want to rotate to
-        }
-        if (cards[i].used){
-            img.setAttribute("class","usedCard")
-        }
 
+        //Si besoin je tourne la carte
+        if (cards[i].activated) {
+            img.classList.add("activatedCard");
+        }
+        
+        if (cards[i].used){
+        	img.classList.add("usedCard");
+        }
 
         if (section == "hand"){
             var divBlock = document.createElement("div-"+ cards[i].id);
