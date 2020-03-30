@@ -13,8 +13,9 @@ function fillDrawBoard(playerId, id, image,drawImageHeight){
     var img = document.createElement("img");
     img.src = encodeURI(image);
     img.height = drawImageHeight;
-    img.hspace = 1;
     img.id = "img" + id;
+    img.style.marginLeft="5px";
+    img.style.marginTop="2px";
     var src = document.getElementById(id);
     src.innerHTML = '';
     var div = document.createElement("div");
