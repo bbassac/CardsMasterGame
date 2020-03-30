@@ -27,7 +27,7 @@
 * [ ] Homogénéiser le sort de soin  (permanent VS activate 1x/tour)
 * [ ] Ajouter des sorts de destruction d'équipement
 * [ ] Autozoom sur les pieges
-* [ ] Aligner la carte de pioche
+* [X] Aligner la carte de pioche
 * [ ] Généraliser les auto-zooms homogènes
 * [ ] Probleme de scroll bar quand cartes used
 * [X] Cimetiere vers main -> doit refresh la main (bug cimetiere refresh adversaire)
