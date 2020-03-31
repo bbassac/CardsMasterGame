@@ -85,5 +85,15 @@ public class PlayerController extends AbstractController{
 
     }
 
+    @CrossOrigin
+    @RequestMapping(path = "/player/{playerId}/affinite",method = RequestMethod.GET)
+    @ResponseBody
+    @ApiOperation(value = "Get player affinite ",response = String.class)
+    public String getAffinite(
+            @ApiParam(value = "Player Id ", allowableValues ="0,1",required = true)
+            @PathVariable("playerId") int playerId)  {
+        return customRepo.getAffinite(playerId);
+
+    }
 
 }

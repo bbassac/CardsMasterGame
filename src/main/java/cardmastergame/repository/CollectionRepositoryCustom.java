@@ -49,4 +49,6 @@ public interface CollectionRepositoryCustom {
     boolean getUsedOnCard(int playerId, int cardId);
 
     void setAllcardsNonActive(int playerId);
+
+    String getAffinite(int playerId);
 }
