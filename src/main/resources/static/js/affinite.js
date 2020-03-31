@@ -11,6 +11,7 @@ function getAffiniteImg() {
     var imgAffinite = document.createElement("img");
     imgAffinite.id="affiniteImg";
     imgAffinite.src = getImgPathFromAffinite(result);
+
     return imgAffinite;
 }
 

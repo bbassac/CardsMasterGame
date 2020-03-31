@@ -1,6 +1,7 @@
 package cardmastergame.bean;
 
 import cardmastergame.FileUtils;
+import cardmastergame.LogUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -116,43 +117,44 @@ public class Game {
         return listOfFiles.length;
     }
 
-    private Card findCardInStackById(Deck<Card> stack , int cardId){
+    private Card findCardInStackById(Deck<Card> stack ,String deckName, int cardId) {
         for (Card c : stack){
             if(c.getId()== cardId){
                 return c;
             }
         }
-        throw new NoSuchElementException();
+
+        throw new UnsupportedOperationException(" Card " + cardId +" not found in "+deckName)
     }
 
     public void moveSpecificCardFromInvocationToPlayer(int playerId, int cardId) {
-        Card c = findCardInStackById(invocations, cardId);
+        Card c = findCardInStackById(invocations,"invocations", cardId);
         invocations.remove(c);
         mains[playerId].push(c);
     }
 
     public void moveCardFromHandToGameForPlayer(int playerId, int cardId) {
-        Card c = findCardInStackById(mains[playerId], cardId);
+        Card c = findCardInStackById(mains[playerId],"main joueur " + playerId, cardId);
         mains[playerId].remove(c);
         plateaux[playerId].push(c);
     }
 
     public void moveCardFromHandToPiegeForPlayer(int playerId, int cardId) {
         if (pieges[playerId].size() < MAX_TRAP) {
-            Card c = findCardInStackById(mains[playerId], cardId);
+            Card c = findCardInStackById(mains[playerId],"main joueur " + playerId, cardId);
             mains[playerId].remove(c);
             pieges[playerId].push(c);
         }
     }
     public void moveCardFromPiegeToGraveyardForPlayer(int playerId, int cardId) {
-        Card c = findCardInStackById(pieges[playerId], cardId);
+        Card c = findCardInStackById(pieges[playerId],"piege joueur " + playerId, cardId);
         pieges[playerId].remove(c);
         cimetieres[playerId].push(c);
     }
 
 
     public void moveCardFromGameToGraveyardForPlayer(int playerId, int cardId) {
-        Card c = findCardInStackById(plateaux[playerId], cardId);
+        Card c = findCardInStackById(plateaux[playerId],"plateau joueur " + playerId ,cardId);
         cleanCard(c);
         plateaux[playerId].remove(c);
         cimetieres[playerId].push(c);
@@ -165,14 +167,14 @@ public class Game {
     }
 
     public void moveCardFromHandToGraveyardForPlayer(int playerId, int cardId) {
-        Card c = findCardInStackById(mains[playerId], cardId);
+        Card c = findCardInStackById(mains[playerId],"main joueur " + playerId, cardId);
         cleanCard(c);
         mains[playerId].remove(c);
         cimetieres[playerId].push(c);
     }
 
     public int updateDmgPointsOnCard(int playerId, int cardId, int value) {
-        findCardInStackById(plateaux[playerId],cardId).setDammagePoints(value);
+        findCardInStackById(plateaux[playerId],"plateaux joueur " + playerId,cardId).setDammagePoints(value);
         return value;
     }
 
@@ -187,11 +189,11 @@ public class Game {
     }
 
     public int getDmgOnCard(int playerId, int cardId) {
-        return  findCardInStackById(plateaux[playerId],cardId).getDammagePoints();
+        return  findCardInStackById(plateaux[playerId],"plateau joueur " + playerId,cardId).getDammagePoints();
     }
 
     public void moveCardFromGraveyardToPlayerHand(int playerId, int cardId) {
-        Card c = findCardInStackById(cimetieres[playerId], cardId);
+        Card c = findCardInStackById(cimetieres[playerId],"cimetière joueur " + playerId, cardId);
         cimetieres[playerId].remove(c);
         mains[playerId].push(c);
     }
@@ -199,7 +201,7 @@ public class Game {
 
 
     public void moveCardFromOtherGraveyardToHand(int playerId, int cardId, int oppPlayerId) {
-        Card c = findCardInStackById(cimetieres[oppPlayerId], cardId);
+        Card c = findCardInStackById(cimetieres[oppPlayerId],"cimetière joueur " + playerId, cardId);
         cimetieres[oppPlayerId].remove(c);
         mains[playerId].push(c);
     }
@@ -209,12 +211,12 @@ public class Game {
     }
 
     public boolean updateActivatedOnCard(int playerId, int cardId, boolean value) {
-        findCardInStackById(plateaux[playerId],cardId).setActivated(value);
+        findCardInStackById(plateaux[playerId],"plateau joueur " + playerId,cardId).setActivated(value);
         return value;
     }
 
     public boolean getActivatedOnCard(int playerId, int cardId) {
-        return findCardInStackById(plateaux[playerId],cardId).isActivated();
+        return findCardInStackById(plateaux[playerId],"plateau joueur " + playerId,cardId).isActivated();
     }
 
     public Deck<Card> getEnvironnments() {
@@ -255,12 +257,12 @@ public class Game {
 
 
     public boolean updateUsedOnCard(int playerId, int cardId,boolean value) {
-        findCardInStackById(plateaux[playerId],cardId).setUsed(value);
+        findCardInStackById(plateaux[playerId],"plateau joueur " + playerId,cardId).setUsed(value);
         return value;
     }
 
     public boolean getUsedOnCard(int playerId, int cardId) {
-        return  findCardInStackById(plateaux[playerId],cardId).isUsed();
+        return  findCardInStackById(plateaux[playerId],"plateat joueur " + playerId,cardId).isUsed();
     }
 
 
