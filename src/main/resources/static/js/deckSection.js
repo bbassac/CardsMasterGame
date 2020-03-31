@@ -65,8 +65,7 @@ function refreshEnvironment(drawImageHeight) {
 
 	var imgEnvCard = document.getElementById("imgcurrentEnvironment");
 	if (imgEnvCard) {
-		imgEnvCard.setAttribute('onmouseenter','zoomCard(this, TRANSLATE_TOP, 3)');
-		imgEnvCard.setAttribute('onmouseleave','unzoomCard(this, 3)');
+		setZooming(imgEnvCard, TRANSLATE_UP, 3);
 	}
 }
 
@@ -154,7 +153,9 @@ function fillDeck(playerId,section,stackName,gameImageHeight){
             cardDiv.appendChild(divBlock);
 
         }else if (section=="traps"){
+        	img.height = drawImageHeight;
             img.setAttribute('onclick','moveCardFromTrapsToGraveyard('+cards[i].id+');');
+			setZooming(img, TRANSLATE_UP_LEFT, 3);
 
         }else if (section=="boardPlayer"){
             var div = document.createElement("div-"+ cards[i].id);

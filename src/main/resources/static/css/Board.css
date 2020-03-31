@@ -1,3 +1,7 @@
+body {
+  margin: 0;
+}
+
 Board {
     display: grid;
     display: -ms-grid;
@@ -167,16 +171,7 @@ Traps {
     border: 1px solid black;
     background-color: #6596EBb3;
     display: flex;
-
-    align-items: center;
-    flex-direction: row-reverse;
-}
-
-Traps > div {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+    text-align: right;
 }
 
 #nbCardsId {
