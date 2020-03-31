@@ -37,5 +37,5 @@ function displayOppAffinite(){
 }
 
 function getImgPathFromAffinite(affinite){
-    return "/img/affinite/"+affinite+".png";
+    return "img/affinite/"+affinite+".png";
 }
