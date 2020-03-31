@@ -124,7 +124,7 @@ public class Game {
             }
         }
 
-        throw new UnsupportedOperationException(" Card " + cardId +" not found in "+deckName)
+        throw new UnsupportedOperationException(" Card " + cardId +" not found in "+deckName);
     }
 
     public void moveSpecificCardFromInvocationToPlayer(int playerId, int cardId) {
