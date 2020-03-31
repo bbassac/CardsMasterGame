@@ -20,10 +20,13 @@ function fillDrawBoard(playerId, id, image,drawImageHeight){
     src.innerHTML = '';
     var div = document.createElement("div");
     src.appendChild(div);
+    div.appendChild(img);
     if(id=='currentEnvironment'){
         img.setAttribute('onclick','showCardPopin(this.src);');
+
+        displayOppAffinite();
+        div.appendChild(getAffiniteImg());
     }
-    div.appendChild(img);
     if (id=="draw"){
         // 3. Add event handler
         img.setAttribute('title', "Piocher une carte");

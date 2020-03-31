@@ -184,5 +184,10 @@ public class CollectionRepositoryImpl implements CollectionRepositoryCustom {
         game.setAllcardsNonActive(playerId);
     }
 
+    @Override
+    public String getAffinite(int playerId) {
+        return game.getAffinite(playerId);
+    }
+
 
 }
