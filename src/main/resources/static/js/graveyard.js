@@ -37,19 +37,17 @@ function fillGraveyard(playerId, graveId, gameImageHeight, forceUpdate) {
         //img.hspace = 5;
         img.title = cards[cards.length - 1].id;
         img.setAttribute('onclick', 'showCardPopin(this.src);');
-        
-        if (graveId == "graveyardId") {
-			img.setAttribute('onmouseenter', 'zoomCard(this, TRANSLATE_CENTER)');
-            img.setAttribute('onclick', 'displayGrave(\"me\");');
-        } else {
-            img.setAttribute('onmouseenter', 'zoomCard(this, TRANSLATE_DOWN_LEFT)');
-            img.setAttribute('onclick', 'displayGrave(\"you\");');
-        }
-        img.setAttribute('onmouseleave', 'unzoomCard(this)');
         img.classList.add("graveyardStack");
         cardDiv.appendChild(img);
-
         graveyardArea.appendChild(cardDiv);
+        
+        if (graveId == "graveyardId") {
+        	setZooming(img, TRANSLATE_CENTER);
+            img.setAttribute('onclick', 'displayGrave(\"me\");');
+        } else {
+			setZooming(img, TRANSLATE_DOWN);
+            img.setAttribute('onclick', 'displayGrave(\"you\");');
+        }
 
     }
 }
