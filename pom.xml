@@ -118,6 +118,7 @@
             <version>1.5.21</version>
         </dependency>
 
+
     </dependencies>
 
     <build>
@@ -126,6 +127,9 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <version>1.5.2.RELEASE</version>
+                <configuration>
+                    <addResources>true</addResources>
+                </configuration>
             </plugin>
             <plugin>
                 <groupId>com.ruleoftech</groupId>

@@ -219,6 +219,13 @@ Traps {
     margin-top: 20px;
 }
 
+#extraOppId {
+    font-family: "naruto", Helvetica, Arial, sans-serif;
+    font-size: larger;
+    font-weight: 900;
+}
+
+
 .graveyardStack {
     margin: auto;
 }
@@ -295,7 +302,6 @@ Traps {
     box-shadow: inset -2px -2px 3px rgba(255, 255, 255, .6),
     inset 2px 2px 3px rgba(0, 0, 0, .6);
 }
-}
 
 .newTurnButton:hover {
     background-color: rgba(0, 255, 0, 1);
@@ -312,4 +318,43 @@ Traps {
 }
 #affiniteOppImg{
     height: 141px;
+}
+
+.tooltip {
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dotted black;
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 280px;
+    background-color: #553131;
+    color: #fff;
+    text-align: left;
+    border-radius: 6px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -232px;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.tooltip .tooltiptext::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #555 transparent transparent transparent;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
 }
