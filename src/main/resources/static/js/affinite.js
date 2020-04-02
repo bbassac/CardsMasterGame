@@ -1,5 +1,11 @@
+function manageAffinite(){
+    displayOppAffinite();
+    displayAffiniteJoueur();
+  
+}
 
-function getAffiniteImg() {
+
+function displayAffiniteJoueur() {
     var currentPlayerId = document.getElementById("currentPlayerId").value;
     //affinite
     var xhttp = new XMLHttpRequest();
@@ -22,7 +28,9 @@ function getAffiniteImg() {
     divToolTip.appendChild(imgAffinite);
     divToolTip.appendChild(spanToolTipText);
 
-    return divToolTip;
+    var divAffinite = document.getElementById("affiniteId")  ; 
+    divAffinite.innerHTML = "";
+    divAffinite.appendChild(divToolTip);
 }
 
 function displayOppAffinite(){

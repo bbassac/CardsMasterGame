@@ -1,4 +1,7 @@
 target
 cardmastergame.iml
 .idea
-
+.classpath
+.factorypath
+.project
+.settings/

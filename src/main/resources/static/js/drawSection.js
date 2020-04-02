@@ -23,9 +23,7 @@ function fillDrawBoard(playerId, id, image,drawImageHeight){
     div.appendChild(img);
     if(id=='currentEnvironment'){
         img.setAttribute('onclick','showCardPopin(this.src);');
-
-        displayOppAffinite();
-        div.appendChild(getAffiniteImg());
+        manageAffinite();
     }
     if (id=="draw"){
         // 3. Add event handler
