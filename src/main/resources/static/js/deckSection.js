@@ -7,7 +7,7 @@ setInterval(refreshByInterval, 500);
 const drawImageHeight = 140;
 const gameImageHeight = 255;
 const trapImageHeight = 150;
-const trapIconHeight = 50;
+const trapIconHeight = 35;
 const nbCardsHeight = 30;
 var oldNbTrapsOpp=0 ;
 var oldLastGraveyard = [0, 0];

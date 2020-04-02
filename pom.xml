@@ -127,9 +127,7 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <version>1.5.2.RELEASE</version>
-                <configuration>
-                    <addResources>true</addResources>
-                </configuration>
+
             </plugin>
             <plugin>
                 <groupId>com.ruleoftech</groupId>

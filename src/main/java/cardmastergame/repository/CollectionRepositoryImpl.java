@@ -1,5 +1,6 @@
 package cardmastergame.repository;
 
+import cardmastergame.LogUtils;
 import cardmastergame.bean.Card;
 import cardmastergame.bean.Deck;
 import cardmastergame.bean.Game;
@@ -22,12 +23,16 @@ public class CollectionRepositoryImpl implements CollectionRepositoryCustom {
     @Override
     public int startNewGame() {
         game.startNewGame();
-        int nbCards = 0;
-        nbCards+= game.loadStack(game.getEnvironnments(), "/Back-Select");
-        nbCards+= game.loadStack(game.getInvocations(), "/Back-Select3");
-        nbCards+= game.loadStack(game.getPioche(), "/Back-Draw");
-        nbCards+= game.selectCurrentEnvironnement();
-        return nbCards;
+
+        int nbCards1 = game.loadStack(game.getEnvironnments(), "/Back-Select");
+        LogUtils.warn("Loaded " + nbCards1 + " environement");
+        int nbCards2 = game.loadStack(game.getInvocations(), "/Back-Select3");
+        LogUtils.warn("Loaded " + nbCards2 + " invocations");
+        int nbCards3 = game.loadStack(game.getPioche(), "/Back-Draw");
+        LogUtils.warn("Loaded " + nbCards3 + " pioches");
+        int nbCards4 = game.selectCurrentEnvironnement();
+        LogUtils.warn("1 environnement selectionné ");
+        return nbCards1+nbCards2+nbCards3;
     }
 
 

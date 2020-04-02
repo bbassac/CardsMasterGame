@@ -18,12 +18,6 @@ public class ApplicationStartup implements ApplicationListener<ApplicationReadyE
 
     @Override
     public void onApplicationEvent(ApplicationReadyEvent applicationReadyEvent) {
-        LogUtils.warn("##############################");
-        LogUtils.warn("#          LOADING           #");
-        LogUtils.warn("##############################");
-        int nbCards = customRepo.startNewGame();
-        LogUtils.warn("##############################");
-        LogUtils.warn("#    STARTED with "+nbCards +" cards  #");
-        LogUtils.warn("##############################");
+         customRepo.startNewGame();
     }
 }
