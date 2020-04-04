@@ -5,6 +5,8 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.web.bind.annotation.*;
 
+import cardmastergame.bean.Card;
+
 @RestController
 @Api(description = "Player API Used for all player actions")
 public class PlayerController extends AbstractController{
@@ -88,8 +90,8 @@ public class PlayerController extends AbstractController{
     @CrossOrigin
     @RequestMapping(path = "/player/{playerId}/affinite",method = RequestMethod.GET)
     @ResponseBody
-    @ApiOperation(value = "Get player affinite ",response = String.class)
-    public String getAffinite(
+    @ApiOperation(value = "Get player affinite ",response = Card.class)
+    public Card getAffinite(
             @ApiParam(value = "Player Id ", allowableValues ="0,1",required = true)
             @PathVariable("playerId") int playerId)  {
         return customRepo.getAffinite(playerId);

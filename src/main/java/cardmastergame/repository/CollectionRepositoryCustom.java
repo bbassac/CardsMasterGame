@@ -50,5 +50,5 @@ public interface CollectionRepositoryCustom {
 
     void setAllcardsNonActive(int playerId);
 
-    String getAffinite(int playerId);
+    Card getAffinite(int playerId);
 }

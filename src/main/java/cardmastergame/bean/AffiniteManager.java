@@ -1,27 +1,41 @@
 package cardmastergame.bean;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
+
+import cardmastergame.FileUtils;
 
 public class AffiniteManager {
 
     private static Random rand = new Random();
 
-    private static Map<Integer, String> affinite  = new HashMap<Integer, String>() {{
-        put(0, "Feu");
-        put(1, "Vent");
-        put(2, "Foudre");
-        put(3, "Special");
-        put(4, "Physique");
-        put(5, "Terre");
-        put(6, "Eau");
-    }};
+    public static Card[] initialize(String folder) {
+        Card result[] = new Card[2];
 
-    public static String[] initialize() {
-        String result[] = new String[2];
-        result[0] = affinite.get(rand.nextInt(affinite.size()-1));
-        result[1] = affinite.get(rand.nextInt(affinite.size()-1));
+     
+
+        Deck<Card> stack = new Deck<>();
+        int lastIndex = 0;
+        String prop = FileUtils.getCurrentJarPath();
+        File path = new File(prop + folder);
+        File[] listOfFiles = path.listFiles();
+        for (File listOfFile : listOfFiles) {
+            if (listOfFile.isFile()) {
+                lastIndex++;
+                Card c = new Card();
+                c.setId(lastIndex);
+                c.setPath(folder + "\\" + listOfFile.getName());
+                //allCards.put(c.getId(), c);
+                stack.push(c);
+            }
+        }
+
+        result[0] = stack.get(rand.nextInt(stack.size()-1));
+        result[1] = stack.get(rand.nextInt(stack.size()-1));
+
+
         return result;
     }
 }

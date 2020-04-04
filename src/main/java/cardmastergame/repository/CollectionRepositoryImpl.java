@@ -1,6 +1,7 @@
 package cardmastergame.repository;
 
 import cardmastergame.LogUtils;
+import cardmastergame.bean.AffiniteManager;
 import cardmastergame.bean.Card;
 import cardmastergame.bean.Deck;
 import cardmastergame.bean.Game;
@@ -32,7 +33,7 @@ public class CollectionRepositoryImpl implements CollectionRepositoryCustom {
         LogUtils.warn("Loaded " + nbCards3 + " pioches");
         int nbCards4 = game.selectCurrentEnvironnement();
         LogUtils.warn("1 environnement selectionné ");
-        return nbCards1+nbCards2+nbCards3;
+        return nbCards1+nbCards2+nbCards3+nbCards4;
     }
 
 
@@ -190,7 +191,7 @@ public class CollectionRepositoryImpl implements CollectionRepositoryCustom {
     }
 
     @Override
-    public String getAffinite(int playerId) {
+    public Card getAffinite(int playerId) {
         return game.getAffinite(playerId);
     }
 

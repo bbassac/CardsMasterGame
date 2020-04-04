@@ -28,7 +28,7 @@ public class Game {
     private int[] pvs;
     private int[] chakras;
     private String[] extraInfos;
-    private String[] affinite;
+    private Card[] affinite;
 
     @Value( "${game.chakra.max}" )
     private int MAX_CHAKRA;
@@ -63,7 +63,7 @@ public class Game {
         pvs = new int[]{MAX_PV, MAX_PV};
         chakras = new int[] {0,0};
         extraInfos = new String[] {"",""};
-        affinite = AffiniteManager.initialize();
+        affinite= AffiniteManager.initialize("/Back-Select2");
     }
 
     public int selectCurrentEnvironnement() {
@@ -219,6 +219,10 @@ public class Game {
         return findCardInStackById(plateaux[playerId],"plateau joueur " + playerId,cardId).isActivated();
     }
 
+    public Card[] getAffinite(){
+        return affinite;
+    }
+
     public Deck<Card> getEnvironnments() {
         return environnments;
     }
@@ -272,7 +276,7 @@ public class Game {
         }
     }
 
-    public String getAffinite(int playerId) {
+    public Card getAffinite(int playerId) {
         return affinite[playerId];
     }
 }

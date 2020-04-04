@@ -23,6 +23,7 @@ function fillDrawBoard(playerId, id, image,drawImageHeight){
     div.appendChild(img);
     if(id=='currentEnvironment'){
         img.setAttribute('onclick','showCardPopin(this.src);');
+        img.style.marginLeft="53px";
         manageAffinite();
     }
     if (id=="draw"){
