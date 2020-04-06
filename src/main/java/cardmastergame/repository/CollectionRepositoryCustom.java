@@ -2,14 +2,14 @@ package cardmastergame.repository;
 
 import cardmastergame.bean.Card;
 import cardmastergame.bean.Deck;
-import cardmastergame.bean.StackConstants;
+import cardmastergame.service.StackConstants;
 
 /**
  * Created by b.bassac on 24/05/2016.
  */
 public interface CollectionRepositoryCustom {
 
-    /*Game Zone*/
+    /*CardService Zone*/
     int startNewGame();
     Deck<Card> getStack(StackConstants stackName);
 

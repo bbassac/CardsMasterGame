@@ -2,7 +2,7 @@ package cardmastergame.controller;
 
 import cardmastergame.bean.Card;
 import cardmastergame.bean.Deck;
-import cardmastergame.bean.StackConstants;
+import cardmastergame.service.StackConstants;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -27,7 +27,7 @@ public class GraveyardController extends AbstractController{
     @CrossOrigin
     @RequestMapping(path = "/player/{playerId}/graveyard/{cardId}",method = RequestMethod.PUT)
     @ResponseBody
-    @ApiOperation(value = "Move the card from Game to Graveyard for the specified player")
+    @ApiOperation(value = "Move the card from CardService to Graveyard for the specified player")
     public void moveCardFromGameToGraveyard(
             @ApiParam(value = "Player Id ", allowableValues ="0,1",required = true)
             @PathVariable("playerId") int playerId,

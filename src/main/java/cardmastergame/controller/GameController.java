@@ -2,12 +2,12 @@ package cardmastergame.controller;
 
 import cardmastergame.bean.Card;
 import cardmastergame.bean.Deck;
-import cardmastergame.bean.StackConstants;
+import cardmastergame.service.StackConstants;
 import io.swagger.annotations.*;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@Api(description = "Game API Used for general actions")
+@Api(description = "CardService API Used for general actions")
 public class GameController extends AbstractController{
 
 

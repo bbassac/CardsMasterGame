@@ -1,4 +1,4 @@
-package cardmastergame.bean;
+package cardmastergame.service;
 
 import java.io.File;
 import java.util.HashMap;
@@ -6,8 +6,10 @@ import java.util.Map;
 import java.util.Random;
 
 import cardmastergame.FileUtils;
+import cardmastergame.bean.Card;
+import cardmastergame.bean.Deck;
 
-public class AffiniteManager {
+public class AffiniteService {
 
     private static Random rand = new Random();
 

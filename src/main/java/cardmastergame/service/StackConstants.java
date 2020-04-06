@@ -1,4 +1,4 @@
-package cardmastergame.bean;
+package cardmastergame.service;
 
 import io.swagger.annotations.ApiModelProperty;
 

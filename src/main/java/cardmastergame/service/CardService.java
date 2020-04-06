@@ -1,18 +1,19 @@
-package cardmastergame.bean;
+package cardmastergame.service;
 
 import cardmastergame.FileUtils;
 import cardmastergame.LogUtils;
+import cardmastergame.bean.Card;
+import cardmastergame.bean.Deck;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.NoSuchElementException;
 import java.util.Random;
 
 @Component
-public class Game {
+public class CardService {
     private int lastIndex;
     private Map<Integer, Card> allCards;
     private Deck<Card> environnments;
@@ -21,27 +22,16 @@ public class Game {
     private Deck<Card>[] cimetieres;
     private Deck<Card>[] mains;
     private Deck<Card>[] plateaux;
-
     private Deck<Card>[] pieges;
-
     private Deck<Card> currentEnvironnement;
-    private int[] pvs;
-    private int[] chakras;
-    private String[] extraInfos;
-    private Card[] affinite;
 
-    @Value( "${game.chakra.max}" )
-    private int MAX_CHAKRA;
-
-    @Value( "${game.pv.max}" )
-    private int MAX_PV;
 
     @Value("${game.trap.max}")
     private int MAX_TRAP;
 
     private Random rand = new Random();
 
-    public void startNewGame(){
+    public int startNewGame(){
         lastIndex = 0;
         environnments = new Deck<>();
         currentEnvironnement = new Deck<>();
@@ -60,13 +50,19 @@ public class Game {
         plateaux[0] = new Deck<>();
         plateaux[1] = new Deck<>();
         allCards = new HashMap<>();
-        pvs = new int[]{MAX_PV, MAX_PV};
-        chakras = new int[] {0,0};
-        extraInfos = new String[] {"",""};
-        affinite= AffiniteManager.initialize("/Back-Select2");
+
+        int nbCards1 = loadStack(environnments, "/Back-Select");
+        LogUtils.warn("Loaded " + nbCards1 + " environement");
+        int nbCards2 = loadStack(invocations, "/Back-Select3");
+        LogUtils.warn("Loaded " + nbCards2 + " invocations");
+        int nbCards3 = loadStack(pioche, "/Back-Draw");
+        LogUtils.warn("Loaded " + nbCards3 + " pioches");
+        int nbCards4 = selectCurrentEnvironnement();
+        LogUtils.warn("1 environnement selectionné ");
+        return nbCards1+nbCards2+nbCards3+nbCards4;
     }
 
-    public int selectCurrentEnvironnement() {
+    private int selectCurrentEnvironnement() {
         int nombreAleatoire = getRandomPosition(environnments);
         currentEnvironnement.push(environnments.get(nombreAleatoire));
         return 1;
@@ -76,23 +72,7 @@ public class Game {
         return rand.nextInt(stack.size() );
     }
 
-    public void updatePlayerPvs(int playerId, int newPVs){
-        pvs[playerId] = newPVs;
-    }
 
-    public int getPlayerPvs(int playerId){
-        return pvs[playerId];
-    }
-
-    public String getExtra(int playerId) {
-        return  extraInfos[playerId];
-    }
-
-    public String updateExtra(int playerId, String value) {
-        extraInfos[playerId]=value;
-        return value;
-
-    }
 
     public void moveCardFromDrawToPlayer(int player) {
             int randomPoition = getRandomPosition(pioche);
@@ -100,7 +80,7 @@ public class Game {
             pioche.remove(randomPoition);
     }
 
-    public int loadStack(Deck<Card> stack, String folder) {
+    private int loadStack(Deck<Card> stack, String folder) {
         String prop = FileUtils.getCurrentJarPath();
         File path = new File(prop + folder);
         File[] listOfFiles = path.listFiles();
@@ -178,15 +158,6 @@ public class Game {
         return value;
     }
 
-    public int getChakras(int playerId) {
-        return chakras[playerId];
-    }
-
-    public int updateChakras(int playerId, int value) {
-
-        chakras[playerId] = value;
-        return  chakras[playerId];
-    }
 
     public int getDmgOnCard(int playerId, int cardId) {
         return  findCardInStackById(plateaux[playerId],"plateau joueur " + playerId,cardId).getDammagePoints();
@@ -197,7 +168,6 @@ public class Game {
         cimetieres[playerId].remove(c);
         mains[playerId].push(c);
     }
-
 
 
     public void moveCardFromOtherGraveyardToHand(int playerId, int cardId, int oppPlayerId) {
@@ -219,47 +189,6 @@ public class Game {
         return findCardInStackById(plateaux[playerId],"plateau joueur " + playerId,cardId).isActivated();
     }
 
-    public Card[] getAffinite(){
-        return affinite;
-    }
-
-    public Deck<Card> getEnvironnments() {
-        return environnments;
-    }
-
-    public Deck<Card> getPioche() {
-        return pioche;
-    }
-
-    public Deck<Card> getInvocations() {
-        return invocations;
-    }
-
-    public Deck<Card>[] getCimetieres() {
-        return cimetieres;
-    }
-
-    public Deck<Card>[] getMains() {
-        return mains;
-    }
-
-    public Deck<Card>[] getPlateaux() {
-        return plateaux;
-    }
-
-    public Deck<Card> getCurrentEnvironnement() {
-        return currentEnvironnement;
-    }
-
-    public Deck<Card>[] getPieges() {
-        return pieges;
-    }
-
-    public int getMaxChakra() {
-        return MAX_CHAKRA;
-    }
-
-
     public boolean updateUsedOnCard(int playerId, int cardId,boolean value) {
         findCardInStackById(plateaux[playerId],"plateau joueur " + playerId,cardId).setUsed(value);
         return value;
@@ -276,7 +205,37 @@ public class Game {
         }
     }
 
-    public Card getAffinite(int playerId) {
-        return affinite[playerId];
+
+
+    public Deck<Card> getStack(StackConstants stackName) {
+        switch (stackName){
+            case ENVIRONNEMENT:
+                return currentEnvironnement;
+            case ENVIRONNEMENTS:
+                return environnments;
+            case DRAW:
+                return pioche;
+            case INVOCATIONS:
+                return invocations;
+            case GRAVEYARD0:
+                return cimetieres[0];
+            case GRAVEYARD1:
+                return cimetieres[1];
+            case HAND0:
+                return mains[0];
+            case HAND1:
+                return mains[1];
+            case BOARD0:
+                return plateaux[0];
+            case BOARD1:
+                return plateaux[1];
+            case TRAP0:
+                return pieges[0];
+            case TRAP1:
+                return pieges[1];
+            default:
+                throw new UnsupportedOperationException();
+        }
+
     }
 }
