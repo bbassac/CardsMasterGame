@@ -17,12 +17,12 @@ public class CardService {
     private int lastIndex;
     private Map<Integer, Card> allCards;
     private Deck<Card> environnments;
-    private Deck<Card> pioche;
+    private Deck[] pioche;
     private Deck<Card> invocations;
-    private Deck<Card>[] cimetieres;
-    private Deck<Card>[] mains;
-    private Deck<Card>[] plateaux;
-    private Deck<Card>[] pieges;
+    private Deck[] cimetieres;
+    private Deck[] mains;
+    private Deck[] plateaux;
+    private Deck[] pieges;
     private Deck<Card> currentEnvironnement;
 
 
@@ -35,7 +35,9 @@ public class CardService {
         lastIndex = 0;
         environnments = new Deck<>();
         currentEnvironnement = new Deck<>();
-        pioche = new Deck<>();
+        pioche = new Deck[2];
+        pioche[0]= new Deck<>();
+        pioche[1]= new Deck<>();
         invocations = new Deck<>();
         cimetieres = new Deck[2];
         cimetieres[0] = new Deck<>();
@@ -55,7 +57,8 @@ public class CardService {
         LogUtils.warn("Loaded " + nbCards1 + " environement");
         int nbCards2 = loadStack(invocations, "/Back-Select3");
         LogUtils.warn("Loaded " + nbCards2 + " invocations");
-        int nbCards3 = loadStack(pioche, "/Back-Draw");
+        int nbCards3 = loadStack(pioche[0], "/Back-Draw");
+        loadStack(pioche[1], "/Back-Draw");
         LogUtils.warn("Loaded " + nbCards3 + " pioches");
         int nbCards4 = selectCurrentEnvironnement();
         LogUtils.warn("1 environnement selectionné ");
@@ -75,9 +78,9 @@ public class CardService {
 
 
     public void moveCardFromDrawToPlayer(int player) {
-            int randomPoition = getRandomPosition(pioche);
-            mains[player].push( pioche.get(randomPoition));
-            pioche.remove(randomPoition);
+            int randomPoition = getRandomPosition(pioche[player]);
+            mains[player].push( pioche[player].get(randomPoition));
+            pioche[player].remove(randomPoition);
     }
 
     private int loadStack(Deck<Card> stack, String folder) {
@@ -200,8 +203,8 @@ public class CardService {
 
 
     public void setAllcardsNonActive(int playerId) {
-        for ( Card c : plateaux[playerId]) {
-            c.setActivated(false);
+        for ( Object c : plateaux[playerId]) {
+            ((Card)c).setActivated(false);
         }
     }
 
@@ -213,8 +216,10 @@ public class CardService {
                 return currentEnvironnement;
             case ENVIRONNEMENTS:
                 return environnments;
-            case DRAW:
-                return pioche;
+            case DRAW0:
+                return pioche[0];
+            case DRAW1:
+                return pioche[1];
             case INVOCATIONS:
                 return invocations;
             case GRAVEYARD0:

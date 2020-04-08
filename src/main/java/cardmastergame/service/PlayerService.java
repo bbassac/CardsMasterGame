@@ -17,15 +17,12 @@ public class PlayerService {
     @Value( "${game.pv.max}" )
     private int MAX_PV;
 
-
     public void startNewGame(){
         pvs = new int[]{MAX_PV, MAX_PV};
         chakras = new int[] {0,0};
         extraInfos = new String[] {"",""};
         affinite= AffiniteService.initialize("/Back-Select2");
-
     }
-
 
     public void updatePlayerPvs(int playerId, int newPVs){
         pvs[playerId] = newPVs;
@@ -42,26 +39,19 @@ public class PlayerService {
     public String updateExtra(int playerId, String value) {
         extraInfos[playerId]=value;
         return value;
-
     }
-
 
     public int getChakras(int playerId) {
         return chakras[playerId];
     }
 
     public int updateChakras(int playerId, int value) {
-
         chakras[playerId] = value;
         return  chakras[playerId];
     }
 
     public int getMaxChakra() {
         return MAX_CHAKRA;
-    }
-
-    public Card[] getAffinite(){
-        return affinite;
     }
 
     public Card getAffinite(int playerId) {

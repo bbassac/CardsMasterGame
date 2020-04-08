@@ -8,8 +8,10 @@ public enum StackConstants {
     ENVIRONNEMENT ,
     @ApiModelProperty(notes = "All environnements cards")
     ENVIRONNEMENTS ,
-    @ApiModelProperty(notes = "All pioche")
-    DRAW,
+    @ApiModelProperty(notes = "Pioche joueur 0")
+    DRAW0,
+    @ApiModelProperty(notes = "Pioche joueur 0")
+    DRAW1,
     @ApiModelProperty(notes = "All invocation cards")
     INVOCATIONS,
     @ApiModelProperty(notes = "Cimetiere joueur 0")

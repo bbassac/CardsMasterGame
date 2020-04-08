@@ -17,27 +17,25 @@
 #gallerywrapper #gallery div {
     width:1024px;
     height:1356px;
-    padding-top:10px;
+    /*padding-top:10px;*/
     position:relative;
 }
 
 #gallerywrapper #gallery div img {
     clear:both;
     display:block;
-    margin:0 auto;
+    margin: 0 auto;
     border:0;
-    width: 930px;
+    width: 610px;
 }
 
 #gallerywrapper #gallery div h3 {
-    padding:10px 0 0 0;
-    margin:0;
+    padding:7px 0 0 0;
     font-size:18px;
 }
 
 #gallerywrapper #gallery div p {
     padding:5px 0;
-    margin:0;
     font-size:12px;
     line-height:18px;
 }
@@ -45,8 +43,6 @@
 
 #gallery .previous{
     display:inline;
-
-
     text-decoration:none;
     font-size: 40px;
 }
@@ -62,4 +58,19 @@
 
     text-decoration:none;
     font-size: 40px;
+}
+
+#buttonCopy {
+    height: 25px;
+    width: 64px;
+    margin-top: 5px;
+}
+
+#toCopy {
+    /*text area*/
+    width: 301px;
+    height: 16px;
+    resize: none;
+    margin-right: 20px;
+    margin-top: 5px;
 }
