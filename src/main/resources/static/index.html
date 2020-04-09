@@ -28,6 +28,27 @@
     <a  class="list-group-item" href="./gallery.html">Gallery</a>
     <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
     <button style="height: 20px;width: 60px" onclick="loadFile()">Load</button>
+    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+    <span id="div_horloge"></span>
+
+    <script type="text/javascript">
+        window.onload=function() {
+            horloge('div_horloge');
+        };
+
+        function horloge(el) {
+            if(typeof el=="string") { el = document.getElementById(el); }
+            function actualiser() {
+                var date = new Date();
+                var str = date.getHours();
+                str += ':'+(date.getMinutes()<10?'0':'')+date.getMinutes();
+                //str += ':'+(date.getSeconds()<10?'0':'')+date.getSeconds();
+                el.innerHTML = str;
+            }
+            actualiser();
+            setInterval(actualiser,1000);
+        }
+    </script>
 </Header>
 
 <Board>
