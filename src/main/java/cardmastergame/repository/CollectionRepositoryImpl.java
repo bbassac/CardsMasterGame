@@ -9,6 +9,7 @@ import cardmastergame.service.StackConstants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 
 
 /**
@@ -158,6 +159,11 @@ public class CollectionRepositoryImpl implements CollectionRepositoryCustom {
     @Override
     public Card getAffinite(int playerId) {
         return playerService.getAffinite(playerId);
+    }
+
+    @Override
+    public void filterDraw(int playerId, List<String> result) {
+        cardService.filterDraw(playerId,result);
     }
 
 

@@ -4,6 +4,8 @@ import cardmastergame.bean.Card;
 import cardmastergame.bean.Deck;
 import cardmastergame.service.StackConstants;
 
+import java.util.List;
+
 /**
  * Created by b.bassac on 24/05/2016.
  */
@@ -51,4 +53,6 @@ public interface CollectionRepositoryCustom {
     void setAllcardsNonActive(int playerId);
 
     Card getAffinite(int playerId);
+
+    void filterDraw(int playerId, List<String> result);
 }

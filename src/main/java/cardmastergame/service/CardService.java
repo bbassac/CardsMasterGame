@@ -9,8 +9,11 @@ import org.springframework.stereotype.Component;
 
 import java.io.File;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Random;
+import java.util.logging.Logger;
+import java.util.regex.Pattern;
 
 @Component
 public class CardService {
@@ -78,9 +81,11 @@ public class CardService {
 
 
     public void moveCardFromDrawToPlayer(int player) {
+        if(pioche[player].size()>0) {
             int randomPoition = getRandomPosition(pioche[player]);
-            mains[player].push( pioche[player].get(randomPoition));
+            mains[player].push(pioche[player].get(randomPoition));
             pioche[player].remove(randomPoition);
+        }
     }
 
     private int loadStack(Deck<Card> stack, String folder) {
@@ -198,7 +203,7 @@ public class CardService {
     }
 
     public boolean getUsedOnCard(int playerId, int cardId) {
-        return  findCardInStackById(plateaux[playerId],"plateat joueur " + playerId,cardId).isUsed();
+        return  findCardInStackById(plateaux[playerId],"plateau joueur " + playerId,cardId).isUsed();
     }
 
 
@@ -242,5 +247,18 @@ public class CardService {
                 throw new UnsupportedOperationException();
         }
 
+    }
+
+    public void filterDraw(int playerId, List<String> result) {
+        Deck<Card> newDeck = new Deck<>();
+        for( Object c : pioche[playerId]){
+            Card card = (Card) c;
+            String separator = "\\";
+            if (result.contains(card.getPath().split(Pattern.quote(separator))[1])) {
+                newDeck.add(card);
+            }
+        }
+
+        pioche[playerId] = newDeck;
     }
 }
