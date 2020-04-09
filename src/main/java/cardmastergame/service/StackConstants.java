@@ -29,5 +29,7 @@ public enum StackConstants {
     @ApiModelProperty(notes = "Pile pièges joueur 0")
     TRAP0,
     @ApiModelProperty(notes = "Pile pièges  joueur 1")
-    TRAP1
+    TRAP1,
+    @ApiModelProperty(notes = "Toutes cartes piege")
+    ALL
 }

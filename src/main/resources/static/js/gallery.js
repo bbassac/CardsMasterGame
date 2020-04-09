@@ -15,7 +15,7 @@ function copy(i){
 function refreshImages() {
 
     var xhttp = new XMLHttpRequest();
-    xhttp.open("GET", "stack/DRAW0", false);
+    xhttp.open("GET", "stack/ALL", false);
     xhttp.setRequestHeader("Content-type", "application/json");
     xhttp.send();
     var cards = JSON.parse(xhttp.responseText);

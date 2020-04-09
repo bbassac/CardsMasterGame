@@ -17,6 +17,9 @@ import java.util.regex.Pattern;
 
 @Component
 public class CardService {
+    public static final String BACK_DRAW = "/Back-Draw";
+    public static final String BACK_SELECT = "/Back-Select";
+    public static final String BACK_SELECT_3 = "/Back-Select3";
     private int lastIndex;
     private Map<Integer, Card> allCards;
     private Deck<Card> environnments;
@@ -56,12 +59,12 @@ public class CardService {
         plateaux[1] = new Deck<>();
         allCards = new HashMap<>();
 
-        int nbCards1 = loadStack(environnments, "/Back-Select");
+        int nbCards1 = loadStack(environnments, BACK_SELECT);
         LogUtils.warn("Loaded " + nbCards1 + " environement");
-        int nbCards2 = loadStack(invocations, "/Back-Select3");
+        int nbCards2 = loadStack(invocations, BACK_SELECT_3);
         LogUtils.warn("Loaded " + nbCards2 + " invocations");
-        int nbCards3 = loadStack(pioche[0], "/Back-Draw");
-        loadStack(pioche[1], "/Back-Draw");
+        int nbCards3 = loadStack(pioche[0], BACK_DRAW);
+        loadStack(pioche[1], BACK_DRAW);
         LogUtils.warn("Loaded " + nbCards3 + " pioches");
         int nbCards4 = selectCurrentEnvironnement();
         LogUtils.warn("1 environnement selectionné ");
@@ -243,6 +246,10 @@ public class CardService {
                 return pieges[0];
             case TRAP1:
                 return pieges[1];
+            case ALL:
+                Deck<Card> fullDeck = new Deck<>();
+                loadStack(fullDeck, BACK_DRAW);
+                return fullDeck;
             default:
                 throw new UnsupportedOperationException();
         }
@@ -250,6 +257,10 @@ public class CardService {
     }
 
     public void filterDraw(int playerId, List<String> result) {
+        //Clear de la pioches
+        pioche[playerId].clear();
+        //Reinit from Scratch
+        loadStack(pioche[playerId], BACK_DRAW);
         Deck<Card> newDeck = new Deck<>();
         for( Object c : pioche[playerId]){
             Card card = (Card) c;
@@ -258,7 +269,7 @@ public class CardService {
                 newDeck.add(card);
             }
         }
-
+        //on écrase
         pioche[playerId] = newDeck;
     }
 }
