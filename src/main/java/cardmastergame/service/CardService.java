@@ -261,15 +261,17 @@ public class CardService {
         pioche[playerId].clear();
         //Reinit from Scratch
         loadStack(pioche[playerId], BACK_DRAW);
-        Deck<Card> newDeck = new Deck<>();
-        for( Object c : pioche[playerId]){
-            Card card = (Card) c;
-            String separator = "\\";
-            if (result.contains(card.getPath().split(Pattern.quote(separator))[1])) {
-                newDeck.add(card);
+        if (result.size()>0) {
+            Deck<Card> newDeck = new Deck<>();
+            for (Object c : pioche[playerId]) {
+                Card card = (Card) c;
+                String separator = "\\";
+                if (result.contains(card.getPath().split(Pattern.quote(separator))[1])) {
+                    newDeck.add(card);
+                }
             }
+            //on écrase
+            pioche[playerId] = newDeck;
         }
-        //on écrase
-        pioche[playerId] = newDeck;
     }
 }
