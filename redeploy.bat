@@ -1,4 +1,4 @@
-
+CHCP 65001
 cls
 call git pull
 call mvn clean package
