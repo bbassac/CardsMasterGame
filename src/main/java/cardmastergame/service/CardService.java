@@ -266,7 +266,7 @@ public class CardService {
             for (Object c : pioche[playerId]) {
                 Card card = (Card) c;
                 String separator = "\\";
-                if (result.contains(card.getPath().split(Pattern.quote(separator))[1])) {
+                if (result.contains(card.getPath())) {
                     newDeck.add(card);
                 }
             }
