@@ -1,7 +1,10 @@
 
+
+
 #areaId{
     display: inline-block;
 }
+
 
 #cardList {
     width: 350px;
@@ -16,13 +19,48 @@
     height: 25px;
     width: 64px;
     position: absolute;
-    margin-top: 400px;
-    margin-left: 625px;
+    margin-top: 424px;
+    margin-left: 382px;
+}
+#addId {
+    height: 25px;
+    width: 64px;
+    position: absolute;
+    margin-top: 200px;
+    margin-left: 382px;
+    background-color: lawngreen;
+}
+
+#removeId {
+    height: 25px;
+    width: 64px;
+    position: absolute;
+    margin-top: 230px;
+    margin-left: 382px;
+    background-color: crimson;
+}
+
+#saveId {
+    height: 25px;
+    width: 64px;
+    position: absolute;
+    margin-top: 900px;
+    margin-left: 600px;
+    background-color: cornflowerblue;
+}
+
+#deckList {
+    width: 350px;
+    height: 900px;
+    resize: none;
+    position: absolute;
+    margin-top: 0px;
+    margin-left: 455px;
 }
 
 #textAreaId {
     /*text area*/
-    width: 600px;
+    width: 440px;
     height: 16px;
     resize: none;
     position: absolute;

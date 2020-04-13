@@ -60,7 +60,7 @@ public class GameController extends AbstractController{
             @ApiResponse(code = 500, message = "500")})
     public Deck<Card> getStack(
             @ApiParam(value = "Stack Name ", type = "String", required = true,
-                    allowableValues = "ENVIRONNEMENT,ENVIRONNEMENTS,DRAW,INVOCATIONS,GRAVEYARD0,GRAVEYARD1,BOARD0,BOARD1,HAND0,HAND1,TRAP0,TRAP1")
+                    allowableValues = "ENVIRONNEMENT,ENVIRONNEMENTS,DRAW0,DRAW1,INVOCATIONS,GRAVEYARD0,GRAVEYARD1,BOARD0,BOARD1,HAND0,HAND1,TRAP0,TRAP1")
             @PathVariable("value") StackConstants stackName) {
 
         return customRepo.getStack(stackName);
