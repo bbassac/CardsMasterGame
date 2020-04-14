@@ -45,6 +45,17 @@ function display(){
     textArea.value = imgPath;
 }
 
+function displayDeck(){
+    var selectList = document.getElementById("deckList");
+    var imgPath = selectList.options[selectList.selectedIndex];
+ 
+    var img = document.getElementById("vignetteID");
+    img.src ="img"+imgPath
+
+    var textArea = document.getElementById("textAreaId");
+    textArea.value = imgPath;
+}
+
 function add(){
     var textArea = document.getElementById("textAreaId");
     var card = textArea.value;
