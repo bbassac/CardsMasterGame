@@ -93,3 +93,43 @@ function save(){
     xhttp.send(json);
     
 }
+
+function loadDeck(){
+
+    var input = document.createElement('input');
+    input.type = 'file';
+
+    input.onchange = e => {
+        // getting a hold of the file reference
+        var file = e.target.files[0];
+        var selectList = document.getElementById("deckList");
+
+        var reader = new FileReader();
+        reader.onload = function(progressEvent){      
+          // By lines
+          var lines = this.result.split('\n');
+          for(var line = 0; line < lines.length; line++){
+            if (lines[line] != ""){
+                console.log(lines[line]);
+                var opt = document.createElement('option');
+
+                // create text node to add to option element (opt)
+                opt.appendChild( document.createTextNode(lines[line]) );
+            
+                // set value property of opt
+                opt.value = lines[line]; 
+            
+                // add opt to end of select box (sel)
+                selectList.appendChild(opt); 
+            }
+
+          }
+        };
+        reader.readAsText(file);
+
+
+
+    }
+
+    input.click();
+}

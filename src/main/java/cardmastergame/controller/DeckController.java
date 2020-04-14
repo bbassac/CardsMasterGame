@@ -7,7 +7,9 @@ import cardmastergame.LogUtils;
 import java.io.ByteArrayOutputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @RestController
 public class DeckController extends AbstractController{
@@ -18,10 +20,12 @@ public class DeckController extends AbstractController{
     public byte[] getCollections(
         @RequestBody List<String> deck) throws IOException {
 
-           
+            Set<String> set = new HashSet<>() ;
+            set.addAll(deck) ;
+          
             ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
           
-            for (String s: deck){
+            for (String s: set){
                  outputStream.write(s.getBytes());
                  outputStream.write("\r\n".getBytes());
          

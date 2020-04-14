@@ -49,6 +49,14 @@
     background-color: cornflowerblue;
 }
 
+#openButtonId{
+    height: 25px;
+    width: 64px;
+    position: absolute;
+    margin-top: 50px;
+    margin-left: 382px;
+}
+
 #deckList {
     width: 350px;
     height: 900px;
