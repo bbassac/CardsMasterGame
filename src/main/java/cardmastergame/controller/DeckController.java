@@ -7,6 +7,7 @@ import cardmastergame.LogUtils;
 import java.io.ByteArrayOutputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.nio.charset.Charset;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -15,7 +16,7 @@ import java.util.Set;
 public class DeckController extends AbstractController{
 
     @CrossOrigin
-    @RequestMapping(path="/deck", method = RequestMethod.PUT,produces = "text/plain")
+    @RequestMapping(path="/deck", method = RequestMethod.PUT,produces = "text/plain;charset=utf-8")
     @ResponseBody
     public byte[] getCollections(
         @RequestBody List<String> deck) throws IOException {
@@ -26,7 +27,7 @@ public class DeckController extends AbstractController{
             ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
           
             for (String s: set){
-                 outputStream.write(s.getBytes());
+                 outputStream.write(s.getBytes(Charset.forName("utf-8") ));
                  outputStream.write("\r\n".getBytes());
          
             }

@@ -150,7 +150,7 @@ var saveAs = _global.saveAs || (
         else location = url
         popup = null // reverse-tabnabbing #460
       }
-      reader.readAsDataURL(blob)
+      reader.readAsDataURL(blob,"UTF-8")
     } else {
       var URL = _global.URL || _global.webkitURL
       var url = URL.createObjectURL(blob)

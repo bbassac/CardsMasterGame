@@ -24,8 +24,7 @@ function refreshImages() {
     for (var i=0; i< cards.length;i++){
         var option = document.createElement("option");
         option.value = cards[i].id;
-        option.tag=cards[i].path;
-        option.text = cards[i].path.split("\\")[1];
+        option.text = cards[i].path;
         selectList.appendChild(option);
     }
 
@@ -36,7 +35,7 @@ function refreshImages() {
 
 function display(){
     var selectList = document.getElementById("cardList");
-    var imgPath = selectList.options[selectList.selectedIndex].tag;
+    var imgPath = selectList.options[selectList.selectedIndex].text;
  
     var img = document.getElementById("vignetteID");
     img.src ="img"+imgPath
@@ -47,13 +46,14 @@ function display(){
 
 function displayDeck(){
     var selectList = document.getElementById("deckList");
-    var imgPath = selectList.options[selectList.selectedIndex];
+    var imgPath = selectList.options[selectList.selectedIndex].text;
  
     var img = document.getElementById("vignetteID");
     img.src ="img"+imgPath
 
     var textArea = document.getElementById("textAreaId");
     textArea.value = imgPath;
+
 }
 
 function add(){
@@ -71,12 +71,13 @@ function add(){
 
     // add opt to end of select box (sel)
     selectList.appendChild(opt); 
-
+    document.getElementById("cardList").focus();
 }
 
 function remove(){
     var selectList = document.getElementById("deckList");
     selectList.removeChild( selectList.options[selectList.selectedIndex]); 
+    selectList.focus();
 }
 
 function save(){
@@ -96,7 +97,7 @@ function save(){
     xhttp.responseType = "arraybuffer";
 	
 	xhttp.onload = function(oEvent) {
-	  var blob = new Blob([xhttp.response], {type: "text/plain"});
+	  var blob = new Blob([xhttp.response], {type: "text/plain;charset=utf-8"});
 	  saveAs(blob, "Deck.txt"); 
 	};
 
@@ -136,7 +137,7 @@ function loadDeck(){
 
           }
         };
-        reader.readAsText(file);
+        reader.readAsText(file,"UTF-8");
 
 
 
