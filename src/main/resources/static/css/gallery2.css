@@ -8,11 +8,11 @@
 
 #cardList {
     width: 350px;
-    height: 900px;
+    height: 850px;
 }
 
 #vignetteID{
-    height: 900px;
+    height: 850px;
 }
 
 #copyButtonId {
@@ -59,7 +59,7 @@
 
 #deckList {
     width: 350px;
-    height: 900px;
+    height: 850px;
     resize: none;
     position: absolute;
     margin-top: 0px;
@@ -77,12 +77,12 @@
 
 #counterId{
     position: absolute;
-    margin-top: 910px;
+    margin-top: 855px;
     margin-left: 480px;
 }
 
 #libelleCounterId{
     position: absolute;
-    margin-top: 910px;
+    margin-top: 855px;
     margin-left: 510px;
 }
