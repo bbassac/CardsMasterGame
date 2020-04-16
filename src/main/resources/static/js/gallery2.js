@@ -72,12 +72,14 @@ function add(){
     // add opt to end of select box (sel)
     selectList.appendChild(opt); 
     document.getElementById("cardList").focus();
+    updateCounter(selectList.options.length);
 }
 
 function remove(){
     var selectList = document.getElementById("deckList");
     selectList.removeChild( selectList.options[selectList.selectedIndex]); 
     selectList.focus();
+    updateCounter(selectList.options.length);
 }
 
 function save(){
@@ -104,6 +106,12 @@ function save(){
 
     xhttp.send(json);
     
+}
+
+function updateCounter(nbCards){
+    var spanCounter = document.getElementById("counterId");
+    spanCounter.innerText=nbCards;
+
 }
 
 function loadDeck(){
@@ -136,6 +144,7 @@ function loadDeck(){
             }
 
           }
+          updateCounter(selectList.options.length);
         };
         reader.readAsText(file,"UTF-8");
 

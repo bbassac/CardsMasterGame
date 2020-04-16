@@ -74,3 +74,15 @@
     position: absolute;
     margin-top: 400px;
 }
+
+#counterId{
+    position: absolute;
+    margin-top: 910px;
+    margin-left: 480px;
+}
+
+#libelleCounterId{
+    position: absolute;
+    margin-top: 910px;
+    margin-left: 510px;
+}
