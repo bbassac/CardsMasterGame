@@ -69,12 +69,12 @@ function showPopinGrave(who){
 	displayPopinSelectCard(who, cards, putCardFromGraveyardToPlayer, "url('../img/Graveyard-2.png')");
 }
 
-function putCardFromGraveyardToPlayer(playerId, who) {
+function putCardFromGraveyardToPlayer(cardId, playerId, who) {
 
 	if(who=="me"){
-		addGraveyardCardToMe(playerId, this.id);
+		addGraveyardCardToMe(cardId, playerId);
 	} else {
-		addGraveyardCardToYou(playerId, this.id);	
+		addGraveyardCardToYou(cardId, playerId);	
 	}
 
 	hideCardSelectPopin();
@@ -84,7 +84,7 @@ function putCardFromGraveyardToPlayer(playerId, who) {
 /**
  * Ajoute une carte d'un cimetière dans la main du joueur courant
  */
-function addGraveyardCardToMe(playerId, cardId) {
+function addGraveyardCardToMe(cardId, playerId) {
 	
 	var xhttp = new XMLHttpRequest();
 	xhttp.open("GET", "player/" + playerId + "/graveyard/" + cardId, false);
@@ -96,7 +96,7 @@ function addGraveyardCardToMe(playerId, cardId) {
 /**
  * Ajoute une carte d'un cimetière dans la main de l'adversaire du joueur courant
  */
-function addGraveyardCardToYou(playerId, cardId) {
+function addGraveyardCardToYou(cardId, playerId) {
 
 	var oppPlayerId = Math.abs(1-playerId);
 	

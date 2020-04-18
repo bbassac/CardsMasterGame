@@ -30,9 +30,10 @@ function showPopinInvocations() {
 
 }
 
-function putCardFromInvocationToPlayer(playerId, who) {
+function putCardFromInvocationToPlayer(cardId, playerId, who) {
+
     var xhttp = new XMLHttpRequest();
-    xhttp.open("GET", "player/"+playerId+"/invocations/"+this.id, false);
+    xhttp.open("GET", "player/"+playerId+"/invocations/"+cardId, false);
     xhttp.setRequestHeader("Content-type", "application/json");
     xhttp.send();
 
