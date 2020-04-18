@@ -20,7 +20,7 @@ public class AffiniteService {
 
         Deck<Card> stack = new Deck<>();
         int lastIndex = 0;
-        String prop = FileUtils.getCurrentJarPath();
+        String prop = FileUtils.getCurrentJarImgPath();
         File path = new File(prop + folder);
         File[] listOfFiles = path.listFiles();
         for (File listOfFile : listOfFiles) {

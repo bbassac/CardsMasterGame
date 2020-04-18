@@ -4,8 +4,12 @@ import java.io.File;
 
 public class FileUtils {
 
-    public static String getCurrentJarPath() {
-        String imgDir = "\\static\\img";
+    public static String getCurrentJarImgPath() {
+        return getCurrentJarStaticPath() + "\\img";
+    }
+
+    public static String getCurrentJarStaticPath() {
+        String staticDir = "\\static";
         String prop="";
         File currentDire = null;
         try {
@@ -14,15 +18,15 @@ public class FileUtils {
             System.out.println("Error loding root path " + e.getMessage());
         }
         if(currentDire.isFile()){
-            prop=currentDire.getParentFile()+"\\classes"+imgDir;
+            prop=currentDire.getParentFile()+"\\classes"+staticDir;
 
         }else if (currentDire.isDirectory()){
-            prop =  currentDire.getPath()+"\\..\\"+imgDir;
+            prop =  currentDire.getPath()+"\\.."+staticDir;
 
         }
         return prop;
     }
-
+    
     private static java.io.File getJarFile(Class _class) throws Exception {
         String path = _class.getPackage().getName().replace(".","/");
         String url = _class.getClassLoader().getResource(path).toString();
