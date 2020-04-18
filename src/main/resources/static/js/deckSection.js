@@ -54,7 +54,7 @@ function refreshBoard(forceUpdate){
     var currentPlayerId = document.getElementById("currentPlayerId").value;
 
     fillDrawBoard(currentPlayerId,"draw","img/Back-Draw.png",drawImageHeight);
-    fillDrawBoard(currentPlayerId,"invocations","img/Back-Select.png",drawImageHeight);
+    initInvocationsDeck(currentPlayerId,drawImageHeight);
     refreshEnvironment(drawImageHeight);
     refreshOpponentBoard(forceUpdate);
     refreshPlayerBoard(forceUpdate);

@@ -1,22 +1,20 @@
 /**
- * 
- */
- 
-
-/**
- * Affiche la "popin" de cimetière
+ * Affiche la "popin" de sélection de carte
  *
  */
-function showGraveyardPopin() {
-	showPopin("popinGraveyardDiv");
+function showCardSelectPopin(background) {
+
+	document.getElementById("popinCardSelectDiv").style.backgroundImage = background; 
+
+	showPopin("popinCardSelectDiv");
 }
 
 /**
- * Masque la "popin" de cimetière
+ * Masque la "popin" de sélection de carte
  *
  */
-function hideGraveyardPopin() {
-	hidePopin("popinGraveyardDiv");
+function hideCardSelectPopin() {
+	hidePopin("popinCardSelectDiv");
 }
 
 /**

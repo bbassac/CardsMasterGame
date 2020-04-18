@@ -81,7 +81,14 @@
     <Hand id="hand"> Main du joueur </Hand>
 
     <Draw id="draw"></Draw>
-    <Invocations id="invocations"></Invocations>
+    
+    <Invocations id="invocations">
+    	<div>
+    		<img id="imgInvocation" src="img/Back-Select.png">
+    	</div>
+    </Invocations>
+    
+    
     <CurrentEnvironment id="currentEnvironment"></CurrentEnvironment>
     <Affinite id = "affiniteId"></Affinite>
     <Traps id="traps"></Traps>
@@ -94,22 +101,24 @@
 	<div id="popinCardDiv" class="popin_card">
 		<img id="popinCardImg" border=0 alt='Mon image' height='100%' onclick="hideCardPopin()"></img>
 	</div>
-
-	<!-- div de la popin de cimetière -->
-	<div id="popinGraveyardDiv" class="popin_graveyard">
-		<img class="closePopin" src="img/ClosePopin.png" onclick="hideGraveyardPopin()"></img>
-		<div id="popinGraveyardCardsArea" class="popinGraveyardCardsArea">
-		</div>
-	</div>
-
+  
 </Board>
+
+<!-- div de la popin de sélection de carte -->
+<div id="popinCardSelectDiv" class="popin_cardSelect">
+	<img class="closePopin" src="img/ClosePopin.png" onclick="hideCardSelectPopin()"></img>
+	<div id="popinCardsArea" class="popinSelectCardsArea">
+	</div>
+</div>
 
 <script src="js/affinite.js"></script>
 <script src="js/loadfile.js"></script>
 <script src="js/cardZooming.js"></script>
 <script src="js/deckSection.js"></script>
 <script src="js/drawSection.js"></script>
+<script src="js/popinSelectCard.js"></script>
 <script src="js/graveyard.js"></script>
+<script src="js/invocations.js"></script>
 <script src="js/dice.js"></script>
 <script src="js/pv.js"></script>
 <script src="js/chakra.js"></script>
