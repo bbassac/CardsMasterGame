@@ -36,48 +36,5 @@ function fillDrawBoard(playerId, id, image,drawImageHeight){
             xhttp.send();
             refreshBoard();
         });
-    }else if (id=="invocations"){
-
-        img.setAttribute('title', "Piocher une carte");
-        img.setAttribute('onclick','pickInvocation(document.getElementById(\'selectInvocations\').value);');
-
-        var xhttp = new XMLHttpRequest();
-        xhttp.open("GET", "stack/INVOCATIONS", false);
-        xhttp.setRequestHeader("Content-type", "application/json");
-        xhttp.send();
-        var cards = JSON.parse(xhttp.responseText);
-        var selectList = document.createElement("select");
-        selectList.id = "selectInvocations";
-
-        div.appendChild(selectList);
-        for (var i=0; i< cards.length;i++){
-            var option = document.createElement("option");
-            option.value = cards[i].id;
-            option.tag=cards[i].path;
-            option.text = cards[i].path.substring(14);
-            selectList.appendChild(option);
-        }
-
-        var buttonDisplayInvoc = document.createElement("button");
-        buttonDisplayInvoc.innerHTML = "Display Invocation";
-        buttonDisplayInvoc.id = "buttonDisplayInvoc"
-        div.appendChild(buttonDisplayInvoc);
-        buttonDisplayInvoc.setAttribute('onclick', 'displayInvocation()');
     }
-}
-
-function displayInvocation() {
-	var selectBox = document.getElementById('selectInvocations');
-	var imgPath = 'img' + encodeURI(selectBox.options[selectBox.selectedIndex].tag); 
-	showCardPopin(imgPath);
-}
-
-function pickInvocation(cardId){
-    var currentPlayerId = document.getElementById("currentPlayerId").value;
-
-    var xhttp = new XMLHttpRequest();
-    xhttp.open("GET", "player/"+currentPlayerId+"/invocations/"+cardId, false);
-    xhttp.setRequestHeader("Content-type", "application/json");
-    xhttp.send();
-    refreshBoard();
 }
