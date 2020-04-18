@@ -72,9 +72,9 @@ function showPopinGrave(who){
 function putCardFromGraveyardToPlayer(playerId, who) {
 
 	if(who=="me"){
-		addGraveyardCardToMe(playerId, this.cardId);
+		addGraveyardCardToMe(playerId, this.id);
 	} else {
-		addGraveyardCardToYou(playerId, this.cardId);	
+		addGraveyardCardToYou(playerId, this.id);	
 	}
 
 	hideCardSelectPopin();

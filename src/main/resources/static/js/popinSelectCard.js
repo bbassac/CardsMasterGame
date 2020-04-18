@@ -43,7 +43,7 @@ function displayPopinSelectCard(who, cards, addFunction, background) {
         //button.setAttribute('onclick','putCardFromGraveyardToPlayer(' + parseInt(currentPlayerId) + ',this.id,\"' + who + '\")');
         
         button.cardId = cards[i].id;
-        button.addEventListener("click", addFunction.bind(button, parseInt(currentPlayerId), who)); 
+        button.addEventListener("click", addFunction.bind(cards[i], parseInt(currentPlayerId), who)); 
         
         
         button.classList.add('graveButtonClass');

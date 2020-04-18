@@ -26,14 +26,13 @@ function showPopinInvocations() {
 	xhttp.send();
 	var cards = JSON.parse(xhttp.responseText);
 	
-	displayPopinSelectCard("me", cards, putCardFromInvocationToPlayer, "url('../img/Invocations.png')");
+	displayPopinSelectCard("me", cards, putCardFromInvocationToPlayer, "url('../img/Invocation.png')");
 
 }
 
 function putCardFromInvocationToPlayer(playerId, who) {
-	
     var xhttp = new XMLHttpRequest();
-    xhttp.open("GET", "player/"+playerId+"/invocations/"+this.cardId, false);
+    xhttp.open("GET", "player/"+playerId+"/invocations/"+this.id, false);
     xhttp.setRequestHeader("Content-type", "application/json");
     xhttp.send();
 
