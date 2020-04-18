@@ -62,11 +62,6 @@ function refreshBoard(forceUpdate){
 
 function refreshEnvironment(drawImageHeight) {
 	fillDrawBoard(currentPlayerId,"currentEnvironment","img" + getCurrentEnvironmentCard(),drawImageHeight);
-
-	var imgEnvCard = document.getElementById("imgcurrentEnvironment");
-	if (imgEnvCard) {
-		setZooming(imgEnvCard, TRANSLATE_UP, 3);
-	}
 }
 
 function refreshOpponentBoard(forceUpdate){
@@ -154,8 +149,11 @@ function fillDeck(playerId,section,stackName,gameImageHeight){
 
         }else if (section=="traps"){
         	img.height = drawImageHeight;
-            img.setAttribute('onclick','moveCardFromTrapsToGraveyard('+cards[i].id+');');
-			setZooming(img, TRANSLATE_UP_LEFT, 3);
+	        img.onclick = function() { showCardPopin(img.src); };
+	        img.oncontextmenu = (function() { 
+	        		moveCardFromTrapsToGraveyard(this.id); 
+	        		return false; 
+	        	}).bind(cards[i]);
 
         }else if (section=="boardPlayer"){
             var div = document.createElement("div-"+ cards[i].id);

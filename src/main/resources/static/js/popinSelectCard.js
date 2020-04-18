@@ -28,6 +28,7 @@ function displayPopinSelectCard(who, cards, addFunction, background) {
         img.setAttribute("position", "absolute");
         img.title = cards[i].id;
         img.setAttribute("id","c-"+cards[i].id);
+        img.onclick = (function() {showCardPopin(this.src); }).bind(img) ;
         imgDiv.appendChild(img);
         cardDiv.appendChild(imgDiv);
 

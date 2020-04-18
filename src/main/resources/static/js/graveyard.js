@@ -25,30 +25,32 @@ function fillGraveyard(playerId, graveId, gameImageHeight, forceUpdate) {
     
         //Appercu dessus de la pile
         var cardDiv = document.createElement("div");
-        if (graveId == "graveyardId") {
-            cardDiv.id="divGraveyardMe";
-        } else {
-            cardDiv.id="divGraveyardYou";
-        }
                    
         var img = document.createElement("img");            
         img.src = "img/" + encodeURI(cards[cards.length - 1].path);
         img.height = gameImageHeight;
         img.title = cards[cards.length - 1].id;
-        img.setAttribute('onclick', 'showCardPopin(this.src);');
         img.classList.add("graveyardStack");
         cardDiv.appendChild(img);
         graveyardArea.appendChild(cardDiv);
         
-        if (graveId == "graveyardId") {
-        	setZooming(img, TRANSLATE_CENTER);
-            img.setAttribute('onclick', 'showPopinGrave(\"me\");');
-        } else {
-			setZooming(img, TRANSLATE_DOWN);
-            img.setAttribute('onclick', 'showPopinGrave(\"you\");');
-        }
-
+		
+        var who = (graveId == "graveyardId") ? "me" : "you";
+        img.oncontextmenu = function() { return graveyardClick(event, who); };
+        img.onclick = function() { return graveyardClick(event, who); };
+               
     }
+}
+
+function graveyardClick(event, who) {
+
+	if (event.button == 0) {
+		showCardPopin(event.target.src);
+	} else if (event.button == 2) {
+		showPopinGrave(who);
+	}
+
+	return false;
 }
 
 function showPopinGrave(who){
