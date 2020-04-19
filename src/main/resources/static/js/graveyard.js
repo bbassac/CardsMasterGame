@@ -71,12 +71,12 @@ function showPopinGrave(who){
 	displayPopinSelectCard(who, cards, putCardFromGraveyardToPlayer, "url('../img/Graveyard-2.png')");
 }
 
-function putCardFromGraveyardToPlayer(cardId, playerId, who) {
+function putCardFromGraveyardToPlayer(playerId, card, who) {
 
 	if(who=="me"){
-		addGraveyardCardToMe(cardId, playerId);
+		addGraveyardCardToMe(playerId, card);
 	} else {
-		addGraveyardCardToYou(cardId, playerId);	
+		addGraveyardCardToYou(playerId, card);	
 	}
 
 	hideCardSelectPopin();
@@ -86,10 +86,10 @@ function putCardFromGraveyardToPlayer(cardId, playerId, who) {
 /**
  * Ajoute une carte d'un cimetière dans la main du joueur courant
  */
-function addGraveyardCardToMe(cardId, playerId) {
+function addGraveyardCardToMe(playerId, card) {
 	
 	var xhttp = new XMLHttpRequest();
-	xhttp.open("GET", "player/" + playerId + "/graveyard/" + cardId, false);
+	xhttp.open("GET", "player/" + playerId + "/graveyard/" + card.id, false);
 	xhttp.setRequestHeader("Content-type", "application/json");
 	xhttp.send();
 	
@@ -98,12 +98,12 @@ function addGraveyardCardToMe(cardId, playerId) {
 /**
  * Ajoute une carte d'un cimetière dans la main de l'adversaire du joueur courant
  */
-function addGraveyardCardToYou(cardId, playerId) {
+function addGraveyardCardToYou(playerId, card) {
 
 	var oppPlayerId = Math.abs(1-playerId);
 	
 	var xhttp = new XMLHttpRequest();
-	xhttp.open("GET", "opponent/" + oppPlayerId + "/graveyard/" + cardId + "/player/" + playerId, false);
+	xhttp.open("GET", "opponent/" + oppPlayerId + "/graveyard/" + card.id + "/player/" + playerId, false);
 	xhttp.setRequestHeader("Content-type", "application/json");
 	xhttp.send();
 	

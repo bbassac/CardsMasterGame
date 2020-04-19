@@ -38,11 +38,15 @@ function displayPopinSelectCard(who, cards, addFunction, background) {
 		buttonDiv.classList.add('graveDivButtonClass')
         cardDiv.appendChild(buttonDiv);
 
+		// Bouton d'action d'ajout
         var button = document.createElement("button");
         button.innerHTML = "+";
-        
-        button.cardId = cards[i].id;
-        button.addEventListener("click", addFunction.bind(cards[i], cards[i].id, parseInt(currentPlayerId), who)); 
+        button.card = cards[i];
+        button.cardDiv = cardDiv;
+        button.addEventListener("click", (function() {
+        		this.cardDiv.style.display = "none";
+        		addFunction(parseInt(currentPlayerId), this.card, who);
+        	}).bind(button)); 
         
         
         button.classList.add('graveButtonClass');
