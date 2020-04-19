@@ -3,7 +3,7 @@ body {
   user-select: none;
 }
 
-.Board {
+Board {
     display: grid;
     display: -ms-grid;
     height: 1040px;
@@ -83,7 +83,7 @@ boardplayer > div {
     align-items: center;
 }
 
-.GraveyardPlayer {
+GraveyardPlayer {
     position: relative;
     grid-column: 6;
     grid-row: 2;
