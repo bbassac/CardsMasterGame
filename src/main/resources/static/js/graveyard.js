@@ -25,30 +25,32 @@ function fillGraveyard(playerId, graveId, gameImageHeight, forceUpdate) {
     
         //Appercu dessus de la pile
         var cardDiv = document.createElement("div");
-        if (graveId == "graveyardId") {
-            cardDiv.id="divGraveyardMe";
-        } else {
-            cardDiv.id="divGraveyardYou";
-        }
                    
         var img = document.createElement("img");            
         img.src = "img/" + encodeURI(cards[cards.length - 1].path);
         img.height = gameImageHeight;
         img.title = cards[cards.length - 1].id;
-        img.setAttribute('onclick', 'showCardPopin(this.src);');
         img.classList.add("graveyardStack");
         cardDiv.appendChild(img);
         graveyardArea.appendChild(cardDiv);
         
-        if (graveId == "graveyardId") {
-        	setZooming(img, TRANSLATE_CENTER);
-            img.setAttribute('onclick', 'showPopinGrave(\"me\");');
-        } else {
-			setZooming(img, TRANSLATE_DOWN);
-            img.setAttribute('onclick', 'showPopinGrave(\"you\");');
-        }
-
+		
+        var who = (graveId == "graveyardId") ? "me" : "you";
+        img.oncontextmenu = function() { return graveyardClick(event, who); };
+        img.onclick = function() { return graveyardClick(event, who); };
+               
     }
+}
+
+function graveyardClick(event, who) {
+
+	if (event.button == 0) {
+		showCardPopin(event.target.src);
+	} else if (event.button == 2) {
+		showPopinGrave(who);
+	}
+
+	return false;
 }
 
 function showPopinGrave(who){
@@ -69,12 +71,12 @@ function showPopinGrave(who){
 	displayPopinSelectCard(who, cards, putCardFromGraveyardToPlayer, "url('../img/Graveyard-2.png')");
 }
 
-function putCardFromGraveyardToPlayer(cardId, playerId, who) {
+function putCardFromGraveyardToPlayer(playerId, card, who) {
 
 	if(who=="me"){
-		addGraveyardCardToMe(cardId, playerId);
+		addGraveyardCardToMe(playerId, card);
 	} else {
-		addGraveyardCardToYou(cardId, playerId);	
+		addGraveyardCardToYou(playerId, card);	
 	}
 
 	hideCardSelectPopin();
@@ -84,10 +86,10 @@ function putCardFromGraveyardToPlayer(cardId, playerId, who) {
 /**
  * Ajoute une carte d'un cimetière dans la main du joueur courant
  */
-function addGraveyardCardToMe(cardId, playerId) {
+function addGraveyardCardToMe(playerId, card) {
 	
 	var xhttp = new XMLHttpRequest();
-	xhttp.open("GET", "player/" + playerId + "/graveyard/" + cardId, false);
+	xhttp.open("GET", "player/" + playerId + "/graveyard/" + card.id, false);
 	xhttp.setRequestHeader("Content-type", "application/json");
 	xhttp.send();
 	
@@ -96,12 +98,12 @@ function addGraveyardCardToMe(cardId, playerId) {
 /**
  * Ajoute une carte d'un cimetière dans la main de l'adversaire du joueur courant
  */
-function addGraveyardCardToYou(cardId, playerId) {
+function addGraveyardCardToYou(playerId, card) {
 
 	var oppPlayerId = Math.abs(1-playerId);
 	
 	var xhttp = new XMLHttpRequest();
-	xhttp.open("GET", "opponent/" + oppPlayerId + "/graveyard/" + cardId + "/player/" + playerId, false);
+	xhttp.open("GET", "opponent/" + oppPlayerId + "/graveyard/" + card.id + "/player/" + playerId, false);
 	xhttp.setRequestHeader("Content-type", "application/json");
 	xhttp.send();
 	

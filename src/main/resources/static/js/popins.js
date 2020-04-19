@@ -3,9 +3,7 @@
  *
  */
 function showCardSelectPopin(background) {
-
-	document.getElementById("popinCardSelectDiv").style.backgroundImage = background; 
-
+	document.getElementById("popin_cardSelect").style.backgroundImage = background; 
 	showPopin("popinCardSelectDiv");
 }
 
@@ -43,7 +41,7 @@ function hideCardPopin() {
  *
  */
 function hideAllPopins() {
-	hideGraveyardPopin();
+	hideCardSelectPopin();
 	hideCardPopin();
 }
 
