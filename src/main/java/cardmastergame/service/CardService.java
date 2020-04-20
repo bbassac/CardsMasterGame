@@ -22,12 +22,12 @@ public class CardService {
     private int lastIndex;
     private Map<Integer, Card> allCards;
     private Deck<Card> environnments;
-    private Deck[] pioche;
+    private Deck<Card>[] pioche;
     private Deck<Card> invocations;
-    private Deck[] cimetieres;
-    private Deck[] mains;
-    private Deck[] plateaux;
-    private Deck[] pieges;
+    private Deck<Card>[] cimetieres;
+    private Deck<Card>[] mains;
+    private Deck<Card>[] plateaux;
+    private Deck<Card>[] pieges;
     private Deck<Card> currentEnvironnement;
 
    // private CardUpdater cardUpdater = new CardUpdater("Naruto.json"); 
@@ -268,7 +268,6 @@ public class CardService {
             Deck<Card> newDeck = new Deck<>();
             for (Object c : pioche[playerId]) {
                 Card card = (Card) c;
-                String separator = "\\";
                 if (result.contains(card.getPath())) {
                     newDeck.add(card);
                 }
