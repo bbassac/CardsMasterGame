@@ -26,10 +26,9 @@
 
 * [ ] Homogénéiser le sort de soin  (permanent VS activate 1x/tour)
 * [ ] Ajouter des sorts de destruction d'équipement
-* [ ] Autozoom sur les pieges
-* [X] Aligner la carte de pioche
-* [ ] Généraliser les auto-zooms homogènes
-* [ ] Probleme de scroll bar quand cartes used
+* [ ] Ajouter images de fond cimetiere/invocation
+* [ ] Refacto Back Json Standard
+* [ ] Séquence js dans HTML (fillPVs is not defined)
 * [X] Cimetiere vers main -> doit refresh la main (bug cimetiere refresh adversaire)
 * [X] Bouton nouveau tour
 * [X] Ajouter un champs texte libre par joueur
