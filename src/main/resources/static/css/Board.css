@@ -1,15 +1,47 @@
 body {
   margin: 0;
   user-select: none;
+  background-color: black;
+}
+
+Header {
+	background-color: white;
+	padding-left: 10px;
+}
+
+#currentPlayerId {
+	margin-right: 50px;
+}
+
+.refeshButton {
+	background: url("../img/reload.png");
+	background-repeat : no-repeat;
+	background-position: center;
+	background-size: contain;
+	height: 20px;
+	width: 30px;
+	margin-right: 50px;
+	margin-bottom: 0;
+	transform : translateY(2px);
+}
+
+.list-group-item {
+	margin-right: 50px;
+}
+
+.buttonLoad {
+	height: 20px;
+	width: 60px;
+	margin-right: 200px;
 }
 
 Board {
     display: grid;
     display: -ms-grid;
-    height: 1040px;
+    
     border: 1px solid black;
-    grid-template-columns: 220px auto 200px 200px 87px 198px 115px;
-    grid-template-rows: 298px 298px 298px 146px;
+    grid-template-columns: 230px auto 200px 200px 87px 198px 115px;
+    grid-template-rows: 298px 298px 298px auto;
     -ms-grid-columns: 220px auto 200px 200px 198px 115px;
     -ms-grid-rows: 298px 298px 298px 146px;
     background: url("../img/Fond2.png") no-repeat;
@@ -94,7 +126,7 @@ GraveyardPlayer {
     display: flex;
 }
 
-.GraveyardPlayer > div {
+GraveyardPlayer > div {
     margin: auto;
 }
 
@@ -185,6 +217,10 @@ Traps {
     text-align: right;
 }
 
+Traps div {
+	position: relative;
+}
+
 #nbTrapsId {
     display: flex;
     flex-direction: row;
@@ -201,15 +237,6 @@ Traps {
 
 #handImgId {
     vertical-align: middle;
-}
-
-.grave-button {
-    height: 22.5px;
-    text-align: center;
-    margin-top: -1px;
-    display: inline;
-    vertical-align: text-top;
-    margin-left: 10px;
 }
 
 #selectInvocations {
@@ -244,10 +271,6 @@ Traps {
 }
 
 
-.graveyardStack {
-    margin: auto;
-}
-
 .toGraveyardDiv {
     position: absolute;
     bottom: 2px;
@@ -261,26 +284,6 @@ Traps {
 
 .toGraveyardButton {
     width: 100%;
-}
-
-.graveButtonClass {
-    width: 40px;
-    border: 0;
-    height: 18px;
-    margin-top: 1px;
-    margin-left: 9px;
-    font-size: 1rem;
-    text-align: center;
-    color: #fff;
-    text-shadow: 1px 1px 1px #000;
-    border-radius: 10px;
-    background-color: rgba(0, 220, 0, 1);
-    background-image: linear-gradient(to top left,
-    rgba(0, 0, 0, .2),
-    rgba(0, 0, 0, .2) 30%,
-    rgba(0, 0, 0, 0));
-    box-shadow: inset 2px 2px 3px rgba(255, 255, 255, .6),
-    inset -2px -2px 3px rgba(0, 0, 0, .6);
 }
 
 .newTurnButton {

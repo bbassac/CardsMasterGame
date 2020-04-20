@@ -4,7 +4,6 @@ function manageAffinite(){
   
 }
 
-
 function displayAffiniteJoueur() {
     var currentPlayerId = document.getElementById("currentPlayerId").value;
     //affinite
@@ -19,6 +18,7 @@ function displayAffiniteJoueur() {
 
     var imgAffinite = document.createElement("img");
     imgAffinite.id="affiniteImg";
+    imgAffinite.style.height = drawImageHeight + "px";
     imgAffinite.src = "img" + affiniteCard.path;
     imgAffinite.setAttribute('onclick','showCardPopin(this.src);');
     var spanToolTipText = document.createElement("span");

@@ -28,25 +28,27 @@ function displayPopinSelectCard(who, cards, addFunction, background) {
         img.setAttribute("position", "absolute");
         img.title = cards[i].id;
         img.setAttribute("id","c-"+cards[i].id);
+        img.onclick = (function() {showCardPopin(this.src); }).bind(img) ;
         imgDiv.appendChild(img);
         cardDiv.appendChild(imgDiv);
 
 		// bouton d'ajout vers un joueur
 		var buttonDiv = document.createElement("div");
 		buttonDiv.setAttribute("id" , "buttonDiv" + cards[i].id);
-		buttonDiv.classList.add('graveDivButtonClass')
+		buttonDiv.classList.add('popinSelectDivButton')
         cardDiv.appendChild(buttonDiv);
 
-
+		// Bouton d'action d'ajout
         var button = document.createElement("button");
+        button.classList.add('popinSelectButton');
         button.innerHTML = "+";
-        //button.setAttribute("id",cards[i].id);
-        //button.setAttribute('onclick','putCardFromGraveyardToPlayer(' + parseInt(currentPlayerId) + ',this.id,\"' + who + '\")');
-        
-        button.cardId = cards[i].id;
-        button.addEventListener("click", addFunction.bind(cards[i], cards[i].id, parseInt(currentPlayerId), who)); 
+        button.card = cards[i];
+        button.cardDiv = cardDiv;
+        button.addEventListener("click", (function() {
+        		this.cardDiv.style.display = "none";
+        		addFunction(parseInt(currentPlayerId), this.card, who);
+        	}).bind(button)); 
 
-        button.classList.add('graveButtonClass');
         buttonDiv.appendChild(button);        
 
 		// ajout de la carte à la popin

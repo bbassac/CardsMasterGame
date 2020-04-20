@@ -5,30 +5,25 @@
     <title>Card Master Game</title>
     <link rel="stylesheet" href="css/Board.css" type="text/css" />
     <link rel="stylesheet" href="css/popins.css" type="text/css" />
+    <link rel="stylesheet" href="css/card.css" type="text/css" />
 </head>
 
 <body>
 
 
 <Header>
-    <Doc >
-        <a  class="list-group-item" href="./swagger-ui.html">Documentation</a>
-        <a  class="list-group-item" href="./README.html">Règles du jeu</a>
+    <Doc>
+        <a class="list-group-item" href="./swagger-ui.html">Documentation</a>
+        <a class="list-group-item" href="./README.html">Règles du jeu</a>
     </Doc>
     ID du joueur
-        <select id="currentPlayerId" onchange="refreshBoard(true)">
-            <option selected="selected" value="0">0</option>
-            <option value="1">1</option>
-        </select>
-        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-
-    <button style="background: url(img/reload.png);height: 20px;width: 20px" onclick="refreshBoard()"  > </button>
-    
-    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+	<select id="currentPlayerId" onchange="refreshBoard(true)">
+	    <option selected="selected" value="0">0</option>
+	    <option value="1">1</option>
+	</select>
+    <button class="refeshButton" onclick="refreshBoard()"></button>
     <a  class="list-group-item" href="./gallery2.html">Gallerie</a>
-    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-    <button style="height: 20px;width: 60px" onclick="loadFile()">Load</button>
-    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+    <button class="buttonLoad" onclick="loadFile()">Load</button>
     <span id="div_horloge"></span>
 
     <script type="text/javascript">
@@ -62,8 +57,8 @@
         <div id="extraOppId"></div>
         <div id="affiniteOppId"></div>
     </PvOpp>
-    <BoardPlayer id="boardPlayer">Board Player</BoardPlayer>
-    <GraveyardPlayer id="graveyardId">Graveyard Player</GraveyardPlayer>
+    <BoardPlayer id="boardPlayer"></BoardPlayer>
+    <GraveyardPlayer id="graveyardId"></GraveyardPlayer>
     <PvPlayer>
         <div id="playerPvsId"></div>
         <br />
@@ -95,30 +90,37 @@
 
 </Board>
 
-	<!-- div pour "griser" l'écran principal en arrière plan -->
-	<div id="popinGrayBackDiv" class="popin_gray_back"></div>	 
-	
-	<!-- div de la popin de carte -->
-	<div id="popinCardDiv" class="popin_card">
-		<img id="popinCardImg" border=0 alt='Mon image' height='100%' onclick="hideCardPopin()"></img>
-	</div>
-  
-</Board>
-
 <!-- div de la popin de sélection de carte -->
-<div id="popinCardSelectDiv" class="popin_cardSelect">
-	<img class="closePopin" src="img/ClosePopin.png" onclick="hideCardSelectPopin()"></img>
-	<div id="popinCardsArea" class="popinSelectCardsArea">
+<div id="popinCardSelectDiv" >
+	<div class="popin_gray_back" onclick="hideCardSelectPopin()"></div>
+	<div id="popin_cardSelect">
+		<img class="closePopin" src="img/ClosePopin.png" onclick="hideCardSelectPopin()"></img>
+		<div id="popinCardsArea" class="popinSelectCardsArea">
+		</div>
 	</div>
 </div>
 
+<!-- div de la popin de carte -->
+<div id="popinCardDiv" > 
+	<div class="popin_gray_back" onclick="hideCardPopin()"></div>
+	<div class="popin_card">
+		<img id="popinCardImg" border=0 alt='Mon image' height='100%' onclick="hideCardPopin()"></img>
+	</div>
+</div>
+
+<script src="js/domCard.js"></script>
 <script src="js/affinite.js"></script>
 <script src="js/loadfile.js"></script>
 <script src="js/deckSection.js"></script>
 <script src="js/drawSection.js"></script>
 <script src="js/popinSelectCard.js"></script>
+
+<script src="js/boardPlayer.js"></script>
+<script src="js/hand.js"></script>
 <script src="js/graveyard.js"></script>
 <script src="js/invocations.js"></script>
+<script src="js/traps.js"></script>
+
 <script src="js/dice.js"></script>
 <script src="js/pv.js"></script>
 <script src="js/chakra.js"></script>

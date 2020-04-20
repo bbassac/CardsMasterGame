@@ -1,4 +1,4 @@
-function fillGraveyard(playerId, graveId, gameImageHeight, forceUpdate) {
+function fillGraveyard(playerId, graveId, imageHeight, forceUpdate) {
 
     // Récupération des cartes du cimetière
     var xhttp = new XMLHttpRequest();
@@ -19,29 +19,22 @@ function fillGraveyard(playerId, graveId, gameImageHeight, forceUpdate) {
 	    // Si il y a des cartes dans le cimetière et que la carte du haut de la pile a changé
 	    // Mise à jour de l'affichage de la pile cimetière
 
+        var who = (graveId == "graveyardId") ? "me" : "you";
+
         oldLastGraveyard[playerId] = cards[cards.length-1].id;
 
 		graveyardArea.innerHTML = "";
     
-        //Appercu dessus de la pile
-        var cardDiv = document.createElement("div");
-                   
-        var img = document.createElement("img");            
-        img.src = "img/" + encodeURI(cards[cards.length - 1].path);
-        img.height = gameImageHeight;
-        img.title = cards[cards.length - 1].id;
-        img.classList.add("graveyardStack");
-        cardDiv.appendChild(img);
-        graveyardArea.appendChild(cardDiv);
-        
-        if (graveId == "graveyardId") {
-        	setZooming(img, TRANSLATE_CENTER);
-            img.setAttribute('onclick', 'showPopinGrave(\"me\");');
-        } else {
-			setZooming(img, TRANSLATE_DOWN);
-            img.setAttribute('onclick', 'showPopinGrave(\"you\");');
-        }
+		var menu = [
+			{ text: "Afficher le cimetière", action: function() { showPopinGrave(who); } },
+			{ text: "Action 2", action: function() { alert("clique sur Action 2"); } },
+			{ text: "Action 3", action: function() { alert("clique sur Action 3"); } }
+		];
 
+    	var domCard = new DomCard(cards[cards.length - 1], imageHeight, CARD_DRAW_MODES_DICE);
+		graveyardArea.appendChild(domCard.divCard);
+        domCard.addMenu(menu);
+               
     }
 }
 
@@ -63,12 +56,12 @@ function showPopinGrave(who){
 	displayPopinSelectCard(who, cards, putCardFromGraveyardToPlayer, "url('../img/Graveyard-2.png')");
 }
 
-function putCardFromGraveyardToPlayer(cardId, playerId, who) {
+function putCardFromGraveyardToPlayer(playerId, card, who) {
 
 	if(who=="me"){
-		addGraveyardCardToMe(cardId, playerId);
+		addGraveyardCardToMe(playerId, card);
 	} else {
-		addGraveyardCardToYou(cardId, playerId);	
+		addGraveyardCardToYou(playerId, card);	
 	}
 
 	hideCardSelectPopin();
@@ -78,9 +71,8 @@ function putCardFromGraveyardToPlayer(cardId, playerId, who) {
 /**
  * Ajoute une carte d'un cimetière dans la main du joueur courant
  */
-
-function addGraveyardCardToMe(cardId, playerId) {
-  
+function addGraveyardCardToMe(playerId, card) {
+	
 	var xhttp = new XMLHttpRequest();
 	xhttp.open("GET", "player/" + playerId + "/graveyard/" + card.id, false);
 	xhttp.setRequestHeader("Content-type", "application/json");
@@ -91,8 +83,7 @@ function addGraveyardCardToMe(cardId, playerId) {
 /**
  * Ajoute une carte d'un cimetière dans la main de l'adversaire du joueur courant
  */
-
-function addGraveyardCardToYou(cardId, playerId) {
+function addGraveyardCardToYou(playerId, card) {
 
 	var oppPlayerId = Math.abs(1-playerId);
 	

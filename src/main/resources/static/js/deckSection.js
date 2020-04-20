@@ -4,8 +4,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
 setInterval(refreshByInterval, 500);
 
-const drawImageHeight = 140;
-const gameImageHeight = 255;
+const drawImageHeight = 150;
+const gameImageHeight = 250;
 const trapImageHeight = 150;
 const trapIconHeight = 35;
 const nbCardsHeight = 30;
@@ -78,240 +78,17 @@ function refreshOpponentBoard(forceUpdate){
 }
 
 function refreshPlayerBoard(forceUpdate){
+
     var currentPlayerId = document.getElementById("currentPlayerId").value;
 
     fillPVs(currentPlayerId,"playerPvsId");
-    fillGraveyard(currentPlayerId,"graveyardId",gameImageHeight, forceUpdate);
-    fillDeck(currentPlayerId,"hand","hand",gameImageHeight);
-    fillDeck(currentPlayerId,"boardPlayer","board",gameImageHeight);
-    fillDeck(currentPlayerId,"traps","traps",trapImageHeight);
     fillChakras(currentPlayerId,"playerChakraId");
     fillDiceArea(currentPlayerId,"diceId");
+
+	fillHand(currentPlayerId, gameImageHeight);
+	fillBoardPlayer(currentPlayerId, gameImageHeight);
+    fillGraveyard(currentPlayerId, "graveyardId", gameImageHeight, forceUpdate);
+    fillTraps(currentPlayerId, trapImageHeight);
+
     displayExtraArea(currentPlayerId,"extraPlayerId");
 }
-
-function fillDeck(playerId,section,stackName,gameImageHeight){
-    var xhttp = new XMLHttpRequest();
-    xhttp.open("GET", "player/"+playerId+"/"+stackName, false);
-    xhttp.setRequestHeader("Content-type", "application/json");
-    xhttp.send();
-    var cards = JSON.parse(xhttp.responseText);
-    var src = document.getElementById(section);
-    src.innerHTML = '';
-
-    for (var i=0; i< cards.length;i++){
-        var cardDiv = document.createElement("div");
-        var img = document.createElement("img");
-        img.src = "img/"+encodeURI(cards[i].path);
-        img.height = gameImageHeight;
-        img.hspace = 5;
-        img.title = cards[i].id;
-        img.setAttribute('onclick','showCardPopin(this.src);');
-        cardDiv.appendChild(img);
-
-        //Si besoin je tourne la carte
-        if (cards[i].activated) {
-            img.classList.add("activatedCard");
-        }
-        
-        if (cards[i].used){
-        	img.classList.add("usedCard");
-        }
-
-        if (section == "hand"){
-            var divBlock = document.createElement("div-"+ cards[i].id);
-
-            var moveCardButton = document.createElement("button");
-            moveCardButton.innerHTML = "&uArr;";
-            moveCardButton.setAttribute("id",cards[i].id);
-            moveCardButton.setAttribute('onclick','moveCardToBoard(this.id);');
-
-
-            divBlock.appendChild(moveCardButton);
-
-
-            var moveTrapButton = document.createElement("button");
-            moveTrapButton.innerHTML = "&rArr;";
-            moveTrapButton.setAttribute("id",cards[i].id);
-
-            moveTrapButton.setAttribute('onclick','moveCardToTrap(this.id);');
-            divBlock.appendChild(moveTrapButton);
-
-            //Move button
-            var moveGrave = document.createElement("button");
-            moveGrave.innerHTML = "&#9760;";
-            moveGrave.setAttribute("id",cards[i].id);
-            moveGrave.setAttribute("class","grave-button");
-            moveGrave.setAttribute('onclick','moveHandCardToGraveyard(this.id);');
-            divBlock.appendChild(moveGrave);
-
-            cardDiv.appendChild(divBlock);
-
-        }else if (section=="traps"){
-        	img.height = drawImageHeight;
-	        img.onclick = function() { showCardPopin(img.src); };
-	        img.oncontextmenu = (function() { 
-	        		moveCardFromTrapsToGraveyard(this.id); 
-	        		return false; 
-	        	}).bind(cards[i]);
-
-        }else if (section=="boardPlayer"){
-            var div = document.createElement("div-"+ cards[i].id);
-
-                      //Manage dmg points
-
-            var buttonLessDmg = document.createElement("button");
-            buttonLessDmg.innerHTML = "-";
-            buttonLessDmg.tag = parseInt(cards[i].dammagePoints)-1;
-            buttonLessDmg.setAttribute("id",cards[i].id);
-            buttonLessDmg.setAttribute('onclick','updateDmgPoints(this.id,this.tag);');
-            div.appendChild(buttonLessDmg);
-
-            var bold = document.createElement("b");
-            var nbDmg = document.createTextNode("  " + cards[i].dammagePoints+"  ");
-            bold.style.fontSize = "medium";
-            if (cards[i].dammagePoints>0){
-                bold.style.color = 'red';
-            }
-
-            bold.appendChild(nbDmg);
-            div.appendChild(bold);
-
-            var buttonMoreDmg = document.createElement("button");
-            buttonMoreDmg.innerHTML = "+";
-            buttonMoreDmg.tag = parseInt(cards[i].dammagePoints)+1;
-            buttonMoreDmg.setAttribute("id",cards[i].id);
-            buttonMoreDmg.setAttribute('onclick','updateDmgPoints(this.id,this.tag);');
-            div.appendChild(buttonMoreDmg);
-            //empty block
-            var emptyBlock = document.createElement("span");
-
-            emptyBlock.innerHTML="&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp";
-            div.appendChild(emptyBlock);
-
-            //Activate Button
-            var flipButton = document.createElement("button");
-            if (cards[i].activated){
-                flipButton.innerHTML = "&#8634";
-            }else {
-                flipButton.innerHTML = "&#8631";
-            }
-            flipButton.tag = cards[i].activated;
-            flipButton.setAttribute("id",cards[i].id);
-            flipButton.setAttribute('onclick','flipCard(this.id,this.tag);');
-            div.appendChild(flipButton)
-
-            //use button
-            var useButton = document.createElement("button");
-            useButton.innerHTML = "%";
-            useButton.tag = cards[i].used;
-            useButton.setAttribute("id",cards[i].id);
-            useButton.setAttribute('onclick','useCard(this.id,this.tag);');
-            div.appendChild(useButton)
-            //Move button
-            var moveCardButton = document.createElement("button");
-            moveCardButton.innerHTML = "&#9760;";
-            moveCardButton.setAttribute("id",cards[i].id);
-            moveCardButton.setAttribute("class","grave-button");
-            moveCardButton.setAttribute('onclick','moveCardToGraveyard(this.id);');
-            div.appendChild(moveCardButton);
-
-            cardDiv.appendChild(div);
-        }else if (section=="boardOpp"){
-            var div = document.createElement("div");
-            //Manage dmg points
-            var xhttpDmg = new XMLHttpRequest();
-            xhttpDmg.open("GET", "player/"+playerId+"/board/"+cards[i].id+"/dmg", false);
-            xhttpDmg.setRequestHeader("Content-type", "application/json");
-            xhttpDmg.send();
-
-            var nbDmg = document.createTextNode("  " + xhttpDmg.responseText+"  ");
-            div.appendChild(nbDmg);
-            cardDiv.appendChild(div);
-        }
-
-        src.appendChild(cardDiv);
-    }
-}
-
-function flipCard(cardId,curentvalue){
-    var currentPlayerId = document.getElementById("currentPlayerId").value;
-
-    var xhttp = new XMLHttpRequest();
-    xhttp.open("PUT", "player/"+currentPlayerId+"/board/"+cardId+"/activated/"+!curentvalue, false);
-    xhttp.setRequestHeader("Content-type", "application/json");
-    xhttp.send();
-    refreshPlayerBoard(currentPlayerId)
-}
-
-function useCard(cardId,curentvalue){
-    var currentPlayerId = document.getElementById("currentPlayerId").value;
-
-    var xhttp = new XMLHttpRequest();
-    xhttp.open("PUT", "player/"+currentPlayerId+"/board/"+cardId+"/used/"+!curentvalue, false);
-    xhttp.setRequestHeader("Content-type", "application/json");
-    xhttp.send();
-    refreshPlayerBoard(currentPlayerId)
-}
-
-function updateDmgPoints(cardId,newDmgPoint){
-    var currentPlayerId = document.getElementById("currentPlayerId").value;
-
-    var xhttp = new XMLHttpRequest();
-    xhttp.open("PUT", "player/"+currentPlayerId+"/board/"+cardId+"/dmg/"+newDmgPoint, false);
-    xhttp.setRequestHeader("Content-type", "application/json");
-    xhttp.send();
-    refreshPlayerBoard(currentPlayerId)
-}
-
-function moveCardToBoard(cardId){
-    var currentPlayerId = document.getElementById("currentPlayerId").value;
-
-    var xhttp = new XMLHttpRequest();
-    xhttp.open("PUT", "player/"+currentPlayerId+"/board/"+cardId, false);
-    xhttp.setRequestHeader("Content-type", "application/json");
-    xhttp.send();
-    refreshPlayerBoard(currentPlayerId)
-}
-
-function moveCardToTrap(cardId){
-    var currentPlayerId = document.getElementById("currentPlayerId").value;
-
-    var xhttp = new XMLHttpRequest();
-    xhttp.open("PUT", "player/"+currentPlayerId+"/trap/"+cardId, false);
-    xhttp.setRequestHeader("Content-type", "application/json");
-    xhttp.send();
-    refreshPlayerBoard(currentPlayerId)
-}
-
-function moveHandCardToGraveyard(cardId){
-    var currentPlayerId = document.getElementById("currentPlayerId").value;
-
-    var xhttp = new XMLHttpRequest();
-    xhttp.open("PUT", "player/"+currentPlayerId+"/hand-to-graveyard/"+cardId, false);
-    xhttp.setRequestHeader("Content-type", "application/json");
-    xhttp.send();
-    refreshPlayerBoard(currentPlayerId)
-}
-
-function moveCardToGraveyard(cardId){
-    var currentPlayerId = document.getElementById("currentPlayerId").value;
-
-    var xhttp = new XMLHttpRequest();
-    xhttp.open("PUT", "player/"+currentPlayerId+"/graveyard/"+cardId, false);
-    xhttp.setRequestHeader("Content-type", "application/json");
-    xhttp.send();
-    refreshPlayerBoard(currentPlayerId)
-}
-
-function moveCardFromTrapsToGraveyard(cardId){
-    var currentPlayerId = document.getElementById("currentPlayerId").value;
-
-    var xhttp = new XMLHttpRequest();
-    xhttp.open("PUT", "player/"+currentPlayerId+"/trap/"+cardId+"/graveyard", false);
-    xhttp.setRequestHeader("Content-type", "application/json");
-    xhttp.send();
-    refreshPlayerBoard(currentPlayerId)
-}
-
-
