@@ -30,6 +30,7 @@ function showPopinInvocations() {
 
 }
 
+
 function putCardFromInvocationToPlayer(cardId, playerId, who) {
 
     var xhttp = new XMLHttpRequest();
@@ -37,6 +38,6 @@ function putCardFromInvocationToPlayer(cardId, playerId, who) {
     xhttp.setRequestHeader("Content-type", "application/json");
     xhttp.send();
 
-	hideCardSelectPopin();
+	  hideCardSelectPopin();
     refreshBoard();
 }

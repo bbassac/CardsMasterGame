@@ -37,6 +37,7 @@ function displayPopinSelectCard(who, cards, addFunction, background) {
 		buttonDiv.classList.add('graveDivButtonClass')
         cardDiv.appendChild(buttonDiv);
 
+
         var button = document.createElement("button");
         button.innerHTML = "+";
         //button.setAttribute("id",cards[i].id);
@@ -44,8 +45,7 @@ function displayPopinSelectCard(who, cards, addFunction, background) {
         
         button.cardId = cards[i].id;
         button.addEventListener("click", addFunction.bind(cards[i], cards[i].id, parseInt(currentPlayerId), who)); 
-        
-        
+
         button.classList.add('graveButtonClass');
         buttonDiv.appendChild(button);        
 

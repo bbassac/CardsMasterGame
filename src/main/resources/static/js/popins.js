@@ -43,7 +43,7 @@ function hideCardPopin() {
  *
  */
 function hideAllPopins() {
-	hideGraveyardPopin();
+	hideCardSelectPopin();
 	hideCardPopin();
 }
 

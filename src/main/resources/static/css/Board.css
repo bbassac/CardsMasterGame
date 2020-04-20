@@ -1,5 +1,6 @@
 body {
   margin: 0;
+  user-select: none;
 }
 
 Board {
@@ -93,7 +94,7 @@ GraveyardPlayer {
     display: flex;
 }
 
-GraveyardPlayer > div {
+.GraveyardPlayer > div {
     margin: auto;
 }
 
