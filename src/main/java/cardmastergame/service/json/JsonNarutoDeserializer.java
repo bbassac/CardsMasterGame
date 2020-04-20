@@ -1,4 +1,4 @@
-package json;
+package cardmastergame.service.json;
 
 import java.io.IOException;
 import java.util.Iterator;

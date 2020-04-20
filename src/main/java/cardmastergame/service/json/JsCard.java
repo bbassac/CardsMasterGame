@@ -1,4 +1,4 @@
-package json;
+package cardmastergame.service.json;
 
 public class JsCard {
 
