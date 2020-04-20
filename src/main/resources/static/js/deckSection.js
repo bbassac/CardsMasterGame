@@ -18,7 +18,7 @@ function refreshByInterval() {
 	var currentPlayerId = document.getElementById("currentPlayerId").value;
 	
 	refreshOpponentBoard();
-	fillGraveyard(currentPlayerId,"graveyardId",gameImageHeight);
+	fillGraveyard(currentPlayerId,"graveyardId");
 }
 
 function newTurn() {
@@ -71,7 +71,7 @@ function refreshOpponentBoard(forceUpdate){
     fillNbTraps(currentOppId, "nbTrapsId",trapIconHeight);
     fillNbCards(currentOppId,"nbCardsId",nbCardsHeight)
     fillDeckOpp(currentOppId,"boardOpp","board",gameImageHeight);
-    fillGraveyard(currentOppId,"graveyardOppId",gameImageHeight, forceUpdate);
+    fillGraveyard(currentOppId,"graveyardOppId", forceUpdate);
 	
     refreshLastDiceThrow();
     displayOppExtra(currentOppId);
@@ -86,7 +86,7 @@ function refreshPlayerBoard(forceUpdate){
     fillDiceArea(currentPlayerId,"diceId");
 
 	fillHand(currentPlayerId, gameImageHeight);
-	fillBoardPlayer(currentPlayerId, gameImageHeight);
+	fillBoardPlayer(currentPlayerId);
     fillGraveyard(currentPlayerId, "graveyardId", gameImageHeight, forceUpdate);
     fillTraps(currentPlayerId, trapImageHeight);
 

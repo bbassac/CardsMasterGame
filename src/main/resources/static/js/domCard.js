@@ -4,9 +4,9 @@ const CARD_DRAW_MODES_BOARD = 2;
 class DomCard {
 
 	constructor(card, height, cardDrawMode) {
-	
+
 		this.card = card;
-	
+
 		this.divCard = document.createElement("div");
 		
 		if (cardDrawMode == CARD_DRAW_MODES_DICE) {
@@ -27,9 +27,9 @@ class DomCard {
         this.cardImg.oncontextmenu = function() { return false; };
         
         // application de transformations
-        if (card.activated) { this.cardImg.classList.add("activatedCard"); }
-        if (card.used){ this.cardImg.classList.add("usedCard"); }
-        
+        this.setIsActivated(card.activated);
+        this.setIsUsed(card.used);
+       
 
         this.divBackImg.appendChild(this.cardImg);
         this.divBackImg.style.position = "relative";
@@ -37,6 +37,38 @@ class DomCard {
         this.divCard.appendChild(this.divBackImg);
 	
   	}
+
+	getIsActivated() {
+		return this.card.activated;
+	}
+
+	setIsActivated(isActivated) {
+
+		this.card.activated = isActivated;
+		
+		if (isActivated) {
+			this.cardImg.classList.add("activatedCard");
+		} else {
+			this.cardImg.classList.remove("activatedCard");
+		}
+		
+	}
+
+	getIsUsed() {
+		return this.card.used;
+	}
+
+	setIsUsed(isUsed) {
+
+		this.card.used = isUsed;
+		
+		if (isUsed) {
+			this.cardImg.classList.add("usedCard");
+		} else {
+			this.cardImg.classList.remove("usedCard");
+		}
+		
+	}
 
 	addMenu(menu) {
 
