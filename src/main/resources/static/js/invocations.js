@@ -30,12 +30,14 @@ function showPopinInvocations() {
 
 }
 
-function putCardFromInvocationToPlayer(playerId, card, who) {
+
+function putCardFromInvocationToPlayer(cardId, playerId, who) {
 
     var xhttp = new XMLHttpRequest();
-    xhttp.open("GET", "player/" + playerId + "/invocations/" + card.id, false);
+    xhttp.open("GET", "player/"+playerId+"/invocations/"+cardId, false);
     xhttp.setRequestHeader("Content-type", "application/json");
     xhttp.send();
 
+	  hideCardSelectPopin();
     refreshBoard();
 }

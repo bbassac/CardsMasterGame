@@ -3,7 +3,9 @@
  *
  */
 function showCardSelectPopin(background) {
-	document.getElementById("popin_cardSelect").style.backgroundImage = background; 
+
+	document.getElementById("popinCardSelectDiv").style.backgroundImage = background; 
+
 	showPopin("popinCardSelectDiv");
 }
 

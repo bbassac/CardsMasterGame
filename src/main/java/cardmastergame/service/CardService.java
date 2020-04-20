@@ -1,19 +1,18 @@
 package cardmastergame.service;
 
-import cardmastergame.FileUtils;
-import cardmastergame.LogUtils;
-import cardmastergame.bean.Card;
-import cardmastergame.bean.Deck;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Component;
-
 import java.io.File;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
-import java.util.logging.Logger;
-import java.util.regex.Pattern;
+
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
+
+import cardmastergame.FileUtils;
+import cardmastergame.LogUtils;
+import cardmastergame.bean.Card;
+import cardmastergame.bean.Deck;
 
 @Component
 public class CardService {
@@ -31,6 +30,7 @@ public class CardService {
     private Deck[] pieges;
     private Deck<Card> currentEnvironnement;
 
+   // private CardUpdater cardUpdater = new CardUpdater("Naruto.json"); 
 
     @Value("${game.trap.max}")
     private int MAX_TRAP;
@@ -92,7 +92,7 @@ public class CardService {
     }
 
     private int loadStack(Deck<Card> stack, String folder) {
-        String prop = FileUtils.getCurrentJarPath();
+        String prop = FileUtils.getCurrentJarImgPath();
         File path = new File(prop + folder);
         File[] listOfFiles = path.listFiles();
         for (File listOfFile : listOfFiles) {
@@ -105,6 +105,9 @@ public class CardService {
                 stack.push(c);
             }
         }
+        
+        //cardUpdater.update(stack);
+        
         return listOfFiles.length;
     }
 
@@ -274,4 +277,5 @@ public class CardService {
             pioche[playerId] = newDeck;
         }
     }
+    
 }

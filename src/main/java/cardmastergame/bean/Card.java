@@ -12,9 +12,15 @@ public class Card {
     private int dammagePoints = 0;
     @ApiModelProperty(notes = "Card Orientation (activated or not")
     private boolean activated = false;
-    @ApiModelProperty(notes = "Card Used (ye or false")
+    @ApiModelProperty(notes = "Card Used (yes or false")
     private boolean used = false;
 
+    @ApiModelProperty(notes = "Card name")
+    private String name;
+    @ApiModelProperty(notes = "Card kind")
+    private String kind;
+
+    
     public int getId() {
         return id;
     }
@@ -55,4 +61,21 @@ public class Card {
     public void setUsed(boolean used) {
         this.used = used;
     }
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getKind() {
+		return kind;
+	}
+
+	public void setKind(String kind) {
+		this.kind = kind;
+	}
+    
 }

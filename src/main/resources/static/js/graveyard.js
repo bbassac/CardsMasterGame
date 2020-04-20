@@ -34,23 +34,15 @@ function fillGraveyard(playerId, graveId, gameImageHeight, forceUpdate) {
         cardDiv.appendChild(img);
         graveyardArea.appendChild(cardDiv);
         
-		
-        var who = (graveId == "graveyardId") ? "me" : "you";
-        img.oncontextmenu = function() { return graveyardClick(event, who); };
-        img.onclick = function() { return graveyardClick(event, who); };
-               
+        if (graveId == "graveyardId") {
+        	setZooming(img, TRANSLATE_CENTER);
+            img.setAttribute('onclick', 'showPopinGrave(\"me\");');
+        } else {
+			setZooming(img, TRANSLATE_DOWN);
+            img.setAttribute('onclick', 'showPopinGrave(\"you\");');
+        }
+
     }
-}
-
-function graveyardClick(event, who) {
-
-	if (event.button == 0) {
-		showCardPopin(event.target.src);
-	} else if (event.button == 2) {
-		showPopinGrave(who);
-	}
-
-	return false;
 }
 
 function showPopinGrave(who){
@@ -71,12 +63,12 @@ function showPopinGrave(who){
 	displayPopinSelectCard(who, cards, putCardFromGraveyardToPlayer, "url('../img/Graveyard-2.png')");
 }
 
-function putCardFromGraveyardToPlayer(playerId, card, who) {
+function putCardFromGraveyardToPlayer(cardId, playerId, who) {
 
 	if(who=="me"){
-		addGraveyardCardToMe(playerId, card);
+		addGraveyardCardToMe(cardId, playerId);
 	} else {
-		addGraveyardCardToYou(playerId, card);	
+		addGraveyardCardToYou(cardId, playerId);	
 	}
 
 	hideCardSelectPopin();
@@ -86,8 +78,9 @@ function putCardFromGraveyardToPlayer(playerId, card, who) {
 /**
  * Ajoute une carte d'un cimetière dans la main du joueur courant
  */
-function addGraveyardCardToMe(playerId, card) {
-	
+
+function addGraveyardCardToMe(cardId, playerId) {
+  
 	var xhttp = new XMLHttpRequest();
 	xhttp.open("GET", "player/" + playerId + "/graveyard/" + card.id, false);
 	xhttp.setRequestHeader("Content-type", "application/json");
@@ -98,7 +91,8 @@ function addGraveyardCardToMe(playerId, card) {
 /**
  * Ajoute une carte d'un cimetière dans la main de l'adversaire du joueur courant
  */
-function addGraveyardCardToYou(playerId, card) {
+
+function addGraveyardCardToYou(cardId, playerId) {
 
 	var oppPlayerId = Math.abs(1-playerId);
 	

@@ -95,21 +95,20 @@
 
 </Board>
 
-<!-- div de la popin de sélection de carte -->
-<div id="popinCardSelectDiv" >
-	<div class="popin_gray_back" onclick="hideCardSelectPopin()"></div>
-	<div id="popin_cardSelect">
-		<img class="closePopin" src="img/ClosePopin.png" onclick="hideCardSelectPopin()"></img>
-		<div id="popinCardsArea" class="popinSelectCardsArea">
-		</div>
-	</div>
-</div>
-
-<!-- div de la popin de carte -->
-<div id="popinCardDiv" > 
-	<div class="popin_gray_back" onclick="hideCardPopin()"></div>
-	<div class="popin_card">
+	<!-- div pour "griser" l'écran principal en arrière plan -->
+	<div id="popinGrayBackDiv" class="popin_gray_back"></div>	 
+	
+	<!-- div de la popin de carte -->
+	<div id="popinCardDiv" class="popin_card">
 		<img id="popinCardImg" border=0 alt='Mon image' height='100%' onclick="hideCardPopin()"></img>
+	</div>
+  
+</Board>
+
+<!-- div de la popin de sélection de carte -->
+<div id="popinCardSelectDiv" class="popin_cardSelect">
+	<img class="closePopin" src="img/ClosePopin.png" onclick="hideCardSelectPopin()"></img>
+	<div id="popinCardsArea" class="popinSelectCardsArea">
 	</div>
 </div>
 
