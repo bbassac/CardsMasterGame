@@ -39,30 +39,29 @@ function needUpdate(card,slot){
 
 function cleanAllIfNeeded(cards, src) {
     
-    var cleaned = false;
-    
 	if (cards.length != src.childNodes.length) {
 		src.innerHTML = '';
-		cleaned = true;
 
-	} else {
-		for (var i = 0; i < cards.length; i++) {
-	
-	        var indexedSlot = src.childNodes[i];
-	
-	        if (needDelete(cards[i], indexedSlot)) {
-	            src.innerHTML = '';
-	            cleaned = true;
-	            break;
-	        } else if (needUpdate(cards[i], indexedSlot)) {
-	            src.innerHTML = '';
-	            cleaned = true;
-	            break;
-	        }
-	    }
 	}
+		
+	for (var i = 0; i < cards.length; i++) {
+
+        var indexedSlot = src.childNodes[i];
+
+		if (cards.length != src.childNodes.length) {
+			src.innerHTML = '';
+	
+		}
+
+        if (needDelete(cards[i], indexedSlot)) {
+            src.innerHTML = '';
+            break;
+        } else if (needUpdate(cards[i], indexedSlot)) {
+            src.innerHTML = '';
+            break;
+        }
+    }
     
-    return cleaned;
 }
 
 function fillOpponentBoard(playerId){
@@ -78,22 +77,21 @@ function fillOpponentBoard(playerId){
     //Je récupère le bloc contenant toutes les cartes
     var src = document.getElementById("boardOpp");
 
-    if (cleanAllIfNeeded(cards, src)) {
+    cleanAllIfNeeded(cards, src);
 
-	    for (var i=0; i< cards.length;i++){
-	
-	        var indexedSlot = src.childNodes[i];
-	
-	        if (needDelete(cards[i], indexedSlot)){
-	            console.log("Need Delete");
-	            src.removeChild(indexedSlot);
-	        }else if (needUpdate(cards[i], indexedSlot)){
-	            console.log("Need Update");
-	        }else if (needAdd(cards[i], indexedSlot)){
-	        	addCardOnOpponentBoard(src, cards[i]);
-	        }
-	    }
-	}
+    for (var i=0; i< cards.length;i++){
+
+        var indexedSlot = src.childNodes[i];
+
+        if (needDelete(cards[i], indexedSlot)){
+            console.log("Need Delete");
+            src.removeChild(indexedSlot);
+        }else if (needUpdate(cards[i], indexedSlot)){
+            console.log("Need Update");
+        }else if (needAdd(cards[i], indexedSlot)){
+        	addCardOnOpponentBoard(src, cards[i]);
+        }
+    }
 }
 
 function addCardOnOpponentBoard(src, card) {
