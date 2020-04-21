@@ -1,20 +1,15 @@
-const CARD_DRAW_MODES_DICE = 1;
-const CARD_DRAW_MODES_BOARD = 2;
-
 class DomCard {
 
 	constructor(card, height, cardDrawMode) {
-	
+
 		this.card = card;
-	
+
 		this.divCard = document.createElement("div");
 		
 		if (cardDrawMode == CARD_DRAW_MODES_DICE) {
-			this.divCard.style.margin = "auto";
+			this.divCard.classList.add("cardDice");
 		} else {
-			this.divCard.style.marginTop = "auto";
-			this.divCard.style.marginBottom = "auto";
-			this.divCard.style.marginLeft = "5px";
+			this.divCard.classList.add("cardBoard");
 		}
 		
         this.divBackImg = document.createElement("div");
@@ -25,18 +20,51 @@ class DomCard {
         this.cardImg.title = card.id;
         this.cardImg.onclick = (function() { showCardPopin(this.cardImg.src); }).bind(this);
         this.cardImg.oncontextmenu = function() { return false; };
-        
+
         // application de transformations
-        if (card.activated) { this.cardImg.classList.add("activatedCard"); }
-        if (card.used){ this.cardImg.classList.add("usedCard"); }
-        
+        this.setIsActivated(card.activated);
+        this.setIsUsed(card.used);
+       
 
         this.divBackImg.appendChild(this.cardImg);
         this.divBackImg.style.position = "relative";
         
         this.divCard.appendChild(this.divBackImg);
+        this.divCard.domCard = this;
 	
   	}
+
+	getIsActivated() {
+		return this.card.activated;
+	}
+
+	setIsActivated(isActivated) {
+
+		this.card.activated = isActivated;
+		
+		if (isActivated) {
+			this.cardImg.classList.add("activatedCard");
+		} else {
+			this.cardImg.classList.remove("activatedCard");
+		}
+		
+	}
+
+	getIsUsed() {
+		return this.card.used;
+	}
+
+	setIsUsed(isUsed) {
+
+		this.card.used = isUsed;
+		
+		if (isUsed) {
+			this.cardImg.classList.add("usedCard");
+		} else {
+			this.cardImg.classList.remove("usedCard");
+		}
+		
+	}
 
 	addMenu(menu) {
 
@@ -45,11 +73,11 @@ class DomCard {
 		
 		// menu
 		this.divMenu = document.createElement("div");
-	    this.divBackImg.appendChild(this.divMenu);
 		this.divMenu.id = "divMenu" + this.card.id;
 		this.divMenu.classList.add('menuCardDiv')
 		this.divMenu.style.top = menuTop;
 		this.divMenu.style.left = menuLeft;
+	    this.divBackImg.appendChild(this.divMenu);
 	    		
 		menu.forEach ((function(item) {
 			this.divMenu.appendChild(this.buildMenuItem(this.divMenu, this.card, item));

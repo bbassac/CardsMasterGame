@@ -2,16 +2,22 @@
  * Gestion des invocations 
  */
  
- function initInvocationsDeck(currentPlayerId, drawImageHeight) {
+ function fillInvocation(currentPlayerId) {
  
-	var img = document.getElementById("imgInvocation");
-	
-	if (drawImageHeight) {
-		img.height = drawImageHeight;
-	}
+    var src = document.getElementById("invocations");
+    src.innerHTML = '';
+
+    var img = document.createElement("img");
+    img.src = encodeURI("img/Back-Select.png");
+    img.height = drawImageHeight;
+    img.id = "imgDraw";
+    img.classList.add("imgInvocation");
+    img.title = "Piocher une carte";
 	
 	img.setAttribute('title', "Piocher une carte d'invocation");
 	img.addEventListener("click", showPopinInvocations);
+	
+	src.appendChild(img);
  }
 
 function showPopinInvocations() {
@@ -37,5 +43,5 @@ function putCardFromInvocationToPlayer(playerId, card, who) {
     xhttp.setRequestHeader("Content-type", "application/json");
     xhttp.send();
 
-    refreshBoard();
+    fillHand(playerId);
 }

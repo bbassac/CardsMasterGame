@@ -1,4 +1,4 @@
-function fillHand(playerId, imageHeight) {
+function fillHand(playerId) {
 
 	var xhttp = new XMLHttpRequest();
     xhttp.open("GET", "player/"+playerId+"/hand", false);
@@ -11,24 +11,27 @@ function fillHand(playerId, imageHeight) {
 
 	for (var i = 0; i < cards.length; i++) {
 		
-		var domCard = new DomCard(cards[i], imageHeight);
+		var domCard = new DomCard(cards[i], gameImageHeight, CARD_DRAW_MODES_BOARD);
 		src.appendChild(domCard.divCard);
 		
-		domCard.divCard.appendChild(getHandCardButtons(cards[i]));
+		addHandCardButtons(domCard);
 	}
-
 }
 
-function getHandCardButtons(card) {
+function addHandCardButtons(domCard) {
+
+	var card = domCard.card;
 
     var divBlock = document.createElement("handCardButtonsDiv_" + card.id);
     divBlock.classList.add("divActionCard");
+    domCard.divCard.appendChild(divBlock);
 
     var moveCardButton = document.createElement("button");
     moveCardButton.innerHTML = "&uArr;";
     moveCardButton.id = card.id;
     moveCardButton.classList.add("buttonActionCard");
-    moveCardButton.setAttribute('onclick','moveCardToBoard(this.id);');
+    //moveCardButton.setAttribute('onclick','moveCardToBoard(this.id);');
+    moveCardButton.addEventListener('click', (function() { moveCardToBoard(this); }).bind(domCard) );
     divBlock.appendChild(moveCardButton);
 
 
@@ -36,7 +39,8 @@ function getHandCardButtons(card) {
     moveTrapButton.innerHTML = "&rArr;";
     moveTrapButton.id = card.id;
     moveTrapButton.classList.add("buttonActionCard");
-    moveTrapButton.setAttribute('onclick','moveCardToTrap(this.id);');
+    //moveTrapButton.setAttribute('onclick','moveCardToTrap(this.id);');
+    moveTrapButton.addEventListener('click', (function() { moveCardToTrap(this); }).bind(domCard) );
     divBlock.appendChild(moveTrapButton);
 
 
@@ -44,39 +48,49 @@ function getHandCardButtons(card) {
     moveGrave.innerHTML = "&#9760;";
     moveGrave.id = card.id;
     moveGrave.classList.add("buttonActionCard");
-    moveGrave.setAttribute('onclick','moveHandCardToGraveyard(this.id);');
+    //moveGrave.setAttribute('onclick','moveHandCardToGraveyard(this.id);');
+    moveGrave.addEventListener('click', (function() { moveHandCardToGraveyard(this); }).bind(domCard) );
     divBlock.appendChild(moveGrave);
-
-    return divBlock;		
-
 }
 
-function moveCardToBoard(cardId){
+function moveCardToBoard(domCard){
+    
     var currentPlayerId = document.getElementById("currentPlayerId").value;
+    var cardId = domCard.card.id;
 
     var xhttp = new XMLHttpRequest();
     xhttp.open("PUT", "player/"+currentPlayerId+"/board/"+cardId, false);
     xhttp.setRequestHeader("Content-type", "application/json");
     xhttp.send();
-    refreshPlayerBoard(currentPlayerId)
+    
+    domCard.divCard.remove();
+    fillBoardPlayer(currentPlayerId);
 }
 
-function moveCardToTrap(cardId){
+function moveCardToTrap(domCard){
+    
     var currentPlayerId = document.getElementById("currentPlayerId").value;
+    var cardId = domCard.card.id;
 
     var xhttp = new XMLHttpRequest();
     xhttp.open("PUT", "player/"+currentPlayerId+"/trap/"+cardId, false);
     xhttp.setRequestHeader("Content-type", "application/json");
     xhttp.send();
-    refreshPlayerBoard(currentPlayerId)
+    
+    domCard.divCard.remove();
+    fillTraps(currentPlayerId);
 }
 
-function moveHandCardToGraveyard(cardId){
+function moveHandCardToGraveyard(domCard){
+    
     var currentPlayerId = document.getElementById("currentPlayerId").value;
+    var cardId = domCard.card.id;
 
     var xhttp = new XMLHttpRequest();
     xhttp.open("PUT", "player/"+currentPlayerId+"/hand-to-graveyard/"+cardId, false);
     xhttp.setRequestHeader("Content-type", "application/json");
     xhttp.send();
-    refreshPlayerBoard(currentPlayerId)
+    
+    domCard.divCard.remove();
+	fillGraveyard(currentPlayerId, "graveyardId");    
 }

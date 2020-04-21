@@ -1,4 +1,4 @@
-function fillBoardPlayer(playerId, imageHeight) {
+function fillBoardPlayer(playerId) {
 
 	var xhttp = new XMLHttpRequest();
     xhttp.open("GET", "player/"+playerId+"/board", false);
@@ -11,62 +11,59 @@ function fillBoardPlayer(playerId, imageHeight) {
 
 	for (var i = 0; i < cards.length; i++) {
 		
-		var domCard = new DomCard(cards[i], imageHeight);
+		var domCard = new DomCard(cards[i], gameImageHeight, CARD_DRAW_MODES_BOARD);
 		src.appendChild(domCard.divCard);
 		
-		domCard.divCard.appendChild(getBoardCardButtons(cards[i]));
+		addBoardCardButtons(domCard);
 	}
 }
 
-function getBoardCardButtons(card) {
+function addBoardCardButtons(domCard) {
 
-    var div = document.createElement("boardCardButtonsDiv_-"+ card.id);
-    div.classList.add("divActionCard");
+	var card = domCard.card;
+
+    var divBlock = document.createElement("boardCardButtonsDiv_-"+ card.id);
+    divBlock.classList.add("divActionCard");
+    domCard.divCard.appendChild(divBlock);
 
 	// Remove damage button
     var buttonLessDmg = document.createElement("button");
     buttonLessDmg.innerHTML = "-";
-    buttonLessDmg.tag = parseInt(card.dammagePoints)-1;
-    buttonLessDmg.setAttribute("id",card.id);
     buttonLessDmg.classList.add("buttonActionCard");
-    buttonLessDmg.setAttribute('onclick','updateDmgPoints(this.id,this.tag);');
-    div.appendChild(buttonLessDmg);
+    buttonLessDmg.addEventListener('click', (function() { changeDmgPoints(this, -1); }).bind(domCard) );
+    divBlock.appendChild(buttonLessDmg);
     
 
 	// Damage counter
-    var bold = document.createElement("b");
-    var nbDmg = document.createTextNode("  " + card.dammagePoints+"  ");
-    bold.style.fontSize = "medium";
-    if (card.dammagePoints>0){
-        bold.style.color = 'red';
-    }
-    bold.appendChild(nbDmg);
-    div.appendChild(bold);
+    var divDamage = document.createElement("div");
+    divDamage.id = "damage_" + card.id;
+    divDamage.innerHTML = card.dammagePoints;
+    divDamage.style.fontSize = "medium";
+    divDamage.style.fontWeight = "bold";
+    divDamage.style.width = "24px";
+    divDamage.style.display = "inline-block";
+    divDamage.style.textAlign = "center";
+    divBlock.appendChild(divDamage);
+    showDamage(domCard);
 
 
 	// Add damage button
     var buttonMoreDmg = document.createElement("button");
     buttonMoreDmg.innerHTML = "+";
-    buttonMoreDmg.tag = parseInt(card.dammagePoints)+1;
     buttonMoreDmg.classList.add("buttonActionCard");
     buttonMoreDmg.setAttribute("id",card.id);
-    buttonMoreDmg.setAttribute('onclick','updateDmgPoints(this.id,this.tag);');
-    div.appendChild(buttonMoreDmg);
+    buttonMoreDmg.addEventListener('click', (function() { changeDmgPoints(this, 1); }).bind(domCard) );
+    divBlock.appendChild(buttonMoreDmg);
 
 
     //Activate Button
     var flipButton = document.createElement("button");
-    if (card.activated){
-        flipButton.innerHTML = "&#8634";
-    }else {
-        flipButton.innerHTML = "&#8631";
-    }
-    flipButton.tag = card.activated;
-    flipButton.setAttribute("id",card.id);
+    flipButton.id = "btnFlip_" + card.id;
 	flipButton.classList.add("buttonActionCard");
-    flipButton.setAttribute('onclick','flipCard(this.id,this.tag);');
+    flipButton.addEventListener('click', (function() { flipCard(this); }).bind(domCard) );
     flipButton.style.marginLeft = "20px";
-    div.appendChild(flipButton)
+    divBlock.appendChild(flipButton)
+    showCardActivation(domCard);
 
 
     //use button
@@ -75,8 +72,8 @@ function getBoardCardButtons(card) {
     useButton.tag = card.used;
     useButton.classList.add("buttonActionCard");
     useButton.setAttribute("id",card.id);
-    useButton.setAttribute('onclick','useCard(this.id,this.tag);');
-    div.appendChild(useButton)
+    useButton.addEventListener('click', (function() { useCard(this); }).bind(domCard) );
+    divBlock.appendChild(useButton)
     
     
     //Move button
@@ -84,51 +81,86 @@ function getBoardCardButtons(card) {
     moveCardButton.innerHTML = "&#9760;";
     moveCardButton.setAttribute("id",card.id);
     moveCardButton.classList.add("buttonActionCard");
-    moveCardButton.setAttribute('onclick','moveCardToGraveyard(this.id);');
-    div.appendChild(moveCardButton);
-
-    return div;
+    moveCardButton.addEventListener('click', (function() { moveCardToGraveyard(this); }).bind(domCard) );
+    divBlock.appendChild(moveCardButton);
 }
 
-function updateDmgPoints(cardId, newDmgPoint){
+function changeDmgPoints(domCard, damageChange){
 
     var currentPlayerId = document.getElementById("currentPlayerId").value;
+	var card = domCard.card;    
+	var newDamageValue = card.dammagePoints + (damageChange ? damageChange : 0);
 
     var xhttp = new XMLHttpRequest();
-    xhttp.open("PUT", "player/"+currentPlayerId+"/board/"+cardId+"/dmg/"+newDmgPoint, false);
+    xhttp.open("PUT", "player/" + currentPlayerId + "/board/" + card.id + "/dmg/" + newDamageValue, false);
     xhttp.setRequestHeader("Content-type", "application/json");
     xhttp.send();
-    refreshPlayerBoard(currentPlayerId)
 
+	card.dammagePoints = newDamageValue;
+
+	showDamage(domCard);
 }
 
-function flipCard(cardId,curentvalue){
+function showDamage(domCard) {
+
+	var card = domCard.card;
+	var divDamage = document.getElementById("damage_" + card.id);
+	
+	divDamage.innerHTML = card.dammagePoints;
+	divDamage.style.color = (card.dammagePoints > 0) ? 'red' : 'black';
+}
+
+function flipCard(domCard){
+
     var currentPlayerId = document.getElementById("currentPlayerId").value;
+	var cardId = domCard.card.id;
+	var isActivated = !domCard.getIsActivated();
 
     var xhttp = new XMLHttpRequest();
-    xhttp.open("PUT", "player/"+currentPlayerId+"/board/"+cardId+"/activated/"+!curentvalue, false);
+    xhttp.open("PUT", "player/"+currentPlayerId+"/board/"+cardId+"/activated/"+isActivated, false);
     xhttp.setRequestHeader("Content-type", "application/json");
     xhttp.send();
-    refreshPlayerBoard(currentPlayerId)
+
+	domCard.setIsActivated(isActivated);
+
+    showCardActivation(domCard);
 }
 
-function useCard(cardId,curentvalue){
+function showCardActivation(domCard) {
+
+	var card = domCard.card;
+	var isActivated = domCard.getIsActivated();
+
+	var flipButton = document.getElementById("btnFlip_" + card.id);
+	flipButton.innerHTML = isActivated ? "&#8634" : "&#8631";
+
+}
+
+function useCard(domCard){
+
     var currentPlayerId = document.getElementById("currentPlayerId").value;
+	var cardId = domCard.card.id;
+	var isUsed = !domCard.getIsUsed();
 
     var xhttp = new XMLHttpRequest();
-    xhttp.open("PUT", "player/"+currentPlayerId+"/board/"+cardId+"/used/"+!curentvalue, false);
+    xhttp.open("PUT", "player/"+currentPlayerId+"/board/"+cardId+"/used/"+isUsed, false);
     xhttp.setRequestHeader("Content-type", "application/json");
     xhttp.send();
-    refreshPlayerBoard(currentPlayerId)
+
+	domCard.setIsUsed(isUsed);
 }
 
-function moveCardToGraveyard(cardId){
+
+function moveCardToGraveyard(domCard){
+    
     var currentPlayerId = document.getElementById("currentPlayerId").value;
+    var cardId = domCard.card.id
 
     var xhttp = new XMLHttpRequest();
     xhttp.open("PUT", "player/"+currentPlayerId+"/graveyard/"+cardId, false);
     xhttp.setRequestHeader("Content-type", "application/json");
     xhttp.send();
-    refreshPlayerBoard(currentPlayerId)
+    
+    domCard.divCard.remove();
+    fillGraveyard(currentPlayerId, "graveyardId");
 }
-

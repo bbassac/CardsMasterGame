@@ -1,4 +1,4 @@
-function fillGraveyard(playerId, graveId, imageHeight, forceUpdate) {
+function fillGraveyard(playerId, graveId, forceUpdate) {
 
     // Récupération des cartes du cimetière
     var xhttp = new XMLHttpRequest();
@@ -31,7 +31,7 @@ function fillGraveyard(playerId, graveId, imageHeight, forceUpdate) {
 			{ text: "Action 3", action: function() { alert("clique sur Action 3"); } }
 		];
 
-    	var domCard = new DomCard(cards[cards.length - 1], imageHeight, CARD_DRAW_MODES_DICE);
+    	var domCard = new DomCard(cards[cards.length - 1], gameImageHeight, CARD_DRAW_MODES_DICE);
 		graveyardArea.appendChild(domCard.divCard);
         domCard.addMenu(menu);
                
@@ -60,12 +60,14 @@ function putCardFromGraveyardToPlayer(playerId, card, who) {
 
 	if(who=="me"){
 		addGraveyardCardToMe(playerId, card);
+		fillGraveyard(playerId, "graveyardId");
 	} else {
 		addGraveyardCardToYou(playerId, card);	
+		fillGraveyard(playerId,"graveyardOppId");
 	}
 
+	fillHand(playerId);
 	hideCardSelectPopin();
-	refreshBoard();
 }
 
 /**
