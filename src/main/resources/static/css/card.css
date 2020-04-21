@@ -38,3 +38,13 @@
     text-align: center;
     vertical-align: text-top;
 }
+
+.cardDice {
+	margin: auto;
+}
+
+.cardBoard {
+	margin-top: auto;
+	margin-bottom: auto;
+	margin-left: 5px;
+}

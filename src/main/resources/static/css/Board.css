@@ -78,10 +78,6 @@ GraveyardOpp {
     display: flex;
 }
 
-GraveyardOpp > div {
-    margin: auto;
-}
-
 PvOpp {
     grid-column: 7;
     grid-row: 1;
@@ -92,8 +88,6 @@ PvOpp {
     display: block;
 
 }
-
-
 
 BoardPlayer {
     grid-column: 1 / span 5;
@@ -124,10 +118,6 @@ GraveyardPlayer {
     background-color: #6596EBb3;
     border: 1px solid black;
     display: flex;
-}
-
-GraveyardPlayer > div {
-    margin: auto;
 }
 
 PvPlayer {
@@ -180,7 +170,11 @@ Invocations {
     display: flex;
 }
 
-#imgInvocation {
+.imgDraw {
+	margin-left:5px;
+	margin-top:2px;"
+}
+.imgInvocation {
 	margin-left:5px;
 	margin-top:2px;"
 }
@@ -215,10 +209,7 @@ Traps {
     background-color: #6596EBb3;
     display: flex;
     text-align: right;
-}
-
-Traps div {
-	position: relative;
+    position: relative;
 }
 
 #nbTrapsId {
@@ -324,12 +315,7 @@ Traps div {
     inset 2px 2px 3px rgba(0, 0, 0, .6);
 }
 
-#affiniteImg{
-    margin-top: 2px;
-    height: 141px;
-    margin-left: 45px;
-}
-#affiniteOppImg{
-    height: 141px;
-    margin-left: 5px;
+#affiniteOppId {
+	position: relative;
+    display: flex;
 }

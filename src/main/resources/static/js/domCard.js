@@ -1,6 +1,3 @@
-const CARD_DRAW_MODES_DICE = 1;
-const CARD_DRAW_MODES_BOARD = 2;
-
 class DomCard {
 
 	constructor(card, height, cardDrawMode) {
@@ -10,11 +7,9 @@ class DomCard {
 		this.divCard = document.createElement("div");
 		
 		if (cardDrawMode == CARD_DRAW_MODES_DICE) {
-			this.divCard.style.margin = "auto";
+			this.divCard.classList.add("cardDice");
 		} else {
-			this.divCard.style.marginTop = "auto";
-			this.divCard.style.marginBottom = "auto";
-			this.divCard.style.marginLeft = "5px";
+			this.divCard.classList.add("cardBoard");
 		}
 		
         this.divBackImg = document.createElement("div");
@@ -25,7 +20,7 @@ class DomCard {
         this.cardImg.title = card.id;
         this.cardImg.onclick = (function() { showCardPopin(this.cardImg.src); }).bind(this);
         this.cardImg.oncontextmenu = function() { return false; };
-        
+
         // application de transformations
         this.setIsActivated(card.activated);
         this.setIsUsed(card.used);
@@ -35,6 +30,7 @@ class DomCard {
         this.divBackImg.style.position = "relative";
         
         this.divCard.appendChild(this.divBackImg);
+        this.divCard.domCard = this;
 	
   	}
 
@@ -77,11 +73,11 @@ class DomCard {
 		
 		// menu
 		this.divMenu = document.createElement("div");
-	    this.divBackImg.appendChild(this.divMenu);
 		this.divMenu.id = "divMenu" + this.card.id;
 		this.divMenu.classList.add('menuCardDiv')
 		this.divMenu.style.top = menuTop;
 		this.divMenu.style.left = menuLeft;
+	    this.divBackImg.appendChild(this.divMenu);
 	    		
 		menu.forEach ((function(item) {
 			this.divMenu.appendChild(this.buildMenuItem(this.divMenu, this.card, item));

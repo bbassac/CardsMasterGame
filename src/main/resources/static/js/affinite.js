@@ -1,66 +1,24 @@
-function manageAffinite(){
-    displayOppAffinite();
-    displayAffiniteJoueur();
-  
-}
+function fillAffinite() {
 
-function displayAffiniteJoueur() {
-    var currentPlayerId = document.getElementById("currentPlayerId").value;
-    //affinite
-    var xhttp = new XMLHttpRequest();
-    xhttp.open("GET", "player/"+currentPlayerId+"/affinite", false);
-    xhttp.setRequestHeader("Content-type", "application/json");
-    xhttp.send();
-    var affiniteCard = JSON.parse(xhttp.responseText);
-
-    var divToolTip = document.createElement("div");
-    divToolTip.classList.add("tooltip");
-
-    var imgAffinite = document.createElement("img");
-    imgAffinite.id="affiniteImg";
-    imgAffinite.style.height = drawImageHeight + "px";
-    imgAffinite.src = "img" + affiniteCard.path;
-    imgAffinite.setAttribute('onclick','showCardPopin(this.src);');
-    var spanToolTipText = document.createElement("span");
-    spanToolTipText.classList.add("tooltiptext");
-
-    divToolTip.appendChild(imgAffinite);
-    divToolTip.appendChild(spanToolTipText);
-
-    var divAffinite = document.getElementById("affiniteId")  ; 
-    divAffinite.innerHTML = "";
-    divAffinite.appendChild(divToolTip);
-}
-
-function displayOppAffinite(){
     var currentPlayerId = document.getElementById("currentPlayerId").value;
     var currentOppId = Math.abs(1-currentPlayerId);
 
+    displayAffinite(currentPlayerId, "affiniteId", drawImageHeight);
+    displayAffinite(currentOppId, "affiniteOppId", trapImageHeight);
+}
+
+function displayAffinite(playerId, srcId, cardHeight) {
+
+    //affinite
     var xhttp = new XMLHttpRequest();
-    xhttp.open("GET", "player/"+currentOppId+"/affinite", false);
+    xhttp.open("GET", "player/"+playerId+"/affinite", false);
     xhttp.setRequestHeader("Content-type", "application/json");
     xhttp.send();
-    var affiniteCard = JSON.parse(xhttp.responseText);
-
-    var div = document.getElementById("affiniteOppId");
-    if (document.getElementById("affiniteOppImg") == null ||
-        document.getElementById("affiniteOppImg").id !== affiniteCard.id ) {
-        div.innerHTML="";
-        var divToolTip = document.createElement("div");
-        divToolTip.classList.add("tooltip");
-
-        var imgAffinite = document.createElement("img");
-        imgAffinite.src = "img"+affiniteCard.path;
-        imgAffinite.id = "affiniteOppImg";
-        imgAffinite.affinite = affiniteCard.id;
-        imgAffinite.setAttribute('onclick','showCardPopin(this.src);');
-        var spanToolTipText = document.createElement("span");
-        spanToolTipText.classList.add("tooltiptext");
-
-        divToolTip.appendChild(imgAffinite);
-        divToolTip.appendChild(spanToolTipText)
-        div.appendChild(divToolTip);
-    }
-
-
+    var card = JSON.parse(xhttp.responseText);
+    
+    var src = document.getElementById(srcId);
+    src.innerHTML = '';
+    
+	var domCard = new DomCard(card, cardHeight, CARD_DRAW_MODES_DICE);
+	src.appendChild(domCard.divCard);
 }

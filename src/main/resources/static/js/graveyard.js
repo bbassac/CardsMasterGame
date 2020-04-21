@@ -60,12 +60,14 @@ function putCardFromGraveyardToPlayer(playerId, card, who) {
 
 	if(who=="me"){
 		addGraveyardCardToMe(playerId, card);
+		fillGraveyard(playerId, "graveyardId");
 	} else {
 		addGraveyardCardToYou(playerId, card);	
+		fillGraveyard(playerId,"graveyardOppId");
 	}
 
+	fillHand(playerId);
 	hideCardSelectPopin();
-	refreshBoard();
 }
 
 /**

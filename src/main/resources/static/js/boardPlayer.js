@@ -11,25 +11,27 @@ function fillBoardPlayer(playerId) {
 
 	for (var i = 0; i < cards.length; i++) {
 		
-		var domCard = new DomCard(cards[i], gameImageHeight);
+		var domCard = new DomCard(cards[i], gameImageHeight, CARD_DRAW_MODES_BOARD);
 		src.appendChild(domCard.divCard);
 		
-		addBoardCardButtons(cards[i], domCard);
+		addBoardCardButtons(domCard);
 	}
 }
 
-function addBoardCardButtons(card, domCard) {
+function addBoardCardButtons(domCard) {
 
-    var div = document.createElement("boardCardButtonsDiv_-"+ card.id);
-    div.classList.add("divActionCard");
-    domCard.divCard.appendChild(div);
+	var card = domCard.card;
+
+    var divBlock = document.createElement("boardCardButtonsDiv_-"+ card.id);
+    divBlock.classList.add("divActionCard");
+    domCard.divCard.appendChild(divBlock);
 
 	// Remove damage button
     var buttonLessDmg = document.createElement("button");
     buttonLessDmg.innerHTML = "-";
     buttonLessDmg.classList.add("buttonActionCard");
     buttonLessDmg.addEventListener('click', (function() { changeDmgPoints(this, -1); }).bind(domCard) );
-    div.appendChild(buttonLessDmg);
+    divBlock.appendChild(buttonLessDmg);
     
 
 	// Damage counter
@@ -41,7 +43,7 @@ function addBoardCardButtons(card, domCard) {
     divDamage.style.width = "24px";
     divDamage.style.display = "inline-block";
     divDamage.style.textAlign = "center";
-    div.appendChild(divDamage);
+    divBlock.appendChild(divDamage);
     showDamage(domCard);
 
 
@@ -51,7 +53,7 @@ function addBoardCardButtons(card, domCard) {
     buttonMoreDmg.classList.add("buttonActionCard");
     buttonMoreDmg.setAttribute("id",card.id);
     buttonMoreDmg.addEventListener('click', (function() { changeDmgPoints(this, 1); }).bind(domCard) );
-    div.appendChild(buttonMoreDmg);
+    divBlock.appendChild(buttonMoreDmg);
 
 
     //Activate Button
@@ -60,7 +62,7 @@ function addBoardCardButtons(card, domCard) {
 	flipButton.classList.add("buttonActionCard");
     flipButton.addEventListener('click', (function() { flipCard(this); }).bind(domCard) );
     flipButton.style.marginLeft = "20px";
-    div.appendChild(flipButton)
+    divBlock.appendChild(flipButton)
     showCardActivation(domCard);
 
 
@@ -71,7 +73,7 @@ function addBoardCardButtons(card, domCard) {
     useButton.classList.add("buttonActionCard");
     useButton.setAttribute("id",card.id);
     useButton.addEventListener('click', (function() { useCard(this); }).bind(domCard) );
-    div.appendChild(useButton)
+    divBlock.appendChild(useButton)
     
     
     //Move button
@@ -80,15 +82,13 @@ function addBoardCardButtons(card, domCard) {
     moveCardButton.setAttribute("id",card.id);
     moveCardButton.classList.add("buttonActionCard");
     moveCardButton.addEventListener('click', (function() { moveCardToGraveyard(this); }).bind(domCard) );
-    div.appendChild(moveCardButton);
-
-    return div;
+    divBlock.appendChild(moveCardButton);
 }
 
 function changeDmgPoints(domCard, damageChange){
 
-	var card = domCard.card;
     var currentPlayerId = document.getElementById("currentPlayerId").value;
+	var card = domCard.card;    
 	var newDamageValue = card.dammagePoints + (damageChange ? damageChange : 0);
 
     var xhttp = new XMLHttpRequest();
@@ -161,6 +161,6 @@ function moveCardToGraveyard(domCard){
     xhttp.setRequestHeader("Content-type", "application/json");
     xhttp.send();
     
-    fillBoardPlayer(currentPlayerId);
+    domCard.divCard.remove();
     fillGraveyard(currentPlayerId, "graveyardId");
 }
