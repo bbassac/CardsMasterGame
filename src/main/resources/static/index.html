@@ -1,134 +1,124 @@
 <!doctype html>
 <html>
-<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-<head>
-    <title>Card Master Game</title>
-    <link rel="stylesheet" href="css/Board.css" type="text/css" />
-    <link rel="stylesheet" href="css/popins.css" type="text/css" />
-    <link rel="stylesheet" href="css/card.css" type="text/css" />
-</head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<head>
+	    <title>Card Master Game</title>
+	    <link rel="stylesheet" href="css/Board.css" type="text/css" />
+	    <link rel="stylesheet" href="css/popins.css" type="text/css" />
+	    <link rel="stylesheet" href="css/card.css" type="text/css" />
+	</head>
+	
+	<body>
+	
+		<Header>
+		    <Doc>
+		        <a class="list-group-item" href="./swagger-ui.html">Documentation</a>
+		        <a class="list-group-item" href="./README.html">Règles du jeu</a>
+		    </Doc>
+		    ID du joueur
+			<select id="currentPlayerId" onchange="refreshBoard(true)">
+			    <option selected="selected" value="0">0</option>
+			    <option value="1">1</option>
+			</select>
+		    <button class="refeshButton" onclick="refreshBoard()"></button>
+		    <a  class="list-group-item" href="./gallery2.html">Gallerie</a>
+		    <button class="buttonLoad" onclick="loadFile()">Load</button>
+		    <span id="div_horloge"></span>
+		
+		</Header>
+		
+		<Board>
+		    <BoardOpp id="boardOpp"></BoardOpp>
+		    <GraveyardOpp id="graveyardOppId">Graveyard Opponent</GraveyardOpp>
+		    <PvOpp>
+		        <div id="oppPvsId"></div>
+		        <br />
+		        <div id="nbTrapsId"></div>
+		        <div id="nbCardsId"></div>
+		        <div id="extraOppId"></div>
+		        <div id="affiniteOppId"></div>
+		    </PvOpp>
+		    <BoardPlayer id="boardPlayer"></BoardPlayer>
+		    <GraveyardPlayer id="graveyardId"></GraveyardPlayer>
+		    <PvPlayer>
+		        <div id="playerPvsId"></div>
+		        <br />
+		        <div id="playerChakraId"></div>
+		        <br />
+		        <div id="diceId" ></div>
+		        <div id="diceResultId" >Result :</div>
+		        <div id="extraPlayerId"></div>
+		        <button class="newTurnButton"
+		                 type="button" onclick="newTurn()">
+		            Nouveau <br />Tour
+		        </button>
+		    </PvPlayer>
 
-<body>
-
-
-<Header>
-    <Doc>
-        <a class="list-group-item" href="./swagger-ui.html">Documentation</a>
-        <a class="list-group-item" href="./README.html">Règles du jeu</a>
-    </Doc>
-    ID du joueur
-	<select id="currentPlayerId" onchange="refreshBoard(true)">
-	    <option selected="selected" value="0">0</option>
-	    <option value="1">1</option>
-	</select>
-    <button class="refeshButton" onclick="refreshBoard()"></button>
-    <a  class="list-group-item" href="./gallery2.html">Gallerie</a>
-    <button class="buttonLoad" onclick="loadFile()">Load</button>
-    <span id="div_horloge"></span>
-
-    <script type="text/javascript">
-        window.onload=function() {
-            horloge('div_horloge');
-        };
-
-        function horloge(el) {
-            if(typeof el=="string") { el = document.getElementById(el); }
-            function actualiser() {
-                var date = new Date();
-                var str = date.getHours();
-                str += ':'+(date.getMinutes()<10?'0':'')+date.getMinutes();
-                //str += ':'+(date.getSeconds()<10?'0':'')+date.getSeconds();
-                el.innerHTML = str;
-            }
-            actualiser();
-            setInterval(actualiser,1000);
-        }
-    </script>
-</Header>
-
-<Board>
-    <BoardOpp id="boardOpp"></BoardOpp>
-    <GraveyardOpp id="graveyardOppId">Graveyard Opponent</GraveyardOpp>
-    <PvOpp>
-        <div id="oppPvsId"></div>
-        <br />
-        <div id="nbTrapsId"></div>
-        <div id="nbCardsId"></div>
-        <div id="extraOppId"></div>
-        <div id="affiniteOppId"></div>
-    </PvOpp>
-    <BoardPlayer id="boardPlayer"></BoardPlayer>
-    <GraveyardPlayer id="graveyardId"></GraveyardPlayer>
-    <PvPlayer>
-        <div id="playerPvsId"></div>
-        <br />
-        <div id="playerChakraId"></div>
-        <br />
-        <div id="diceId" ></div>
-        <div id="diceResultId" >Result :</div>
-        <div id="extraPlayerId"></div>
-        <button class="newTurnButton"
-                 type="button" onclick="newTurn()">
-            Nouveau <br />Tour
-        </button>
-
-    </PvPlayer>
-    <Hand id="hand"> Main du joueur </Hand>
-
-    <Draw id="draw"></Draw>
-    
-    <Invocations id="invocations">
-    	<div>
-    		<img id="imgInvocation" src="img/Back-Select.png">
-    	</div>
-    </Invocations>
-    
-    
-    <CurrentEnvironment id="currentEnvironment"></CurrentEnvironment>
-    <Affinite id = "affiniteId"></Affinite>
-    <Traps id="traps"></Traps>
-
-</Board>
-
-<!-- div de la popin de sélection de carte -->
-<div id="popinCardSelectDiv" >
-	<div class="popin_gray_back" onclick="hideCardSelectPopin()"></div>
-	<div id="popin_cardSelect">
-		<img class="closePopin" src="img/ClosePopin.png" onclick="hideCardSelectPopin()"></img>
-		<div id="popinCardsArea" class="popinSelectCardsArea">
+		    <Hand id="hand"> Main du joueur </Hand>
+		    <Draw id="draw"></Draw>
+		    <Invocations id="invocations"></Invocations>
+		    <CurrentEnvironment id="currentEnvironment"></CurrentEnvironment>
+		    <Affinite id = "affiniteId"></Affinite>
+		    <Traps id="traps"></Traps>
+		
+		</Board>
+		
+		<!-- div de la popin de sélection de carte -->
+		<div id="popinCardSelectDiv" >
+			<div class="popin_gray_back" onclick="hideCardSelectPopin()"></div>
+			<div id="popin_cardSelect">
+				<img class="closePopin" src="img/ClosePopin.png" onclick="hideCardSelectPopin()"></img>
+				<div id="popinCardsArea" class="popinSelectCardsArea">
+				</div>
+			</div>
 		</div>
-	</div>
-</div>
+		
+		<!-- div de la popin de carte -->
+		<div id="popinCardDiv" > 
+			<div class="popin_gray_back" onclick="hideCardPopin()"></div>
+			<div class="popin_card">
+				<img id="popinCardImg" border=0 alt='Mon image' height='100%' onclick="hideCardPopin()"></img>
+			</div>
+		</div>
+		
+		
+		<!-- éléments techniques -->
+		<script src="js/constants.js"></script>
+		<script src="js/clock.js"></script>
+		<script src="js/domCard.js"></script>
+		<script src="js/loadfile.js"></script>
 
-<!-- div de la popin de carte -->
-<div id="popinCardDiv" > 
-	<div class="popin_gray_back" onclick="hideCardPopin()"></div>
-	<div class="popin_card">
-		<img id="popinCardImg" border=0 alt='Mon image' height='100%' onclick="hideCardPopin()"></img>
-	</div>
-</div>
+		<!-- popins -->
+		<script src="js/popins.js"></script>
+		<script src="js/popinSelectCard.js"></script>
+		
+		<!-- gestion des zones présentes pour les deux joueurs -->
+		<script src="js/affinite.js"></script>
+		<script src="js/pv.js"></script>
+		<script src="js/graveyard.js"></script>
+		<script src="js/chakra.js"></script>
+		
+		<!-- gestion des zones du joueur courant -->
+		<script src="js/invocations.js"></script>
+		<script src="js/environment.js"></script>
+		<script src="js/boardPlayer.js"></script>
+		<script src="js/hand.js"></script>
+		<script src="js/traps.js"></script>
+		<script src="js/dice.js"></script>
+		<script src="js/extra.js"></script>
+		<script src="js/draw.js"></script>
 
-<script src="js/domCard.js"></script>
-<script src="js/affinite.js"></script>
-<script src="js/loadfile.js"></script>
-<script src="js/pv.js"></script>
-<script src="js/deckSection.js"></script>
-<script src="js/drawSection.js"></script>
-<script src="js/popinSelectCard.js"></script>
+		<!-- gestion des zones de l'adversaire -->
+		<script src="js/opponentTraps.js"></script>
+		<script src="js/opponentBoard.js"></script>
 
-<script src="js/boardPlayer.js"></script>
-<script src="js/hand.js"></script>
-<script src="js/graveyard.js"></script>
-<script src="js/invocations.js"></script>
-<script src="js/traps.js"></script>
-
-<script src="js/dice.js"></script>
-<script src="js/chakra.js"></script>
-<script src="js/trap.js"></script>
-<script src="js/opponentDeckSection.js"></script>
-<script src="js/popins.js"></script>
-<script src="js/extra.js"></script>
-</body>
+		<!-- plateau -->
+		<script src="js/deckSection.js"></script>
+	
+		<!-- starter -->
+		<script src="js/start.js"></script>
+	
+	</body>
 </html>
 
 

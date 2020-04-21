@@ -1,4 +1,4 @@
-function fillTraps(playerId, imageHeight) {
+function fillTraps(playerId) {
 
     var xhttp = new XMLHttpRequest();
     xhttp.open("GET", "player/"+playerId+"/traps", false);
@@ -17,7 +17,7 @@ function fillTraps(playerId, imageHeight) {
 			{ text: "Action 3", action: function() { alert("clique sur Action 3"); } }
 		];
 	
-	    var domCard = new DomCard(cards[i], imageHeight);
+	    var domCard = new DomCard(cards[i], trapImageHeight, CARD_DRAW_MODES_BOARD);
 		src.appendChild(domCard.divCard);
 		domCard.addMenu(menu);
 	}
