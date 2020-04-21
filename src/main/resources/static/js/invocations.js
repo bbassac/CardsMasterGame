@@ -32,7 +32,7 @@ function showPopinInvocations() {
 	xhttp.send();
 	var cards = JSON.parse(xhttp.responseText);
 	
-	displayPopinSelectCard("me", cards, putCardFromInvocationToPlayer, "url('/../img/Invocation.png')");
+	displayPopinSelectCard("me", cards, putCardFromInvocationToPlayer, "url('img/Invocation.png')");
 
 }
 

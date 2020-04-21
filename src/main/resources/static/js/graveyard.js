@@ -53,7 +53,7 @@ function showPopinGrave(who){
     xhttp.send();
     var cards = JSON.parse(xhttp.responseText);
 
-	displayPopinSelectCard(who, cards, putCardFromGraveyardToPlayer, "url('/../img/Graveyard-2.png')");
+	displayPopinSelectCard(who, cards, putCardFromGraveyardToPlayer, "url('img/Graveyard-2.png')");
 }
 
 function putCardFromGraveyardToPlayer(playerId, card, who) {
