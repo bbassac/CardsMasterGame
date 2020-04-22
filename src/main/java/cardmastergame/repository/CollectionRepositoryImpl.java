@@ -166,5 +166,15 @@ public class CollectionRepositoryImpl implements CollectionRepositoryCustom {
         cardService.filterDraw(playerId,result);
     }
 
+    @Override
+    public void moveCardFromHandToEquipmentForPlayer(int playerId, int cardId) {
+        cardService.moveCardFromHandToEquipmentForPlayer(playerId,cardId);
+    }
+
+    @Override
+    public void moveCardFromEquipmentToGraveyard(int playerId, int cardId) {
+        cardService.moveCardFromEquipmentToGraveyard(playerId,cardId);
+    }
+
 
 }

@@ -55,4 +55,8 @@ public interface CollectionRepositoryCustom {
     Card getAffinite(int playerId);
 
     void filterDraw(int playerId, List<String> result);
+
+    void moveCardFromHandToEquipmentForPlayer(int playerId, int cardId);
+
+    void moveCardFromEquipmentToGraveyard(int playerId, int cardId);
 }
