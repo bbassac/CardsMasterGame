@@ -79,6 +79,7 @@ function moveCardToTrap(domCard){
     
     domCard.divCard.remove();
     fillTraps(currentPlayerId);
+    fillHand(currentPlayerId);
 }
 
 function moveHandCardToGraveyard(domCard){
