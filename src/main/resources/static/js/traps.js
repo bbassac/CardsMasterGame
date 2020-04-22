@@ -22,3 +22,14 @@ function fillTraps(playerId) {
 		domCard.addMenu(menu);
 	}
 }
+
+function moveCardFromTrapsToGraveyard(card){
+
+    var currentPlayerId = document.getElementById("currentPlayerId").value;
+
+    var xhttp = new XMLHttpRequest();
+    xhttp.open("PUT", "player/"+currentPlayerId+"/trap/"+card.id+"/graveyard", false);
+    xhttp.setRequestHeader("Content-type", "application/json");
+    xhttp.send();
+    refreshPlayerBoard(currentPlayerId)
+}
