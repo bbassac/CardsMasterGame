@@ -16,9 +16,9 @@ import cardmastergame.bean.Deck;
 
 @Component
 public class CardService {
-    public static final String BACK_DRAW = "/Back-Draw";
-    public static final String BACK_SELECT = "/Back-Select";
-    public static final String BACK_SELECT_3 = "/Back-Select3";
+    private static final String BACK_DRAW = "/Back-Draw";
+    private static final String BACK_SELECT = "/Back-Select";
+    private static final String BACK_SELECT_3 = "/Back-Select3";
     private int lastIndex;
     private Map<Integer, Card> allCards;
     private Deck<Card> environnments;
@@ -28,6 +28,7 @@ public class CardService {
     private Deck<Card>[] mains;
     private Deck<Card>[] plateaux;
     private Deck<Card>[] pieges;
+    private Deck<Card>[] equipment;
     private Deck<Card> currentEnvironnement;
 
    // private CardUpdater cardUpdater = new CardUpdater("Naruto.json"); 
@@ -57,6 +58,9 @@ public class CardService {
         plateaux = new Deck[2];
         plateaux[0] = new Deck<>();
         plateaux[1] = new Deck<>();
+        equipment = new Deck[2];
+        equipment[0]= new Deck<>();
+        equipment[1]= new Deck<>();
         allCards = new HashMap<>();
 
         int nbCards1 = loadStack(environnments, BACK_SELECT);
@@ -249,6 +253,10 @@ public class CardService {
                 return pieges[0];
             case TRAP1:
                 return pieges[1];
+            case EQUIPMENT0:
+                return equipment[0];
+            case EQUIPMENT1:
+                return equipment[1];
             case ALL:
                 Deck<Card> fullDeck = new Deck<>();
                 loadStack(fullDeck, BACK_DRAW);
@@ -276,5 +284,16 @@ public class CardService {
             pioche[playerId] = newDeck;
         }
     }
-    
+
+    public void moveCardFromHandToEquipmentForPlayer(int playerId, int cardId) {
+        Card c = findCardInStackById(mains[playerId],"equipment joueur " + playerId, cardId);
+        mains[playerId].remove(c);
+        equipment[playerId].push(c);
+    }
+
+    public void moveCardFromEquipmentToGraveyard(int playerId, int cardId) {
+        Card c = findCardInStackById(equipment[playerId],"equipment joueur " + playerId, cardId);
+        equipment[playerId].remove(c);
+        cimetieres[playerId].push(c);
+    }
 }
