@@ -44,6 +44,13 @@ function addHandCardButtons(domCard) {
     moveTrapButton.addEventListener('click', (function() { moveCardToTrap(this); }).bind(domCard) );
     divBlock.appendChild(moveTrapButton);
 
+    var moveEquipmentButton = document.createElement("button");
+    moveEquipmentButton.innerHTML = "&dArr;";
+    moveEquipmentButton.id = card.id;
+    moveEquipmentButton.classList.add("buttonActionCard");
+    moveEquipmentButton.addEventListener('click', (function() { moveCardToEquipment(this); }).bind(domCard) );
+    divBlock.appendChild(moveEquipmentButton);
+
 
     var moveGrave = document.createElement("button");
     moveGrave.innerHTML = "&#9760;";
@@ -80,6 +87,21 @@ function moveCardToTrap(domCard){
     
     domCard.remove();
     fillTraps(currentPlayerId);
+    fillHand(currentPlayerId);
+}
+
+function moveCardToEquipment(domCard){
+
+    var currentPlayerId = document.getElementById("currentPlayerId").value;
+    var cardId = domCard.card.id;
+
+    var xhttp = new XMLHttpRequest();
+    xhttp.open("PUT", "player/"+currentPlayerId+"/equipment/"+cardId, false);
+    xhttp.setRequestHeader("Content-type", "application/json");
+    xhttp.send();
+
+    domCard.remove();
+    fillEquipments(currentPlayerId);
     fillHand(currentPlayerId);
 }
 

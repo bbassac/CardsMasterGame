@@ -40,10 +40,10 @@ Board {
     display: -ms-grid;
     
     border: 1px solid black;
-    grid-template-columns: 230px 230px auto 135px 135px 30px 198px 115px;
-    grid-template-rows: 298px 298px 298px auto;
-    -ms-grid-columns: 220px 220px auto 200px 200px 198px 115px;
-    -ms-grid-rows: 298px 298px 298px 146px;
+    grid-template-columns: 230px 230px 845px 135px 135px 30px 198px 115px;
+    grid-template-rows: 298px 298px 298px 156px;
+    -ms-grid-columns: 220px 220px 845px 200px 200px 198px 115px;
+    -ms-grid-rows: 298px 298px 298px 156px;
     background: url("../img/Fond2.png") no-repeat;
     background-size: 100% 100%;
 }
@@ -178,6 +178,7 @@ Equipments {
     border: 1px solid black;
     background-color: #6596EBb3;
     display: flex;
+    overflow-x: auto;
 }
 
 .imgDraw {

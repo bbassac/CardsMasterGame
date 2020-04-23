@@ -27,8 +27,6 @@ function fillGraveyard(playerId, graveId, forceUpdate) {
     
 		var menu = [
 			{ text: "Afficher le cimetière", action: function() { showPopinGrave(who); } },
-			{ text: "Action 2", action: function() { alert("clique sur Action 2"); } },
-			{ text: "Action 3", action: function() { alert("clique sur Action 3"); } }
 		];
 
     	var domCard = new DomCard(cards[cards.length - 1], gameImageHeight, CARD_DRAW_MODES_DICE);

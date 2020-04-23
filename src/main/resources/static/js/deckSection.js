@@ -78,6 +78,6 @@ function refreshPlayerBoard(forceUpdate){
 	fillBoardPlayer(currentPlayerId);
     fillGraveyard(currentPlayerId, "graveyardId", forceUpdate);
     fillTraps(currentPlayerId);
-
+    fillEquipments(currentPlayerId);
     displayExtraArea(currentPlayerId,"extraPlayerId");
 }
