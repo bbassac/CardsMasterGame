@@ -22,7 +22,8 @@ function addHandCardButtons(domCard) {
 
 	var card = domCard.card;
 
-    var divBlock = document.createElement("handCardButtonsDiv_" + card.id);
+    var divBlock = document.createElement("div");
+    divBlock.id = "handCardButtonsDiv_" + card.id
     divBlock.classList.add("divActionCard");
     domCard.divCard.appendChild(divBlock);
 
@@ -77,7 +78,7 @@ function moveCardToTrap(domCard){
     xhttp.setRequestHeader("Content-type", "application/json");
     xhttp.send();
     
-    domCard.divCard.remove();
+    domCard.remove();
     fillTraps(currentPlayerId);
     fillHand(currentPlayerId);
 }
@@ -92,6 +93,6 @@ function moveHandCardToGraveyard(domCard){
     xhttp.setRequestHeader("Content-type", "application/json");
     xhttp.send();
     
-    domCard.divCard.remove();
+    domCard.remove();
 	fillGraveyard(currentPlayerId, "graveyardId");    
 }

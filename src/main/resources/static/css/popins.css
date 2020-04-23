@@ -60,19 +60,16 @@
 
 .popinSelectDivButton {
     position: absolute;
-    width: 50px;
-    top: 0px;
+    width: 40px;
+    bottom: 5px;
+    right: 5px;
     display: none;
-    margin-left: 191px;
-    margin-top: 313px;
 }
 
 .popinSelectButton {
     width: 40px;
     border: 0;
     height: 18px;
-    margin-top: 1px;
-    margin-left: 9px;
     font-size: 1rem;
     text-align: center;
     color: #fff;

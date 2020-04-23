@@ -7,4 +7,5 @@ document.addEventListener('DOMContentLoaded', function() {
 }, false);
 
 setInterval(refreshByInterval, 500);
- 
+
+refreshBoard();
