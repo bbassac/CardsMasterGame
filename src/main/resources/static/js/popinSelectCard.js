@@ -9,58 +9,46 @@ function displayPopinSelectCard(who, cards, addFunction, background) {
 
     for (var i=0; i< cards.length;i++) {
 
-		// une div par carte         
-        var cardDiv = document.createElement("div");
-        cardDiv.classList.add("selectCardDiv");
-		cardDiv.style.position = "relative";        
-        cardDiv.setAttribute('onmouseenter','showAddButton(\"buttonDiv' + cards[i].id + '\")');
-        cardDiv.setAttribute('onmouseleave','hideAddButton(\"buttonDiv' + cards[i].id + '\")');
-        
-        
-        // image de la carte
-        var imgDiv = document.createElement("div");
-        
-        var img = document.createElement("img");
-        img.src = "img"+encodeURI(cards[i].path);
-        img.height = 330;
-        img.hspace = 5;
-        img.vspace = 5;
-        img.setAttribute("position", "absolute");
-        img.title = cards[i].id;
-        img.setAttribute("id","c-"+cards[i].id);
-        img.onclick = (function() {showCardPopin(this.src); }).bind(img) ;
-        imgDiv.appendChild(img);
-        cardDiv.appendChild(imgDiv);
-
-		// bouton d'ajout vers un joueur
-		var buttonDiv = document.createElement("div");
-		buttonDiv.setAttribute("id" , "buttonDiv" + cards[i].id);
-		buttonDiv.classList.add('popinSelectDivButton')
-        cardDiv.appendChild(buttonDiv);
-
-		// Bouton d'action d'ajout
-        var button = document.createElement("button");
-        button.classList.add('popinSelectButton');
-        button.innerHTML = "+";
-        button.card = cards[i];
-        button.cardDiv = cardDiv;
-        button.addEventListener("click", (function() {
-        		this.cardDiv.style.display = "none";
-        		addFunction(parseInt(currentPlayerId), this.card, who);
-        	}).bind(button)); 
-
-        buttonDiv.appendChild(button);        
-
-		// ajout de la carte à la popin
-		popinDiv.appendChild(cardDiv);
-
+    	var domCard = new DomCard(cards[i], gameImageHeight, CARD_DRAW_MODES_BOARD);
+    	popinDiv.appendChild(domCard.divCard);
+    	
+    	addPopinSelectCardButtons(domCard, addFunction, who);
     }
 }
 
-function showAddButton(divId) {
-	document.getElementById(divId).style.display = 'block';
+function addPopinSelectCardButtons(domCard, addFunction, who) {
+	
+	var cardId = domCard.card.id;
+
+	var buttonDiv = document.createElement("div");
+	buttonDiv.id = "buttonDiv" + cardId;
+	buttonDiv.classList.add('popinSelectDivButton')
+    domCard.divBackImg.appendChild(buttonDiv);
+
+	// Bouton d'action d'ajout
+    var button = document.createElement("button");
+    button.classList.add('popinSelectButton');
+    button.innerHTML = "+";
+    button.cardDiv = domCard.divCard;
+    button.addEventListener("click", (function() { popinSelectCardAddAction(this, addFunction, who); }).bind(domCard));
+    buttonDiv.appendChild(button);        
+
+	domCard.divCard.addEventListener('mouseenter', (function() { showAddButton(this); }).bind(buttonDiv));
+	domCard.divCard.addEventListener('mouseleave', (function() { hideAddButton(this); }).bind(buttonDiv));
 }
 
-function hideAddButton(divId) {
-	document.getElementById(divId).style.display = 'none';
+function popinSelectCardAddAction(domCard, addFunction, who) {
+
+	var currentPlayerId = document.getElementById("currentPlayerId").value;	
+	
+	domCard.remove();
+	addFunction(parseInt(currentPlayerId), domCard.card, who);
+}
+
+function showAddButton(buttonDiv) {
+	buttonDiv.style.display = 'block';
+}
+
+function hideAddButton(buttonDiv) {
+	buttonDiv.style.display = 'none';
 }

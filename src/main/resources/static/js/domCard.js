@@ -11,10 +11,12 @@ class DomCard {
 		} else {
 			this.divCard.classList.add("cardBoard");
 		}
+    	this.divCard.style.cssFloat = "left";
 		
         this.divBackImg = document.createElement("div");
 
-        this.cardImg = document.createElement("img");            
+        this.cardImg = document.createElement("img");
+        this.cardImg.loading = "lazy";
         this.cardImg.src = "img/" + encodeURI(card.path);
         this.cardImg.height = height;
         this.cardImg.title = card.id;
@@ -66,6 +68,10 @@ class DomCard {
 		
 	}
 
+	remove() {
+		this.divCard.remove();
+	}
+	
 	addMenu(menu) {
 
 		var menuTop = "0px";
@@ -73,7 +79,7 @@ class DomCard {
 		
 		// menu
 		this.divMenu = document.createElement("div");
-		this.divMenu.id = "divMenu" + this.card.id;
+		this.divMenu.id = "divMenu_" + this.card.id;
 		this.divMenu.classList.add('menuCardDiv')
 		this.divMenu.style.top = menuTop;
 		this.divMenu.style.left = menuLeft;

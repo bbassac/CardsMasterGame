@@ -10,26 +10,30 @@ function fillTraps(playerId) {
     src.innerHTML = '';
 
 	 for (var i = 0; i < cards.length; i++){
-	
+
+	    var domCard = new DomCard(cards[i], trapImageHeight, CARD_DRAW_MODES_BOARD);
+		src.appendChild(domCard.divCard);
+		 
 		var menu = [
-			{ text: "Activer", action: (function() { moveCardFromTrapsToGraveyard(this); }).bind(cards[i]) },
+			{ text: "Activer", action: (function() { moveCardFromTrapsToGraveyard(this); }).bind(domCard) },
 			{ text: "Action 2", action: function() { alert("clique sur Action 2"); } },
 			{ text: "Action 3", action: function() { alert("clique sur Action 3"); } }
 		];
 	
-	    var domCard = new DomCard(cards[i], trapImageHeight, CARD_DRAW_MODES_BOARD);
-		src.appendChild(domCard.divCard);
 		domCard.addMenu(menu);
 	}
 }
 
-function moveCardFromTrapsToGraveyard(card){
+function moveCardFromTrapsToGraveyard(domCard){
 
     var currentPlayerId = document.getElementById("currentPlayerId").value;
 
     var xhttp = new XMLHttpRequest();
-    xhttp.open("PUT", "player/"+currentPlayerId+"/trap/"+card.id+"/graveyard", false);
+    xhttp.open("PUT", "player/"+currentPlayerId+"/trap/"+domCard.card.id+"/graveyard", false);
     xhttp.setRequestHeader("Content-type", "application/json");
     xhttp.send();
-    refreshPlayerBoard(currentPlayerId)
+    
+    fillGraveyard(currentPlayerId, "graveyardId");
+    domCard.remove();
+    
 }

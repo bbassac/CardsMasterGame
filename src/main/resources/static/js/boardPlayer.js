@@ -22,7 +22,8 @@ function addBoardCardButtons(domCard) {
 
 	var card = domCard.card;
 
-    var divBlock = document.createElement("boardCardButtonsDiv_-"+ card.id);
+    var divBlock = document.createElement("div");
+    divBlock.id = "boardCardButtonsDiv_"+ card.id;
     divBlock.classList.add("divActionCard");
     domCard.divCard.appendChild(divBlock);
 
@@ -161,6 +162,6 @@ function moveCardToGraveyard(domCard){
     xhttp.setRequestHeader("Content-type", "application/json");
     xhttp.send();
     
-    domCard.divCard.remove();
+    domCard.remove();
     fillGraveyard(currentPlayerId, "graveyardId");
 }
