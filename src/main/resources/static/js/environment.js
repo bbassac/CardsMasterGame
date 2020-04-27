@@ -17,7 +17,7 @@ function fillEnvironment() {
 		used: false
 	};
 
-    var domCard = new DomCard(card, drawImageHeight, CARD_DRAW_MODES_DICE);
+    var domCard = new DomCard(card, envAndAffinityHeight, CARD_DRAW_MODES_DICE);
 	src.appendChild(domCard.divCard);
 
 }

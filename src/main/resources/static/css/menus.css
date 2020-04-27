@@ -1,0 +1,36 @@
+body {
+    margin: 0;
+    user-select: none;
+    background-color: black;
+}
+
+Header {
+    background-color: white;
+    padding-left: 10px;
+}
+
+#currentPlayerId {
+    margin-right: 50px;
+}
+
+.refeshButton {
+    background: url("../img/reload.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    height: 20px;
+    width: 30px;
+    margin-right: 50px;
+    margin-bottom: 0;
+    transform: translateY(2px);
+}
+
+.list-group-item {
+    margin-right: 50px;
+}
+
+.buttonLoad {
+    height: 20px;
+    width: 60px;
+    margin-right: 200px;
+}

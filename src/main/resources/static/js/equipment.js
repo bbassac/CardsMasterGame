@@ -10,8 +10,8 @@ function fillEquipments(playerId) {
     src.innerHTML = '';
 
 	 for (var i = 0; i < cards.length; i++){
-
-	    var domCard = new DomCard(cards[i], trapImageHeight-10, CARD_DRAW_MODES_BOARD);
+        var imgSize = cards.length > 7 ? equipmentHeight-10 : equipmentHeight;
+	    var domCard = new DomCard(cards[i], imgSize, CARD_DRAW_MODES_BOARD);
 		src.appendChild(domCard.divCard);
 		 
 		var menu = [
@@ -33,5 +33,7 @@ function moveCardFromEquipmentsToGraveyard(domCard){
     
     fillGraveyard(currentPlayerId, "graveyardId");
     domCard.remove();
+    //Pour le cas ou on doit les resize
+    fillEquipments(currentPlayerId);
     
 }

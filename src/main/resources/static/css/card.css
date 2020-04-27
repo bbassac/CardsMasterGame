@@ -40,11 +40,11 @@
 }
 
 .cardDice {
-	margin: auto;
+	margin: 2px;
 }
 
 .cardBoard {
-	margin-top: auto;
-	margin-bottom: auto;
+	/*margin-top: auto;
+	margin-bottom: auto;*/
 	margin-left: 5px;
 }

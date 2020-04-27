@@ -3,7 +3,7 @@ function fillAffinite() {
     var currentPlayerId = document.getElementById("currentPlayerId").value;
     var currentOppId = Math.abs(1-currentPlayerId);
 
-    displayAffinite(currentPlayerId, "affiniteId", drawImageHeight);
+    displayAffinite(currentPlayerId, "affiniteId", envAndAffinityHeight);
     displayAffinite(currentOppId, "affiniteOppId", trapImageHeight);
 }
 

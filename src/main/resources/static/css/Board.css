@@ -1,49 +1,12 @@
-body {
-  margin: 0;
-  user-select: none;
-  background-color: black;
-}
-
-Header {
-	background-color: white;
-	padding-left: 10px;
-}
-
-#currentPlayerId {
-	margin-right: 50px;
-}
-
-.refeshButton {
-	background: url("../img/reload.png");
-	background-repeat : no-repeat;
-	background-position: center;
-	background-size: contain;
-	height: 20px;
-	width: 30px;
-	margin-right: 50px;
-	margin-bottom: 0;
-	transform : translateY(2px);
-}
-
-.list-group-item {
-	margin-right: 50px;
-}
-
-.buttonLoad {
-	height: 20px;
-	width: 60px;
-	margin-right: 200px;
-}
 
 Board {
     display: grid;
     display: -ms-grid;
-    
     border: 1px solid black;
     grid-template-columns: 230px 230px 845px 135px 135px 30px 198px 115px;
-    grid-template-rows: 298px 298px 298px 156px;
+    grid-template-rows: 298px 298px 280px 179px;
     -ms-grid-columns: 220px 220px 845px 200px 200px 198px 115px;
-    -ms-grid-rows: 298px 298px 298px 156px;
+    -ms-grid-rows: 298px 298px 280px 179px;
     background: url("../img/Fond2.png") no-repeat;
     background-size: 100% 100%;
 }
@@ -58,13 +21,6 @@ BoardOpp {
     border: 1px solid black;
     display: flex;
     overflow-x: auto;
-}
-
-BoardOpp > div {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
 }
 
 GraveyardOpp {
@@ -142,13 +98,6 @@ Hand {
     overflow-x: auto;
 }
 
-Hand > div {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
 
 Draw {
     grid-column: 1;
@@ -181,14 +130,6 @@ Equipments {
     overflow-x: auto;
 }
 
-.imgDraw {
-	margin-left:5px;
-	margin-top:2px;
-}
-.imgInvocation {
-	margin-left:5px;
-	margin-top:2px;
-}
 
 CurrentEnvironment {
     grid-column: 4;
@@ -221,112 +162,5 @@ Traps {
     display: flex;
     text-align: right;
     position: relative;
-}
-
-#nbTrapsId {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-}
-
-#nbCardsId {
-    display: block;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
-}
-
-#handImgId {
-    vertical-align: middle;
-}
-
-#selectInvocations {
-    transform: translateY(-60px);
-    margin-left: 30px;
-    margin-right: 30px;
-}
-
-#buttonDisplayInvoc {
-    transform: translateY(-60px);
-}
-
-.usedCard {
-	outline: 3px dashed yellow;
-	outline-offset: -3px;
-}
-
-.activatedCard {
-	transform: rotate(90deg);
-	margin-left:38px;
-	margin-right:38px;
-}
-
-#extraPlayerId {
-    margin-top: 20px;
-}
-
-#extraOppId {
-    font-family: "naruto", Helvetica, Arial, sans-serif;
-    font-size: larger;
-    font-weight: 900;
-}
-
-
-.toGraveyardDiv {
-    position: absolute;
-    bottom: 2px;
-    width: 100%;
-}
-
-.toGraveyardDiv > div {
-    margin: auto;
-    width: 60px;
-}
-
-.toGraveyardButton {
-    width: 100%;
-}
-
-.newTurnButton {
-    border: 0;
-    height: 40px;
-    padding: 0 6px;
-    margin-top: 35px;
-    margin-left: 15px;
-    font-size: 1rem;
-    text-align: center;
-    color: #fff;
-    text-shadow: 1px 1px 1px #000;
-    border-radius: 10px;
-    background-color: rgba(0, 220, 0, 1);
-    background-image: linear-gradient(to top left,
-    rgba(0, 0, 0, .2),
-    rgba(0, 0, 0, .2) 30%,
-    rgba(0, 0, 0, 0));
-    box-shadow: inset 2px 2px 3px rgba(255, 255, 255, .6),
-    inset -2px -2px 3px rgba(0, 0, 0, .6);
-}
-
-.newTurnButton:hover {
-    background-color: rgba(0, 255, 0, 1);
-}
-
-.newTurnButton:active {
-    box-shadow: inset -2px -2px 3px rgba(255, 255, 255, .6),
-    inset 2px 2px 3px rgba(0, 0, 0, .6);
-}
-
-.newTurnButton:hover {
-    background-color: rgba(0, 255, 0, 1);
-}
-
-.newTurnButton:active {
-    box-shadow: inset -2px -2px 3px rgba(255, 255, 255, .6),
-    inset 2px 2px 3px rgba(0, 0, 0, .6);
-}
-
-#affiniteOppId {
-	position: relative;
-    display: flex;
+    overflow-x: auto;
 }
