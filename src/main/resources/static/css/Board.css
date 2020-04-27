@@ -4,9 +4,9 @@ Board {
     display: -ms-grid;
     border: 1px solid black;
     grid-template-columns: 230px 230px 845px 135px 135px 30px 198px 115px;
-    grid-template-rows: 298px 298px 280px 179px;
+    grid-template-rows: 280px 298px 295px 179px;
     -ms-grid-columns: 220px 220px 845px 200px 200px 198px 115px;
-    -ms-grid-rows: 298px 298px 280px 179px;
+    -ms-grid-rows: 280px 298px 295px 179px;
     background: url("../img/Fond2.png") no-repeat;
     background-size: 100% 100%;
 }

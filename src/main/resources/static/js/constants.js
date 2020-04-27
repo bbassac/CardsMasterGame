@@ -5,6 +5,7 @@
 // hauteur d'affichage des différentes cartes
 const drawImageHeight = 150;
 const gameImageHeight = 250;
+const opponentCardHeight = 230;
 const graveyardHeight = 266;
 const trapImageHeight = 150;
 const trapIconHeight = 35;

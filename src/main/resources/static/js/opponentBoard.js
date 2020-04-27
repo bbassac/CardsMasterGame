@@ -96,7 +96,7 @@ function fillOpponentBoard(playerId){
 
 function addCardOnOpponentBoard(src, card) {
 	
-	var domCard = new DomCard(card, gameImageHeight, CARD_DRAW_MODES_BOARD);
+	var domCard = new DomCard(card, opponentCardHeight, CARD_DRAW_MODES_BOARD);
 	src.appendChild(domCard.divCard);
 	
 	addOpponentBoardCardInfos(domCard);
