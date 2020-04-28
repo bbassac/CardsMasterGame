@@ -24,33 +24,11 @@
   
 ## Bugs
 
-* [ ] Homogénéiser le sort de soin  (permanent VS activate 1x/tour)
 * [ ] Ajouter des sorts de destruction d'équipement
-* [ ] Ajouter images de fond cimetiere/invocation
-* [ ] Refacto Back Json Standard
-* [ ] Séquence js dans HTML (fillPVs is not defined)
-* [X] Cimetiere vers main -> doit refresh la main (bug cimetiere refresh adversaire)
-* [X] Bouton nouveau tour
-* [X] Ajouter un champs texte libre par joueur
-* [X] Decaller les cartes tournées pour ne pas chevaucher
-* [X] Ajouter la notion de carte désactivée 
-* [X] Nagato augmenter son prix
-* [X] Mirroir de Yata -> Armure
-* [X] Gants - > paire de gants -> mainS
-* [X] Io -> activation
-* [X] Chiyo : invocation manquante ?
-* [X] Texte protection : on peut choisir si il protege ou pas
-* [X] Documentation : Expliquer immobiliser-> pas d'attaque directes(jutsu autorisé)
-* [X] Ajouter https://fr.wikipedia.org/wiki/Personnages_secondaires_du_Pays_des_Neiges
-* [X] Reprendre carte intrigue à Tanzakugai + conditions quand jouable
-* [X] reprendre carte Piège de renvoi -> ne subit aucun dmg
-* [X] Chino Chinoike ': Si' + ennemi-> adversaire
-* [X] Cartes Quetes : expliciter quand jouable au tour adverse
-* [X] Cartes Daimos : expliquer le cas de la mort avec le surplus
-* [X] Carte Kinkaku : "Dans son camp" -> en jeu
-* [X] Chamu et Kiki -> détailler que ca ignore les personnages avec protection ET le matériel qui protege des coups
-* [X] Kawaki : la seule mort définitive est un sort qui envoie directement au cimetière
-* [X] Kinjustsus : spécifier si pendant son tour ou n'importe quel tour
+* [ ] Deporter les PVs des cartes sur un overlay coté gauche des cartes
+* [ ] Introduire nouvelle ligne pour cartes équipement adverse
+* [ ] Passer les boutons dessous les cartes en affichage auto comme le cimetiere
+* [ ] remplacer les scrollbars haurizontales par des boutons s'affichant dynamiquement
 
 
 ## Background
