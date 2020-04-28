@@ -102,6 +102,7 @@ class DomCard {
 	 
 	showCardMenu() {
 		this.divMenu.style.display = 'block';
+		this.divMenu.style.zIndex = 10;
 		return false;
 	}
 	
