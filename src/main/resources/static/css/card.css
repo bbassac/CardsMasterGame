@@ -9,7 +9,7 @@
 }
 
 .menuCardItem {
-	width: 100%;
+    white-space: nowrap;
     padding: 3px 6px;
     margin: 0;
     border-bottom: 1px solid rgba(0, 150, 0, 1);
