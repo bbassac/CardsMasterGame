@@ -22,14 +22,17 @@
     + [Cas particuliers](#cas-particuliers)
   * [Détail des extentions](#détail-des-extentions)
   
-## Bugs
+## Bugs / Evolutions
 
 * [ ] Ajouter des sorts de destruction d'équipement
 * [ ] Deporter les PVs des cartes sur un overlay coté gauche des cartes
 * [ ] Introduire nouvelle ligne pour cartes équipement adverse
 * [ ] Passer les boutons dessous les cartes en affichage auto comme le cimetiere
-* [ ] remplacer les scrollbars haurizontales par des boutons s'affichant dynamiquement
-
+* [ ] Remplacer les scrollbars haurizontales par des boutons s'affichant dynamiquement
+* [ ] Dimensions du menu contextuel + Look and feel
+* [ ] Déplacement des menus en haut pour gagner de la hauteur
+* [ ] Gestion des cartes affinité
+* [ ] Gestion méta-data
 
 ## Background
 
