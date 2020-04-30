@@ -15,7 +15,7 @@ function fillEquipments(playerId) {
 		src.appendChild(domCard.divCard);
 		 
 		var menu = [
-			{ text: "Envoyer au cimetière", action: (function() { moveCardFromEquipmentsToGraveyard(this); }).bind(domCard) },
+			{ text: MOVE_TO_GRAVEYARD, action: (function() { moveCardFromEquipmentsToGraveyard(this); }).bind(domCard) },
 		];
 	
 		domCard.addMenu(menu);

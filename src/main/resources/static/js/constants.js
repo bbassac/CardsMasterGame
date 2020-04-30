@@ -19,3 +19,16 @@ const handIconSize = 30;
 // mode d'affichage des cartes
 const CARD_DRAW_MODES_DICE = 1;
 const CARD_DRAW_MODES_BOARD = 2;
+
+
+//Menus
+const MOVE_TO_BOARD = "&uArr; Déplacer sur le plateau";
+const MOVE_TO_TRAP = "&rArr; Déplacer vers les pièges";
+const MOVE_TO_EQUIPMENT = "&dArr; Déplacer vers les équipements";
+const MOVE_TO_GRAVEYARD = "&#9760; Déplacer vers le cimetière";
+const MOVE_TO_HAND = "Déplacer vers la main";
+
+//Kinds
+
+const KIND_TRAP = "Piège";
+const KIND_EQUIPMENT = "Equipement";

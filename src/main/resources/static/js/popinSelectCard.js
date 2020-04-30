@@ -28,7 +28,8 @@ function addPopinSelectCardButtons(domCard, addFunction, who) {
 	// Bouton d'action d'ajout
     var button = document.createElement("button");
     button.classList.add('popinSelectButton');
-    button.innerHTML = "+";
+	button.innerHTML = "+";
+	button.title= MOVE_TO_HAND;
     button.cardDiv = domCard.divCard;
     button.addEventListener("click", (function() { popinSelectCardAddAction(this, addFunction, who); }).bind(domCard));
     buttonDiv.appendChild(button);        

@@ -15,7 +15,7 @@ function fillTraps(playerId) {
 		src.appendChild(domCard.divCard);
 		 
 		var menu = [
-			{ text: "Envoyer au cimetière", action: (function() { moveCardFromTrapsToGraveyard(this); }).bind(domCard) },
+			{ text: MOVE_TO_GRAVEYARD, action: (function() { moveCardFromTrapsToGraveyard(this); }).bind(domCard) },
 		];
 	
 		domCard.addMenu(menu);
