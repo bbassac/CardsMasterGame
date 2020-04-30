@@ -33,6 +33,8 @@
 * [ ] Déplacement des menus en haut pour gagner de la hauteur
 * [ ] Gestion des cartes affinité
 * [ ] Gestion méta-data
+* [ ] Utiliser metadata pour un feedback visuel du current environnement sur les ninjas
+* [ ] Utiliser les menus contextuels pour retirer des boutons d'action
 
 ## Background
 
