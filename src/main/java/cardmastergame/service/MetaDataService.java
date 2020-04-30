@@ -1,6 +1,7 @@
 package cardmastergame.service;
 
 import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 
 import cardmastergame.bean.MetaData;
@@ -77,7 +78,7 @@ class MetaDataService {
 
         JSONParser jsonParser = new JSONParser();
         try {
-            JSONObject obj = (JSONObject) jsonParser.parse(new InputStreamReader(new FileInputStream(jsonFile), "UTF-8"));
+            JSONObject obj = (JSONObject) jsonParser.parse(new InputStreamReader(new FileInputStream(jsonFile), StandardCharsets.UTF_8));
             JSONArray cardList = (JSONArray) obj.get("Cards");
 
             //Iterate on cards
