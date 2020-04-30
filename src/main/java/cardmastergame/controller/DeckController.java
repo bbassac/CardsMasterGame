@@ -2,7 +2,7 @@ package cardmastergame.controller;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -23,13 +23,12 @@ public class DeckController extends AbstractController{
     public byte[] getCollections(
         @RequestBody List<String> deck) throws IOException {
 
-            Set<String> set = new HashSet<>() ;
-            set.addAll(deck) ;
+        Set<String> set = new HashSet<>(deck);
           
             ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
           
             for (String s: set){
-                 outputStream.write(s.getBytes(Charset.forName("utf-8") ));
+                 outputStream.write(s.getBytes(StandardCharsets.UTF_8));
                  outputStream.write("\r\n".getBytes());
          
             }
