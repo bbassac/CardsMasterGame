@@ -50,7 +50,7 @@ class MetaDataService {
 
                 if (metaData == null) {
                     notFound++;
-                    LogUtils.warn(name);
+                    LogUtils.warn("Non Trouve :" +  name);
                 } else {
                     card.setMetaData(metaData);
                     found++;
@@ -95,7 +95,7 @@ class MetaDataService {
 
         Long nb = (Long) card.get("Nb");
 
-        for (int c = 1; c <= nb; c++) {
+        for (int c = 1; c <= nb.intValue(); c++) {
 
             String name = card.get("Name") + "-" + c;
 
