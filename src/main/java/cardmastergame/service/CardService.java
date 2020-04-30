@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
+import cardmastergame.service.json.CardUpdater;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -31,7 +32,7 @@ public class CardService {
     private Deck<Card>[] equipment;
     private Deck<Card> currentEnvironnement;
 
-   // private CardUpdater cardUpdater = new CardUpdater("Naruto.json"); 
+    private CardUpdater cardUpdater = new CardUpdater("Naruto.json");
 
     @Value("${game.trap.max}")
     private int MAX_TRAP;
@@ -110,7 +111,7 @@ public class CardService {
             }
         }
         
-        //cardUpdater.update(stack);
+        cardUpdater.update(stack);
         
         return listOfFiles.length;
     }

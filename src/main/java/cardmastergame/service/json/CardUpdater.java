@@ -3,6 +3,7 @@ package cardmastergame.service.json;
 import java.io.File;
 import java.io.IOException;
 
+import cardmastergame.bean.MetaData;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -26,29 +27,27 @@ public class CardUpdater {
     	if (jsCards != null) {
     		
     		String name;
-    		JsCard jsCard; 
+    		MetaData metaData;
     		
-    		int f = 0;
-    		int nf = 0;
+    		int found = 0;
+    		int notFound = 0;
     		
     		for(Card card : stack) {
     			
     			name = getCardName(card.getPath());
     			
-    			jsCard = jsCards.get(name);
+    			metaData = jsCards.get(name);
 
-    			if (jsCard == null) {
-    				nf++;
+    			if (metaData == null) {
+    				notFound++;
     				LogUtils.warn(name);
     			} else {
-        			card.setName(name);
-        			card.setKind(jsCard.getKind());
-    				
-    				f++;
+    				card.setMetaData(metaData);
+					found++;
     			}
     		}
     		
-    		int percent = f * 100 / (f + nf);
+    		int percent = found * 100 / (found + notFound);
     		LogUtils.warn("Deck updated : " + percent + "%");
     	}
     	
@@ -81,7 +80,7 @@ public class CardUpdater {
     }
 	
 	private JsCards extractJsCards(File jsonFile) {
-		
+
 		JsCards cards = null;
 		
 		try {

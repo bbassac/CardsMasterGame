@@ -14,68 +14,44 @@ public class Card {
     private boolean activated = false;
     @ApiModelProperty(notes = "Card Used (yes or false")
     private boolean used = false;
+    @ApiModelProperty(notes = "Card meta data")
+    private MetaData metaData;
 
-    @ApiModelProperty(notes = "Card name")
-    private String name;
-    @ApiModelProperty(notes = "Card kind")
-    private String kind;
 
-    
     public int getId() {
         return id;
     }
-
     public void setId(int id) {
         this.id = id;
     }
-
     public String getPath() {
         return path;
     }
-
     public void setPath(String path) {
         this.path = path;
     }
-
     public int getDammagePoints() {
         return dammagePoints;
     }
-
     public void setDammagePoints(int dammagePoints) {
         this.dammagePoints = dammagePoints;
     }
-
     public boolean isActivated() {
         return activated;
     }
-
     public void setActivated(boolean activated) {
         this.activated = activated;
     }
-
-
     public boolean isUsed() {
         return used;
     }
-
     public void setUsed(boolean used) {
         this.used = used;
     }
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getKind() {
-		return kind;
-	}
-
-	public void setKind(String kind) {
-		this.kind = kind;
-	}
-    
+    public MetaData getMetaData() {
+        return metaData;
+    }
+    public void setMetaData(MetaData metaData) {
+        this.metaData = metaData;
+    }
 }

@@ -1,12 +1,26 @@
-package cardmastergame.service.json;
+package cardmastergame.bean;
 
-public class JsCard {
+public class MetaData {
 
 	private String name;
 	private String attack;
 	private String defense;
 	private String kind;
-	
+	private String cost;
+	private String chakra;
+
+	public String getCost() {
+		return cost;
+	}
+	public void setCost(String cost) {
+		this.cost = cost;
+	}
+	public String getChakra() {
+		return chakra;
+	}
+	public void setChakra(String chakra) {
+		this.chakra = chakra;
+	}
 	public String getName() {
 		return name;
 	}

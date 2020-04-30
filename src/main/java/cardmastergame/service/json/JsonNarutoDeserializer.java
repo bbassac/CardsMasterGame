@@ -3,6 +3,7 @@ package cardmastergame.service.json;
 import java.io.IOException;
 import java.util.Iterator;
 
+import cardmastergame.bean.MetaData;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationContext;
@@ -10,6 +11,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.deser.std.StdDeserializer;
 
 import cardmastergame.LogUtils;
+import com.fasterxml.jackson.databind.node.ArrayNode;
 
 public class JsonNarutoDeserializer extends StdDeserializer<JsCards> {
 
@@ -34,10 +36,10 @@ public class JsonNarutoDeserializer extends StdDeserializer<JsCards> {
         Iterator<JsonNode> cardsIterator = cardsNode.elements();
         int i = 0;
         JsonNode cardNode = null;
-        JsCard card = null;
+        MetaData metaData = null;
         String name;
         int nb;
-        
+
         while (cardsIterator.hasNext()) {
         	
         	cardNode = cardsIterator.next();
@@ -45,14 +47,17 @@ public class JsonNarutoDeserializer extends StdDeserializer<JsCards> {
         	nb = cardNode.get("Nb").asInt();
         	
         	for(int c = 1; c <= nb; c++) {
-        	
+
 	        	name = cardNode.get("Name").asText() + "-" + c;
-	
-	        	card = new JsCard();
-	        	card.setName(name);
-	        	card.setKind(cardNode.get("Kind").asText());
-	        	
-	        	cards.put(name, card);
+
+	        	metaData = new MetaData();
+	        	metaData.setName(name);
+	        	metaData.setKind(cardNode.get("Kind").asText());
+	        	metaData.setAttack(cardNode.get("Attack").asText());
+	        	metaData.setDefense(cardNode.get("Defense").asText());
+	        	metaData.setChakra(cardNode.get("Chakra").asText());
+	        	metaData.setCost(cardNode.get("Cost").asText());
+	        	cards.put(name, metaData);
         	
         	}
         	
