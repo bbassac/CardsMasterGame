@@ -23,7 +23,7 @@ function addHandCardButtons(domCard) {
 	var card = domCard.card;
 
     var divBlock = document.createElement("div");
-    divBlock.id = "handCardButtonsDiv_" + card.id
+    divBlock.id = "handCardButtonsDiv_" + card.id;
     divBlock.classList.add("divActionCard");
     domCard.divCard.appendChild(divBlock);
 

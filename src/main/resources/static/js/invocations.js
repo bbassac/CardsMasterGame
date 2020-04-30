@@ -22,7 +22,7 @@
 
 function showPopinInvocations() {
 
-	var who = "me"
+	var who = "me";
 	var currentPlayerId = document.getElementById("currentPlayerId").value;
 	var oppPlayerId = Math.abs(1-currentPlayerId);
 	

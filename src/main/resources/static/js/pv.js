@@ -33,7 +33,7 @@ function fillPVs(playerId,componentId) {
         xhttpMaxChakra.open("GET", "maxchakra", false);
         xhttpMaxChakra.setRequestHeader("Content-type", "application/json");
         xhttpMaxChakra.send();
-        var maxChakra = xhttpMaxChakra.responseText
+        var maxChakra = xhttpMaxChakra.responseText;
 
 
         var component = document.getElementById(componentId);

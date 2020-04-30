@@ -80,7 +80,7 @@ class DomCard {
 		// menu
 		this.divMenu = document.createElement("div");
 		this.divMenu.id = "divMenu_" + this.card.id;
-		this.divMenu.classList.add('menuCardDiv')
+		this.divMenu.classList.add('menuCardDiv');
 		this.divMenu.style.top = menuTop;
 		this.divMenu.style.left = menuLeft;
 	    this.divBackImg.appendChild(this.divMenu);

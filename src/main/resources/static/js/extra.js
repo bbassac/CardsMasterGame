@@ -20,7 +20,7 @@ function displayExtraArea(currentPlayerId,areaId){
     xhttp.open("GET", "player/"+currentPlayerId+"/extra", false);
     xhttp.setRequestHeader("Content-type", "application/json");
     xhttp.send();
-    var result =decodeURIComponent(xhttp.responseText)
+    var result =decodeURIComponent(xhttp.responseText);
     textArea.value = result;
 
     textArea.setAttribute('onkeypress','updateExtra(event,this.value);');

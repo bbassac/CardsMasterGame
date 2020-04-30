@@ -15,7 +15,7 @@ function loadFile(){
         xhttp.send(formData);
 
         alert(xhttp.responseText+" cards loaded");
-    }
+    };
 
     input.click();
 

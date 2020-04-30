@@ -22,7 +22,7 @@ function addPopinSelectCardButtons(domCard, addFunction, who) {
 
 	var buttonDiv = document.createElement("div");
 	buttonDiv.id = "buttonDiv" + cardId;
-	buttonDiv.classList.add('popinSelectDivButton')
+	buttonDiv.classList.add('popinSelectDivButton');
     domCard.divBackImg.appendChild(buttonDiv);
 
 	// Bouton d'action d'ajout

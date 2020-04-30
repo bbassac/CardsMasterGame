@@ -1,12 +1,21 @@
 package cardmastergame.bean;
 
-public class MetaData {
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 
+@ApiModel(value="Card model", description="MetaData model")
+public class MetaData {
+	@ApiModelProperty(notes = "Card Name")
 	private String name;
+	@ApiModelProperty(notes = "Amount of ATK",example = "1")
 	private String attack;
+	@ApiModelProperty(notes = "Amount of defense / HP",example = "1")
 	private String defense;
+	@ApiModelProperty(notes = "Kind of Card")
 	private String kind;
+	@ApiModelProperty(notes = "Cost of card",example = "1")
 	private String cost;
+	@ApiModelProperty(notes = "Nature of chakra")
 	private String chakra;
 
 	public String getCost() {
@@ -45,7 +54,5 @@ public class MetaData {
 	public void setKind(String kind) {
 		this.kind = kind;
 	}
-	
-	
-	
+
 }

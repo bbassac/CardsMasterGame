@@ -63,7 +63,7 @@ function addBoardCardButtons(domCard) {
 	flipButton.classList.add("buttonActionCard");
     flipButton.addEventListener('click', (function() { flipCard(this); }).bind(domCard) );
     flipButton.style.marginLeft = "20px";
-    divBlock.appendChild(flipButton)
+    divBlock.appendChild(flipButton);
     showCardActivation(domCard);
 
 
@@ -74,7 +74,7 @@ function addBoardCardButtons(domCard) {
     useButton.classList.add("buttonActionCard");
     useButton.setAttribute("id",card.id);
     useButton.addEventListener('click', (function() { useCard(this); }).bind(domCard) );
-    divBlock.appendChild(useButton)
+    divBlock.appendChild(useButton);
     
     
     //Move button
@@ -155,7 +155,7 @@ function useCard(domCard){
 function moveCardToGraveyard(domCard){
     
     var currentPlayerId = document.getElementById("currentPlayerId").value;
-    var cardId = domCard.card.id
+    var cardId = domCard.card.id;
 
     var xhttp = new XMLHttpRequest();
     xhttp.open("PUT", "player/"+currentPlayerId+"/graveyard/"+cardId, false);

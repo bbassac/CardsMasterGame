@@ -12,7 +12,7 @@ public class AffiniteService {
     private static Random rand = new Random();
 
     public static Card[] initialize(String folder) {
-        Card result[] = new Card[2];
+        Card[] result = new Card[2];
 
      
 

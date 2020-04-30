@@ -58,7 +58,7 @@ function refreshOpponentBoard(forceUpdate){
     
     fillPVs(currentOppId,"oppPvsId");
     fillNbTraps(currentOppId, "nbTrapsId",trapIconHeight);
-    fillNbCards(currentOppId,"nbCardsId",nbCardsHeight)
+    fillNbCards(currentOppId,"nbCardsId",nbCardsHeight);
     fillOpponentBoard(currentOppId);
     fillGraveyard(currentOppId,"graveyardOppId", forceUpdate);
 	

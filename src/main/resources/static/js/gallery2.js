@@ -38,7 +38,7 @@ function display(){
     var imgPath = selectList.options[selectList.selectedIndex].text;
  
     var img = document.getElementById("vignetteID");
-    img.src ="img"+imgPath
+    img.src ="img"+imgPath;
 
     var textArea = document.getElementById("textAreaId");
     textArea.value = imgPath;
@@ -49,7 +49,7 @@ function displayDeck(){
     var imgPath = selectList.options[selectList.selectedIndex].text;
  
     var img = document.getElementById("vignetteID");
-    img.src ="img"+imgPath
+    img.src ="img"+imgPath;
 
     var textArea = document.getElementById("textAreaId");
     textArea.value = imgPath;
@@ -150,7 +150,7 @@ function loadDeck(){
 
 
 
-    }
+    };
 
     input.click();
 }
