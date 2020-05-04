@@ -135,7 +135,7 @@ class DomCard {
 		this.menu.style.display = "none";
 		
 		// joue l'action associé au menu item qui a été cliqué
-		menuItemAction();	
+		menuItemAction(this);
 	
 	}
 }

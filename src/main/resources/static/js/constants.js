@@ -28,9 +28,15 @@ const MOVE_TO_EQUIPMENT = "&dArr; Déplacer vers les équipements";
 const MOVE_TO_GRAVEYARD = "&#9760; Déplacer vers le cimetière";
 const MOVE_TO_HAND = "Déplacer vers la main";
 const ACTIVATE = "&#8634; Activer";
+const RE_ACTIVATE= "&#8631; Redresser"
 const USE = "% Déclencher pouvoir";
-//Kinds
+const RESET_USE = "% Reset pouvoir";
 
+//ERROR
+const ERROR_EQUIPMENT = "Déplacement interdit car la carte n'est pas un équipement";
+const ERROR_TRAP = "Déplacement interdit car la carte n'est pas un piège";
+
+//Kinds
 const KIND_TRAP = "Piège";
 const KIND_EQUIPMENT = "Equipement";
 

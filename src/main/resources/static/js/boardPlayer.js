@@ -15,10 +15,13 @@ function fillBoardPlayer(playerId) {
 		src.appendChild(domCard.divCard);
 		
 		addBoardCardButtons(domCard);
-
+        var isActivated = domCard.getIsActivated();
+        var isUsed = domCard.getIsUsed();
+        var activatedText = isActivated ? RE_ACTIVATE : ACTIVATE;
+        var usedText = isUsed  ? RESET_USE : USE;
         var menu = [
-            { text: ACTIVATE, action: (function() { flipCard(this); }).bind(domCard) },
-            { text: USE, action: (function() { useCard(this); }).bind(domCard) },
+            { text: activatedText, action: (function(menuItem) { flipCard(this,menuItem); }).bind(domCard) },
+            { text: USE, action: (function(menuItem) { useCard(this,menuItem); }).bind(domCard) },
             { text: MOVE_TO_GRAVEYARD, action: (function() { moveCardToGraveyard(this); }).bind(domCard) },
         ];
 
@@ -30,17 +33,10 @@ function addBoardCardButtons(domCard) {
 
 	var card = domCard.card;
 
-    // var divBlock = document.createElement("div");
-    // divBlock.id = "boardCardButtonsDiv_"+ card.id;
-    // divBlock.classList.add("divActionCard");
-    // domCard.divCard.appendChild(divBlock);
-
     //div de dmg
     var divDmgArea = document.createElement("div");
     divDmgArea.id = "divDmgArea_" + card.id;
     divDmgArea.classList.add('dmgArea');
-    divDmgArea.style.top = "0px";
-    divDmgArea.style.left = "0px";
     domCard.divBackImg.appendChild(divDmgArea);
 
 	// Remove damage button
@@ -50,7 +46,6 @@ function addBoardCardButtons(domCard) {
     buttonLessDmg.classList.add("minusDmgButton");
     buttonLessDmg.addEventListener('click', (function() { changeDmgPoints(this, -1); }).bind(domCard) );
     divDmgArea.appendChild(buttonLessDmg);
-    
 
 	// Damage counter
     var divDamage = document.createElement("div");
@@ -59,7 +54,6 @@ function addBoardCardButtons(domCard) {
     divDamage.classList.add("divDmg");
     divDmgArea.appendChild(divDamage);
     showDamage(domCard);
-
 
 	// Add damage button
     var buttonMoreDmg = document.createElement("button");
@@ -70,34 +64,6 @@ function addBoardCardButtons(domCard) {
     buttonMoreDmg.addEventListener('click', (function() { changeDmgPoints(this, 1); }).bind(domCard) );
     divDmgArea.appendChild(buttonMoreDmg);
 
-
-    // //Activate Button
-    // var flipButton = document.createElement("button");
-    // flipButton.id = "btnFlip_" + card.id;
-	// flipButton.classList.add("buttonActionCard");
-    // flipButton.addEventListener('click', (function() { flipCard(this); }).bind(domCard) );
-    // flipButton.style.marginLeft = "20px";
-    // divBlock.appendChild(flipButton);
-    // showCardActivation(domCard);
-    //
-    //
-    // //use button
-    // var useButton = document.createElement("button");
-    // useButton.innerHTML = "%";
-    // useButton.tag = card.used;
-    // useButton.classList.add("buttonActionCard");
-    // useButton.setAttribute("id",card.id);
-    // useButton.addEventListener('click', (function() { useCard(this); }).bind(domCard) );
-    // divBlock.appendChild(useButton);
-    //
-    //
-    // //Move button
-    // var moveCardButton = document.createElement("button");
-    // moveCardButton.innerHTML = "&#9760;";
-    // moveCardButton.setAttribute("id",card.id);
-    // moveCardButton.classList.add("buttonActionCard");
-    // moveCardButton.addEventListener('click', (function() { moveCardToGraveyard(this); }).bind(domCard) );
-    // divBlock.appendChild(moveCardButton);
 }
 
 function changeDmgPoints(domCard, damageChange){
@@ -125,7 +91,7 @@ function showDamage(domCard) {
 	divDamage.style.color = (card.dammagePoints > 0) ? 'red' : 'black';
 }
 
-function flipCard(domCard){
+function flipCard(domCard,menuItem){
 
     var currentPlayerId = document.getElementById("currentPlayerId").value;
 	var cardId = domCard.card.id;
@@ -138,20 +104,18 @@ function flipCard(domCard){
 
 	domCard.setIsActivated(isActivated);
 
-    showCardActivation(domCard);
+    showCardActivation(domCard,menuItem);
 }
 
-function showCardActivation(domCard) {
+function showCardActivation(domCard,menuItem) {
 
 	var card = domCard.card;
 	var isActivated = domCard.getIsActivated();
 
-	var flipButton = document.getElementById("btnFlip_" + card.id);
-	flipButton.innerHTML = isActivated ? "&#8634" : "&#8631";
-
+    menuItem.innerHTML = isActivated ? RE_ACTIVATE : ACTIVATE;
 }
 
-function useCard(domCard){
+function useCard(domCard,menuItem){
 
     var currentPlayerId = document.getElementById("currentPlayerId").value;
 	var cardId = domCard.card.id;
@@ -163,6 +127,8 @@ function useCard(domCard){
     xhttp.send();
 
 	domCard.setIsUsed(isUsed);
+
+    menuItem.innerHTML = isUsed? RESET_USE : USE;
 }
 
 
