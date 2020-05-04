@@ -22,7 +22,7 @@ public class DeckController extends AbstractController{
     @ResponseBody
     public byte[] getCollections(
         @RequestBody List<String> deck) throws IOException {
-
+        //Filter doublons
         Set<String> set = new HashSet<>(deck);
           
             ByteArrayOutputStream outputStream = new ByteArrayOutputStream();

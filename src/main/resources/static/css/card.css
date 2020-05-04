@@ -39,6 +39,29 @@
     vertical-align: text-top;
 }
 
+.plusDmgButton{
+    position: relative;
+    left: -49px;
+    top: -224px;
+}
+
+.divDmg{
+    font-size : medium;
+    font-weight : bold;
+    width : 24px;
+    display : inline-block;
+    text-align : center;
+    position: relative;
+    left: -26px;
+    top: -183px;
+}
+
+.minusDmgButton{
+    position: relative;
+    left: 2px;
+    top: -143px;
+}
+
 .cardDice {
 	margin: 2px;
 }

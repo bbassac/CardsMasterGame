@@ -31,6 +31,7 @@ function addBoardCardButtons(domCard) {
     var buttonLessDmg = document.createElement("button");
     buttonLessDmg.innerHTML = "-";
     buttonLessDmg.classList.add("buttonActionCard");
+    buttonLessDmg.classList.add("minusDmgButton");
     buttonLessDmg.addEventListener('click', (function() { changeDmgPoints(this, -1); }).bind(domCard) );
     divBlock.appendChild(buttonLessDmg);
     
@@ -39,12 +40,11 @@ function addBoardCardButtons(domCard) {
     var divDamage = document.createElement("div");
     divDamage.id = "damage_" + card.id;
     divDamage.innerHTML = card.dammagePoints;
-    divDamage.style.fontSize = "medium";
-    divDamage.style.fontWeight = "bold";
-    divDamage.style.width = "24px";
-    divDamage.style.display = "inline-block";
-    divDamage.style.textAlign = "center";
+    divDamage.classList.add("divDmg");
     divBlock.appendChild(divDamage);
+    //Canvas background
+    divDamage.style.background='url('+drawDmgCanvas().toDataURL()+')'
+
     showDamage(domCard);
 
 
@@ -52,6 +52,7 @@ function addBoardCardButtons(domCard) {
     var buttonMoreDmg = document.createElement("button");
     buttonMoreDmg.innerHTML = "+";
     buttonMoreDmg.classList.add("buttonActionCard");
+    buttonMoreDmg.classList.add("plusDmgButton");
     buttonMoreDmg.setAttribute("id",card.id);
     buttonMoreDmg.addEventListener('click', (function() { changeDmgPoints(this, 1); }).bind(domCard) );
     divBlock.appendChild(buttonMoreDmg);
