@@ -10,6 +10,7 @@ import cardmastergame.bean.Deck;
 public class AffiniteService {
 
     private static Random rand = new Random();
+    private static MetaDataService metaDataService = new MetaDataService("Naruto.json");
 
     public static Card[] initialize(String folder) {
         Card[] result = new Card[2];
@@ -31,7 +32,7 @@ public class AffiniteService {
                 stack.push(c);
             }
         }
-
+        metaDataService.update(stack);
         result[0] = stack.get(rand.nextInt(stack.size()-1));
         result[1] = stack.get(rand.nextInt(stack.size()-1));
 

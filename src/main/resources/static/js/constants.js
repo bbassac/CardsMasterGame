@@ -27,8 +27,8 @@ const MOVE_TO_TRAP = "&rArr; Déplacer vers les pièges";
 const MOVE_TO_EQUIPMENT = "&dArr; Déplacer vers les équipements";
 const MOVE_TO_GRAVEYARD = "&#9760; Déplacer vers le cimetière";
 const MOVE_TO_HAND = "Déplacer vers la main";
-const ACTIVATE = "&#8634; Activer";
-const RE_ACTIVATE= "&#8631; Redresser"
+const ACTIVATE = "&#8634; Activer la carte";
+const RE_ACTIVATE= "&#8631; Redresser la carte"
 const USE = "% Déclencher pouvoir";
 const RESET_USE = "% Reset pouvoir";
 

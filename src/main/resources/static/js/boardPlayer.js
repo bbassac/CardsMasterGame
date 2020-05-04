@@ -15,13 +15,11 @@ function fillBoardPlayer(playerId) {
 		src.appendChild(domCard.divCard);
 		
 		addBoardCardButtons(domCard);
-        var isActivated = domCard.getIsActivated();
-        var isUsed = domCard.getIsUsed();
-        var activatedText = isActivated ? RE_ACTIVATE : ACTIVATE;
-        var usedText = isUsed  ? RESET_USE : USE;
+        var activatedText = domCard.getIsActivated() ? RE_ACTIVATE : ACTIVATE;
+        var usedText = domCard.getIsUsed()  ? RESET_USE : USE;
         var menu = [
             { text: activatedText, action: (function(menuItem) { flipCard(this,menuItem); }).bind(domCard) },
-            { text: USE, action: (function(menuItem) { useCard(this,menuItem); }).bind(domCard) },
+            { text: usedText, action: (function(menuItem) { useCard(this,menuItem); }).bind(domCard) },
             { text: MOVE_TO_GRAVEYARD, action: (function() { moveCardToGraveyard(this); }).bind(domCard) },
         ];
 
