@@ -27,8 +27,18 @@ const MOVE_TO_TRAP = "&rArr; Déplacer vers les pièges";
 const MOVE_TO_EQUIPMENT = "&dArr; Déplacer vers les équipements";
 const MOVE_TO_GRAVEYARD = "&#9760; Déplacer vers le cimetière";
 const MOVE_TO_HAND = "Déplacer vers la main";
-
+const ACTIVATE = "&#8634; Activer";
+const USE = "% Déclencher pouvoir";
 //Kinds
 
 const KIND_TRAP = "Piège";
 const KIND_EQUIPMENT = "Equipement";
+
+//Chakra
+const CHAKRA_PHYSIQUE ="Physique";
+const CHAKRA_SPECIAL="Spécial";
+const CHAKRA_EAU="Eau";
+const CHAKRA_FEU="Feu";
+const CHAKRA_FOUDRE="Foudre";
+const CHAKRA_TERRE ="Terre";
+

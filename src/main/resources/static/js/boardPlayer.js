@@ -15,6 +15,14 @@ function fillBoardPlayer(playerId) {
 		src.appendChild(domCard.divCard);
 		
 		addBoardCardButtons(domCard);
+
+        var menu = [
+            { text: ACTIVATE, action: (function() { flipCard(this); }).bind(domCard) },
+            { text: USE, action: (function() { useCard(this); }).bind(domCard) },
+            { text: MOVE_TO_GRAVEYARD, action: (function() { moveCardToGraveyard(this); }).bind(domCard) },
+        ];
+
+        domCard.addMenu(menu);
 	}
 }
 
@@ -22,10 +30,18 @@ function addBoardCardButtons(domCard) {
 
 	var card = domCard.card;
 
-    var divBlock = document.createElement("div");
-    divBlock.id = "boardCardButtonsDiv_"+ card.id;
-    divBlock.classList.add("divActionCard");
-    domCard.divCard.appendChild(divBlock);
+    // var divBlock = document.createElement("div");
+    // divBlock.id = "boardCardButtonsDiv_"+ card.id;
+    // divBlock.classList.add("divActionCard");
+    // domCard.divCard.appendChild(divBlock);
+
+    //div de dmg
+    var divDmgArea = document.createElement("div");
+    divDmgArea.id = "divDmgArea_" + card.id;
+    divDmgArea.classList.add('dmgArea');
+    divDmgArea.style.top = "0px";
+    divDmgArea.style.left = "0px";
+    domCard.divBackImg.appendChild(divDmgArea);
 
 	// Remove damage button
     var buttonLessDmg = document.createElement("button");
@@ -33,7 +49,7 @@ function addBoardCardButtons(domCard) {
     buttonLessDmg.classList.add("buttonActionCard");
     buttonLessDmg.classList.add("minusDmgButton");
     buttonLessDmg.addEventListener('click', (function() { changeDmgPoints(this, -1); }).bind(domCard) );
-    divBlock.appendChild(buttonLessDmg);
+    divDmgArea.appendChild(buttonLessDmg);
     
 
 	// Damage counter
@@ -41,10 +57,7 @@ function addBoardCardButtons(domCard) {
     divDamage.id = "damage_" + card.id;
     divDamage.innerHTML = card.dammagePoints;
     divDamage.classList.add("divDmg");
-    divBlock.appendChild(divDamage);
-    //Canvas background
-    divDamage.style.background='url('+drawDmgCanvas().toDataURL()+')'
-
+    divDmgArea.appendChild(divDamage);
     showDamage(domCard);
 
 
@@ -55,36 +68,36 @@ function addBoardCardButtons(domCard) {
     buttonMoreDmg.classList.add("plusDmgButton");
     buttonMoreDmg.setAttribute("id",card.id);
     buttonMoreDmg.addEventListener('click', (function() { changeDmgPoints(this, 1); }).bind(domCard) );
-    divBlock.appendChild(buttonMoreDmg);
+    divDmgArea.appendChild(buttonMoreDmg);
 
 
-    //Activate Button
-    var flipButton = document.createElement("button");
-    flipButton.id = "btnFlip_" + card.id;
-	flipButton.classList.add("buttonActionCard");
-    flipButton.addEventListener('click', (function() { flipCard(this); }).bind(domCard) );
-    flipButton.style.marginLeft = "20px";
-    divBlock.appendChild(flipButton);
-    showCardActivation(domCard);
-
-
-    //use button
-    var useButton = document.createElement("button");
-    useButton.innerHTML = "%";
-    useButton.tag = card.used;
-    useButton.classList.add("buttonActionCard");
-    useButton.setAttribute("id",card.id);
-    useButton.addEventListener('click', (function() { useCard(this); }).bind(domCard) );
-    divBlock.appendChild(useButton);
-    
-    
-    //Move button
-    var moveCardButton = document.createElement("button");
-    moveCardButton.innerHTML = "&#9760;";
-    moveCardButton.setAttribute("id",card.id);
-    moveCardButton.classList.add("buttonActionCard");
-    moveCardButton.addEventListener('click', (function() { moveCardToGraveyard(this); }).bind(domCard) );
-    divBlock.appendChild(moveCardButton);
+    // //Activate Button
+    // var flipButton = document.createElement("button");
+    // flipButton.id = "btnFlip_" + card.id;
+	// flipButton.classList.add("buttonActionCard");
+    // flipButton.addEventListener('click', (function() { flipCard(this); }).bind(domCard) );
+    // flipButton.style.marginLeft = "20px";
+    // divBlock.appendChild(flipButton);
+    // showCardActivation(domCard);
+    //
+    //
+    // //use button
+    // var useButton = document.createElement("button");
+    // useButton.innerHTML = "%";
+    // useButton.tag = card.used;
+    // useButton.classList.add("buttonActionCard");
+    // useButton.setAttribute("id",card.id);
+    // useButton.addEventListener('click', (function() { useCard(this); }).bind(domCard) );
+    // divBlock.appendChild(useButton);
+    //
+    //
+    // //Move button
+    // var moveCardButton = document.createElement("button");
+    // moveCardButton.innerHTML = "&#9760;";
+    // moveCardButton.setAttribute("id",card.id);
+    // moveCardButton.classList.add("buttonActionCard");
+    // moveCardButton.addEventListener('click', (function() { moveCardToGraveyard(this); }).bind(domCard) );
+    // divBlock.appendChild(moveCardButton);
 }
 
 function changeDmgPoints(domCard, damageChange){
