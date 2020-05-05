@@ -6,7 +6,7 @@ function fillBoardPlayer(playerId) {
     xhttp.send();
     var cards = JSON.parse(xhttp.responseText);
 
-	var src = document.getElementById("boardPlayer");
+	var src = setAsBoardArea("boardPlayer");
     src.innerHTML = '';
 
 	for (var i = 0; i < cards.length; i++) {
