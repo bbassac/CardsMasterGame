@@ -16,7 +16,7 @@ class DomCard {
         this.divBackImg = document.createElement("div");
 
         this.cardImg = document.createElement("img");
-        this.cardImg.loading = "lazy";
+        //this.cardImg.loading = "lazy";
         this.cardImg.src = "img/" + encodeURI(card.path);
         this.cardImg.height = height;
         this.cardImg.title = card.id;

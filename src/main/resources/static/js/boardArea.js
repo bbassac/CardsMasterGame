@@ -1,10 +1,14 @@
-// http://www.softicons.com/toolbar-icons/vista-arrow-icons-by-icons-land/up-blue-icon
+//http://www.softicons.com/toolbar-icons/vista-arrow-icons-by-icons-land/up-blue-icon
+//http://www.authorcode.com/scroll-up-and-down-div-from-input-buttons-in-javascript/?fbclid=IwAR0cENvLPt0aKQaKTrDcMY2vLBHXPxfUemIfwtbBg3pIxogCBxUeNlbmqnc
 
 function setAsBoardArea(divId) {
 
 	var divBack = document.getElementById(divId);
 
 	if (divBack) {
+		var id = divBack.id + "_";
+		var elements = {};
+		
 		divBack.innerHTML = "";
 
 		divBack.classList.add("boardArea_back");
@@ -14,12 +18,12 @@ function setAsBoardArea(divId) {
 		divBack.appendChild(divLeftArrowBack);
 
 		var imgLeftArrow = document.createElement("img");
-		imgLeftArrow.id = "imgLeftArrow";
 		imgLeftArrow.src = "img/" + encodeURI("blue_arrow_left.png");
 		imgLeftArrow.classList.add("imgLeftArrow");
 		imgLeftArrow.style.display = "none";
 		imgLeftArrow.addEventListener("mousedown", scrollToLeft);
 		imgLeftArrow.addEventListener("mouseup", stopScrolling);
+		imgLeftArrow.scrollElements = elements;
 		divLeftArrowBack.appendChild(imgLeftArrow);
 
 		var divBackCards = document.createElement("div");
@@ -27,7 +31,6 @@ function setAsBoardArea(divId) {
 		divBack.appendChild(divBackCards);
 		
 		var divScrollCards = document.createElement("div");
-		divScrollCards.id = "divScrollCards";
 		divScrollCards.classList.add("boardArea_scrollCards");
 		divBackCards.appendChild(divScrollCards);
 
@@ -40,12 +43,16 @@ function setAsBoardArea(divId) {
 		divBack.appendChild(divRightArrowBack);
 		
 		var imgRightArrow = document.createElement("img");
-		imgRightArrow.id = "imgRightArrow";
 		imgRightArrow.src = "img/" + encodeURI("blue_arrow_right.png");
 		imgRightArrow.classList.add("imgRightArrow");
 		imgRightArrow.addEventListener("mousedown", scrollToRight);
 		imgRightArrow.addEventListener("mouseup", stopScrolling);
+		imgRightArrow.scrollElements = elements;
 		divRightArrowBack.appendChild(imgRightArrow);
+		
+		elements.imgLeftArrow = imgLeftArrow;
+		elements.divScrollCards = divScrollCards;
+		elements.imgRightArrow = imgRightArrow;
 	}
 
 	return divCardsContainer;
@@ -53,20 +60,40 @@ function setAsBoardArea(divId) {
 
 var scrollingTaskId;
 
-function scrollToLeft() {
-	clearInterval(scrollingTaskId);
-	scrollingTaskId = setInterval(function(){ startScroll(-100); }, 40);
+function scrollToLeft(event) {
+console.log(event.target.scrollElements);	
+
+	stopScrolling();
+	
+	var elements = event.target.scrollElements;
+	var div = elements.divScrollCards;
+	elements.scrollMax = div.scrollWidth - div.clientWidth;
+	
+	console.log("start scrolling left");
+	scrollingTaskId = setInterval(function(){ doScroll(-100, elements); }, 40);
 }
 
-function scrollToRight() {
-	clearInterval(scrollingTaskId);
-	scrollingTaskId = setInterval(function(){ startScroll(100); }, 40);
+function scrollToRight(event) {
+
+	stopScrolling();
+
+	var elements = event.target.scrollElements;
+	var div = elements.divScrollCards;
+	elements.scrollMax = div.scrollWidth - div.clientWidth;
+
+	console.log("start scrolling right");
+	scrollingTaskId = setInterval( function(){ doScroll(100, elements); }, 40);
 }
 
-function startScroll(offset) {
+function stopScrolling() {
+	console.log("stop scrolling");
+	clearInterval(scrollingTaskId);
+}
 
-	var div = document.getElementById("divScrollCards");
-	var max = div.scrollWidth - div.clientWidth;
+function doScroll(offset, elements) {
+
+	var div = elements.divScrollCards;
+	var max = elements.scrollMax;
 	var x = div.scrollLeft;
 	
 	if (offset > 0) {
@@ -77,23 +104,23 @@ function startScroll(offset) {
 		x = (x < (-offset)) ? 0 : x + offset;
 		div.scrollLeft = x;
 	}
+
+	console.log("scroll to " + x);
 	
 	if (x == 0) {
-		clearInterval(scrollingTaskId);
-		document.getElementById("imgLeftArrow").style.display = "none";
+		console.log("stop (" + x + ")");
+		stopScrolling();
+		elements.imgLeftArrow.style.display = "none";
 	} else {
-		document.getElementById("imgLeftArrow").style.display = "block";
+		elements.imgLeftArrow.style.display = "block";
 	}
 	
 	if (x == max) {
-		clearInterval(scrollingTaskId);
-		document.getElementById("imgRightArrow").style.display = "none";
+		console.log("stop (" + x + ")");
+		stopScrolling();
+		elements.imgRightArrow.style.display = "none";
 	} else {
-		document.getElementById("imgRightArrow").style.display = "block";
+		elements.imgRightArrow.style.display = "block";
 	}
 	
-}
-
-function stopScrolling() {
-	clearInterval(scrollingTaskId);
 }
