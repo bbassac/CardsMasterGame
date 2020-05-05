@@ -54,6 +54,8 @@ function moveCardToTrap(domCard){
         domCard.remove();
         fillTraps(currentPlayerId);
         fillHand(currentPlayerId);
+    }else {
+        alert(ERROR_TRAP);
     }
 }
 
@@ -70,6 +72,8 @@ function moveCardToEquipment(domCard){
         domCard.remove();
         fillEquipments(currentPlayerId);
         fillHand(currentPlayerId);
+    }else{
+        alert(ERROR_EQUIPMENT);
     }
 }
 
