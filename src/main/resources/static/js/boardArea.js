@@ -61,32 +61,28 @@ function setAsBoardArea(divId) {
 var scrollingTaskId;
 
 function scrollToLeft(event) {
-console.log(event.target.scrollElements);	
-
 	stopScrolling();
 	
 	var elements = event.target.scrollElements;
 	var div = elements.divScrollCards;
 	elements.scrollMax = div.scrollWidth - div.clientWidth;
 	
-	console.log("start scrolling left");
+	doScroll(-100, elements);
 	scrollingTaskId = setInterval(function(){ doScroll(-100, elements); }, 40);
 }
 
 function scrollToRight(event) {
-
 	stopScrolling();
 
 	var elements = event.target.scrollElements;
 	var div = elements.divScrollCards;
 	elements.scrollMax = div.scrollWidth - div.clientWidth;
 
-	console.log("start scrolling right");
+	doScroll(100, elements);
 	scrollingTaskId = setInterval( function(){ doScroll(100, elements); }, 40);
 }
 
 function stopScrolling() {
-	console.log("stop scrolling");
 	clearInterval(scrollingTaskId);
 }
 
@@ -105,10 +101,7 @@ function doScroll(offset, elements) {
 		div.scrollLeft = x;
 	}
 
-	console.log("scroll to " + x);
-	
 	if (x == 0) {
-		console.log("stop (" + x + ")");
 		stopScrolling();
 		elements.imgLeftArrow.style.display = "none";
 	} else {
@@ -116,7 +109,6 @@ function doScroll(offset, elements) {
 	}
 	
 	if (x == max) {
-		console.log("stop (" + x + ")");
 		stopScrolling();
 		elements.imgRightArrow.style.display = "none";
 	} else {
