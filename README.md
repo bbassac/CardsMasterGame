@@ -36,6 +36,7 @@
 * [ ] Utiliser metadata pour un feedback visuel du current environnement sur les ninjas
 * [ ] Utiliser les menus contextuels pour retirer des boutons d'action
 * [ ] Etudier un drag&drop pour déplacer les cartes de zone
+* [ ] Animation activation carte piege qui s'affiche  
 
 ## Background
 
