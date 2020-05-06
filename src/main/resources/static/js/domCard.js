@@ -33,7 +33,7 @@ class DomCard {
         
         this.divCard.appendChild(this.divBackImg);
         this.divCard.domCard = this;
-	
+
   	}
 
 	getIsActivated() {
@@ -50,6 +50,7 @@ class DomCard {
 			this.cardImg.classList.remove("activatedCard");
 		}
 		
+		this.divCard.dispatchEvent(new CustomEvent("activated", this));
 	}
 
 	getIsUsed() {
@@ -66,6 +67,7 @@ class DomCard {
 			this.cardImg.classList.remove("usedCard");
 		}
 		
+		this.divCard.dispatchEvent(new CustomEvent("used", this));
 	}
 
 	remove() {
@@ -84,7 +86,7 @@ class DomCard {
 		// masquage du menu contextuel lors de la sortie de la souris de l'image
 		this.divCard.mouseLeaveEventTarget = (function() { this.hideCardMenu(); }).bind(this);
 		this.divCard.addEventListener('mouseleave',  this.divCard.mouseLeaveEventTarget);
-
+		showCardMenu();
 	}
 	 
 	showCardMenu() {
@@ -150,5 +152,9 @@ class DomCard {
 		// joue l'action associé au menu item qui a été cliqué
 		menuItemAction(this);
 	
+	}
+	
+	addEventListener(event, fct) {
+		this.divCard.addEventListener(event, fct);
 	}
 }

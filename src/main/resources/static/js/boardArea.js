@@ -190,13 +190,21 @@ function showsizes(event) {
 
 }
 
-function isCardAdded(event, divCardsContainer) {
+function getCardAdded(event, divCardsContainer) {
 	
-	var result = false;
+	var result = null;
 	
 	if ((event != null) && (divCardsContainer != null)) {
-		var parentOfAddedElement = event.target.parentNode;
-		result = ((parentOfAddedElement != null) && (parentOfAddedElement == divCardsContainer));
+		
+		var addedElement = event.target;
+		
+		if (addedElement != null) {
+			var parentOfAddedElement = addedElement.parentNode;
+			
+			if ((parentOfAddedElement != null) && (parentOfAddedElement == divCardsContainer)) {
+				result = addedElement.domCard; 
+			}
+		}
 	}
 
 	return result;
@@ -204,11 +212,15 @@ function isCardAdded(event, divCardsContainer) {
 
 function tryUpdateScrollArrows(event, divCardsContainer) {
 
-	if (isCardAdded(event, divCardsContainer)) {
+	var domCard = getCardAdded(event, divCardsContainer);
+	
+	if (domCard != null) {
 		console.log(divCardsContainer.id + " " + event.type);
 		
-		var offsetCardLength = (event.type == "DOMNodeRemoved" ? 1 : 0);
+		domCard.addEventListener("used", function() { testIfDivReadyToUpdateArrows(divCardsContainer, 0); })
+		domCard.addEventListener("activated", function() { testIfDivReadyToUpdateArrows(divCardsContainer, 0); })
 		
+		var offsetCardLength = (event.type == "DOMNodeRemoved" ? 1 : 0);
 		testIfDivReadyToUpdateArrows(divCardsContainer, offsetCardLength);
 	}
 }
@@ -274,23 +286,23 @@ function updateScrollArrows(divCardsContainer, offsetCardLength) {
 			
 			var id = divCardsContainer.id;
 			var childs = divCardsContainer.childNodes;
-			var sumWidth = 0;
+			var sumWidthAndMargins = 0;
 			
 			var s = "";
 			
 			for (var i = 0; i < (childs.length - offsetCardLength); i++) {
-				s += childs[i].offsetWidth + ",";
-				sumWidth += childs[i].offsetWidth;
+				s += "(" + childs[i].offsetWidth + "," + childs[i].style.marginLeft + "," + childs[i].style.marginRight + "),";
+				sumWidthAndMargins += childs[i].offsetWidth + childs[i].offsetLeft;
 			}
 			
 			// mémorisation du nombre de cartes réel sur la zone
 			divCardsContainer.cardsLength = childs.length - offsetCardLength;
 			
 			console.log(id + " childNodes.length = " + childs.length + (offsetCardLength == 1 ? " (-1)" : ""));				
-			console.log(id + " sum width = " + s);
-			console.log(id + " test : " + sumWidth + " >=? " + divCardsContainer.clientWidth);
+			console.log(id + " sum width and argins = " + s);
+			console.log(id + " test : " + sumWidthAndMargins + " >=? " + divCardsContainer.clientWidth);
 			
-			if (sumWidth >= divCardsContainer.clientWidth) {
+			if (sumWidthAndMargins >= divCardsContainer.clientWidth) {
 				
 				var scrollMax = divCardsContainer.scrollWidth - divCardsContainer.clientWidth;
 				
