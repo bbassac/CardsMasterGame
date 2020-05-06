@@ -38,6 +38,7 @@
 * [ ] Etudier un drag&drop pour déplacer les cartes de zone
 * [ ] Animation activation carte piege qui s'affiche  
 * [ ] Doubler le nombre des invocations
+* [ ] ajouter flag camouflé sur carte en jeu
 
 ## Background
 
