@@ -1,64 +1,114 @@
 //http://www.softicons.com/toolbar-icons/vista-arrow-icons-by-icons-land/up-blue-icon
 //http://www.authorcode.com/scroll-up-and-down-div-from-input-buttons-in-javascript/?fbclid=IwAR0cENvLPt0aKQaKTrDcMY2vLBHXPxfUemIfwtbBg3pIxogCBxUeNlbmqnc
 
+var scrollingTaskId;
+
 function setAsBoardArea(divId) {
 
 	var divBack = document.getElementById(divId);
-
-	if (divBack) {
-		var id = divBack.id + "_";
-		var elements = {};
+	var divCardsContainer = null;
+	
+	if (divBack != null) {
 		
-		divBack.innerHTML = "";
-
-		divBack.classList.add("boardArea_back");
-
-		var divLeftArrowBack = document.createElement("div");
-		divLeftArrowBack.classList.add("leftArrowBack");
-		divBack.appendChild(divLeftArrowBack);
-
-		var imgLeftArrow = document.createElement("img");
-		imgLeftArrow.src = "img/" + encodeURI("blue_arrow_left.png");
-		imgLeftArrow.classList.add("imgLeftArrow");
-		imgLeftArrow.style.display = "none";
-		imgLeftArrow.addEventListener("mousedown", scrollToLeft);
-		imgLeftArrow.addEventListener("mouseup", stopScrolling);
-		imgLeftArrow.scrollElements = elements;
-		divLeftArrowBack.appendChild(imgLeftArrow);
-
-		var divBackCards = document.createElement("div");
-		divBackCards.classList.add("boardArea_backCards");
-		divBack.appendChild(divBackCards);
-		
-		var divScrollCards = document.createElement("div");
-		divScrollCards.classList.add("boardArea_scrollCards");
-		divBackCards.appendChild(divScrollCards);
-
-		var divCardsContainer = document.createElement("div");
-		divCardsContainer.classList.add("boardArea_cardsContainer");
-		divScrollCards.appendChild(divCardsContainer);
-		
-		var divRightArrowBack = document.createElement("div");
-		divRightArrowBack.classList.add("rightArrowBack");
-		divBack.appendChild(divRightArrowBack);
-		
-		var imgRightArrow = document.createElement("img");
-		imgRightArrow.src = "img/" + encodeURI("blue_arrow_right.png");
-		imgRightArrow.classList.add("imgRightArrow");
-		imgRightArrow.addEventListener("mousedown", scrollToRight);
-		imgRightArrow.addEventListener("mouseup", stopScrolling);
-		imgRightArrow.scrollElements = elements;
-		divRightArrowBack.appendChild(imgRightArrow);
-		
-		elements.imgLeftArrow = imgLeftArrow;
-		elements.divScrollCards = divScrollCards;
-		elements.imgRightArrow = imgRightArrow;
+		if (divBack.isBoardArea == null) {
+			console.log(divId + " transform to boardArea")
+			divCardsContainer = transformArea(divBack);
+		} else {
+			console.log(divId + " already boardArea")
+			divCardsContainer = cleanArea(divBack);
+		}
+	
 	}
-
+	
+	console.log(divId + " card container : " + divCardsContainer.id);
 	return divCardsContainer;
 }
 
-var scrollingTaskId;
+function transformArea(divBack) {
+	
+	var id = divBack.id + "_";
+	var elements = {};
+	
+	divBack.isBoardArea = true;
+	divBack.scrollElements = elements;
+	divBack.innerHTML = "";
+
+	divBack.classList.add("boardArea_back");
+
+	var divLeftArrowBack = document.createElement("div");
+	divLeftArrowBack.classList.add("leftArrowBack");
+	divBack.appendChild(divLeftArrowBack);
+
+	var imgLeftArrow = document.createElement("img");
+	imgLeftArrow.src = "img/" + encodeURI("blue_arrow_left.png");
+	imgLeftArrow.classList.add("imgLeftArrow");
+	imgLeftArrow.style.display = "none";
+	imgLeftArrow.addEventListener("mousedown", scrollToLeft);
+	imgLeftArrow.addEventListener("mouseup", stopScrolling);
+	imgLeftArrow.scrollElements = elements;
+	divLeftArrowBack.appendChild(imgLeftArrow);
+
+	var divBackCards = document.createElement("div");
+	divBackCards.classList.add("boardArea_backCards");
+	divBack.appendChild(divBackCards);
+	
+	var divScrollCards = document.createElement("div");
+	divScrollCards.classList.add("boardArea_scrollCards");
+	divBackCards.appendChild(divScrollCards);
+
+	var divCardsContainer = document.createElement("div");
+	divCardsContainer.id = id + "divCardsContainer";
+	divCardsContainer.classList.add("boardArea_cardsContainer");
+	divCardsContainer.scrollElements = elements;
+	divScrollCards.appendChild(divCardsContainer);
+	
+	var divRightArrowBack = document.createElement("div");
+	divRightArrowBack.classList.add("rightArrowBack");
+	divBack.appendChild(divRightArrowBack);
+	
+	var imgRightArrow = document.createElement("img");
+	imgRightArrow.src = "img/" + encodeURI("blue_arrow_right.png");
+	imgRightArrow.classList.add("imgRightArrow");
+	imgRightArrow.style.display = "none";
+	imgRightArrow.addEventListener("mousedown", scrollToRight);
+	imgRightArrow.addEventListener("mouseup", stopScrolling);
+	imgRightArrow.scrollElements = elements;
+	divRightArrowBack.appendChild(imgRightArrow);
+	
+	elements.imgLeftArrow = imgLeftArrow;
+	elements.divScrollCards = divScrollCards;
+	elements.divCardsContainer = divCardsContainer;
+	elements.imgRightArrow = imgRightArrow;
+	
+	divCardsContainer.updateScrollArrows = updateScrollArrows;
+	//divCardsContainer.addEventListener("click", showsizes);
+
+	divCardsContainer.updateArrowsEventTarget = (function(event) { tryUpdateScrollArrows(event, divCardsContainer); });
+	divCardsContainer.addEventListener("DOMNodeInserted",  divCardsContainer.updateArrowsEventTarget);
+	divCardsContainer.addEventListener("DOMNodeRemoved", divCardsContainer.updateArrowsEventTarget );
+	
+	return divCardsContainer
+}
+
+function cleanArea(divBack) {
+
+	var divCardsContainer = divBack.scrollElements.divCardsContainer;
+	var updateArrowsEventTarget = divCardsContainer.updateArrowsEventTarget;
+	
+	divCardsContainer.removeEventListener("DOMNodeInserted", updateArrowsEventTarget );
+	divCardsContainer.removeEventListener("DOMNodeRemoved", updateArrowsEventTarget );
+	
+	while (divCardsContainer.firstChild) {
+		divCardsContainer.removeChild(divCardsContainer.lastChild);
+	}			
+
+	divCardsContainer.cardsLength = 0;	
+	
+	divCardsContainer.addEventListener("DOMNodeInserted", updateArrowsEventTarget );
+	divCardsContainer.addEventListener("DOMNodeRemoved", updateArrowsEventTarget );
+
+	return divCardsContainer;
+}
 
 function scrollToLeft(event) {
 	stopScrolling();
@@ -83,7 +133,12 @@ function scrollToRight(event) {
 }
 
 function stopScrolling() {
-	clearInterval(scrollingTaskId);
+	
+	if (scrollingTaskId != null) {
+		clearInterval(scrollingTaskId);
+		scrollingTaskId == null;
+	}
+
 }
 
 function doScroll(offset, elements) {
@@ -115,4 +170,155 @@ function doScroll(offset, elements) {
 		elements.imgRightArrow.style.display = "block";
 	}
 	
+}
+
+function showsizes(event) {
+	
+	var cs = document.getElementById("boardPlayer_divCardsContainer").childNodes;
+	var s = "";
+	for (var i = 0; i < cs.length; i++) {
+		s = s + cs[i].offsetWidth + ", ";
+	}
+	console.log("boardPlayer_divCardsContainer " + s);
+
+	var cs = document.getElementById("hand_divCardsContainer").childNodes;
+	var s = "";
+	for (var i = 0; i < cs.length; i++) {
+		s = s + cs[i].offsetWidth + ", ";
+	}
+	console.log("hand_divCardsContainer " + s);
+
+}
+
+function isCardAdded(event, divCardsContainer) {
+	
+	var result = false;
+	
+	if ((event != null) && (divCardsContainer != null)) {
+		var parentOfAddedElement = event.target.parentNode;
+		result = ((parentOfAddedElement != null) && (parentOfAddedElement == divCardsContainer));
+	}
+
+	return result;
+}
+
+function tryUpdateScrollArrows(event, divCardsContainer) {
+
+	if (isCardAdded(event, divCardsContainer)) {
+		console.log(divCardsContainer.id + " " + event.type);
+		
+		var offsetCardLength = (event.type == "DOMNodeRemoved" ? 1 : 0);
+		
+		testIfDivReadyToUpdateArrows(divCardsContainer, offsetCardLength);
+	}
+}
+
+function testIfDivReadyToUpdateArrows(divCardsContainer, offsetCardLength) {
+	
+	if (divCardsContainer != null) {
+	
+		var id = divCardsContainer.id;
+		var childs = divCardsContainer.childNodes;
+		console.log(id + " childNodes.length = " + childs.length);
+
+		if (! ((offsetCardLength == 1) 
+				&& (divCardsContainer.cardsLength != null) 
+				&& (divCardsContainer.cardsLength == childs.length))) {
+			offsetCardLength = 0;
+		}
+		
+		console.log(id + " nombre de cartes pris en compte : " + (childs.length - offsetCardLength));
+		
+		var s = "";
+		var w;
+		var sumWidth = 0;
+		var zeroWidthFound = false;
+		
+		for (var i = 0; i < (childs.length - offsetCardLength); i++) {
+			w = childs[i].offsetWidth;
+			zeroWidthFound = (w == 0);
+			s += w + ",";
+			sumWidth += w;
+		}		
+
+		console.log(id + " " + s);
+
+		if (zeroWidthFound) {
+			console.log(id + " => au moins un 0 trouvé, on retente");
+
+			setTimeout( function(){ 
+				testIfDivReadyToUpdateArrows(divCardsContainer, offsetCardLength) 
+				}, 100);
+
+		} else {
+			console.log(id + " => Les width sont ok");
+			console.log(id + " => fin du timeout");
+			console.log(id + " => Lancement du calcule");
+			
+			updateScrollArrows(divCardsContainer, offsetCardLength);
+		}
+		
+	}
+	
+}
+
+function updateScrollArrows(divCardsContainer, offsetCardLength) {
+
+	console.log(divCardsContainer.id + " Update arrows");
+
+	var elements = divCardsContainer.scrollElements;
+	
+	if (elements != null) {
+
+		if (divCardsContainer != null) {
+			
+			var id = divCardsContainer.id;
+			var childs = divCardsContainer.childNodes;
+			var sumWidth = 0;
+			
+			var s = "";
+			
+			for (var i = 0; i < (childs.length - offsetCardLength); i++) {
+				s += childs[i].offsetWidth + ",";
+				sumWidth += childs[i].offsetWidth;
+			}
+			
+			// mémorisation du nombre de cartes réel sur la zone
+			divCardsContainer.cardsLength = childs.length - offsetCardLength;
+			
+			console.log(id + " childNodes.length = " + childs.length + (offsetCardLength == 1 ? " (-1)" : ""));				
+			console.log(id + " sum width = " + s);
+			console.log(id + " test : " + sumWidth + " >=? " + divCardsContainer.clientWidth);
+			
+			if (sumWidth >= divCardsContainer.clientWidth) {
+				
+				var scrollMax = divCardsContainer.scrollWidth - divCardsContainer.clientWidth;
+				
+				console.log(id + " tenter d'afficher flèches");
+				console.log(id + " scrollLeft = " + elements.divScrollCards.scrollLeft);
+				console.log(id + " scrollMax = " + scrollMax);
+				
+				if (elements.divScrollCards.scrollLeft > 0) {
+					elements.imgLeftArrow.style.display = "block";
+					console.log(divCardsContainer.id + " flèche gauche : affichée");
+				} else {
+					elements.imgLeftArrow.style.display = "none";
+					console.log(divCardsContainer.id + " flèche gauche : masquée");
+				}
+				
+				if (elements.divScrollCards.scrollLeft < scrollMax) {
+					elements.imgRightArrow.style.display = "block";
+					console.log(divCardsContainer.id + " flèche droite : affichée");
+				} else {
+					elements.imgRightArrow.style.display = "none";
+					console.log(divCardsContainer.id + " flèche droite : masquée");
+				}
+				
+			} else {
+				elements.imgLeftArrow.style.display = "none";
+				elements.imgRightArrow.style.display = "none";
+				console.log(id + " masquer flèches");
+			}
+		}
+	}	
 }

@@ -73,22 +73,8 @@ class DomCard {
 	}
 	
 	addMenu(menu) {
-
-		var menuTop = "0px";
-		var menuLeft = "0px";
+		this.menu = menu;
 		
-		// menu
-		this.divMenu = document.createElement("div");
-		this.divMenu.id = "divMenu_" + this.card.id;
-		this.divMenu.classList.add('menuCardDiv');
-		this.divMenu.style.top = menuTop;
-		this.divMenu.style.left = menuLeft;
-	    this.divBackImg.appendChild(this.divMenu);
-	    		
-		menu.forEach ((function(item) {
-			this.divMenu.appendChild(this.buildMenuItem(this.divMenu, this.card, item));
-		}).bind(this));
-	
 		// affichage du menu contextuel lors de l'entrée de la souris sur l'image
 		//cardImg.addEventListener('mouseenter', (function() { showCardMenu(this); }).bind(divMenu) );
 
@@ -96,18 +82,45 @@ class DomCard {
 		this.cardImg.oncontextmenu = (function() { return this.showCardMenu(); }).bind(this);
 		
 		// masquage du menu contextuel lors de la sortie de la souris de l'image
-		this.divCard.addEventListener('mouseleave', (function() { this.hideCardMenu(); }).bind(this) );
-	
-	 }
+		this.divCard.mouseLeaveEventTarget = (function() { this.hideCardMenu(); }).bind(this);
+		this.divCard.addEventListener('mouseleave',  this.divCard.mouseLeaveEventTarget);
+
+	}
 	 
 	showCardMenu() {
-		this.divMenu.style.display = 'block';
-		this.divMenu.style.zIndex = 10;
+
+		if (this.menu != null) {
+			this.divMenu = null;
+			
+			var menuTop = "0px";
+			var menuLeft = "0px";
+			
+			// menu
+			this.divMenu = document.createElement("div");
+			this.divMenu.id = "divMenu_" + this.card.id;
+			this.divMenu.classList.add('menuCardDiv');
+			this.divMenu.style.top = menuTop;
+			this.divMenu.style.left = menuLeft;
+		    this.divBackImg.appendChild(this.divMenu);
+		    		
+		    this.menu.forEach ((function(item) {
+				this.divMenu.appendChild(this.buildMenuItem(this.divMenu, this.card, item));
+			}).bind(this));
+
+		    this.divMenu.style.display = 'block';
+			this.divMenu.style.zIndex = 10;
+		}
+		
 		return false;
 	}
 	
 	hideCardMenu() {
-		this.divMenu.style.display = 'none';
+		//this.divMenu.style.display = 'none';
+		
+		if (this.divMenu != null) {
+			this.divBackImg.removeChild(this.divMenu);
+			this.divMenu = null;
+		}
 	}
 	
 	buildMenuItem(menu, card, menuItemInfos) {
