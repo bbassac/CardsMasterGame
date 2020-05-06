@@ -83,10 +83,9 @@ class DomCard {
 		// affichage du menu contextuel lors d'un clique-droit sur l'image
 		this.cardImg.oncontextmenu = (function() { return this.showCardMenu(); }).bind(this);
 		
-		// masquage du menu contextuel lors de la sortie de la souris de l'image
-		this.divCard.mouseLeaveEventTarget = (function() { this.hideCardMenu(); }).bind(this);
+		// suppression du menu contextuel lors de la sortie de la souris de l'image
+		this.divCard.mouseLeaveEventTarget = (function() { this.deleteCardMenu(); }).bind(this);
 		this.divCard.addEventListener('mouseleave',  this.divCard.mouseLeaveEventTarget);
-		showCardMenu();
 	}
 	 
 	showCardMenu() {
@@ -104,9 +103,11 @@ class DomCard {
 			this.divMenu.style.top = menuTop;
 			this.divMenu.style.left = menuLeft;
 		    this.divBackImg.appendChild(this.divMenu);
-		    		
-		    this.menu.forEach ((function(item) {
-				this.divMenu.appendChild(this.buildMenuItem(this.divMenu, this.card, item));
+		    
+		    var menuItemIdex = 0;
+		    this.menu.forEach ((function(menuItemInfos) {
+		    	menuItemInfos.index = menuItemIdex++;
+				this.divMenu.appendChild(this.buildMenuItem(this.divMenu, this.card, menuItemInfos));
 			}).bind(this));
 
 		    this.divMenu.style.display = 'block';
@@ -116,7 +117,7 @@ class DomCard {
 		return false;
 	}
 	
-	hideCardMenu() {
+	deleteCardMenu() {
 		//this.divMenu.style.display = 'none';
 		
 		if (this.divMenu != null) {
@@ -125,12 +126,14 @@ class DomCard {
 		}
 	}
 	
-	buildMenuItem(menu, card, menuItemInfos) {
+	buildMenuItem(divMenu, card, menuItemInfos) {
 	
 	    var menuItem = document.createElement("div");
 	    menuItem.classList.add('menuCardItem');
 	    menuItem.card = card;
-	    menuItem.menu = menu;
+	    menuItem.menu = divMenu;
+	    menuItem.index = menuItemInfos.index;
+	    menuItem.setText = (function(menuItem, text) { this.setMenuItemText(menuItem, text); }).bind(this, menuItem);
 	
 	    
 	    if (menuItemInfos.text) {
@@ -138,19 +141,30 @@ class DomCard {
 	    }
 	    
 	    if (menuItemInfos.action) {
-	    	menuItem.addEventListener("click", this.clickOnItem.bind(menuItem, menuItemInfos.action) );
+	    	menuItem.addEventListener("click", this.clickOnItem.bind(menuItem, menuItemInfos) );
 	    }
 	    
 		return menuItem;
 	}
 	
-	clickOnItem(menuItemAction) {
+	setMenuItemText(menuItem, text) {
+		
+		console.log(this.menu);
+		
+		if (this.menu != null) {
+			this.menu[menuItem.index].text = text;
+		}
+		
+	}
 	
-		// cache le menu contextuel
+	clickOnItem(menuItemInfos) {
+	
+		
+		// supprime le menu contextuel
 		this.menu.style.display = "none";
 		
 		// joue l'action associé au menu item qui a été cliqué
-		menuItemAction(this);
+		menuItemInfos.action(this);
 	
 	}
 	
