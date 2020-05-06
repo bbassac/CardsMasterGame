@@ -25,14 +25,14 @@
 ## Bugs / Evolutions
 
 * [ ] Ajouter des sorts de destruction d'équipement
-* [ ] Deporter les PVs des cartes sur un overlay coté gauche des cartes
+* [X] Deporter les PVs des cartes sur un overlay coté gauche des cartes
 * [ ] Introduire nouvelle ligne pour cartes équipement adverse
-* [ ] Passer les boutons dessous les cartes en affichage auto comme le cimetiere
+* [X] Passer les boutons dessous les cartes en affichage auto comme le cimetiere
 * [ ] Remplacer les scrollbars haurizontales par des boutons s'affichant dynamiquement
 * [ ] Dimensions du menu contextuel + Look and feel
 * [ ] Déplacement des menus en haut pour gagner de la hauteur
 * [ ] Gestion des cartes affinité
-* [ ] Gestion méta-data
+* [X] Gestion méta-data
 * [ ] Utiliser metadata pour un feedback visuel du current environnement sur les ninjas
 * [ ] Utiliser les menus contextuels pour retirer des boutons d'action
 * [ ] Etudier un drag&drop pour déplacer les cartes de zone
