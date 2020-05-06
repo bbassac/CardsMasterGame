@@ -110,7 +110,7 @@ function showCardActivation(domCard,menuItem) {
 	var card = domCard.card;
 	var isActivated = domCard.getIsActivated();
 
-    menuItem.innerHTML = isActivated ? RE_ACTIVATE : ACTIVATE;
+	menuItem.setText(isActivated ? RE_ACTIVATE : ACTIVATE);
 }
 
 function useCard(domCard,menuItem){
@@ -125,8 +125,8 @@ function useCard(domCard,menuItem){
     xhttp.send();
 
 	domCard.setIsUsed(isUsed);
-
-    menuItem.innerHTML = isUsed? RESET_USE : USE;
+	
+	menuItem.setText(isUsed? RESET_USE : USE);
 }
 
 
