@@ -74,7 +74,7 @@ function fillOpponentBoard(playerId){
  
  
     //Je récupère le bloc contenant toutes les cartes
-    var src = setAsBoardArea("boardOpp");
+    var src = setAsBoardArea("boardOpp",THEME_RED);
 
     if (cleanAllIfNeeded(cards, src)) {
 
