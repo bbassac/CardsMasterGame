@@ -15,7 +15,8 @@ function setAsBoardArea(divId) {
 			divCardsContainer = transformArea(divBack);
 		} else {
 			console.log(divId + " already boardArea")
-			divCardsContainer = cleanArea(divBack);
+			divCardsContainer = divBack.scrollElements.divCardsContainer;
+			//divCardsContainer = cleanArea(divBack);
 		}
 	
 	}
@@ -60,6 +61,7 @@ function transformArea(divBack) {
 	divCardsContainer.id = id + "divCardsContainer";
 	divCardsContainer.classList.add("boardArea_cardsContainer");
 	divCardsContainer.scrollElements = elements;
+	divCardsContainer.isBoardArea = true;
 	divScrollCards.appendChild(divCardsContainer);
 	
 	var divRightArrowBack = document.createElement("div");
@@ -92,22 +94,40 @@ function transformArea(divBack) {
 
 function cleanArea(divBack) {
 
-	var divCardsContainer = divBack.scrollElements.divCardsContainer;
-	var updateArrowsEventTarget = divCardsContainer.updateArrowsEventTarget;
+	var cardsArea = null;
 	
-	divCardsContainer.removeEventListener("DOMNodeInserted", updateArrowsEventTarget );
-	divCardsContainer.removeEventListener("DOMNodeRemoved", updateArrowsEventTarget );
-	
-	while (divCardsContainer.firstChild) {
-		divCardsContainer.removeChild(divCardsContainer.lastChild);
-	}			
-
-	divCardsContainer.cardsLength = 0;	
-	
-	divCardsContainer.addEventListener("DOMNodeInserted", updateArrowsEventTarget );
-	divCardsContainer.addEventListener("DOMNodeRemoved", updateArrowsEventTarget );
-
-	return divCardsContainer;
+	if (divBack != null) {
+		console.log(divBack.id);
+		
+		if (divBack.isBoardArea == null) {
+			divBack.innerHTML = "";
+			cardsArea = divBack;
+			
+		} else {
+			var divCardsContainer = divBack.scrollElements.divCardsContainer;
+			var updateArrowsEventTarget = divCardsContainer.updateArrowsEventTarget;
+			
+			divCardsContainer.removeEventListener("DOMNodeInserted", updateArrowsEventTarget );
+			divCardsContainer.removeEventListener("DOMNodeRemoved", updateArrowsEventTarget );
+			
+			while (divCardsContainer.firstChild) {
+				divCardsContainer.removeChild(divCardsContainer.lastChild);
+			}			
+		
+			divBack.scrollElements.imgLeftArrow.style.display = "none";
+			divBack.scrollElements.imgRightArrow.style.display = "none";
+			
+			divCardsContainer.cardsLength = 0;	
+			
+			divCardsContainer.addEventListener("DOMNodeInserted", updateArrowsEventTarget );
+			divCardsContainer.addEventListener("DOMNodeRemoved", updateArrowsEventTarget );
+		
+			cardsArea = divCardsContainer;
+		}
+		
+	}
+		
+	return cardsArea;
 }
 
 function scrollToLeft(event) {

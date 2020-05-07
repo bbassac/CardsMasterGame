@@ -5,6 +5,7 @@ function needAdd(card,slot){
     if (card.id != slot.domCard.card.id){
         return true;
     }
+    return false;
 }
 
 function needDelete(card,slot){
@@ -40,28 +41,26 @@ function needUpdate(card,slot){
 function cleanAllIfNeeded(cards, src) {
     
 	if (cards.length != src.childNodes.length) {
-		src.innerHTML = '';
+		return true;
 
-	}
+	} else {
 		
-	for (var i = 0; i < cards.length; i++) {
-
-        var indexedSlot = src.childNodes[i];
-
-		if (cards.length != src.childNodes.length) {
-			src.innerHTML = '';
+		for (var i = 0; i < cards.length; i++) {
 	
-		}
-
-        if (needDelete(cards[i], indexedSlot)) {
-            src.innerHTML = '';
-            break;
-        } else if (needUpdate(cards[i], indexedSlot)) {
-            src.innerHTML = '';
-            break;
-        }
-    }
-    
+	        var indexedSlot = src.childNodes[i];
+	
+			if (cards.length != src.childNodes.length) {
+				return true;
+		
+			}
+	
+	        if (needDelete(cards[i], indexedSlot)) {
+	            return true;
+	        } else if (needUpdate(cards[i], indexedSlot)) {
+	        	return true;
+	        }
+	    }
+	}    
 }
 
 function fillOpponentBoard(playerId){
@@ -75,22 +74,26 @@ function fillOpponentBoard(playerId){
  
  
     //Je récupère le bloc contenant toutes les cartes
-    var src = document.getElementById("boardOpp");
+    var src = setAsBoardArea("boardOpp");
 
-    cleanAllIfNeeded(cards, src);
+    if (cleanAllIfNeeded(cards, src)) {
 
-    for (var i=0; i< cards.length;i++){
-
-        var indexedSlot = src.childNodes[i];
-
-        if (needDelete(cards[i], indexedSlot)){
-            console.log("Need Delete");
-            src.removeChild(indexedSlot);
-        }else if (needUpdate(cards[i], indexedSlot)){
-            console.log("Need Update");
-        }else if (needAdd(cards[i], indexedSlot)){
-        	addCardOnOpponentBoard(src, cards[i]);
-        }
+    	cleanArea(src);
+    	
+	    for (var i=0; i< cards.length;i++){
+	
+	        /*var indexedSlot = src.childNodes[i];
+	
+	        if (needDelete(cards[i], indexedSlot)){
+	            console.log("Need Delete");
+	            src.removeChild(indexedSlot);
+	        }else if (needUpdate(cards[i], indexedSlot)){
+	            console.log("Need Update");
+	        }else if (needAdd(cards[i], indexedSlot)){
+	        */
+	        	addCardOnOpponentBoard(src, cards[i]);
+	        //}
+	    }
     }
 }
 
@@ -109,6 +112,7 @@ function addOpponentBoardCardInfos(domCard) {
 	//Je crée un sous-bloc pour l'affichage des dégats
 	var divBlock = document.createElement("div");
 	domCard.divCard.appendChild(divBlock);
+	divBlock.style.textAlign = "center";
 	
 	var bold = document.createElement("b");
 	var nbDmg = document.createTextNode("  " + card.dammagePoints + "  ");
