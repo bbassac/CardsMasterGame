@@ -39,6 +39,13 @@
 * [ ] Animation activation carte piege qui s'affiche  
 * [ ] Doubler le nombre des invocations
 * [ ] ajouter flag camouflé sur carte en jeu
+* [X] bug : Pas de MAJ des flèches de scroll lors du changement de joueurs.
+* [X] bug : Problème du non effacement des flèches de scroll de la zone hand lors de la supression d'une carte.
+* [X] evol : Ajout du scroll par bouton sur la zone des opposants.
+* [ ] evol : Position du scroll à mémoriser lors de l'ajout / suppression d'une carte de la zone de scroll --> A architecturer.
+* [ ] evol : POC : Mettre en place le drag-and-drop sur au moins une interaction entre zones.
+* [ ] evol : Mettre en place le drag-and-drop sur toutes les interactions entre zones (si POC ok).
+* [X] Mettre des commentaires sur boardArea.js.
 
 ## Background
 
