@@ -14,14 +14,11 @@ function setAsBoardArea(divId,theme) {
 			console.log(divId + " transform to boardArea")
 			divCardsContainer = transformArea(divBack,theme);
 		} else {
-			console.log(divId + " already boardArea")
 			divCardsContainer = divBack.scrollElements.divCardsContainer;
-			//divCardsContainer = cleanArea(divBack);
 		}
 	
 	}
-	
-	console.log(divId + " card container : " + divCardsContainer.id);
+
 	return divCardsContainer;
 }
 
@@ -97,7 +94,6 @@ function cleanArea(divBack) {
 	var cardsArea = null;
 	
 	if (divBack != null) {
-		console.log(divBack.id);
 		
 		if (divBack.isBoardArea == null) {
 			divBack.innerHTML = "";
@@ -306,23 +302,20 @@ function updateScrollArrows(divCardsContainer, offsetCardLength) {
 			
 			var id = divCardsContainer.id;
 			var childs = divCardsContainer.childNodes;
-			var sumWidthAndMargins = 0;
 			
-			var s = "";
-			
-			for (var i = 0; i < (childs.length - offsetCardLength); i++) {
-				s += "(" + childs[i].offsetWidth + "," + childs[i].style.marginLeft + "," + childs[i].style.marginRight + "),";
-				sumWidthAndMargins += childs[i].offsetWidth + childs[i].offsetLeft;
-			}
+			var i = (childs.length - offsetCardLength) - 1;
+			var cardWidth = childs[i].offsetWidth;
+			var cardLeft = (childs[i].offsetLeft != null) ? childs[i].offsetLeft : 0;
+			var sumWidthAndLeft = (cardWidth + cardLeft);
 			
 			// mémorisation du nombre de cartes réel sur la zone
 			divCardsContainer.cardsLength = childs.length - offsetCardLength;
 			
 			console.log(id + " childNodes.length = " + childs.length + (offsetCardLength == 1 ? " (-1)" : ""));				
-			console.log(id + " sum width and argins = " + s);
-			console.log(id + " test : " + sumWidthAndMargins + " >=? " + divCardsContainer.clientWidth);
+			console.log(id + " width + left of last card : " + cardWidth + " + " + cardLeft + " = " + sumWidthAndLeft);
+			console.log(id + " test : " + sumWidthAndLeft + " >=? " + divCardsContainer.clientWidth);
 			
-			if (sumWidthAndMargins >= divCardsContainer.clientWidth) {
+			if (sumWidthAndLeft >= divCardsContainer.clientWidth) {
 				
 				var scrollMax = divCardsContainer.scrollWidth - divCardsContainer.clientWidth;
 				
