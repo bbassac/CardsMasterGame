@@ -3,7 +3,7 @@
 
 var scrollingTaskId;
 
-function setAsBoardArea(divId) {
+function setAsBoardArea(divId,theme) {
 
 	var divBack = document.getElementById(divId);
 	var divCardsContainer = null;
@@ -12,7 +12,7 @@ function setAsBoardArea(divId) {
 		
 		if (divBack.isBoardArea == null) {
 			console.log(divId + " transform to boardArea")
-			divCardsContainer = transformArea(divBack);
+			divCardsContainer = transformArea(divBack,theme);
 		} else {
 			console.log(divId + " already boardArea")
 			divCardsContainer = divBack.scrollElements.divCardsContainer;
@@ -25,7 +25,7 @@ function setAsBoardArea(divId) {
 	return divCardsContainer;
 }
 
-function transformArea(divBack) {
+function transformArea(divBack,theme) {
 	
 	var id = divBack.id + "_";
 	var elements = {};
@@ -41,7 +41,7 @@ function transformArea(divBack) {
 	divBack.appendChild(divLeftArrowBack);
 
 	var imgLeftArrow = document.createElement("img");
-	imgLeftArrow.src = "img/" + encodeURI("blue_arrow_left.png");
+	imgLeftArrow.src = "img/" + encodeURI(theme+"_arrow_left.png");
 	imgLeftArrow.classList.add("imgLeftArrow");
 	imgLeftArrow.style.display = "none";
 	imgLeftArrow.addEventListener("mousedown", scrollToLeft);
@@ -69,7 +69,7 @@ function transformArea(divBack) {
 	divBack.appendChild(divRightArrowBack);
 	
 	var imgRightArrow = document.createElement("img");
-	imgRightArrow.src = "img/" + encodeURI("blue_arrow_right.png");
+	imgRightArrow.src = "img/" + encodeURI(theme+"_arrow_right.png");
 	imgRightArrow.classList.add("imgRightArrow");
 	imgRightArrow.style.display = "none";
 	imgRightArrow.addEventListener("mousedown", scrollToRight);

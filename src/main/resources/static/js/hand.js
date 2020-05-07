@@ -6,7 +6,7 @@ function fillHand(playerId) {
     xhttp.send();
     var cards = JSON.parse(xhttp.responseText);
 
-	var src = setAsBoardArea("hand");
+	var src = setAsBoardArea("hand",THEME_BLUE);
 	cleanArea(src);
 
 	for (var i = 0; i < cards.length; i++) {
