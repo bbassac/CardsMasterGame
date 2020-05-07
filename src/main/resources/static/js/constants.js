@@ -48,3 +48,8 @@ const CHAKRA_FEU="Feu";
 const CHAKRA_FOUDRE="Foudre";
 const CHAKRA_TERRE ="Terre";
 
+//THEME
+const THEME_BLUE = "blue";
+const THEME_RED = "red";
+const THEME_GREEN = "green";
+const THEME_GREY = "grey";

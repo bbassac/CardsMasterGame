@@ -6,7 +6,7 @@ function fillEquipments(playerId) {
     xhttp.send();
     var cards = JSON.parse(xhttp.responseText);
     
-    var src = setAsBoardArea("equipments");
+    var src = setAsBoardArea("equipments",THEME_GREY);
     src.innerHTML = '';
 
 	 for (var i = 0; i < cards.length; i++){
