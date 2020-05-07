@@ -7,7 +7,7 @@ function fillEquipments(playerId) {
     var cards = JSON.parse(xhttp.responseText);
     
     var src = setAsBoardArea("equipments");
-    src.innerHTML = '';
+    cleanArea(src);
 
 	 for (var i = 0; i < cards.length; i++){
         var imgSize = cards.length > 7 ? equipmentHeight-10 : equipmentHeight;
