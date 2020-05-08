@@ -257,8 +257,7 @@ function cleanArea(divBack) {
 			
 			// suppression des elements du div (les cartes)
 			while (divCardsContainer.firstChild) {
-				divCardsContainer.lastChild.domCard.divCardsContainer = null;
-				divCardsContainer.removeChild(divCardsContainer.lastChild);
+				divCardsContainer.lastChild.domCard.remove();
 			}
 		
 			// masquages des flèches de scroll (plus de cartes sur le div, plus besoin de flèches)
