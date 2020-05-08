@@ -163,10 +163,13 @@ function moveCardToGraveyard(domCard){
 
 function boardPlayerAllowDrop(fromDivId, toDivId, domCard) {
 
-	return ((KIND_EQUIPMENT.localeCompare(domCard.card.metaData.kind) != 0)
+	/*return ((KIND_EQUIPMENT.localeCompare(domCard.card.metaData.kind) != 0)
 			&& (KIND_TRAP.localeCompare(domCard.card.metaData.kind) != 0)
 			&& (fromDivId.localeCompare("hand_divCardsContainer") == 0));
-	
+	*/
+	return ((KIND_TRAP.localeCompare(domCard.card.metaData.kind) != 0)
+			&& (fromDivId.localeCompare("hand_divCardsContainer") == 0));
+
 }
 
 function boardPlayerDrop(fromDivId, toDivId, domCard) {
