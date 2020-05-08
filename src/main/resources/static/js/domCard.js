@@ -13,8 +13,6 @@ class DomCard {
 		}
     	this.divCard.style.cssFloat = "left";
 		
-        this.divBackImg = document.createElement("div");
-
         this.cardImg = document.createElement("img");
         //this.cardImg.loading = "lazy";
         this.cardImg.src = "img/" + encodeURI(card.path);
@@ -27,15 +25,21 @@ class DomCard {
         this.setIsActivated(card.activated);
         this.setIsUsed(card.used);
        
-
+        this.divBackImg = document.createElement("div");
         this.divBackImg.appendChild(this.cardImg);
         this.divBackImg.style.position = "relative";
         
         this.divCard.appendChild(this.divBackImg);
         this.divCard.domCard = this;
 
+        // par défaut la carte ne doit pas être draggable 
+        this.setDraggable(false);
   	}
 
+	getId() {
+		return this.card.id;
+	}
+	
 	getIsActivated() {
 		return this.card.activated;
 	}
@@ -70,6 +74,19 @@ class DomCard {
 		this.divCard.dispatchEvent(new CustomEvent("used", this));
 	}
 
+	getDraggable() {
+		return this.cardImg.draggable;
+	}
+
+	setDraggable(draggable) {
+
+		this.cardImg.draggable = draggable;
+		
+		if (draggable) {
+			this.cardImg.addEventListener("dragstart", (function(event) { this.startDrag(event); }).bind(this))
+		}
+	}
+	
 	remove() {
 		this.divCard.remove();
 	}
@@ -170,5 +187,10 @@ class DomCard {
 	
 	addEventListener(event, fct) {
 		this.divCard.addEventListener(event, fct);
+	}
+	
+	startDrag(event) {
+		event.dataTransfer.setData("cardId", this.getId());
+		event.dataTransfer.setData("divId", this.divCardsContainer.id);
 	}
 }

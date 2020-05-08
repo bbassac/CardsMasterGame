@@ -7,13 +7,13 @@ function fillBoardPlayer(playerId) {
     var cards = JSON.parse(xhttp.responseText);
 
 
-	var src = setAsBoardArea("boardPlayer",THEME_GREEN);
+    var src = setAsBoardArea("boardPlayer", THEME_GREEN);
+    setAsDropArea(src, boardPlayerAllowDrop, boardPlayerDrop);
 	cleanArea(src);
-
 
 	for (var i = 0; i < cards.length; i++) {
 		
-		var domCard = new DomCard(cards[i], gameImageHeight, CARD_DRAW_MODES_BOARD);
+		var domCard = getDomCard(cards[i], gameImageHeight, CARD_DRAW_MODES_BOARD);
 		src.appendChild(domCard.divCard);
 		
 		addBoardCardButtons(domCard);
@@ -27,6 +27,7 @@ function fillBoardPlayer(playerId) {
 
         domCard.addMenu(menu);
 	}
+
 }
 
 function addBoardCardButtons(domCard) {
@@ -144,4 +145,12 @@ function moveCardToGraveyard(domCard){
     
     domCard.remove();
     fillGraveyard(currentPlayerId, "graveyardId");
+}
+
+function boardPlayerAllowDrop(fromDivId, toDivId, domCard) {
+	return true;
+}
+
+function boardPlayerDrop(fromDivId, toDivId, domCard) {
+	moveCardToBoard(domCard);
 }
