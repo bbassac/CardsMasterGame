@@ -1,3 +1,5 @@
+const ALLOW_PROPERTY_MNU = false;
+
 class DomCard {
 
 	constructor(card, height, cardDrawMode) {
@@ -34,6 +36,11 @@ class DomCard {
 
         // par défaut la carte ne doit pas être draggable 
         this.setDraggable(false);
+        
+        if (ALLOW_PROPERTY_MNU) {
+        	// force l'ajout d'un menu de test
+        	this.addMenu([]);
+        }
   	}
 
 	getId() {
@@ -88,15 +95,18 @@ class DomCard {
 	}
 	
 	remove() {
+		this.divCardsContainer = null;
 		this.divCard.remove();
 	}
 	
 	addMenu(menu) {
 		this.menu = menu;
 		
-		// affichage du menu contextuel lors de l'entrée de la souris sur l'image
-		//cardImg.addEventListener('mouseenter', (function() { showCardMenu(this); }).bind(divMenu) );
-
+		// ajout d'un item de test mode test
+		if (ALLOW_PROPERTY_MNU) {
+			this.menu.push({ text: "Log propriétés", action: (function() { this.showCardProperties(); }).bind(this) });
+		}
+		
 		// affichage du menu contextuel lors d'un clique-droit sur l'image
 		this.cardImg.oncontextmenu = (function() { return this.showCardMenu(); }).bind(this);
 		
@@ -107,7 +117,7 @@ class DomCard {
 	 
 	showCardMenu() {
 
-		if (this.menu != null) {
+		if ((this.menu != null) && (this.menu.length)) {
 			this.divMenu = null;
 			
 			var menuTop = "0px";
@@ -192,5 +202,13 @@ class DomCard {
 	startDrag(event) {
 		event.dataTransfer.setData("cardId", this.getId());
 		event.dataTransfer.setData("divId", this.divCardsContainer.id);
+	}
+	
+	showCardProperties() {
+		
+		console.log("*****************************");
+		console.log("* id card: " + this.getId());
+		console.log("* id divCardsContainer: " + (this.divCardsContainer == null ? "null" : this.divCardsContainer.id));
+		console.log("*****************************");
 	}
 }

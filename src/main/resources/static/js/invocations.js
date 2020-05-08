@@ -13,6 +13,7 @@
     img.id = "imgDraw";
     img.classList.add("imgInvocation");
     img.title = "Piocher une carte";
+    img.draggable = false;
 	
 	img.setAttribute('title', "Piocher une carte d'invocation");
 	img.addEventListener("click", showPopinInvocations);

@@ -9,6 +9,7 @@ function fillDraw(playerId){
     img.id = "imgDraw";
     img.classList.add("imgDraw");
     img.setAttribute('title', "Piocher une carte");
+    img.draggable = false;
     
     img.addEventListener ("click", function() {
         var xhttp = new XMLHttpRequest();
