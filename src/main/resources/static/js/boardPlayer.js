@@ -26,6 +26,7 @@ function fillBoardPlayer(playerId) {
         ];
 
         domCard.addMenu(menu);
+        domCard.setDraggable(true);
 	}
 
 }

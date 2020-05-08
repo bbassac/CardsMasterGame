@@ -29,7 +29,7 @@ function fillGraveyard(playerId, graveId, forceUpdate) {
 			{ text: "Afficher le cimetière", action: function() { showPopinGrave(who); } },
 		];
 
-    	var domCard = new DomCard(cards[cards.length - 1], graveyardHeight, CARD_DRAW_MODES_DICE);
+    	var domCard = getDomCard(cards[cards.length - 1], graveyardHeight, CARD_DRAW_MODES_DICE);
 		graveyardArea.appendChild(domCard.divCard);
         domCard.addMenu(menu);
                

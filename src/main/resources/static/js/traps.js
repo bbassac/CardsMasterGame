@@ -11,7 +11,7 @@ function fillTraps(playerId) {
 
 	 for (var i = 0; i < cards.length; i++){
 
-	    var domCard = new DomCard(cards[i], trapImageHeight, CARD_DRAW_MODES_BOARD);
+	    var domCard = getDomCard(cards[i], trapImageHeight, CARD_DRAW_MODES_BOARD);
 		src.appendChild(domCard.divCard);
 		 
 		var menu = [

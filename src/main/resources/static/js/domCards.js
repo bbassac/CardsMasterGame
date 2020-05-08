@@ -22,12 +22,12 @@ function getDomCard(card, cardImageHeight, drawMode) {
 	var domCard = null;
 	var id = card.id;
 	
-	if (cacheDomCards.hasOwnProperty(id)) {
-		domCard = cacheDomCards[id];
-	} else {
+	//if (cacheDomCards.hasOwnProperty(id)) {
+	//	domCard = cacheDomCards[id];
+	//} else {
 		domCard = new DomCard(card, cardImageHeight, drawMode);
 		cacheDomCards[id] = domCard;
-	}
+	//}
 	
 	return domCard;
 }
@@ -40,13 +40,14 @@ function getDomCard(card, cardImageHeight, drawMode) {
  * @returns domCard correspondant à l'id si il existe, null sinon.
  */
 function getDomCardById(id) {
-	
+
 	var domCard = null;
 	
 	if (cacheDomCards.hasOwnProperty(id)) {
 		domCard = cacheDomCards[id];
-	} else {
 	}
+	
+	console.log("getDomCardById " + id + " => " + domCard);
 	
 	return domCard;
 }
