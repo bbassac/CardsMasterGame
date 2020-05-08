@@ -257,6 +257,7 @@ function cleanArea(divBack) {
 			
 			// suppression des elements du div (les cartes)
 			while (divCardsContainer.firstChild) {
+				divCardsContainer.lastChild.domCard.divCardsContainer = null;
 				divCardsContainer.removeChild(divCardsContainer.lastChild);
 			}
 		
@@ -459,6 +460,10 @@ function tryUpdateScrollArrows(event, divCardsContainer) {
 		
 		consolelog(divCardsContainer.id + " " + event.type);
 		
+		// enregistrement sur le domCard de la zoneù il est posé.
+		// Cette info sera utilisée lors des drag-and-drop pour déterminer d'où on viens.
+		domCard.divCardsContainer = divCardsContainer;
+		
 		// ajout des listener des events used et activated de la nouvelle carte
 		domCard.addEventListener("used", function() { testIfDivReadyToUpdateArrows(divCardsContainer, 0); })
 		domCard.addEventListener("activated", function() { testIfDivReadyToUpdateArrows(divCardsContainer, 0); })
@@ -585,11 +590,17 @@ function updateScrollArrows(divCardsContainer, offsetCardLength) {
 		var id = divCardsContainer.id;
 		var childs = divCardsContainer.childNodes;
 		
+		var scrollMax = elements.divScrollCards.scrollWidth - elements.divScrollCards.clientWidth;
+		
 		// récupération de la position (left) et de la largeur (width) de la dernière carte A PRENDRE EN COMPTE
-		// posée sur le div. offsetCardLength est là pour indiquer quelle "dernière" carte doit être prise en compte. 
+		// posée sur le div. "offsetCardLength" est là pour indiquer quelle "dernière" carte doit être prise en compte. 
 		var i = (childs.length - offsetCardLength) - 1;
-		var cardWidth = childs[i].offsetWidth;
-		var cardLeft = (childs[i].offsetLeft != null) ? childs[i].offsetLeft : 0;
+		var cardWidth = 0;
+		var cardLeft = 0;
+		if (i >= 0) {
+			cardWidth = childs[i].offsetWidth;
+			cardLeft = (childs[i].offsetLeft != null) ? childs[i].offsetLeft : 0;
+		}
 		
 		// left + width de la dernière carte à prendre en compte 
 		// => position la plus à droite à prendre en compte pour calculer la largeur d'affichage formée par toutes les cartes.
@@ -604,14 +615,14 @@ function updateScrollArrows(divCardsContainer, offsetCardLength) {
 		consolelog(id + " width + left of last card : " + cardWidth + " + " + cardLeft + " = " + sumWidthAndLeft);
 		consolelog(id + " test : " + sumWidthAndLeft + " >=? " + divCardsContainer.clientWidth);
 		
-		
+				
 		if (sumWidthAndLeft >= divCardsContainer.clientWidth) {
 			// si la largeur de la zone couverve par les cartes est supérieure à la zone d'affichage
 			// alors il faut envisager d'afficher les flèches de scroll.
 			
 			consolelog(id + " tenter d'afficher flèches");
 			consolelog(id + " scrollLeft = " + elements.divScrollCards.scrollLeft);
-			consolelog(id + " scrollMax = " + elements.scrollMax);
+			consolelog(id + " scrollMax = " + scrollMax);
 			
 			// affichage des flèche en fonction de la position courante du scroll
 			if (elements.divScrollCards.scrollLeft > 0) {
@@ -622,7 +633,7 @@ function updateScrollArrows(divCardsContainer, offsetCardLength) {
 				consolelog(divCardsContainer.id + " flèche gauche : masquée");
 			}
 			
-			if (elements.divScrollCards.scrollLeft < elements.scrollMax) {
+			if (elements.divScrollCards.scrollLeft < scrollMax) {
 				elements.imgRightArrow.style.display = "block";
 				consolelog(divCardsContainer.id + " flèche droite : affichée");
 			} else {

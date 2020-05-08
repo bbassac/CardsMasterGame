@@ -11,7 +11,7 @@ function fillHand(playerId) {
 
 	for (var i = 0; i < cards.length; i++) {
 		
-		var domCard = new DomCard(cards[i], gameImageHeight, CARD_DRAW_MODES_BOARD);
+		var domCard = getDomCard(cards[i], gameImageHeight, CARD_DRAW_MODES_BOARD);
 		src.appendChild(domCard.divCard);
         
         var menu = [
@@ -22,6 +22,7 @@ function fillHand(playerId) {
         ];
     
         domCard.addMenu(menu);
+        domCard.setDraggable(true);
     }
     
   
