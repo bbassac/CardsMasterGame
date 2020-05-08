@@ -8,11 +8,12 @@ function fillEquipments(playerId) {
     
 
     var src = setAsBoardArea("equipments",THEME_GREY);
+    setAsDropArea(src, equipmentAllowDrop, equipmentDrop);
     cleanArea(src);
 
 	 for (var i = 0; i < cards.length; i++){
         var imgSize = cards.length > 7 ? equipmentHeight-10 : equipmentHeight;
-	    var domCard = new DomCard(cards[i], imgSize, CARD_DRAW_MODES_BOARD);
+	    var domCard = getDomCard(cards[i], imgSize, CARD_DRAW_MODES_BOARD);
 		src.appendChild(domCard.divCard);
 		 
 		var menu = [
@@ -37,4 +38,13 @@ function moveCardFromEquipmentsToGraveyard(domCard){
     //Pour le cas ou on doit les resize
     fillEquipments(currentPlayerId);
     
+}
+
+function equipmentAllowDrop(fromDivId, toDivId, domCard) {
+	return ((KIND_EQUIPMENT.localeCompare(domCard.card.metaData.kind) == 0)
+			&& (fromDivId.localeCompare("hand_divCardsContainer") == 0));
+}
+
+function equipmentDrop(fromDivId, toDivId, domCard) {
+	moveCardToEquipment(domCard);
 }

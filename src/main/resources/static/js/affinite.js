@@ -19,6 +19,6 @@ function displayAffinite(playerId, srcId, cardHeight) {
     var src = document.getElementById(srcId);
     src.innerHTML = '';
     
-	var domCard = new DomCard(card, cardHeight, CARD_DRAW_MODES_DICE);
+	var domCard = getDomCard(card, cardHeight, CARD_DRAW_MODES_DICE);
 	src.appendChild(domCard.divCard);
 }

@@ -83,7 +83,7 @@ class DomCard {
 		this.cardImg.draggable = draggable;
 		
 		if (draggable) {
-			this.cardImg.addEventListener("dragstart", (function(event) { this.startDrag(event); }).bind(this))
+			this.cardImg.addEventListener("dragstart", (function(event) { startDragDomCard(event, this); }).bind(this))
 		}
 	}
 	

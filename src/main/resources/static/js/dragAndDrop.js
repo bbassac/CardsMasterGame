@@ -1,14 +1,17 @@
+var dragDataDomCard = null;
+
 function setAsDropArea(div, fctAllow, fctDrop) {
 	
 	div.ondragover = (function(event) { 
 
-		var cardId = event.dataTransfer.getData("cardId");
-		var fromDivId = event.dataTransfer.getData("divId");
-		var domCard = getDomCardById(cardId);
+		console.log("ondragover card: " + dragDataDomCard.getId())
 		
-		if (fctAllow(fromDivId, this.id, domCard)) {
+		var fromDiv = dragDataDomCard.divCardsContainer;
+		
+		if (fctAllow(fromDiv.id, this.id, dragDataDomCard)) {
 			event.preventDefault();			
 		}
+		
 	}).bind(div);
 	
 	
@@ -16,11 +19,26 @@ function setAsDropArea(div, fctAllow, fctDrop) {
 
 		event.preventDefault();
 		
-		var cardId = event.dataTransfer.getData("cardId");
-		var fromDivId = event.dataTransfer.getData("divId");
-		var domCard = getDomCardById(cardId);
+		console.log("ondrop card: " + dragDataDomCard.getId())
 		
-		fctDrop(fromDivId, this.id, domCard);
+		var fromDiv = dragDataDomCard.divCardsContainer;
+		
+		fctDrop(fromDiv.id, this.id, dragDataDomCard);
+		
+		dragDataDomCard.divCardsContainer = this;
+		
+		// nettoyage des données transitées
+		event.dataTransfer.clearData();
+		dragDataDomCard = null;
+		
 	}).bind(div);
 
+	
+	div.ondragend = (function(event) {
+	}).bind(div);
+	
+}
+
+function startDragDomCard(event, domCard) {
+	dragDataDomCard = domCard;
 }

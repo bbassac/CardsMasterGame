@@ -99,7 +99,7 @@ function fillOpponentBoard(playerId){
 
 function addCardOnOpponentBoard(src, card) {
 	
-	var domCard = new DomCard(card, opponentCardHeight, CARD_DRAW_MODES_BOARD);
+	var domCard = getDomCard(card, opponentCardHeight, CARD_DRAW_MODES_BOARD);
 	src.appendChild(domCard.divCard);
 	
 	addOpponentBoardCardInfos(domCard);
@@ -111,6 +111,7 @@ function addOpponentBoardCardInfos(domCard) {
 	
 	//Je crée un sous-bloc pour l'affichage des dégats
 	var divBlock = document.createElement("div");
+	divBlock.id = "divOpponentDammage_" + domCard.getId();
 	domCard.divCard.appendChild(divBlock);
 	divBlock.style.textAlign = "center";
 	
