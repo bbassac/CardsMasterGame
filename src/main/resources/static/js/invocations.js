@@ -44,5 +44,5 @@ function putCardFromInvocationToPlayer(playerId, card, who) {
     xhttp.setRequestHeader("Content-type", "application/json");
     xhttp.send();
 
-    fillHand(playerId);
+    addDomCardOnHand(card);
 }

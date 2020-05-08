@@ -1,3 +1,5 @@
+var boardPlayersDivCardsContainer;
+
 function fillBoardPlayer(playerId) {
 
 	var xhttp = new XMLHttpRequest();
@@ -7,16 +9,28 @@ function fillBoardPlayer(playerId) {
     var cards = JSON.parse(xhttp.responseText);
 
 
-    var src = setAsBoardArea("boardPlayer", THEME_GREEN);
-    setAsDropArea(src, boardPlayerAllowDrop, boardPlayerDrop);
-	cleanArea(src);
+    if (boardPlayersDivCardsContainer == null) {
+    	boardPlayersDivCardsContainer = setAsBoardArea("boardPlayer", THEME_GREEN);
+    	setAsDropArea(boardPlayersDivCardsContainer, boardPlayerAllowDrop, boardPlayerDrop);
+    }
+    
+	cleanArea(boardPlayersDivCardsContainer);
 
 	for (var i = 0; i < cards.length; i++) {
+		addDomCardOnBoardPlayer(cards[i]);	
+	}
+
+}
+
+function addDomCardOnBoardPlayer(card) {
+	
+	if ((boardPlayersDivCardsContainer != null) && (card != null)) {
 		
-		var domCard = getDomCard(cards[i], gameImageHeight, CARD_DRAW_MODES_BOARD);
-		src.appendChild(domCard.divCard);
+		var domCard = getDomCard(card, gameImageHeight, CARD_DRAW_MODES_BOARD);
+		boardPlayersDivCardsContainer.appendChild(domCard.divCard);
 		
 		addBoardCardButtons(domCard);
+		
         var activatedText = domCard.getIsActivated() ? RE_ACTIVATE : ACTIVATE;
         var usedText = domCard.getIsUsed()  ? RESET_USE : USE;
         var menu = [
@@ -27,8 +41,8 @@ function fillBoardPlayer(playerId) {
 
         domCard.addMenu(menu);
         domCard.setDraggable(true);
+		
 	}
-
 }
 
 function addBoardCardButtons(domCard) {
@@ -137,19 +151,22 @@ function useCard(domCard,menuItem){
 function moveCardToGraveyard(domCard){
     
     var currentPlayerId = document.getElementById("currentPlayerId").value;
-    var cardId = domCard.card.id;
 
     var xhttp = new XMLHttpRequest();
-    xhttp.open("PUT", "player/"+currentPlayerId+"/graveyard/"+cardId, false);
+    xhttp.open("PUT", "player/"+currentPlayerId+"/graveyard/"+domCard.getId(), false);
     xhttp.setRequestHeader("Content-type", "application/json");
     xhttp.send();
     
     domCard.remove();
-    fillGraveyard(currentPlayerId, "graveyardId");
+    addDomCardOnGraveyard(currentPlayerId, domCard.card, "graveyardId");
 }
 
 function boardPlayerAllowDrop(fromDivId, toDivId, domCard) {
-	return true;
+
+	return ((KIND_EQUIPMENT.localeCompare(domCard.card.metaData.kind) != 0)
+			&& (KIND_TRAP.localeCompare(domCard.card.metaData.kind) != 0)
+			&& (fromDivId.localeCompare("hand_divCardsContainer") == 0));
+	
 }
 
 function boardPlayerDrop(fromDivId, toDivId, domCard) {
