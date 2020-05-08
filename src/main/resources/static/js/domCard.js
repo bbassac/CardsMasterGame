@@ -175,13 +175,9 @@ class DomCard {
 	}
 	
 	setMenuItemText(menuItem, text) {
-		
-		console.log(this.menu);
-		
 		if (this.menu != null) {
 			this.menu[menuItem.index].text = text;
 		}
-		
 	}
 	
 	clickOnItem(menuItemInfos) {
@@ -209,6 +205,7 @@ class DomCard {
 		console.log("*****************************");
 		console.log("* id card: " + this.getId());
 		console.log("* id divCardsContainer: " + (this.divCardsContainer == null ? "null" : this.divCardsContainer.id));
+		console.log("* card kind: " + this.card.metaData.kind);
 		console.log("*****************************");
 	}
 }

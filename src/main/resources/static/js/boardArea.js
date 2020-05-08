@@ -615,7 +615,7 @@ function updateScrollArrows(divCardsContainer, offsetCardLength) {
 		consolelog(id + " test : " + sumWidthAndLeft + " >=? " + divCardsContainer.clientWidth);
 		
 				
-		if (sumWidthAndLeft >= divCardsContainer.clientWidth) {
+		if (sumWidthAndLeft > divCardsContainer.clientWidth) {
 			// si la largeur de la zone couverve par les cartes est supérieure à la zone d'affichage
 			// alors il faut envisager d'afficher les flèches de scroll.
 			

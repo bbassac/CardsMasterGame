@@ -1,3 +1,5 @@
+var equipmentsDivCardsContainer;
+
 function fillEquipments(playerId) {
 
     var xhttp = new XMLHttpRequest();
@@ -7,20 +9,31 @@ function fillEquipments(playerId) {
     var cards = JSON.parse(xhttp.responseText);
     
 
-    var src = setAsBoardArea("equipments",THEME_GREY);
-    setAsDropArea(src, equipmentAllowDrop, equipmentDrop);
-    cleanArea(src);
+    if (equipmentsDivCardsContainer == null) {
+    	equipmentsDivCardsContainer = setAsBoardArea("equipments",THEME_GREY);
+    	setAsDropArea(equipmentsDivCardsContainer, equipmentAllowDrop, equipmentDrop);
+    }
+    
+    cleanArea(equipmentsDivCardsContainer);
 
-	 for (var i = 0; i < cards.length; i++){
-        var imgSize = cards.length > 7 ? equipmentHeight-10 : equipmentHeight;
-	    var domCard = getDomCard(cards[i], imgSize, CARD_DRAW_MODES_BOARD);
-		src.appendChild(domCard.divCard);
-		 
+	for (var i = 0; i < cards.length; i++){
+	    addDomCardOnEquipments(cards[i]);
+	}
+}
+
+function addDomCardOnEquipments(card) {
+	
+	if ((equipmentsDivCardsContainer != null) && (card != null)) {
+		
+		var domCard = getDomCard(card, equipmentHeight, CARD_DRAW_MODES_BOARD);
+		equipmentsDivCardsContainer.appendChild(domCard.divCard);
+		
 		var menu = [
 			{ text: MOVE_TO_GRAVEYARD, action: (function() { moveCardFromEquipmentsToGraveyard(this); }).bind(domCard) },
 		];
 	
 		domCard.addMenu(menu);
+		domCard.setDraggable(true);
 	}
 }
 
@@ -33,10 +46,8 @@ function moveCardFromEquipmentsToGraveyard(domCard){
     xhttp.setRequestHeader("Content-type", "application/json");
     xhttp.send();
     
-    fillGraveyard(currentPlayerId, "graveyardId");
     domCard.remove();
-    //Pour le cas ou on doit les resize
-    fillEquipments(currentPlayerId);
+    addDomCardOnGraveyard(currentPlayerId, domCard.card, "graveyardId");
     
 }
 

@@ -4,8 +4,6 @@ function setAsDropArea(div, fctAllow, fctDrop) {
 	
 	div.ondragover = (function(event) { 
 
-		console.log("ondragover card: " + dragDataDomCard.getId())
-		
 		var fromDiv = dragDataDomCard.divCardsContainer;
 		
 		if (fctAllow(fromDiv.id, this.id, dragDataDomCard)) {
@@ -18,8 +16,6 @@ function setAsDropArea(div, fctAllow, fctDrop) {
 	div.ondrop = (function(event) {
 
 		event.preventDefault();
-		
-		console.log("ondrop card: " + dragDataDomCard.getId())
 		
 		var fromDiv = dragDataDomCard.divCardsContainer;
 		

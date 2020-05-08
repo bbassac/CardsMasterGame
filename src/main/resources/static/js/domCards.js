@@ -47,7 +47,5 @@ function getDomCardById(id) {
 		domCard = cacheDomCards[id];
 	}
 	
-	console.log("getDomCardById " + id + " => " + domCard);
-	
 	return domCard;
 }

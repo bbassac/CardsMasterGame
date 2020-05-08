@@ -1,3 +1,5 @@
+var trapsDivCardsContainer;
+
 function fillTraps(playerId) {
 
     var xhttp = new XMLHttpRequest();
@@ -6,20 +8,31 @@ function fillTraps(playerId) {
     xhttp.send();
     var cards = JSON.parse(xhttp.responseText);
     
-    var src = document.getElementById("traps");
-    src.innerHTML = '';
+    if (trapsDivCardsContainer == null) {
+    	trapsDivCardsContainer = document.getElementById("traps");
+    	setAsDropArea(trapsDivCardsContainer, trapsAllowDrop, trapsDrop);
+    }
 
-	 for (var i = 0; i < cards.length; i++){
-
-	    var domCard = getDomCard(cards[i], trapImageHeight, CARD_DRAW_MODES_BOARD);
-		src.appendChild(domCard.divCard);
-		 
-		var menu = [
-			{ text: MOVE_TO_GRAVEYARD, action: (function() { moveCardFromTrapsToGraveyard(this); }).bind(domCard) },
-		];
-	
-		domCard.addMenu(menu);
+	trapsDivCardsContainer.innerHTML = '';
+    
+	for (var i = 0; i < cards.length; i++){
+		 addDomCardOnTraps(cards[i]);
 	}
+}
+
+function addDomCardOnTraps(card) {
+
+    var domCard = getDomCard(card, trapImageHeight, CARD_DRAW_MODES_BOARD);
+    domCard.divCardsContainer = trapsDivCardsContainer;
+    trapsDivCardsContainer.appendChild(domCard.divCard);
+	 
+	var menu = [
+		{ text: MOVE_TO_GRAVEYARD, action: (function() { moveCardFromTrapsToGraveyard(this); }).bind(domCard) },
+	];
+
+	domCard.addMenu(menu);
+	domCard.setDraggable(true);
+
 }
 
 function moveCardFromTrapsToGraveyard(domCard){
@@ -27,11 +40,24 @@ function moveCardFromTrapsToGraveyard(domCard){
     var currentPlayerId = document.getElementById("currentPlayerId").value;
 
     var xhttp = new XMLHttpRequest();
-    xhttp.open("PUT", "player/"+currentPlayerId+"/trap/"+domCard.card.id+"/graveyard", false);
+    xhttp.open("PUT", "player/"+currentPlayerId+"/trap/"+domCard.getId()+"/graveyard", false);
     xhttp.setRequestHeader("Content-type", "application/json");
     xhttp.send();
     
-    fillGraveyard(currentPlayerId, "graveyardId");
     domCard.remove();
+    addDomCardOnGraveyard(currentPlayerId, domCard.card, "graveyardId");    
     
+}
+
+function trapsAllowDrop(fromDivId, toDivId, domCard) {
+	
+	var cardsLength = trapsDivCardsContainer.childNodes.length;
+	
+	return ((cardsLength < 3)
+			&& (KIND_TRAP.localeCompare(domCard.card.metaData.kind) == 0)
+			&& (fromDivId.localeCompare("hand_divCardsContainer") == 0));
+}
+
+function trapsDrop(fromDivId, toDivId, domCard) {
+	moveCardToTrap(domCard);
 }
