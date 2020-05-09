@@ -9,7 +9,7 @@ function displayPopinSelectCard(who, cards, addFunction, background) {
 
     for (var i=0; i< cards.length;i++) {
 
-    	var domCard = getDomCard(cards[i], gameImageHeight, CARD_DRAW_MODES_BOARD);
+    	var domCard = getDomCardInCache(cards[i], gameImageHeight, CARD_DRAW_MODES_BOARD);
     	popinDiv.appendChild(domCard.divCard);
     	
     	addPopinSelectCardButtons(domCard, addFunction, who);

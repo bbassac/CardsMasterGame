@@ -17,7 +17,7 @@ const equipmentHeight = 172;
 const handIconSize = 30;
 
 // mode d'affichage des cartes
-const CARD_DRAW_MODES_DICE = 1;
+const CARD_DRAW_MODES_STACK = 1;
 const CARD_DRAW_MODES_BOARD = 2;
 
 

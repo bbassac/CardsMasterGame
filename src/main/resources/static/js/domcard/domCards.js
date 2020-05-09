@@ -17,7 +17,7 @@ const cacheDomCards = {};
  * @param drawMode mode d'affichage de la carte (pile ou plateau)
  * @returns
  */
-function getDomCard(card, cardImageHeight, drawMode) {
+function getDomCardInCache(card, cardImageHeight, drawMode) {
 	
 	var domCard = null;
 	var id = card.id;

@@ -1,4 +1,4 @@
-const ALLOW_PROPERTY_MNU = false;
+const ALLOW_PROPERTY_MNU = true;
 
 class DomCard {
 
@@ -8,7 +8,7 @@ class DomCard {
 
 		this.divCard = document.createElement("div");
 		
-		if (cardDrawMode == CARD_DRAW_MODES_DICE) {
+		if (cardDrawMode == CARD_DRAW_MODES_STACK) {
 			this.divCard.classList.add("cardDice");
 		} else {
 			this.divCard.classList.add("cardBoard");
@@ -45,6 +45,18 @@ class DomCard {
 
 	getId() {
 		return this.card.id;
+	}
+	
+	getCard() {
+		return this.card;
+	}
+	
+	getZone() {
+		return this.zone;
+	}
+	
+	setZone(zone) {
+		this.zone = zone;
 	}
 	
 	getIsActivated() {
@@ -90,11 +102,12 @@ class DomCard {
 		this.cardImg.draggable = draggable;
 		
 		if (draggable) {
-			this.cardImg.addEventListener("dragstart", (function(event) { startDragDomCard(event, this); }).bind(this))
+			this.cardImg.addEventListener("dragstart", (function(event) { this.getZone().startDragDomCard(event, this); }).bind(this))
 		}
 	}
 	
 	remove() {
+		console.log("domCard.remove() is deprecatred");
 		this.divCardsContainer = null;
 		this.divCard.remove();
 	}
@@ -195,17 +208,19 @@ class DomCard {
 		this.divCard.addEventListener(event, fct);
 	}
 	
-	startDrag(event) {
-		event.dataTransfer.setData("cardId", this.getId());
-		event.dataTransfer.setData("divId", this.divCardsContainer.id);
-	}
-	
 	showCardProperties() {
 		
 		console.log("*****************************");
 		console.log("* id card: " + this.getId());
 		console.log("* id divCardsContainer: " + (this.divCardsContainer == null ? "null" : this.divCardsContainer.id));
-		console.log("* card kind: " + this.card.metaData.kind);
+		console.log("* draggable: " + this.getDraggable());
+		
+		if (this.card.metaData != null) {
+			console.log("* kind: " + this.card.metaData.kind);
+		} else {
+			console.log("* metadata: null");
+		}
+		
 		console.log("*****************************");
 	}
 }

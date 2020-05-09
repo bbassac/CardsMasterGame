@@ -1,12 +1,11 @@
 var oldNbTrapsOpp=0 ;
-var oldLastGraveyard = [0, 0];
 var oldNbCards=-1;
 
 function refreshByInterval() {
 	var currentPlayerId = document.getElementById("currentPlayerId").value;
 	
 	refreshOpponentBoard();
-	fillGraveyard(currentPlayerId,"graveyardId");
+	graveyardZones.MY_GRAVEYARD_ID.fill(currentPlayerId);
 }
 
 function newTurn() {
@@ -44,8 +43,7 @@ function refreshBoard(forceUpdate){
 
     fillDraw(currentPlayerId);
     fillInvocation(currentPlayerId);
-	fillEnvironment();
-	fillAffinite();
+	environmentZone.fill(currentPlayerId);
     
     refreshOpponentBoard(forceUpdate);
     refreshPlayerBoard(forceUpdate);
@@ -59,8 +57,9 @@ function refreshOpponentBoard(forceUpdate){
     fillPVs(currentOppId,"oppPvsId");
     fillNbTraps(currentOppId, "nbTrapsId",trapIconHeight);
     fillNbCards(currentOppId,"nbCardsId",nbCardsHeight);
-    fillOpponentBoard(currentOppId);
-    fillGraveyard(currentOppId,"graveyardOppId", forceUpdate);
+    opponentBoardPlayerZone.fill(currentPlayerId);
+    opponentAffiniteZone.fill(currentPlayerId);
+    graveyardZones.OPP_GRAVEYARD_ID.fill(currentPlayerId, forceUpdate);
 	
     refreshLastDiceThrow();
     displayOppExtra(currentOppId);
@@ -74,10 +73,11 @@ function refreshPlayerBoard(forceUpdate){
     fillChakras(currentPlayerId,"playerChakraId");
     fillDiceArea(currentPlayerId,"diceId");
 
-	fillHand(currentPlayerId);
-	fillBoardPlayer(currentPlayerId);
-    fillGraveyard(currentPlayerId, "graveyardId", forceUpdate);
-    fillTraps(currentPlayerId);
-    fillEquipments(currentPlayerId);
+	affiniteZone.fill(currentPlayerId);
+    handZone.fill(currentPlayerId);
+    boardPlayerZone.fill(currentPlayerId);
+    graveyardZones.MY_GRAVEYARD_ID.fill(currentPlayerId, forceUpdate);
+    trapsZone.fill(currentPlayerId);
+    equipmentsZone.fill(currentPlayerId);
     displayExtraArea(currentPlayerId,"extraPlayerId");
 }
