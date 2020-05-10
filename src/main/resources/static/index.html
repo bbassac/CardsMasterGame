@@ -4,7 +4,7 @@
 	<head>
 	    <title>Card Master Game</title>
 		<link rel="stylesheet" href="css/Board.css" type="text/css" />
-		<link rel="stylesheet" href="css/boardarea.css" type="text/css" />
+		<link rel="stylesheet" href="css/cardsZone.css" type="text/css" />
 		<link rel="stylesheet" href="css/menus.css" type="text/css" />
 	    <link rel="stylesheet" href="css/popins.css" type="text/css" />
 		<link rel="stylesheet" href="css/card.css" type="text/css" />
@@ -20,7 +20,7 @@
 		        <a class="list-group-item" href="./README.html">Règles du jeu</a>
 		    </Doc>
 		    ID du joueur
-			<select id="currentPlayerId" onchange="refreshBoard(true)">
+			<select id="currentPlayerId" onchange="refreshBoard()">
 			    <option selected="selected" value="0">0</option>
 			    <option value="1">1</option>
 			</select>
@@ -36,6 +36,7 @@
 		    <GraveyardOpp id="graveyardOppId"></GraveyardOpp>
 		    <PvOpp>
 		        <div id="oppPvsId"></div>
+		        <div id="oppChakraId"></div>
 		        <div id="nbTrapsId"></div>
 		        <div id="nbCardsId"></div>
 		        <div id="extraOppId"></div>
@@ -90,8 +91,7 @@
 		<!-- éléments techniques -->
 		<script src="js/constants.js"></script>
 		<script src="js/clock.js"></script>
-		<script src="js/domcard/domCard.js"></script>
-		<script src="js/domcard/domCards.js"></script>
+		<script src="js/domCard.js"></script>
 		<script src="js/loadfile.js"></script>
 		
 		<!-- popins -->
@@ -125,6 +125,7 @@
 		<script src="js/cardszones/opponentBoard.js"></script>
 		<script src="js/cardszones/opponentAffinite.js"></script>
 		<script src="js/opponentTraps.js"></script>
+		<script src="js/opponentNbCards.js"></script>
 
 		<!-- plateau -->
 		<script src="js/deckSection.js"></script>

@@ -8,7 +8,7 @@
 	grid-column: 1;
 	grid-row: 1;
 	position: relative;
-	z-index: 6;
+	z-index: 1;
 }
 
 .cardsZone_backCards {
@@ -45,7 +45,7 @@
 	grid-column: 3;
 	grid-row: 1;
 	position: relative;
-	z-index: 6;
+	z-index: 1;
 }
 
 .imgRightArrow {

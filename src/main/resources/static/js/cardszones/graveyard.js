@@ -1,8 +1,3 @@
-const MY_GRAVEYARD_ID = "graveyardId";
-const OPP_GRAVEYARD_ID = "graveyardOppId";
-
-const graveyardsId = [[MY_GRAVEYARD_ID, OPP_GRAVEYARD_ID], [OPP_GRAVEYARD_ID, MY_GRAVEYARD_ID]];
-
 class GraveyardZone extends CardsZoneStack {
 
 	constructor(graveyardId) {
@@ -15,7 +10,7 @@ class GraveyardZone extends CardsZoneStack {
 
 	getCards(playerId) {
 
-		var graveyardPlayerId = (this.divId == MY_GRAVEYARD_ID) ? playerId : playerId = Math.abs(1-playerId);
+		var graveyardPlayerId = (this.divId == MY_GRAVEYARD_ID) ? playerId : Math.abs(1-playerId);
 
 	    var xhttp = new XMLHttpRequest();
 	    xhttp.open("GET", "player/"+graveyardPlayerId+"/graveyard", false);
@@ -25,7 +20,7 @@ class GraveyardZone extends CardsZoneStack {
 	    return JSON.parse(xhttp.responseText);
 	}
 
-	initDomCard(domCard) {
+	addSpecificCardElements(domCard) {
 
 		var who = this.divId == MY_GRAVEYARD_ID ? "me" : "you";
 	    
@@ -77,13 +72,13 @@ class GraveyardZone extends CardsZoneStack {
 		displayPopinSelectCard(who, cards, this.putCardFromGraveyardToPlayerBoard.bind(this), "url('img/Graveyard-2.png')");
 	}
 	
-	putCardFromGraveyardToPlayerBoard(playerId, card, who) {
+	putCardFromGraveyardToPlayerBoard(playerId, domCard, who) {
 	
 		if(who=="me"){
-			this.addGraveyardCardToMe(playerId, card);
+			this.addGraveyardCardToMe(playerId, domCard);
 			graveyardZones.MY_GRAVEYARD_ID.fill(playerId);
 		} else {
-			addGraveyardCardToYou(playerId, card);	
+			this.addGraveyardCardToYou(playerId, domCard);	
 			graveyardZones.OPP_GRAVEYARD_ID.fill(playerId);
 		}
 	
@@ -94,10 +89,10 @@ class GraveyardZone extends CardsZoneStack {
 	/**
 	 * Ajoute une carte d'un cimetière dans la main du joueur courant
 	 */
-	addGraveyardCardToMe(playerId, card) {
+	addGraveyardCardToMe(playerId, domCard) {
 		
 		var xhttp = new XMLHttpRequest();
-		xhttp.open("GET", "player/" + playerId + "/graveyard/" + card.id, false);
+		xhttp.open("GET", "player/" + playerId + "/graveyard/" + domCard.getId(), false);
 		xhttp.setRequestHeader("Content-type", "application/json");
 		xhttp.send();
 		
@@ -106,12 +101,12 @@ class GraveyardZone extends CardsZoneStack {
 	/**
 	 * Ajoute une carte d'un cimetière dans la main de l'adversaire du joueur courant
 	 */
-	addGraveyardCardToYou(playerId, card) {
+	addGraveyardCardToYou(playerId, domCard) {
 		
 		var oppPlayerId = Math.abs(1-playerId);
 		
 		var xhttp = new XMLHttpRequest();
-		xhttp.open("GET", "opponent/" + oppPlayerId + "/graveyard/" + card.id + "/player/" + playerId, false);
+		xhttp.open("GET", "opponent/" + oppPlayerId + "/graveyard/" + domCard.getId() + "/player/" + playerId, false);
 		xhttp.setRequestHeader("Content-type", "application/json");
 		xhttp.send();
 		
@@ -148,7 +143,7 @@ class GraveyardZone extends CardsZoneStack {
 	    var currentPlayerId = document.getElementById("currentPlayerId").value;
 	
 	    var xhttp = new XMLHttpRequest();
-	    xhttp.open("PUT", "player/"+currentPlayerId+"/equipment/"+domCard.card.id+"/graveyard", false);
+	    xhttp.open("PUT", "player/"+currentPlayerId+"/equipment/"+domCard.getId()+"/graveyard", false);
 	    xhttp.setRequestHeader("Content-type", "application/json");
 	    xhttp.send();
 	    

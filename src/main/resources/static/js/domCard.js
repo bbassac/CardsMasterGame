@@ -1,32 +1,35 @@
-const ALLOW_PROPERTY_MNU = true;
+const ALLOW_PROPERTY_MNU = false;
 
 class DomCard {
 
 	constructor(card, height, cardDrawMode) {
 
-		this.card = card;
+		// mapping de card vers DomCard
+		this.id = card.id;
+		this.damage = card.dammagePoints;
+		this.used = card.used;
+		this.activated = card.activated;
+		this.metaData = card.metaData;
 
+		this.buildDomElemnts(height, card.path);
+		this.applyStyle(cardDrawMode);
+		
+        // par défaut la carte ne doit pas être draggable 
+        this.setDraggable(false);
+
+  	}
+
+	buildDomElemnts(height, imgPath) {
+		
 		this.divCard = document.createElement("div");
 		
-		if (cardDrawMode == CARD_DRAW_MODES_STACK) {
-			this.divCard.classList.add("cardDice");
-		} else {
-			this.divCard.classList.add("cardBoard");
-		}
-    	this.divCard.style.cssFloat = "left";
-		
         this.cardImg = document.createElement("img");
-        //this.cardImg.loading = "lazy";
-        this.cardImg.src = "img/" + encodeURI(card.path);
+        this.cardImg.src = "img/" + encodeURI(imgPath);
         this.cardImg.height = height;
-        this.cardImg.title = card.id;
+        this.cardImg.title = this.id;
         this.cardImg.onclick = (function() { showCardPopin(this.cardImg.src); }).bind(this);
         this.cardImg.oncontextmenu = function() { return false; };
 
-        // application de transformations
-        this.setIsActivated(card.activated);
-        this.setIsUsed(card.used);
-       
         this.divBackImg = document.createElement("div");
         this.divBackImg.appendChild(this.cardImg);
         this.divBackImg.style.position = "relative";
@@ -34,23 +37,36 @@ class DomCard {
         this.divCard.appendChild(this.divBackImg);
         this.divCard.domCard = this;
 
-        // par défaut la carte ne doit pas être draggable 
-        this.setDraggable(false);
-        
         if (ALLOW_PROPERTY_MNU) {
         	// force l'ajout d'un menu de test
         	this.addMenu([]);
         }
-  	}
+	}
+	
+	applyStyle(cardDrawMode) {
+		
+		if (cardDrawMode == CARD_DRAW_MODES_STACK) {
+			this.divCard.classList.add("cardDice");
+		} else {
+			this.divCard.classList.add("cardBoard");
+		}
+    	this.divCard.style.cssFloat = "left";
 
+	}
+	
 	getId() {
-		return this.card.id;
+		return this.id;
 	}
 	
-	getCard() {
-		return this.card;
+	updateCard(card) {
+
+		this.id = card.id;
+		this.setDamage(card.dammagePoints);
+		this.setUsed(card.used);
+		this.setActivated(card.activated);
+		this.setMetaData(card.metaData);
 	}
-	
+
 	getZone() {
 		return this.zone;
 	}
@@ -59,40 +75,6 @@ class DomCard {
 		this.zone = zone;
 	}
 	
-	getIsActivated() {
-		return this.card.activated;
-	}
-
-	setIsActivated(isActivated) {
-
-		this.card.activated = isActivated;
-		
-		if (isActivated) {
-			this.cardImg.classList.add("activatedCard");
-		} else {
-			this.cardImg.classList.remove("activatedCard");
-		}
-		
-		this.divCard.dispatchEvent(new CustomEvent("activated", this));
-	}
-
-	getIsUsed() {
-		return this.card.used;
-	}
-
-	setIsUsed(isUsed) {
-
-		this.card.used = isUsed;
-		
-		if (isUsed) {
-			this.cardImg.classList.add("usedCard");
-		} else {
-			this.cardImg.classList.remove("usedCard");
-		}
-		
-		this.divCard.dispatchEvent(new CustomEvent("used", this));
-	}
-
 	getDraggable() {
 		return this.cardImg.draggable;
 	}
@@ -106,11 +88,51 @@ class DomCard {
 		}
 	}
 	
-	remove() {
-		console.log("domCard.remove() is deprecatred");
-		this.divCardsContainer = null;
-		this.divCard.remove();
+	getActivated() {
+		return this.activated;
 	}
+	
+	setActivated(activated) {
+		if (this.activated != activated) {
+			this.activated = activated;
+			this.divCard.dispatchEvent(new CustomEvent("activatedChanged", this));
+			this.divCard.dispatchEvent(new CustomEvent("sizeChanged", this));
+		}
+	}
+
+	getUsed() {
+		return this.used;
+	}
+
+	setUsed(used) {
+		if (this.used != used) {
+			this.used = used;
+			this.divCard.dispatchEvent(new CustomEvent("usedChanged", this));
+		}
+	}
+
+	
+	getDamage() {
+		return this.damage;
+	}
+
+	setDamage(damage) {
+		if (this.damage != damage) {
+			this.damage = damage;
+			this.divCard.dispatchEvent(new CustomEvent("damageChanged", this));
+		}
+	}
+
+	getMetaData() {
+		return this.metaData;
+	}
+
+	setMetaData(metaData) {
+		if (this.metaData != metaData) {
+			this.metaData = metaData;
+			this.divCard.dispatchEvent(new CustomEvent("metaDataChanged", this));
+		}
+	}	
 	
 	addMenu(menu) {
 		this.menu = menu;
@@ -138,7 +160,7 @@ class DomCard {
 			
 			// menu
 			this.divMenu = document.createElement("div");
-			this.divMenu.id = "divMenu_" + this.card.id;
+			this.divMenu.id = "divMenu_" + this.id;
 			this.divMenu.classList.add('menuCardDiv');
 			this.divMenu.style.top = menuTop;
 			this.divMenu.style.left = menuLeft;
@@ -147,7 +169,7 @@ class DomCard {
 		    var menuItemIdex = 0;
 		    this.menu.forEach ((function(menuItemInfos) {
 		    	menuItemInfos.index = menuItemIdex++;
-				this.divMenu.appendChild(this.buildMenuItem(this.divMenu, this.card, menuItemInfos));
+				this.divMenu.appendChild(this.buildMenuItem(this.divMenu, menuItemInfos));
 			}).bind(this));
 
 		    this.divMenu.style.display = 'block';
@@ -166,11 +188,11 @@ class DomCard {
 		}
 	}
 	
-	buildMenuItem(divMenu, card, menuItemInfos) {
+	buildMenuItem(divMenu, menuItemInfos) {
 	
 	    var menuItem = document.createElement("div");
 	    menuItem.classList.add('menuCardItem');
-	    menuItem.card = card;
+	    menuItem.domCard = this;
 	    menuItem.menu = divMenu;
 	    menuItem.index = menuItemInfos.index;
 	    menuItem.setText = (function(menuItem, text) { this.setMenuItemText(menuItem, text); }).bind(this, menuItem);
@@ -181,7 +203,7 @@ class DomCard {
 	    }
 	    
 	    if (menuItemInfos.action) {
-	    	menuItem.addEventListener("click", this.clickOnItem.bind(menuItem, menuItemInfos) );
+	    	menuItem.addEventListener("click", this.clickOnMenuItem.bind(menuItem, menuItemInfos) );
 	    }
 	    
 		return menuItem;
@@ -193,7 +215,7 @@ class DomCard {
 		}
 	}
 	
-	clickOnItem(menuItemInfos) {
+	clickOnMenuItem(menuItemInfos) {
 	
 		
 		// supprime le menu contextuel
@@ -212,11 +234,12 @@ class DomCard {
 		
 		console.log("*****************************");
 		console.log("* id card: " + this.getId());
+		console.log("* id zone: " + (this.getZone() == null ? "null" : this.getZone().id));
 		console.log("* id divCardsContainer: " + (this.divCardsContainer == null ? "null" : this.divCardsContainer.id));
 		console.log("* draggable: " + this.getDraggable());
 		
-		if (this.card.metaData != null) {
-			console.log("* kind: " + this.card.metaData.kind);
+		if (this.metaData != null) {
+			console.log("* kind: " + this.metaData.kind);
 		} else {
 			console.log("* metadata: null");
 		}

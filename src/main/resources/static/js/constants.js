@@ -53,3 +53,7 @@ const THEME_BLUE = "blue";
 const THEME_RED = "red";
 const THEME_GREEN = "green";
 const THEME_GREY = "grey";
+
+// Grayards
+const MY_GRAVEYARD_ID = "graveyardId";
+const OPP_GRAVEYARD_ID = "graveyardOppId";

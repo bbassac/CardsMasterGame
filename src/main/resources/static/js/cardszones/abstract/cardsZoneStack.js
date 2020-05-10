@@ -6,7 +6,7 @@ class CardsZoneStack extends CardsZone {
 		this.oldCardId = -1;
 	}
 
-	fillCards(playerId, cards, forceUpdate) {
+	fillCards(playerId, cards) {
 
 		var domCardDivs = this.getDivCardsContainer().childNodes;
 		
@@ -16,15 +16,26 @@ class CardsZoneStack extends CardsZone {
 	    		this.removeCard(domCardDivs[0].domCard);
 	    	}
 
-	    }else if (forceUpdate || this.oldCardId !== cards[cards.length-1].id) {
+	    	this.oldCardId = -1;
 
-	    	this.oldCardId = cards[cards.length-1].id
+	    }else {
 	    	
-	    	if (domCardDivs.length == 1) {
-	    		this.removeCard(domCardDivs[0].domCard);
-	    	}
+	    	var domCard;
+	    	var lastCard = cards[cards.length-1];
+	    	
+	    	if (this.oldCardId !== lastCard.id) {
 
-	    	this.addCard(cards[cards.length - 1]);
+		    	this.oldCardId = lastCard.id
+		    	
+		    	if (domCardDivs.length == 1) {
+		    		this.removeCard(domCardDivs[0].domCard);
+		    	}
+	
+		    	domCard = this.addCard(lastCard);
+	    	
+	    	} else {
+	    		this.updateCardOnDomCard(lastCard, domCardDivs[0].domCard);
+	    	}
 	    }
 		
 	}

@@ -156,14 +156,6 @@ class CardsZoneScrollableBoard extends CardsZoneBoard {
 		this.imgRightArrow.addEventListener("mousedown", (function(event) { this.scrollToRight(event); }).bind(this) );
 		this.imgRightArrow.addEventListener("mouseup", (function(event) { this.stopScrolling(); }).bind(this) );
 		
-		// ajout de la gestion des évènements d'insertion et de suppression de node au div où devront être
-		// ajoutées les cartes. Permets la mise à jour du composant à chaque ajout / suppression de carte.
-		// une référence à la fonction de traitement des évènement est conserver pour pouvoir supprimer le listener.
-		//this.updateArrowsEventTarget = (function(event) { this.tryUpdateScrollArrows(event, this.divCardsContainer); }).bind(this);
-		//this.divCardsContainer.addEventListener("DOMNodeInserted",  this.updateArrowsEventTarget);
-		//this.divCardsContainer.addEventListener("DOMNodeRemoved", this.updateArrowsEventTarget );
-
-		
 		// Empilements des éléments constituant le composant
 		divLeftArrowBack.appendChild(this.imgLeftArrow);		
 		this.divBack.appendChild(divLeftArrowBack);
@@ -181,6 +173,10 @@ class CardsZoneScrollableBoard extends CardsZoneBoard {
 	 */
 	domCardAdded(domCard) {
 		this.tryUpdateScrollArrows(0);
+		
+		// ajout des listener de l'event sizeChanged de la nouvelle carte
+		domCard.divCard.addEventListener("sizeChanged", (function() { this.tryUpdateScrollArrows(0); }).bind(this))
+		
 	}
 
 	/**
@@ -431,25 +427,35 @@ class CardsZoneScrollableBoard extends CardsZoneBoard {
 		
 		this.consolelog(id + " nombre de cartes pris en compte : " + (childs.length - offsetCardLength));
 		
-		var s = "";
+		var sw = "";
+		var sh = "";
 		var w;
+		var h;
 		var zeroWidthFound = false;
+		var badHeightFound = false
+		var img;
 		
 		// parcours des cartes (à l'offsetCardLength près) pour vérifier que toute les carte retournes un width > 0.
 		// si un zéro est trouvé, c'est que le DOM n'est pas suffisament chargé.
 		for (var i = 0; i < (childs.length - offsetCardLength); i++) {
-			w = childs[i].offsetWidth;
+			img = childs[i].domCard.cardImg;
+			h = img.offsetHeight;
+			w = img.offsetWidth;
 			zeroWidthFound = (w == 0);
-			s += w + ",";
+			badHeightFound = (h != this.cardImgHeight)
+			sw += w + ",";
+			sh += h + ",";
 		}		
 
-		this.consolelog(id + " " + s);
+		this.consolelog(id + " width: " + sw);
+		this.consolelog(id + " height (" + this.cardImgHeight + "): " + sh);
 
-		if (zeroWidthFound) {
-			// si un zéro a été trouvé, c'est que le DOM n'est pas suffisament chargé.
+		if (zeroWidthFound || badHeightFound) {
+			// Une largeur de zéro a été trouvée, ou une hauteur de carte est invalide.
+			// => le DOM n'est pas suffisament chargé.
 			// => lancement d'un timeout pour retester l'état du DOM plus tard.
 			
-			this.consolelog(id + " => au moins un 0 trouvé, on retente");
+			this.consolelog(id + " => au moins une largeur à 0 trouvée ou une hauteur invalide, on retente");
 			
 			setTimeout( (function(){ 
 				this.tryUpdateScrollArrows(offsetCardLength) 
@@ -548,6 +554,9 @@ class CardsZoneScrollableBoard extends CardsZoneBoard {
 	 * @returns
 	 */
 	consolelog(message) {
-		//console.log(message);
+		
+		//if (this.getDivCardsContainer().id == "boardOpp_divCardsContainer") {
+		//	console.log(message);
+		//}
 	}
 }

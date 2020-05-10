@@ -14,7 +14,7 @@ class HandZone extends CardsZoneScrollableBoard {
 	    return JSON.parse(xhttp.responseText);
 	}
 
-	initDomCard(domCard) {
+	addSpecificCardElements(domCard) {
 		
 	    /*var menu = [
 	        { text: MOVE_TO_BOARD, action: (function() { moveCardToBoard(this); }).bind(domCard) },

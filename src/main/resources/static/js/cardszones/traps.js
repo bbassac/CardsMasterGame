@@ -15,7 +15,7 @@ class TrapsZone extends CardsZoneBoard {
 	    return JSON.parse(xhttp.responseText);
 	}
 
-	initDomCard(domCard) {
+	addSpecificCardElements(domCard) {
 		domCard.setDraggable(true);
 	}
 
@@ -24,7 +24,7 @@ class TrapsZone extends CardsZoneBoard {
 		var cardsLength = this.getDivCardsContainer().childNodes.length;
 		
 		return ((cardsLength < 3)
-				&& (KIND_TRAP.localeCompare(domCard.card.metaData.kind) == 0)
+				&& (KIND_TRAP.localeCompare(domCard.getMetaData().kind) == 0)
 				&& (fromZoneId.localeCompare(handZone.getZoneId()) == 0));
 	}
 

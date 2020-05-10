@@ -20,7 +20,7 @@ class CardsZoneBoard extends CardsZone {
 		for (cardIndex = 0; cardIndex < cards.length; cardIndex++) {
 			domCardsPositions[cardIndex] = null;
 		}
-		
+
 		domCardDivIndex = 0
 		while (domCardDivIndex < domCardDivs.length) {
 		
@@ -43,31 +43,39 @@ class CardsZoneBoard extends CardsZone {
 				domCardDivIndex++;
 			}
 		}
-
+		
 		var domCardPos = null;
 		var newDomCardIndex;
 		
-		for (domCardIndex = 0; domCardIndex < cards.length; domCardIndex++) {
+		for (domCardIndex = 0; domCardIndex < domCardsPositions.length; domCardIndex++) {
 			
 			card = cards[domCardIndex];
 			domCardPos = domCardsPositions[domCardIndex];
 			newDomCardIndex = -1;
 			
 			if (domCardPos == null) {
-				domCard = this.getDomCard(card);				
-				domCardsPositions[domCardIndex] = {domCard, domCardIndex};
+				domCard = this.getNewDomCard(card);
+				domCardPos = {domCard, domCardIndex};
+				domCardsPositions[domCardIndex] = domCardPos;
 				newDomCardIndex = domCardIndex;
 			
-			} else if (domCardPos.index != domCardIndex) {
+			} else {
+				
 				domCard = domCardPos.domCard;
-				domCardPos.index = domCardIndex;
-				newDomCardIndex = domCardIndex;
+				
+				if (domCardPos.index != domCardIndex) {
+					domCardPos.index = domCardIndex;
+					newDomCardIndex = domCardIndex;
+				}
 			}
 			
 			if (newDomCardIndex != -1) {
-				this.insertDomCard(domCard, newDomCardIndex);
+				domCard = this.insertDomCard(domCard, newDomCardIndex);
+			} else {
+				this.updateCardOnDomCard(card, domCard)
 			}
 		}
+
 	}
 
 }

@@ -28,6 +28,9 @@ class CardsZone {
 		return this.zoneId;
 	}
 	
+	fillCards(playerId, cards) {
+	}
+
 	getCards(playerId) {
 		return [];
 	}
@@ -38,12 +41,12 @@ class CardsZone {
 	domCardRemoved(domCard) {
 	}
 	
-	initDomCard(domCard) {
+	addSpecificCardElements(domCard) {
 	}
 
-	fillCards(playerId, cards) {
+	applySpecificCardProperties(domCard) {
 	}
-
+	
 	fill(playerId) {
 		this.fillCards(playerId, this.getCards(playerId));
 	}
@@ -104,8 +107,8 @@ class CardsZone {
 	 * 
 	 * @param card : card à ajouter
 	 */
-	getDomCard(card) {
-		return getDomCardInCache(card, this.cardImgHeight, this.drawMode);
+	getNewDomCard(card) {
+		return new DomCard(card, this.cardImgHeight, this.drawMode);
 	}
 
 	
@@ -116,7 +119,7 @@ class CardsZone {
 	 * @param card : card à ajouter
 	 */
 	addCard(card) {
-		this.addDomCard(this.getDomCard(card));
+		return this.addDomCard(this.getNewDomCard(card));
 	}
 	
 	/**
@@ -128,31 +131,40 @@ class CardsZone {
 
 		domCard.divCardsContainer = this.divCardsContainer;
 		domCard.setZone(this);
-		this.divCardsContainer.appendChild(domCard.divCard);
+
+		this.addSpecificCardElements(domCard);
+		this.divCardsContainer.appendChild(domCard.divCard);		
+
+		this.applySpecificCardProperties(domCard);
 		
 		this.domCardAdded(domCard);
-		this.initDomCard(domCard);
 		
 		return domCard;
 	}
 
 	/**
 	 * Set les attributs d'association à la zone au domCard et l'insère au div contenant 
-	 * les cartes, à la position indisquée.
+	 * les cartes à la position indiquée.
 	 * 
-	 * @param domCard : domCard à ajouter
+	 * @param domCard: domCard à ajouter
+	 * @param position: position d'insertion de la carte
 	 */
 	insertDomCard(domCard, position) {
 
 		var parentDiv = this.getDivCardsContainer();
 		
-		if (position >= parentDiv.childNodes.length) {
+		if (position > parentDiv.childNodes.length) {
 			position = parentDiv.childNodes.length - 1;
 		}
 		
 		if (position < 0) {
 			position = 0;
 		}
+		
+		domCard.divCardsContainer = this.divCardsContainer;
+		domCard.setZone(this);
+
+		this.addSpecificCardElements(domCard);
 		
 		if (position == 0 ) {
 			parentDiv.insertAdjacentElement('afterbegin', domCard.divCard);
@@ -161,18 +173,20 @@ class CardsZone {
 			previousCardDiv.insertAdjacentElement('afterend', domCard.divCard);
 		}
 
-		domCard.divCardsContainer = this.divCardsContainer;
-		domCard.setZone(this);
-		this.divCardsContainer.appendChild(domCard.divCard);
+		this.applySpecificCardProperties(domCard);
 		
 		this.domCardAdded(domCard);
-		this.initDomCard(domCard);			
 		
 		return domCard;
-	}	
+	}
+	
+	updateCardOnDomCard(lastCard, domCard) {
+		domCard.updateCard(lastCard);
+	}
 	
 	removeCard(domCard) {
 		domCard.divCardsContainer = null;
+		domCard.setZone(null);
 		domCard.divCard.remove();
 		this.domCardRemoved(domCard);
 	}
