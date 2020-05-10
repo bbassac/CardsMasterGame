@@ -15,17 +15,6 @@ class HandZone extends CardsZoneScrollableBoard {
 	}
 
 	addSpecificCardElements(domCard) {
-		
-	    /*var menu = [
-	        { text: MOVE_TO_BOARD, action: (function() { moveCardToBoard(this); }).bind(domCard) },
-	        { text: MOVE_TO_TRAP, action: (function() { moveCardToTrap(this); }).bind(domCard) },
-	        { text: MOVE_TO_EQUIPMENT, action: (function() { moveCardToEquipment(this); }).bind(domCard) },
-	        { text: MOVE_TO_GRAVEYARD, action: (function() { moveHandCardToGraveyard(this); }).bind(domCard) },
-	    ];
-	
-	    domCard.addMenu(menu);
-	    */
-
 		domCard.setDraggable(true);
 	}
 }

@@ -25,8 +25,7 @@ class BoardPlayerZone extends CardsZoneScrollableBoard {
 	    var usedText = domCard.getUsed() ? RESET_USE : USE;
 	    var menu = [
 	        { text: activatedText, action: (function(domCard, menuItem) { this.flipCard(domCard, menuItem); }).bind(this, domCard) },
-	        { text: usedText, action: (function(domCard, menuItem) { this.useCard(domCard, menuItem); }).bind(this, domCard) },
-	        { text: MOVE_TO_GRAVEYARD, action: (function(domCard) { this.moveCardToGraveyard(domCard); }).bind(this, domCard) }
+	        { text: usedText, action: (function(domCard, menuItem) { this.useCard(domCard, menuItem); }).bind(this, domCard) }
 	    ];
 	
 	    domCard.addMenu(menu);
