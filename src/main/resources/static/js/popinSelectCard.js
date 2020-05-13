@@ -9,7 +9,7 @@ function displayPopinSelectCard(who, cards, addFunction, background) {
 
     for (var i=0; i< cards.length;i++) {
 
-    	var domCard = getDomCard(cards[i], gameImageHeight, CARD_DRAW_MODES_BOARD);
+    	var domCard = new DomCard(cards[i], gameImageHeight, CARD_DRAW_MODES_BOARD);
     	popinDiv.appendChild(domCard.divCard);
     	
     	addPopinSelectCardButtons(domCard, addFunction, who);
@@ -18,10 +18,8 @@ function displayPopinSelectCard(who, cards, addFunction, background) {
 
 function addPopinSelectCardButtons(domCard, addFunction, who) {
 	
-	var cardId = domCard.card.id;
-
 	var buttonDiv = document.createElement("div");
-	buttonDiv.id = "buttonDiv" + cardId;
+	buttonDiv.id = "buttonDiv" + domCard.getId();
 	buttonDiv.classList.add('popinSelectDivButton');
     domCard.divBackImg.appendChild(buttonDiv);
 
@@ -42,8 +40,8 @@ function popinSelectCardAddAction(domCard, addFunction, who) {
 
 	var currentPlayerId = document.getElementById("currentPlayerId").value;	
 	
-	domCard.remove();
-	addFunction(parseInt(currentPlayerId), domCard.card, who);
+	domCard.divCard.remove();
+	addFunction(parseInt(currentPlayerId), domCard, who);
 }
 
 function showAddButton(buttonDiv) {

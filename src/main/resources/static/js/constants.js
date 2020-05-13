@@ -17,7 +17,7 @@ const equipmentHeight = 172;
 const handIconSize = 30;
 
 // mode d'affichage des cartes
-const CARD_DRAW_MODES_DICE = 1;
+const CARD_DRAW_MODES_STACK = 1;
 const CARD_DRAW_MODES_BOARD = 2;
 
 
@@ -53,3 +53,7 @@ const THEME_BLUE = "blue";
 const THEME_RED = "red";
 const THEME_GREEN = "green";
 const THEME_GREY = "grey";
+
+// Grayards
+const MY_GRAVEYARD_ID = "graveyardId";
+const OPP_GRAVEYARD_ID = "graveyardOppId";

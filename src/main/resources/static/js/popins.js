@@ -1,3 +1,5 @@
+var openedPopins = [];
+
 /**
  * Affiche la "popin" de sélection de carte
  *
@@ -41,8 +43,9 @@ function hideCardPopin() {
  *
  */
 function hideAllPopins() {
-	hideCardSelectPopin();
-	hideCardPopin();
+	while (openedPopins.length > 0) {
+		hidePopin(openedPopins[0]);
+	}
 }
 
 /**
@@ -54,14 +57,18 @@ function hideAllPopins() {
  */
 function showPopin(popinDivId) {
 
+	openedPopins.push(popinDivId);
+	
 	var backgroundDiv = document.getElementById("popinGrayBackDiv");
 	if (backgroundDiv) {
 		backgroundDiv.style.height = document.documentElement.scrollHeight + "px";
+		backgroundDiv.style.zIndex = 100 + openedPopins.length;
 		backgroundDiv.style.display = 'block';
 	}		
 
 	var popinDiv = document.getElementById(popinDivId);
 	if (popinDiv) {
+		popinDiv.style.zIndex = 101 + openedPopins.length;
 		popinDiv.style.display = 'block';
 	}
 }
@@ -75,6 +82,12 @@ function showPopin(popinDivId) {
  */
 function hidePopin(popinDivId) {
 
+	// supression de la popin du tableau des popins ouvertes
+	var popinIndex = openedPopins.findIndex(popinId => popinId == popinDivId);
+	if (popinIndex > 0) {
+		openedPopins.splice(popinIndex, 1)
+	}
+	
 	var backgroundDiv = document.getElementById("popinGrayBackDiv");
 	if (backgroundDiv) {
 		backgroundDiv.style.display = 'none';

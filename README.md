@@ -45,7 +45,9 @@
 * [ ] evol : Position du scroll à mémoriser lors de l'ajout / suppression d'une carte de la zone de scroll --> A architecturer.
 * [X] evol : POC : Mettre en place le drag-and-drop sur au moins une interaction entre zones.
 * [ ] evol : Mettre en place le drag-and-drop sur toutes les interactions entre zones (si POC ok).
-* [X] Mettre des commentaires sur boardArea.js.
+* [X] doc : Mettre des commentaires sur boardArea.js.
+* [ ] bug : Synchronisation de la popin cimetière si le même cimetière est ouvert par les deux joueurs en même temps.
+* [ ] evol : Mettre en places les services pour la zone équipement (activate, use, etc...).
 
 ## Background
 

@@ -1,12 +1,11 @@
 var oldNbTrapsOpp=0 ;
-var oldLastGraveyard = [0, 0];
 var oldNbCards=-1;
 
 function refreshByInterval() {
 	var currentPlayerId = document.getElementById("currentPlayerId").value;
 	
 	refreshOpponentBoard();
-	fillGraveyard(currentPlayerId,"graveyardId");
+	graveyardZones.MY_GRAVEYARD_ID.fill(currentPlayerId);
 }
 
 function newTurn() {
@@ -38,35 +37,36 @@ function newTurn() {
     refreshBoard();
 }
 
-function refreshBoard(forceUpdate){
+function refreshBoard(){
 
     var currentPlayerId = document.getElementById("currentPlayerId").value;
 
     fillDraw(currentPlayerId);
     fillInvocation(currentPlayerId);
-	fillEnvironment();
-	fillAffinite();
+	environmentZone.fill(currentPlayerId);
     
-    refreshOpponentBoard(forceUpdate);
-    refreshPlayerBoard(forceUpdate);
+    refreshOpponentBoard();
+    refreshPlayerBoard();
 }
 
-function refreshOpponentBoard(forceUpdate){
+function refreshOpponentBoard(){
     
     var currentPlayerId = document.getElementById("currentPlayerId").value;
     var currentOppId = Math.abs(1-currentPlayerId);
     
     fillPVs(currentOppId,"oppPvsId");
+    fillChakras(currentPlayerId,"oppChakraId");
     fillNbTraps(currentOppId, "nbTrapsId",trapIconHeight);
     fillNbCards(currentOppId,"nbCardsId",nbCardsHeight);
-    fillOpponentBoard(currentOppId);
-    fillGraveyard(currentOppId,"graveyardOppId", forceUpdate);
+    opponentBoardPlayerZone.fill(currentPlayerId);
+    opponentAffiniteZone.fill(currentPlayerId);
+    graveyardZones.OPP_GRAVEYARD_ID.fill(currentPlayerId);
 	
     refreshLastDiceThrow();
     displayOppExtra(currentOppId);
 }
 
-function refreshPlayerBoard(forceUpdate){
+function refreshPlayerBoard(){
 
     var currentPlayerId = document.getElementById("currentPlayerId").value;
 
@@ -74,10 +74,11 @@ function refreshPlayerBoard(forceUpdate){
     fillChakras(currentPlayerId,"playerChakraId");
     fillDiceArea(currentPlayerId,"diceId");
 
-	fillHand(currentPlayerId);
-	fillBoardPlayer(currentPlayerId);
-    fillGraveyard(currentPlayerId, "graveyardId", forceUpdate);
-    fillTraps(currentPlayerId);
-    fillEquipments(currentPlayerId);
+	affiniteZone.fill(currentPlayerId);
+    handZone.fill(currentPlayerId);
+    boardPlayerZone.fill(currentPlayerId);
+    graveyardZones.MY_GRAVEYARD_ID.fill(currentPlayerId);
+    trapsZone.fill(currentPlayerId);
+    equipmentsZone.fill(currentPlayerId);
     displayExtraArea(currentPlayerId,"extraPlayerId");
 }

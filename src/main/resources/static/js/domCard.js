@@ -4,29 +4,32 @@ class DomCard {
 
 	constructor(card, height, cardDrawMode) {
 
-		this.card = card;
+		// mapping de card vers DomCard
+		this.id = card.id;
+		this.damage = card.dammagePoints;
+		this.used = card.used;
+		this.activated = card.activated;
+		this.metaData = card.metaData;
 
+		this.buildDomElemnts(height, card.path);
+		this.applyStyle(cardDrawMode);
+		
+        // par défaut la carte ne doit pas être draggable 
+        this.setDraggable(false);
+
+  	}
+
+	buildDomElemnts(height, imgPath) {
+		
 		this.divCard = document.createElement("div");
 		
-		if (cardDrawMode == CARD_DRAW_MODES_DICE) {
-			this.divCard.classList.add("cardDice");
-		} else {
-			this.divCard.classList.add("cardBoard");
-		}
-    	this.divCard.style.cssFloat = "left";
-		
         this.cardImg = document.createElement("img");
-        //this.cardImg.loading = "lazy";
-        this.cardImg.src = "img/" + encodeURI(card.path);
+        this.cardImg.src = "img/" + encodeURI(imgPath);
         this.cardImg.height = height;
-        this.cardImg.title = card.id;
+        this.cardImg.title = this.id;
         this.cardImg.onclick = (function() { showCardPopin(this.cardImg.src); }).bind(this);
         this.cardImg.oncontextmenu = function() { return false; };
 
-        // application de transformations
-        this.setIsActivated(card.activated);
-        this.setIsUsed(card.used);
-       
         this.divBackImg = document.createElement("div");
         this.divBackImg.appendChild(this.cardImg);
         this.divBackImg.style.position = "relative";
@@ -34,53 +37,44 @@ class DomCard {
         this.divCard.appendChild(this.divBackImg);
         this.divCard.domCard = this;
 
-        // par défaut la carte ne doit pas être draggable 
-        this.setDraggable(false);
-        
         if (ALLOW_PROPERTY_MNU) {
         	// force l'ajout d'un menu de test
         	this.addMenu([]);
         }
-  	}
-
-	getId() {
-		return this.card.id;
 	}
 	
-	getIsActivated() {
-		return this.card.activated;
-	}
-
-	setIsActivated(isActivated) {
-
-		this.card.activated = isActivated;
+	applyStyle(cardDrawMode) {
 		
-		if (isActivated) {
-			this.cardImg.classList.add("activatedCard");
+		if (cardDrawMode == CARD_DRAW_MODES_STACK) {
+			this.divCard.classList.add("cardDice");
 		} else {
-			this.cardImg.classList.remove("activatedCard");
+			this.divCard.classList.add("cardBoard");
 		}
-		
-		this.divCard.dispatchEvent(new CustomEvent("activated", this));
+    	this.divCard.style.cssFloat = "left";
+
+	}
+	
+	getId() {
+		return this.id;
+	}
+	
+	updateCard(card) {
+
+		this.id = card.id;
+		this.setDamage(card.dammagePoints);
+		this.setUsed(card.used);
+		this.setActivated(card.activated);
+		this.setMetaData(card.metaData);
 	}
 
-	getIsUsed() {
-		return this.card.used;
+	getZone() {
+		return this.zone;
 	}
-
-	setIsUsed(isUsed) {
-
-		this.card.used = isUsed;
-		
-		if (isUsed) {
-			this.cardImg.classList.add("usedCard");
-		} else {
-			this.cardImg.classList.remove("usedCard");
-		}
-		
-		this.divCard.dispatchEvent(new CustomEvent("used", this));
+	
+	setZone(zone) {
+		this.zone = zone;
 	}
-
+	
 	getDraggable() {
 		return this.cardImg.draggable;
 	}
@@ -90,14 +84,55 @@ class DomCard {
 		this.cardImg.draggable = draggable;
 		
 		if (draggable) {
-			this.cardImg.addEventListener("dragstart", (function(event) { startDragDomCard(event, this); }).bind(this))
+			this.cardImg.addEventListener("dragstart", (function(event) { this.getZone().startDragDomCard(event, this); }).bind(this))
 		}
 	}
 	
-	remove() {
-		this.divCardsContainer = null;
-		this.divCard.remove();
+	getActivated() {
+		return this.activated;
 	}
+	
+	setActivated(activated) {
+		if (this.activated != activated) {
+			this.activated = activated;
+			this.divCard.dispatchEvent(new CustomEvent("activatedChanged", this));
+			this.divCard.dispatchEvent(new CustomEvent("sizeChanged", this));
+		}
+	}
+
+	getUsed() {
+		return this.used;
+	}
+
+	setUsed(used) {
+		if (this.used != used) {
+			this.used = used;
+			this.divCard.dispatchEvent(new CustomEvent("usedChanged", this));
+		}
+	}
+
+	
+	getDamage() {
+		return this.damage;
+	}
+
+	setDamage(damage) {
+		if (this.damage != damage) {
+			this.damage = damage;
+			this.divCard.dispatchEvent(new CustomEvent("damageChanged", this));
+		}
+	}
+
+	getMetaData() {
+		return this.metaData;
+	}
+
+	setMetaData(metaData) {
+		if (this.metaData != metaData) {
+			this.metaData = metaData;
+			this.divCard.dispatchEvent(new CustomEvent("metaDataChanged", this));
+		}
+	}	
 	
 	addMenu(menu) {
 		this.menu = menu;
@@ -125,7 +160,7 @@ class DomCard {
 			
 			// menu
 			this.divMenu = document.createElement("div");
-			this.divMenu.id = "divMenu_" + this.card.id;
+			this.divMenu.id = "divMenu_" + this.id;
 			this.divMenu.classList.add('menuCardDiv');
 			this.divMenu.style.top = menuTop;
 			this.divMenu.style.left = menuLeft;
@@ -134,7 +169,7 @@ class DomCard {
 		    var menuItemIdex = 0;
 		    this.menu.forEach ((function(menuItemInfos) {
 		    	menuItemInfos.index = menuItemIdex++;
-				this.divMenu.appendChild(this.buildMenuItem(this.divMenu, this.card, menuItemInfos));
+				this.divMenu.appendChild(this.buildMenuItem(this.divMenu, menuItemInfos));
 			}).bind(this));
 
 		    this.divMenu.style.display = 'block';
@@ -153,11 +188,11 @@ class DomCard {
 		}
 	}
 	
-	buildMenuItem(divMenu, card, menuItemInfos) {
+	buildMenuItem(divMenu, menuItemInfos) {
 	
 	    var menuItem = document.createElement("div");
 	    menuItem.classList.add('menuCardItem');
-	    menuItem.card = card;
+	    menuItem.domCard = this;
 	    menuItem.menu = divMenu;
 	    menuItem.index = menuItemInfos.index;
 	    menuItem.setText = (function(menuItem, text) { this.setMenuItemText(menuItem, text); }).bind(this, menuItem);
@@ -168,7 +203,7 @@ class DomCard {
 	    }
 	    
 	    if (menuItemInfos.action) {
-	    	menuItem.addEventListener("click", this.clickOnItem.bind(menuItem, menuItemInfos) );
+	    	menuItem.addEventListener("click", this.clickOnMenuItem.bind(menuItem, menuItemInfos) );
 	    }
 	    
 		return menuItem;
@@ -180,7 +215,7 @@ class DomCard {
 		}
 	}
 	
-	clickOnItem(menuItemInfos) {
+	clickOnMenuItem(menuItemInfos) {
 	
 		
 		// supprime le menu contextuel
@@ -195,17 +230,20 @@ class DomCard {
 		this.divCard.addEventListener(event, fct);
 	}
 	
-	startDrag(event) {
-		event.dataTransfer.setData("cardId", this.getId());
-		event.dataTransfer.setData("divId", this.divCardsContainer.id);
-	}
-	
 	showCardProperties() {
 		
 		console.log("*****************************");
 		console.log("* id card: " + this.getId());
+		console.log("* id zone: " + (this.getZone() == null ? "null" : this.getZone().id));
 		console.log("* id divCardsContainer: " + (this.divCardsContainer == null ? "null" : this.divCardsContainer.id));
-		console.log("* card kind: " + this.card.metaData.kind);
+		console.log("* draggable: " + this.getDraggable());
+		
+		if (this.metaData != null) {
+			console.log("* kind: " + this.metaData.kind);
+		} else {
+			console.log("* metadata: null");
+		}
+		
 		console.log("*****************************");
 	}
 }

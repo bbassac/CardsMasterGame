@@ -17,14 +17,7 @@ function fillDraw(playerId){
         xhttp.setRequestHeader("Content-type", "application/json");
         xhttp.send();
         
-        //fillHand(playerId);
-    	var xhttp = new XMLHttpRequest();
-        xhttp.open("GET", "player/"+playerId+"/hand", false);
-        xhttp.setRequestHeader("Content-type", "application/json");
-        xhttp.send();
-        var cards = JSON.parse(xhttp.responseText);
-        addDomCardOnHand(cards[cards.length-1]);
-        
+        handZone.fill(playerId);
     });
     
     src.appendChild(img);

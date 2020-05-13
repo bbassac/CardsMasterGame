@@ -1,4 +1,4 @@
-.boardArea_back {
+.cardsZone_back {
 	display:grid; 
 	grid-template-columns:5px auto 5px; 
 	grid-template-rows:100%; 
@@ -8,10 +8,10 @@
 	grid-column: 1;
 	grid-row: 1;
 	position: relative;
-	z-index: 6;
+	z-index: 1;
 }
 
-.boardArea_backCards {
+.cardsZone_backCards {
 	grid-column: 2;
 	grid-row: 1;
 	display: block;
@@ -26,21 +26,14 @@
 	transform: translateY(-50%);
 }
 
-.boardCardsArea {
-    display: flex;
-    float: left;
-    overflow-x: auto;
-    width: auto;
-}
-
-.boardArea_scrollCards {
+.cardsZone_scrollCards {
 	max-width: 100%;
 	height: 100%;
 	overflow: hidden;
 	position: relative;
 }
 
-.boardArea_cardsContainer {
+.cardsZone_cardsContainer {
 	display: flex;
 	float:left;
 	position:absolute;
@@ -52,7 +45,7 @@
 	grid-column: 3;
 	grid-row: 1;
 	position: relative;
-	z-index: 6;
+	z-index: 1;
 }
 
 .imgRightArrow {
