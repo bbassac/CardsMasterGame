@@ -14,7 +14,7 @@ function fillChakras(playerId,componentId) {
     xhttpMaxChakra.send();
     var maxChakra = Number(xhttpMaxChakra.responseText);
 
-    if ((oldChakra[playerId].count != countChakra) || (oldChakra[playerId].max != maxChakra)) {
+    if ((oldChakra[playerId].count != countChakra) || (countChakra == 0) || (oldChakra[playerId].max != maxChakra)) {
     
     	oldChakra[playerId].count = countChakra;
     	oldChakra[playerId].max = maxChakra;
@@ -27,7 +27,7 @@ function fillChakras(playerId,componentId) {
 	        component.style.color="black";
 	    }
 	    
-	    if (oppChakraId == "oppChakraId") {
+	    if (componentId == "playerChakraId") {
 		    var linebreak = document.createElement("br");
 		    component.appendChild(linebreak);
 		

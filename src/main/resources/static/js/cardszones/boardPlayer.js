@@ -38,13 +38,11 @@ class BoardPlayerZone extends CardsZoneScrollableBoard {
 	
 	allowDrop(fromZoneId, toZoneId, domCard) {
 	
-		/*return ((KIND_EQUIPMENT.localeCompare(domCard.getMetaData().kind) != 0)
-				&& (KIND_TRAP.localeCompare(domCard.getMetaData().kind) != 0)
-				&& (fromZoneId.localeCompare(handZone.getZoneId()) == 0));
-		*/
-		return ((KIND_TRAP.localeCompare(domCard.getMetaData().kind) != 0)
-				&& (fromZoneId.localeCompare(handZone.getZoneId()) == 0));
-	
+		var isEquipment = KIND_EQUIPMENT.localeCompare(domCard.getMetaData().kind) == 0;
+		var istrap = KIND_TRAP.localeCompare(domCard.getMetaData().kind) == 0;
+		var isFromHand = fromZoneId.localeCompare(handZone.getZoneId()) == 0; 
+		
+		return !istrap && isFromHand;
 	}
 	
 	drop(fromZoneId, toZoneId, domCard) {
@@ -70,10 +68,10 @@ class BoardPlayerZone extends CardsZoneScrollableBoard {
 		// Damage counter
 	    var divDamage = document.createElement("div");
 	    divDamage.id = "damage_" + domCard.getId();
-	    divDamage.innerHTML = domCard.getDamage();
 	    divDamage.classList.add("divDmg");
 	    divDmgArea.appendChild(divDamage);
-	
+	    showDamage(domCard);
+
 		// Add damage button
 	    var buttonMoreDmg = document.createElement("button");
 	    buttonMoreDmg.innerHTML = "+";
@@ -82,7 +80,6 @@ class BoardPlayerZone extends CardsZoneScrollableBoard {
 	    buttonMoreDmg.setAttribute("id",domCard.getId());
 	    buttonMoreDmg.addEventListener('click', (function(domCard) { this.changeDmgPoints(domCard, 1); }).bind(this, domCard) );
 	    divDmgArea.appendChild(buttonMoreDmg);
-	
 	}
 	
 	changeDmgPoints(domCard, damageChange){

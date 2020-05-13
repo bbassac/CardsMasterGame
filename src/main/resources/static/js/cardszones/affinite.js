@@ -1,6 +1,6 @@
 class AffiniteZone extends CardsZoneStack {
 
-	constructor(graveyardId) {
+	constructor() {
 		super("affiniteId", envAndAffinityHeight);
 	}
 

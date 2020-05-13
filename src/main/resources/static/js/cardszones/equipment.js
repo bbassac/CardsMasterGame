@@ -17,7 +17,6 @@ class EquipmentsZone extends CardsZoneScrollableBoard {
 
 	addSpecificCardElements(domCard) {
 		
-		this.addDamageButtons(domCard);
 		this.showActivatedState(domCard);
 		this.showUsedState(domCard);
 
@@ -43,64 +42,6 @@ class EquipmentsZone extends CardsZoneScrollableBoard {
 	
 	drop(fromZoneId, toZoneId, domCard) {
 		this.moveCardFromHand(domCard);
-	}
-	
-	
-	addDamageButtons(domCard) {
-		
-	    //div de dmg
-	    var divDmgArea = document.createElement("div");
-	    divDmgArea.id = "divDmgArea_" + domCard.getId();
-	    divDmgArea.classList.add('dmgArea');
-	    domCard.divBackImg.appendChild(divDmgArea);
-	
-		// Remove damage button
-	    var buttonLessDmg = document.createElement("button");
-	    buttonLessDmg.innerHTML = "-";
-	    buttonLessDmg.classList.add("buttonActionCard");
-	    buttonLessDmg.classList.add("minusDmgButton");
-	    buttonLessDmg.addEventListener('click', (function(domCard) { this.changeDmgPoints(domCard, -1); }).bind(this, domCard) );
-	    divDmgArea.appendChild(buttonLessDmg);
-	
-		// Damage counter
-	    var divDamage = document.createElement("div");
-	    divDamage.id = "damage_" + domCard.getId();
-	    divDamage.innerHTML = domCard.getDamage();
-	    divDamage.classList.add("divDmg");
-	    divDmgArea.appendChild(divDamage);
-	
-		// Add damage button
-	    var buttonMoreDmg = document.createElement("button");
-	    buttonMoreDmg.innerHTML = "+";
-	    buttonMoreDmg.classList.add("buttonActionCard");
-	    buttonMoreDmg.classList.add("plusDmgButton");
-	    buttonMoreDmg.setAttribute("id",domCard.getId());
-	    buttonMoreDmg.addEventListener('click', (function(domCard) { this.changeDmgPoints(domCard, 1); }).bind(this, domCard) );
-	    divDmgArea.appendChild(buttonMoreDmg);
-	
-	}
-	
-	changeDmgPoints(domCard, damageChange){
-	
-	    var currentPlayerId = document.getElementById("currentPlayerId").value;
-	    
-	    var damage = domCard.getDamage() + damageChange;
-	    domCard.setDamage(damage);
-	    
-	    var xhttp = new XMLHttpRequest();
-	    xhttp.open("PUT", "player/" + currentPlayerId + "/board/" + domCard.getId() + "/dmg/" + damage, false);
-	    xhttp.setRequestHeader("Content-type", "application/json");
-	    xhttp.send();
-	}
-	
-	showDamage(domCard) {
-		
-		var divDamage = document.getElementById("damage_" + domCard.getId());
-		
-		if (divDamage) {
-			divDamage.innerHTML = domCard.getDamage();
-			divDamage.style.color = (domCard.getDamage() > 0) ? 'red' : 'black';
-		}
 	}
 	
 	flipCard(domCard, menuItem){

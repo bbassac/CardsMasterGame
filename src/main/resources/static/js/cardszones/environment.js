@@ -1,6 +1,6 @@
 class EnvironmentZone extends CardsZoneStack {
 
-	constructor(graveyardId) {
+	constructor() {
 		super("currentEnvironment", envAndAffinityHeight);
 	}
 
