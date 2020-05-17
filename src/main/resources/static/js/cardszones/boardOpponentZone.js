@@ -1,4 +1,4 @@
-class OpponentBoardPlayerZone extends CardsZoneScrollableBoard {
+class BoardOpponentZone extends CardsZoneScrollableBoard {
 
 	constructor() {
 		super("boardOpp", opponentCardHeight, THEME_RED);
@@ -32,22 +32,18 @@ class OpponentBoardPlayerZone extends CardsZoneScrollableBoard {
 	
 	addDamage(domCard) {
 
-		//Je crée un sous-bloc pour l'affichage des dégats
-		var divBlock = document.createElement("div");
-		divBlock.id = "divOpponentDammage_" + domCard.getId();
-		domCard.divCard.appendChild(divBlock);
-		divBlock.style.textAlign = "center";
-		
-		var bold = document.createElement("b");
-		var nbDmg = document.createTextNode("  " + domCard.getDamage() + "  ");
-		bold.appendChild(nbDmg);
-		bold.style.fontSize = "medium";
-		if (domCard.getDamage() > 0){
-		    bold.style.color = 'red';
-		}
-		
-		//Ajout bloc dmg au div
-		divBlock.appendChild(bold);
+		//div de dmg
+		var divDmgArea = document.createElement("div");
+		divDmgArea.id = "divDmgOppArea_" + domCard.getId();
+		divDmgArea.classList.add('dmgArea');
+		domCard.divBackImg.appendChild(divDmgArea);
+
+		// Damage counter
+		var divDamage = document.createElement("div");
+		divDamage.id = "divOpponentDammage_" + domCard.getId();
+		divDamage.classList.add("divDmg");
+		divDmgArea.appendChild(divDamage);
+		this.showDamage(domCard);
 
 	}
 	

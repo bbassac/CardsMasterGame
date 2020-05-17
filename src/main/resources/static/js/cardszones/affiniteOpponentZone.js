@@ -1,4 +1,4 @@
-class OpponentAffiniteZone extends CardsZoneStack {
+class AffiniteOpponentZone extends CardsZoneStack {
 
 	constructor() {
 		super("affiniteOppId", trapImageHeight);

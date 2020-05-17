@@ -15,6 +15,13 @@ class BoardPlayerZone extends CardsZoneScrollableBoard {
 	    return JSON.parse(xhttp.responseText);
 	}
 
+	applySpecificCardProperties(domCard) {
+		this.showActivatedState(domCard);
+		this.showUsedState(domCard);
+		this.showDamage(domCard);
+	}
+
+
 	addSpecificCardElements(domCard) {
 		
 		this.addDamageButtons(domCard);
@@ -70,7 +77,7 @@ class BoardPlayerZone extends CardsZoneScrollableBoard {
 	    divDamage.id = "damage_" + domCard.getId();
 	    divDamage.classList.add("divDmg");
 	    divDmgArea.appendChild(divDamage);
-	    showDamage(domCard);
+	    this.showDamage(domCard);
 
 		// Add damage button
 	    var buttonMoreDmg = document.createElement("button");
@@ -98,7 +105,7 @@ class BoardPlayerZone extends CardsZoneScrollableBoard {
 	showDamage(domCard) {
 		
 		var divDamage = document.getElementById("damage_" + domCard.getId());
-		
+
 		if (divDamage) {
 			divDamage.innerHTML = domCard.getDamage();
 			divDamage.style.color = (domCard.getDamage() > 0) ? 'red' : 'black';

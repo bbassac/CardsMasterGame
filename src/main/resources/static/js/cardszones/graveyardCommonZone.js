@@ -1,4 +1,4 @@
-class GraveyardZone extends CardsZoneStack {
+class GraveyardCommonZone extends CardsZoneStack {
 
 	constructor(graveyardId) {
 		super(graveyardId, graveyardHeight);

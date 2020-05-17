@@ -1,4 +1,4 @@
-class AffiniteZone extends CardsZoneStack {
+class AffinitePlayerZone extends CardsZoneStack {
 
 	constructor() {
 		super("affiniteId", envAndAffinityHeight);

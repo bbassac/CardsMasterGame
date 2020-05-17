@@ -8,7 +8,7 @@ function fillDraw(playerId){
     img.height = drawImageHeight;
     img.id = "imgDraw";
     img.classList.add("imgDraw");
-    img.setAttribute('title', "Piocher une carte");
+    img.setAttribute('title', PICK_A_CARD);
     img.draggable = false;
     
     img.addEventListener ("click", function() {

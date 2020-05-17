@@ -20,6 +20,8 @@ const handIconSize = 30;
 const CARD_DRAW_MODES_STACK = 1;
 const CARD_DRAW_MODES_BOARD = 2;
 
+//Titles
+const PICK_A_CARD = "Piocher une carte";
 
 //Menus
 const MOVE_TO_BOARD = "&uArr; Déplacer sur le plateau";
