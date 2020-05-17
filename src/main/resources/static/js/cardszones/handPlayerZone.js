@@ -1,4 +1,4 @@
-class HandZone extends CardsZoneScrollableBoard {
+class HandPlayerZone extends CardsZoneScrollableBoard {
 
 	constructor() {
 		super("hand", gameImageHeight, THEME_BLUE);

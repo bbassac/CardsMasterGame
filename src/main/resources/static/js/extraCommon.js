@@ -10,7 +10,7 @@ function displayOppExtra(oppPlayerId){
 }
 
 function displayExtraArea(currentPlayerId,areaId){
-    var divDice = document.createElement("div");
+    var divExtra = document.createElement("div");
     //text area
     var textArea = document.createElement("INPUT");
     textArea.setAttribute("id","extraAreaId");
@@ -24,11 +24,11 @@ function displayExtraArea(currentPlayerId,areaId){
     textArea.value = result;
 
     textArea.setAttribute('onkeypress','updateExtra(event,this.value);');
-    divDice.appendChild(textArea);
+    divExtra.appendChild(textArea);
 
-    var diceArea = document.getElementById(areaId);
-    diceArea.innerHTML="";
-    diceArea.appendChild(divDice);
+    var divArea = document.getElementById(areaId);
+    divArea.innerHTML="";
+    divArea.appendChild(divExtra);
 }
 
 function updateExtra(event,value) {

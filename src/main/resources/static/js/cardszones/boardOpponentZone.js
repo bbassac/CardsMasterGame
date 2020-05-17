@@ -1,4 +1,4 @@
-class OpponentBoardPlayerZone extends CardsZoneScrollableBoard {
+class BoardOpponentZone extends CardsZoneScrollableBoard {
 
 	constructor() {
 		super("boardOpp", opponentCardHeight, THEME_RED);

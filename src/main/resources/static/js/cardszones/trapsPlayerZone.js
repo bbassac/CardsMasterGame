@@ -1,4 +1,4 @@
-class TrapsZone extends CardsZoneBoard {
+class TrapsPlayerZone extends CardsZoneBoard {
 
 	constructor() {
 		super("traps", trapImageHeight);
