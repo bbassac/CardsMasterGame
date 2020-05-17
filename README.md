@@ -25,27 +25,17 @@
 ## Bugs / Evolutions
 
 * [ ] Ajouter des sorts de destruction d'équipement
-* [X] Deporter les PVs des cartes sur un overlay coté gauche des cartes
 * [ ] Introduire nouvelle ligne pour cartes équipement adverse
-* [X] Passer les boutons dessous les cartes en affichage auto comme le cimetiere
-* [ ] Remplacer les scrollbars haurizontales par des boutons s'affichant dynamiquement
 * [ ] Dimensions du menu contextuel + Look and feel
 * [ ] Déplacement des menus en haut pour gagner de la hauteur
 * [ ] Gestion des cartes affinité
-* [X] Gestion méta-data
 * [ ] Utiliser metadata pour un feedback visuel du current environnement sur les ninjas
 * [ ] Utiliser les menus contextuels pour retirer des boutons d'action
-* [ ] Etudier un drag&drop pour déplacer les cartes de zone
 * [ ] Animation activation carte piege qui s'affiche  
 * [ ] Doubler le nombre des invocations
 * [ ] ajouter flag camouflé sur carte en jeu
-* [X] bug : Pas de MAJ des flèches de scroll lors du changement de joueurs.
-* [X] bug : Problème du non effacement des flèches de scroll de la zone hand lors de la supression d'une carte.
-* [X] evol : Ajout du scroll par bouton sur la zone des opposants.
 * [ ] evol : Position du scroll à mémoriser lors de l'ajout / suppression d'une carte de la zone de scroll --> A architecturer.
-* [X] evol : POC : Mettre en place le drag-and-drop sur au moins une interaction entre zones.
 * [ ] evol : Mettre en place le drag-and-drop sur toutes les interactions entre zones (si POC ok).
-* [X] doc : Mettre des commentaires sur boardArea.js.
 * [ ] bug : Synchronisation de la popin cimetière si le même cimetière est ouvert par les deux joueurs en même temps.
 * [ ] evol : Mettre en places les services pour la zone équipement (activate, use, etc...).
 
