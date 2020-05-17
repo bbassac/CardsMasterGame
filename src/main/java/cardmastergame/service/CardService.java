@@ -122,7 +122,7 @@ public class CardService {
             }
         }
 
-        throw new UnsupportedOperationException(" Card " + cardId +" not found in "+deckName);
+        throw new CardNotFoundException(" Card " + cardId +" not found in "+deckName);
     }
 
     public void moveSpecificCardFromInvocationToPlayer(int playerId, int cardId) {
@@ -262,7 +262,7 @@ public class CardService {
                 loadStack(fullDeck, BACK_DRAW);
                 return fullDeck;
             default:
-                throw new UnsupportedOperationException();
+                throw new CardNotFoundException("Stack name " + stackName +" not found");
         }
 
     }
