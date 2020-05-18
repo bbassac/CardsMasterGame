@@ -49,4 +49,36 @@ public class EquipmentController extends AbstractController{
         customRepo.moveCardFromEquipmentToGraveyard(playerId,cardId);
     }
 
+    @CrossOrigin
+    @RequestMapping(path = "/player/{playerId}/equipment/{cardId}/activated/{value}",method = RequestMethod.PUT)
+    @ResponseBody
+    @ApiOperation(value = "Change status of card : activated = true ",response = boolean.class)
+    public boolean updateActivatedOnEquipmentCard(
+            @ApiParam(value = "Player Id ", allowableValues ="0,1",required = true)
+            @PathVariable("playerId") int playerId,
+
+            @ApiParam(value = "Card Id ", type = "int", required = true)
+            @PathVariable("cardId") int cardId,
+
+            @ApiParam(value = "value ", type = "boolean", required = true)
+            @PathVariable("value") boolean value){
+        return customRepo.updateActivatedOnEquipmentCard(playerId,cardId,value);
+    }
+
+    @CrossOrigin
+    @RequestMapping(path = "/player/{playerId}/equipment/{cardId}/used/{value}",method = RequestMethod.PUT)
+    @ResponseBody
+    @ApiOperation(value = "Change status of card : used = true ",response = boolean.class)
+    public boolean updateUsedOnCard(
+            @ApiParam(value = "Player Id ", allowableValues ="0,1",required = true)
+            @PathVariable("playerId") int playerId,
+
+            @ApiParam(value = "Card Id ", type = "int", required = true)
+            @PathVariable("cardId") int cardId,
+
+            @ApiParam(value = "value ", type = "boolean", required = true)
+            @PathVariable("value") boolean value){
+        return customRepo.updateUsedOnEquipmentCard(playerId,cardId,value);
+    }
+
 }

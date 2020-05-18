@@ -53,7 +53,7 @@ class EquipmentsPlayerZone extends CardsZoneScrollableBoard {
 	    domCard.setActivated(activated);
 		
 		var xhttp = new XMLHttpRequest();
-	    xhttp.open("PUT", "player/"+currentPlayerId+"/board/"+domCard.getId()+"/activated/"+activated, false);
+	    xhttp.open("PUT", "player/"+currentPlayerId+"/equipment/"+domCard.getId()+"/activated/"+activated, false);
 	    xhttp.setRequestHeader("Content-type", "application/json");
 	    xhttp.send();
 	    
@@ -75,7 +75,7 @@ class EquipmentsPlayerZone extends CardsZoneScrollableBoard {
 	    domCard.setUsed(used);
 	
 	    var xhttp = new XMLHttpRequest();
-	    xhttp.open("PUT", "player/"+currentPlayerId+"/board/"+domCard.getId()+"/used/"+used, false);
+	    xhttp.open("PUT", "player/"+currentPlayerId+"/equipment/"+domCard.getId()+"/used/"+used, false);
 	    xhttp.setRequestHeader("Content-type", "application/json");
 	    xhttp.send();
 	    
