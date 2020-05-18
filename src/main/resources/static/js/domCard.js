@@ -7,8 +7,8 @@ class DomCard {
 		// mapping de card vers DomCard
 		this.id = card.id;
 		this.damage = card.dammagePoints;
-		this.used = card.used;
-		this.activated = card.activated;
+		this.used = card.status.used;
+		this.activated = card.status.activated;
 		this.metaData = card.metaData;
 
 		this.buildDomElemnts(height, card.path);
@@ -62,8 +62,8 @@ class DomCard {
 
 		this.id = card.id;
 		this.setDamage(card.dammagePoints);
-		this.setUsed(card.used);
-		this.setActivated(card.activated);
+		this.setUsed(card.status.used);
+		this.setActivated(card.status.activated);
 		this.setMetaData(card.metaData);
 	}
 

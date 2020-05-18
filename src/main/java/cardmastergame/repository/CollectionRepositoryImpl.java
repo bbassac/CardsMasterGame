@@ -176,5 +176,15 @@ public class CollectionRepositoryImpl implements CollectionRepositoryCustom {
         cardService.moveCardFromEquipmentToGraveyard(playerId,cardId);
     }
 
+    @Override
+    public boolean updateActivatedOnEquipmentCard(int playerId, int cardId, boolean value) {
+        return cardService.updateActivatedOnEquipmentCard(playerId,cardId,value);
+    }
+
+    @Override
+    public boolean updateUsedOnEquipmentCard(int playerId, int cardId, boolean value) {
+        return cardService.updateUsedOnEquipmentCard(playerId,cardId,value);
+    }
+
 
 }

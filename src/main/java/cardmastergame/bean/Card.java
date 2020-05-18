@@ -10,13 +10,10 @@ public class Card {
     private String path;
     @ApiModelProperty(notes = "Card Damage Point",example = "1")
     private int dammagePoints = 0;
-    @ApiModelProperty(notes = "Card Orientation (activated or not")
-    private boolean activated = false;
-    @ApiModelProperty(notes = "Card Used (yes or false")
-    private boolean used = false;
     @ApiModelProperty(notes = "Card meta data")
     private MetaData metaData;
-
+    @ApiModelProperty(notes = "Card status")
+    private Status status = new Status();
 
     public int getId() {
         return id;
@@ -36,22 +33,16 @@ public class Card {
     public void setDammagePoints(int dammagePoints) {
         this.dammagePoints = dammagePoints;
     }
-    public boolean isActivated() {
-        return activated;
-    }
-    public void setActivated(boolean activated) {
-        this.activated = activated;
-    }
-    public boolean isUsed() {
-        return used;
-    }
-    public void setUsed(boolean used) {
-        this.used = used;
-    }
     public MetaData getMetaData() {
         return metaData;
     }
     public void setMetaData(MetaData metaData) {
         this.metaData = metaData;
+    }
+    public Status getStatus() {
+        return status;
+    }
+    public void setStatus(Status status) {
+        this.status = status;
     }
 }

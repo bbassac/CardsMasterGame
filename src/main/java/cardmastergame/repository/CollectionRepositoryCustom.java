@@ -59,4 +59,8 @@ public interface CollectionRepositoryCustom {
     void moveCardFromHandToEquipmentForPlayer(int playerId, int cardId);
 
     void moveCardFromEquipmentToGraveyard(int playerId, int cardId);
+
+    boolean updateActivatedOnEquipmentCard(int playerId, int cardId, boolean value);
+
+    boolean updateUsedOnEquipmentCard(int playerId, int cardId, boolean value);
 }

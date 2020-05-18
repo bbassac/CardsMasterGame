@@ -160,8 +160,8 @@ public class CardService {
 
     private void cleanCard(Card c) {
         c.setDammagePoints(0);
-        c.setActivated(false);
-        c.setUsed(false);
+        c.getStatus().setActivated(false);
+        c.getStatus().setUsed(false);
     }
 
     public void moveCardFromHandToGraveyardForPlayer(int playerId, int cardId) {
@@ -199,27 +199,30 @@ public class CardService {
     }
 
     public boolean updateActivatedOnCard(int playerId, int cardId, boolean value) {
-        findCardInStackById(plateaux[playerId],"plateau joueur " + playerId,cardId).setActivated(value);
+        findCardInStackById(plateaux[playerId],"plateau joueur " + playerId,cardId).getStatus().setActivated(value);
         return value;
     }
 
     public boolean getActivatedOnCard(int playerId, int cardId) {
-        return findCardInStackById(plateaux[playerId],"plateau joueur " + playerId,cardId).isActivated();
+        return findCardInStackById(plateaux[playerId],"plateau joueur " + playerId,cardId).getStatus().isActivated();
     }
 
     public boolean updateUsedOnCard(int playerId, int cardId,boolean value) {
-        findCardInStackById(plateaux[playerId],"plateau joueur " + playerId,cardId).setUsed(value);
+        findCardInStackById(plateaux[playerId],"plateau joueur " + playerId,cardId).getStatus().setUsed(value);
         return value;
     }
 
     public boolean getUsedOnCard(int playerId, int cardId) {
-        return  findCardInStackById(plateaux[playerId],"plateau joueur " + playerId,cardId).isUsed();
+        return  findCardInStackById(plateaux[playerId],"plateau joueur " + playerId,cardId).getStatus().isUsed();
     }
 
 
     public void setAllcardsNonActive(int playerId) {
         for ( Object c : plateaux[playerId]) {
-            ((Card)c).setActivated(false);
+            ((Card)c).getStatus().setActivated(false);
+        }
+        for ( Object c : equipment[playerId]) {
+            ((Card)c).getStatus().setActivated(false);
         }
     }
 
@@ -293,7 +296,18 @@ public class CardService {
 
     public void moveCardFromEquipmentToGraveyard(int playerId, int cardId) {
         Card c = findCardInStackById(equipment[playerId],"equipment joueur " + playerId, cardId);
+        cleanCard(c);
         equipment[playerId].remove(c);
         cimetieres[playerId].push(c);
+    }
+
+    public boolean updateActivatedOnEquipmentCard(int playerId, int cardId, boolean value) {
+        findCardInStackById(equipment[playerId],"equipement joueur " + playerId,cardId).getStatus().setActivated(value);
+        return value;
+    }
+
+    public boolean updateUsedOnEquipmentCard(int playerId, int cardId, boolean value) {
+        findCardInStackById(equipment[playerId],"equipement joueur " + playerId,cardId).getStatus().setUsed(value);
+        return value;
     }
 }
