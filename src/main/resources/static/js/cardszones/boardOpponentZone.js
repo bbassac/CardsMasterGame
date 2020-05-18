@@ -6,10 +6,8 @@ class BoardOpponentZone extends CardsZoneScrollableBoard {
 
 	getCards(playerId) {
 
-		var oppPlayerId = Math.abs(1-playerId);
-		
 	    var xhttp = new XMLHttpRequest();
-	    xhttp.open("GET", "player/"+oppPlayerId+"/board", false);
+	    xhttp.open("GET", "player/"+opponentPlayerId+"/board", false);
 	    xhttp.setRequestHeader("Content-type", "application/json");
 	    xhttp.send();
 	    

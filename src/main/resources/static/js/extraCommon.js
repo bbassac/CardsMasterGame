@@ -33,7 +33,6 @@ function displayExtraArea(currentPlayerId,areaId){
 
 function updateExtra(event,value) {
     if (event.keyCode === 13) {
-        var currentPlayerId = document.getElementById("currentPlayerId").value;
         var xhttp = new XMLHttpRequest();
         xhttp.open("PUT", encodeURIComponent("player/" + currentPlayerId + "/extra/" + value), false);
         xhttp.setRequestHeader("Content-type", "application/json");

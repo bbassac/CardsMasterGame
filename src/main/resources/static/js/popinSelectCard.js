@@ -1,7 +1,5 @@
 function displayPopinSelectCard(who, cards, addFunction, background) {
 
-    var currentPlayerId = document.getElementById("currentPlayerId").value;
-
 	showCardSelectPopin(background);
 
 	var popinDiv = document.getElementById("popinCardsArea");
@@ -38,8 +36,6 @@ function addPopinSelectCardButtons(domCard, addFunction, who) {
 
 function popinSelectCardAddAction(domCard, addFunction, who) {
 
-	var currentPlayerId = document.getElementById("currentPlayerId").value;	
-	
 	domCard.divCard.remove();
 	addFunction(parseInt(currentPlayerId), domCard, who);
 }

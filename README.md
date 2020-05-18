@@ -30,12 +30,12 @@
 * [ ] Déplacement des menus en haut pour gagner de la hauteur
 * [ ] Gestion des cartes affinité
 * [ ] Utiliser metadata pour un feedback visuel du current environnement sur les ninjas
-* [ ] Utiliser les menus contextuels pour retirer des boutons d'action
+* [X] Utiliser les menus contextuels pour retirer des boutons d'action
 * [ ] Animation activation carte piege qui s'affiche  
 * [ ] Doubler le nombre des invocations
 * [ ] ajouter flag camouflé sur carte en jeu
-* [ ] evol : Position du scroll à mémoriser lors de l'ajout / suppression d'une carte de la zone de scroll --> A architecturer.
-* [ ] evol : Mettre en place le drag-and-drop sur toutes les interactions entre zones (si POC ok).
+* [X] evol : Position du scroll à mémoriser lors de l'ajout / suppression d'une carte de la zone de scroll.
+* [X] evol : Mettre en place le drag-and-drop sur toutes les interactions entre zones (si POC ok).
 * [ ] bug : Synchronisation de la popin cimetière si le même cimetière est ouvert par les deux joueurs en même temps.
 * [ ] evol : Mettre en places les services pour la zone équipement (activate, use, etc...).
 

@@ -50,7 +50,7 @@ function fillChakras(playerId,componentId) {
 
 
 function updateChakras(newValue){
-    var currentPlayerId = document.getElementById("currentPlayerId").value;
+
     var xhttp = new XMLHttpRequest();
     xhttp.open("PUT", "player/"+currentPlayerId+"/chakra/"+newValue, false);
     xhttp.setRequestHeader("Content-type", "application/json");
