@@ -46,10 +46,10 @@ class BoardPlayerZone extends CardsZoneScrollableBoard {
 	allowDrop(fromZoneId, toZoneId, domCard) {
 	
 		var isEquipment = KIND_EQUIPMENT.localeCompare(domCard.getMetaData().kind) == 0;
-		var istrap = KIND_TRAP.localeCompare(domCard.getMetaData().kind) == 0;
+		var isTrap = KIND_TRAP.localeCompare(domCard.getMetaData().kind) == 0;
 		var isFromHand = fromZoneId.localeCompare(handZone.getZoneId()) == 0; 
 		
-		return !istrap && isFromHand;
+		return isFromHand && !isTrap; // && !isEquipment;
 	}
 	
 	drop(fromZoneId, toZoneId, domCard) {
@@ -91,8 +91,6 @@ class BoardPlayerZone extends CardsZoneScrollableBoard {
 	
 	changeDmgPoints(domCard, damageChange){
 	
-	    var currentPlayerId = document.getElementById("currentPlayerId").value;
-	    
 	    var damage = domCard.getDamage() + damageChange;
 	    domCard.setDamage(damage);
 	    
@@ -114,8 +112,6 @@ class BoardPlayerZone extends CardsZoneScrollableBoard {
 	
 	flipCard(domCard, menuItem){
 	
-	    var currentPlayerId = document.getElementById("currentPlayerId").value;
-	    
 	    var activated = ! domCard.getActivated();
 	    domCard.setActivated(activated);
 		
@@ -138,8 +134,6 @@ class BoardPlayerZone extends CardsZoneScrollableBoard {
 
 	useCard(domCard, menuItem){
 	
-	    var currentPlayerId = document.getElementById("currentPlayerId").value;
-	    
 	    var used = ! domCard.getUsed();
 	    domCard.setUsed(used);
 	
@@ -162,8 +156,6 @@ class BoardPlayerZone extends CardsZoneScrollableBoard {
 
 	moveCardFromHandToBoardPlayer(domCard){
 	    
-	    var currentPlayerId = document.getElementById("currentPlayerId").value;
-	
 	    var xhttp = new XMLHttpRequest();
 	    xhttp.open("PUT", "player/"+currentPlayerId+"/board/"+domCard.getId(), false);
 	    xhttp.setRequestHeader("Content-type", "application/json");

@@ -26,7 +26,7 @@ function fillPVs(playerId,componentId) {
 }
 
 function updatePvs(newValue){
-    var currentPlayerId = document.getElementById("currentPlayerId").value;
+
     var xhttp = new XMLHttpRequest();
     xhttp.open("PUT", "player/"+currentPlayerId+"/pvs/"+newValue, false);
     xhttp.setRequestHeader("Content-type", "application/json");

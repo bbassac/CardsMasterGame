@@ -36,8 +36,11 @@ class EquipmentsPlayerZone extends CardsZoneScrollableBoard {
 	}
 	
 	allowDrop(fromZoneId, toZoneId, domCard) {
-		return ((KIND_EQUIPMENT.localeCompare(domCard.getMetaData().kind) == 0)
-				&& (fromZoneId.localeCompare(handZone.getZoneId()) == 0));
+		
+		var isEquipment = KIND_EQUIPMENT.localeCompare(domCard.getMetaData().kind) == 0;
+		var isFromHand = fromZoneId.localeCompare(handZone.getZoneId()) == 0; 
+		
+		return isEquipment && isFromHand;
 	}
 	
 	drop(fromZoneId, toZoneId, domCard) {
@@ -46,8 +49,6 @@ class EquipmentsPlayerZone extends CardsZoneScrollableBoard {
 	
 	flipCard(domCard, menuItem){
 	
-	    var currentPlayerId = document.getElementById("currentPlayerId").value;
-	    
 	    var activated = ! domCard.getActivated();
 	    domCard.setActivated(activated);
 		
@@ -70,8 +71,6 @@ class EquipmentsPlayerZone extends CardsZoneScrollableBoard {
 
 	useCard(domCard, menuItem){
 	
-	    var currentPlayerId = document.getElementById("currentPlayerId").value;
-	    
 	    var used = ! domCard.getUsed();
 	    domCard.setUsed(used);
 	
@@ -94,8 +93,6 @@ class EquipmentsPlayerZone extends CardsZoneScrollableBoard {
 	
 	moveCardFromHand(domCard){
 		
-        var currentPlayerId = document.getElementById("currentPlayerId").value;
-
         var xhttp = new XMLHttpRequest();
         xhttp.open("PUT", "player/"+currentPlayerId+"/equipment/"+domCard.getId(), false);
         xhttp.setRequestHeader("Content-type", "application/json");

@@ -23,9 +23,10 @@ class TrapsPlayerZone extends CardsZoneBoard {
 		
 		var cardsLength = this.getDivCardsContainer().childNodes.length;
 		
-		return ((cardsLength < 3)
-				&& (KIND_TRAP.localeCompare(domCard.getMetaData().kind) == 0)
-				&& (fromZoneId.localeCompare(handZone.getZoneId()) == 0));
+		var isTrap = KIND_TRAP.localeCompare(domCard.getMetaData().kind) == 0;
+		var isFromHand = fromZoneId.localeCompare(handZone.getZoneId()) == 0; 
+		
+		return (cardsLength < 3) && isTrap && isFromHand;
 	}
 
 	drop(fromZoneId, toZoneId, domCard) {
@@ -34,8 +35,6 @@ class TrapsPlayerZone extends CardsZoneBoard {
 
 	moveCardFromHandToTraps(domCard){
 		
-	    var currentPlayerId = document.getElementById("currentPlayerId").value;
-	
 	    var xhttp = new XMLHttpRequest();
 	    xhttp.open("PUT", "player/"+currentPlayerId+"/trap/"+domCard.getId(), false);
 	    xhttp.setRequestHeader("Content-type", "application/json");

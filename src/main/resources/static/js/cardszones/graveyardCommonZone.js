@@ -10,7 +10,7 @@ class GraveyardCommonZone extends CardsZoneStack {
 
 	getCards(playerId) {
 
-		var graveyardPlayerId = (this.divId == MY_GRAVEYARD_ID) ? playerId : Math.abs(1-playerId);
+		var graveyardPlayerId = (this.divId == MY_GRAVEYARD_ID) ? currentPlayerId : opponentPlayerId;
 
 	    var xhttp = new XMLHttpRequest();
 	    xhttp.open("GET", "player/"+graveyardPlayerId+"/graveyard", false);
@@ -56,14 +56,11 @@ class GraveyardCommonZone extends CardsZoneStack {
 	
 	showPopinGrave(who){
 	
-	    var currentPlayerId = document.getElementById("currentPlayerId").value;
-	    var oppPlayerId = Math.abs(1-currentPlayerId);
-	
 	    var xhttp = new XMLHttpRequest();
 	    if(who=="me") {
 	        xhttp.open("GET", "player/" + currentPlayerId + "/graveyard", false);
 	    }else{
-	        xhttp.open("GET", "player/" + oppPlayerId + "/graveyard", false);
+	        xhttp.open("GET", "player/" + opponentPlayerId + "/graveyard", false);
 	    }
 	    xhttp.setRequestHeader("Content-type", "application/json");
 	    xhttp.send();
@@ -76,10 +73,10 @@ class GraveyardCommonZone extends CardsZoneStack {
 	
 		if(who=="me"){
 			this.addGraveyardCardToMe(playerId, domCard);
-			graveyardZones.MY_GRAVEYARD_ID.fill(playerId);
+			graveyardPlayerZone.fill(playerId);
 		} else {
 			this.addGraveyardCardToYou(playerId, domCard);	
-			graveyardZones.OPP_GRAVEYARD_ID.fill(playerId);
+			graveyardOpponentZone.fill(playerId);
 		}
 	
 		handZone.fill(playerId);
@@ -103,10 +100,8 @@ class GraveyardCommonZone extends CardsZoneStack {
 	 */
 	addGraveyardCardToYou(playerId, domCard) {
 		
-		var oppPlayerId = Math.abs(1-playerId);
-		
 		var xhttp = new XMLHttpRequest();
-		xhttp.open("GET", "opponent/" + oppPlayerId + "/graveyard/" + domCard.getId() + "/player/" + playerId, false);
+		xhttp.open("GET", "opponent/" + opponentPlayerId + "/graveyard/" + domCard.getId() + "/player/" + currentPlayerId, false);
 		xhttp.setRequestHeader("Content-type", "application/json");
 		xhttp.send();
 		
@@ -114,47 +109,39 @@ class GraveyardCommonZone extends CardsZoneStack {
 	
 	moveCardFromBoardPlayerToGraveyard(domCard){
 	    
-	    var currentPlayerId = document.getElementById("currentPlayerId").value;
-	
 	    var xhttp = new XMLHttpRequest();
 	    xhttp.open("PUT", "player/"+currentPlayerId+"/graveyard/"+domCard.getId(), false);
 	    xhttp.setRequestHeader("Content-type", "application/json");
 	    xhttp.send();
 	    
 	    boardPlayerZone.fill(currentPlayerId);
-	    graveyardZones.MY_GRAVEYARD_ID.fill(currentPlayerId);
+	    graveyardPlayerZone.fill(currentPlayerId);
 	}
 	
 	moveCardFromHandToGraveyard(domCard){
 	    
-	    var currentPlayerId = document.getElementById("currentPlayerId").value;
-	
 	    var xhttp = new XMLHttpRequest();
 	    xhttp.open("PUT", "player/"+currentPlayerId+"/hand-to-graveyard/"+domCard.getId(), false);
 	    xhttp.setRequestHeader("Content-type", "application/json");
 	    xhttp.send();
 	    
 	    handZone.fill(currentPlayerId);
-	    graveyardZones.MY_GRAVEYARD_ID.fill(currentPlayerId);
+	    graveyardPlayerZone.fill(currentPlayerId);
 	}
 	
 	moveCardFromEquipmentsToGraveyard(domCard){
 		
-	    var currentPlayerId = document.getElementById("currentPlayerId").value;
-	
 	    var xhttp = new XMLHttpRequest();
 	    xhttp.open("PUT", "player/"+currentPlayerId+"/equipment/"+domCard.getId()+"/graveyard", false);
 	    xhttp.setRequestHeader("Content-type", "application/json");
 	    xhttp.send();
 	    
 	    equipmentsZone.fill(currentPlayerId);
-	    graveyardZones.MY_GRAVEYARD_ID.fill(currentPlayerId);
+	    graveyardPlayerZone.fill(currentPlayerId);
 	    
 	}
 	
 	moveCardFromTrapsToGraveyard(domCard){
-	
-	    var currentPlayerId = document.getElementById("currentPlayerId").value;
 	
 	    var xhttp = new XMLHttpRequest();
 	    xhttp.open("PUT", "player/"+currentPlayerId+"/trap/"+domCard.getId()+"/graveyard", false);
@@ -162,7 +149,7 @@ class GraveyardCommonZone extends CardsZoneStack {
 	    xhttp.send();
 	    
 	    trapsZone.fill(currentPlayerId);
-	    graveyardZones.MY_GRAVEYARD_ID.fill(currentPlayerId);
+	    graveyardPlayerZone.fill(currentPlayerId);
 	    
 	}
 }

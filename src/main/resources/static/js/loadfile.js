@@ -1,5 +1,5 @@
 function loadFile(){
-    var currentPlayerId = document.getElementById("currentPlayerId").value;
+
     var input = document.createElement('input');
     input.type = 'file';
 

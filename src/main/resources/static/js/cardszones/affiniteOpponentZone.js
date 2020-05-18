@@ -6,10 +6,8 @@ class AffiniteOpponentZone extends CardsZoneStack {
 
 	getCards(playerId) {
 
-		var oppPlayerId = Math.abs(1-playerId);
-
 	    var xhttp = new XMLHttpRequest();
-	    xhttp.open("GET", "player/"+oppPlayerId+"/affinite", false);
+	    xhttp.open("GET", "player/"+opponentPlayerId+"/affinite", false);
 	    xhttp.setRequestHeader("Content-type", "application/json");
 	    xhttp.send();
 
