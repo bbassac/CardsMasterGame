@@ -45,37 +45,34 @@ class CardsZoneBoard extends CardsZone {
 		}
 		
 		var domCardPos = null;
-		var newDomCardIndex;
 		
 		for (domCardIndex = 0; domCardIndex < domCardsPositions.length; domCardIndex++) {
 			
 			card = cards[domCardIndex];
 			domCardPos = domCardsPositions[domCardIndex];
-			newDomCardIndex = -1;
 			
 			if (domCardPos == null) {
+				// nouvelle carte non présente sur le dom.
+				
 				domCard = this.getNewDomCard(card);
 				domCardPos = {domCard, domCardIndex};
 				domCardsPositions[domCardIndex] = domCardPos;
-				newDomCardIndex = domCardIndex;
+			
+				domCard = this.insertDomCard(domCard, domCardIndex);
+				
+			} else if (domCardPos.index != domCardIndex) {
+				// carte déjà présente sur le dom mais à la mauvaise place.
+				
+				domCardPos.index = domCardIndex;
+				domCard.updateCard(card);
+				domCard = this.insertDomCard(domCard, domCardIndex);
 			
 			} else {
+				// carte déjà présente sur le dom à la bonne place.
 				
-				domCard = domCardPos.domCard;
-				
-				if (domCardPos.index != domCardIndex) {
-					domCardPos.index = domCardIndex;
-					newDomCardIndex = domCardIndex;
-				}
-			}
-			
-			if (newDomCardIndex != -1) {
-				domCard = this.insertDomCard(domCard, newDomCardIndex);
-			} else {
-				this.updateCardOnDomCard(card, domCard)
+				this.updateCardOnDomCard(card, domCardPos.domCard);
 			}
 		}
-
 	}
 
 }

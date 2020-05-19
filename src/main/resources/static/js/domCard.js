@@ -5,11 +5,7 @@ class DomCard {
 	constructor(card, height, cardDrawMode) {
 
 		// mapping de card vers DomCard
-		this.id = card.id;
-		this.damage = card.dammagePoints;
-		this.used = card.status.used;
-		this.activated = card.status.activated;
-		this.metaData = card.metaData;
+		this.mapCardToDomCard(card);
 
 		this.buildDomElemnts(height, card.path);
 		this.applyStyle(cardDrawMode);
@@ -59,11 +55,20 @@ class DomCard {
 	}
 	
 	updateCard(card) {
-
+		
+		var sizeChange = this.testIfSizeWillChange(card);
+		
+		this.mapCardToDomCard(card);
+		
+		if (sizeChange) {
+			this.divCard.dispatchEvent(new CustomEvent("sizeChanged", this));
+		}
+	}
+	
+	mapCardToDomCard(card) {
 		this.id = card.id;
 		this.setDamage(card.dammagePoints);
-		this.setUsed(card.status.used);
-		this.setActivated(card.status.activated);
+		this.setStatus(card.status);
 		this.setMetaData(card.metaData);
 	}
 
@@ -88,39 +93,26 @@ class DomCard {
 		}
 	}
 	
-	getActivated() {
-		return this.activated;
+	testIfSizeWillChange(card) {
+
+		return ((this.status == null) || 
+				((card.status != null) && (this.status.activated != card.status.activated)));
 	}
 	
-	setActivated(activated) {
-		if (this.activated != activated) {
-			this.activated = activated;
-			this.divCard.dispatchEvent(new CustomEvent("activatedChanged", this));
-			this.divCard.dispatchEvent(new CustomEvent("sizeChanged", this));
-		}
+	getStatus() {
+		return this.status;
 	}
-
-	getUsed() {
-		return this.used;
-	}
-
-	setUsed(used) {
-		if (this.used != used) {
-			this.used = used;
-			this.divCard.dispatchEvent(new CustomEvent("usedChanged", this));
-		}
-	}
-
 	
+	setStatus(status) {
+		this.status = status;
+	}
+
 	getDamage() {
 		return this.damage;
 	}
 
 	setDamage(damage) {
-		if (this.damage != damage) {
-			this.damage = damage;
-			this.divCard.dispatchEvent(new CustomEvent("damageChanged", this));
-		}
+		this.damage = damage;
 	}
 
 	getMetaData() {
@@ -128,10 +120,7 @@ class DomCard {
 	}
 
 	setMetaData(metaData) {
-		if (this.metaData != metaData) {
-			this.metaData = metaData;
-			this.divCard.dispatchEvent(new CustomEvent("metaDataChanged", this));
-		}
+		this.metaData = metaData;
 	}	
 	
 	addMenu(menu) {

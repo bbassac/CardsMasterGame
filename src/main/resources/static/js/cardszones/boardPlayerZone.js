@@ -15,21 +15,12 @@ class BoardPlayerZone extends CardsZoneScrollableBoard {
 	    return JSON.parse(xhttp.responseText);
 	}
 
-	applySpecificCardProperties(domCard) {
-		this.showActivatedState(domCard);
-		this.showUsedState(domCard);
-		this.showDamage(domCard);
-	}
-
-
 	addSpecificCardElements(domCard) {
 		
 		this.addDamageButtons(domCard);
-		this.showActivatedState(domCard);
-		this.showUsedState(domCard);
 		
-	    var activatedText = domCard.getActivated() ? RE_ACTIVATE : ACTIVATE;
-	    var usedText = domCard.getUsed() ? RESET_USE : USE;
+	    var activatedText = domCard.getStatus().activated ? RE_ACTIVATE : ACTIVATE;
+	    var usedText = domCard.getStatus().used ? RESET_USE : USE;
 	    var menu = [
 	        { text: activatedText, action: (function(domCard, menuItem) { this.flipCard(domCard, menuItem); }).bind(this, domCard) },
 	        { text: usedText, action: (function(domCard, menuItem) { this.useCard(domCard, menuItem); }).bind(this, domCard) }
@@ -37,12 +28,14 @@ class BoardPlayerZone extends CardsZoneScrollableBoard {
 	
 	    domCard.addMenu(menu);
 	    domCard.setDraggable(true);
-	    
-	    domCard.divCard.addEventListener("activatedChanged", (function() {this.showActivatedState(domCard); }).bind(this))
-	    domCard.divCard.addEventListener("usedChanged", (function() {this.showUsedState(domCard); }).bind(this))
-	    domCard.divCard.addEventListener("damageChanged", (function() {this.showDamage(domCard); }).bind(this))
 	}
 	
+	applySpecificCardProperties(domCard) {
+		this.showActivatedState(domCard);
+		this.showUsedState(domCard);
+		this.showDamage(domCard);
+	}
+
 	allowDrop(fromZoneId, toZoneId, domCard) {
 	
 		var isEquipment = KIND_EQUIPMENT.localeCompare(domCard.getMetaData().kind) == 0;
@@ -92,12 +85,13 @@ class BoardPlayerZone extends CardsZoneScrollableBoard {
 	changeDmgPoints(domCard, damageChange){
 	
 	    var damage = domCard.getDamage() + damageChange;
-	    domCard.setDamage(damage);
 	    
 	    var xhttp = new XMLHttpRequest();
 	    xhttp.open("PUT", "player/" + currentPlayerId + "/board/" + domCard.getId() + "/dmg/" + damage, false);
 	    xhttp.setRequestHeader("Content-type", "application/json");
 	    xhttp.send();
+	    
+	    this.fill(currentPlayerId);
 	}
 	
 	showDamage(domCard) {
@@ -112,8 +106,7 @@ class BoardPlayerZone extends CardsZoneScrollableBoard {
 	
 	flipCard(domCard, menuItem){
 	
-	    var activated = ! domCard.getActivated();
-	    domCard.setActivated(activated);
+	    var activated = ! domCard.getStatus().activated;
 		
 		var xhttp = new XMLHttpRequest();
 	    xhttp.open("PUT", "player/"+currentPlayerId+"/board/"+domCard.getId()+"/activated/"+activated, false);
@@ -121,11 +114,13 @@ class BoardPlayerZone extends CardsZoneScrollableBoard {
 	    xhttp.send();
 	    
 	    domCard.setMenuItemText(menuItem, activated ? RE_ACTIVATE : ACTIVATE); 
+	    
+	    this.fill(currentPlayerId);
 	}
 	
 	showActivatedState(domCard) {
 
-		if (domCard.getActivated()) {
+		if (domCard.getStatus().activated) {
 			domCard.cardImg.classList.add("activatedCard");
 		} else {
 			domCard.cardImg.classList.remove("activatedCard");
@@ -134,8 +129,7 @@ class BoardPlayerZone extends CardsZoneScrollableBoard {
 
 	useCard(domCard, menuItem){
 	
-	    var used = ! domCard.getUsed();
-	    domCard.setUsed(used);
+	    var used = ! domCard.getStatus().used;
 	
 	    var xhttp = new XMLHttpRequest();
 	    xhttp.open("PUT", "player/"+currentPlayerId+"/board/"+domCard.getId()+"/used/"+used, false);
@@ -143,11 +137,13 @@ class BoardPlayerZone extends CardsZoneScrollableBoard {
 	    xhttp.send();
 	    
 	    domCard.setMenuItemText(menuItem, used ? RESET_USE : USE);
+	    
+	    this.fill(currentPlayerId);
 	}
 
 	showUsedState(domCard) {
 
-		if (domCard.getUsed()) {
+		if (domCard.getStatus().used) {
 			domCard.cardImg.classList.add("usedCard");
 		} else {
 			domCard.cardImg.classList.remove("usedCard");
@@ -162,6 +158,6 @@ class BoardPlayerZone extends CardsZoneScrollableBoard {
 	    xhttp.send();
 	    
 	    handZone.fill(currentPlayerId);
-	    boardPlayerZone.fill(currentPlayerId);
+	    this.fill(currentPlayerId);
 	}
 }

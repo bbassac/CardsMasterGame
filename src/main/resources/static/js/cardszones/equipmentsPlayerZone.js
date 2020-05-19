@@ -17,11 +17,8 @@ class EquipmentsPlayerZone extends CardsZoneScrollableBoard {
 
 	addSpecificCardElements(domCard) {
 		
-		this.showActivatedState(domCard);
-		this.showUsedState(domCard);
-
-	    var activatedText = domCard.getActivated() ? RE_ACTIVATE : ACTIVATE;
-	    var usedText = domCard.getUsed() ? RESET_USE : USE;
+	    var activatedText = domCard.getStatus().activated ? RE_ACTIVATE : ACTIVATE;
+	    var usedText = domCard.getStatus().used ? RESET_USE : USE;
 	    var menu = [
 	        { text: activatedText, action: (function(domCard, menuItem) { this.flipCard(domCard, menuItem); }).bind(this, domCard) },
 	        { text: usedText, action: (function(domCard, menuItem) { this.useCard(domCard, menuItem); }).bind(this, domCard) }
@@ -29,10 +26,11 @@ class EquipmentsPlayerZone extends CardsZoneScrollableBoard {
 	
 	    domCard.addMenu(menu);
 	    domCard.setDraggable(true);
-	    
-	    domCard.divCard.addEventListener("activatedChanged", (function() {this.showActivatedState(domCard); }).bind(this))
-	    domCard.divCard.addEventListener("usedChanged", (function() {this.showUsedState(domCard); }).bind(this))
-	    domCard.divCard.addEventListener("damageChanged", (function() {this.showDamage(domCard); }).bind(this))
+	}
+	
+	applySpecificCardProperties(domCard) {
+		this.showActivatedState(domCard);
+		this.showUsedState(domCard);
 	}
 	
 	allowDrop(fromZoneId, toZoneId, domCard) {
@@ -49,20 +47,21 @@ class EquipmentsPlayerZone extends CardsZoneScrollableBoard {
 	
 	flipCard(domCard, menuItem){
 	
-	    var activated = ! domCard.getActivated();
-	    domCard.setActivated(activated);
+	    var activated = ! domCard.getStatus().activated;
 		
 		var xhttp = new XMLHttpRequest();
 	    xhttp.open("PUT", "player/"+currentPlayerId+"/equipment/"+domCard.getId()+"/activated/"+activated, false);
 	    xhttp.setRequestHeader("Content-type", "application/json");
 	    xhttp.send();
 	    
-	    domCard.setMenuItemText(menuItem, activated ? RE_ACTIVATE : ACTIVATE); 
+	    domCard.setMenuItemText(menuItem, activated ? RE_ACTIVATE : ACTIVATE);
+	    
+	    this.fill(currentPlayerId);
 	}
 	
 	showActivatedState(domCard) {
 
-		if (domCard.getActivated()) {
+		if (domCard.getStatus().activated) {
 			domCard.cardImg.classList.add("activatedCard");
 		} else {
 			domCard.cardImg.classList.remove("activatedCard");
@@ -71,8 +70,7 @@ class EquipmentsPlayerZone extends CardsZoneScrollableBoard {
 
 	useCard(domCard, menuItem){
 	
-	    var used = ! domCard.getUsed();
-	    domCard.setUsed(used);
+	    var used = ! domCard.getStatus().used;
 	
 	    var xhttp = new XMLHttpRequest();
 	    xhttp.open("PUT", "player/"+currentPlayerId+"/equipment/"+domCard.getId()+"/used/"+used, false);
@@ -80,11 +78,13 @@ class EquipmentsPlayerZone extends CardsZoneScrollableBoard {
 	    xhttp.send();
 	    
 	    domCard.setMenuItemText(menuItem, used ? RESET_USE : USE);
+	    
+	    this.fill(currentPlayerId);
 	}
 
 	showUsedState(domCard) {
 
-		if (domCard.getUsed()) {
+		if (domCard.getStatus().used) {
 			domCard.cardImg.classList.add("usedCard");
 		} else {
 			domCard.cardImg.classList.remove("usedCard");
@@ -99,7 +99,7 @@ class EquipmentsPlayerZone extends CardsZoneScrollableBoard {
         xhttp.send();
 
         handZone.fill(currentPlayerId);
-        equipmentsZone.fill(currentPlayerId);
+        this.fill(currentPlayerId);
 	}
 
 }
