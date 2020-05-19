@@ -35,7 +35,7 @@ class CardsZone {
 		return [];
 	}
 	
-	domCardAdded(domCard) {
+	domCardUpdated(domCard) {
 	}
 	
 	domCardRemoved(domCard) {
@@ -137,7 +137,7 @@ class CardsZone {
 
 		this.applySpecificCardProperties(domCard);
 		
-		this.domCardAdded(domCard);
+		this.domCardUpdated(domCard);
 		
 		return domCard;
 	}
@@ -175,13 +175,18 @@ class CardsZone {
 
 		this.applySpecificCardProperties(domCard);
 		
-		this.domCardAdded(domCard);
+		this.domCardUpdated(domCard);
 		
 		return domCard;
 	}
 	
-	updateCardOnDomCard(lastCard, domCard) {
-		domCard.updateCard(lastCard);
+	updateCardOnDomCard(card, domCard) {
+		domCard.updateCard(card);
+		this.applySpecificCardProperties(domCard);
+		
+		this.domCardUpdated(domCard);
+		
+		return domCard;
 	}
 	
 	removeCard(domCard) {

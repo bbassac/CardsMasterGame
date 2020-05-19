@@ -73,10 +73,10 @@ class GraveyardCommonZone extends CardsZoneStack {
 	
 		if(who=="me"){
 			this.addGraveyardCardToMe(playerId, domCard);
-			graveyardPlayerZone.fill(playerId);
+			this.fill(playerId);
 		} else {
 			this.addGraveyardCardToYou(playerId, domCard);	
-			graveyardOpponentZone.fill(playerId);
+			this.fill(playerId);
 		}
 	
 		handZone.fill(playerId);
@@ -115,7 +115,7 @@ class GraveyardCommonZone extends CardsZoneStack {
 	    xhttp.send();
 	    
 	    boardPlayerZone.fill(currentPlayerId);
-	    graveyardPlayerZone.fill(currentPlayerId);
+	    this.fill(currentPlayerId);
 	}
 	
 	moveCardFromHandToGraveyard(domCard){
@@ -126,7 +126,7 @@ class GraveyardCommonZone extends CardsZoneStack {
 	    xhttp.send();
 	    
 	    handZone.fill(currentPlayerId);
-	    graveyardPlayerZone.fill(currentPlayerId);
+	    this.fill(currentPlayerId);
 	}
 	
 	moveCardFromEquipmentsToGraveyard(domCard){
@@ -137,7 +137,7 @@ class GraveyardCommonZone extends CardsZoneStack {
 	    xhttp.send();
 	    
 	    equipmentsZone.fill(currentPlayerId);
-	    graveyardPlayerZone.fill(currentPlayerId);
+	    this.fill(currentPlayerId);
 	    
 	}
 	
@@ -149,7 +149,7 @@ class GraveyardCommonZone extends CardsZoneStack {
 	    xhttp.send();
 	    
 	    trapsZone.fill(currentPlayerId);
-	    graveyardPlayerZone.fill(currentPlayerId);
+	    this.fill(currentPlayerId);
 	    
 	}
 }

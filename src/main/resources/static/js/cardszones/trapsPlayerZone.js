@@ -41,6 +41,6 @@ class TrapsPlayerZone extends CardsZoneBoard {
 	    xhttp.send();
 	    
 	    handZone.fill(currentPlayerId);
-	    trapsZone.fill(currentPlayerId);
+	    this.fill(currentPlayerId);
 	}
 }

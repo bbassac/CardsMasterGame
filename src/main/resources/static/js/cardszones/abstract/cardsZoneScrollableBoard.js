@@ -171,7 +171,7 @@ class CardsZoneScrollableBoard extends CardsZoneBoard {
 	/**
 	 * Appelée une fois qu'une carte à été ajoutée à la zone
 	 */
-	domCardAdded(domCard) {
+	domCardUpdated(domCard) {
 		this.tryUpdateScrollArrows(0);
 		
 		// ajout des listener de l'event sizeChanged de la nouvelle carte

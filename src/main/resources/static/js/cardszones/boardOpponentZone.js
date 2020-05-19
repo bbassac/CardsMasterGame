@@ -16,10 +16,6 @@ class BoardOpponentZone extends CardsZoneScrollableBoard {
 
 	addSpecificCardElements(domCard) {
 		this.addDamage(domCard);
-		
-	    domCard.divCard.addEventListener("activatedChanged", (function() {this.showActivatedState(domCard); }).bind(this))
-	    domCard.divCard.addEventListener("usedChanged", (function() {this.showUsedState(domCard); }).bind(this))
-	    domCard.divCard.addEventListener("damageChanged", (function() {this.showDamage(domCard); }).bind(this))		
 	}
 	
 	applySpecificCardProperties(domCard) {
@@ -47,7 +43,7 @@ class BoardOpponentZone extends CardsZoneScrollableBoard {
 	
 	showActivatedState(domCard) {
 
-		if (domCard.getActivated()) {
+		if (domCard.getStatus().activated) {
 			domCard.cardImg.classList.add("activatedCard");
 		} else {
 			domCard.cardImg.classList.remove("activatedCard");
@@ -56,7 +52,7 @@ class BoardOpponentZone extends CardsZoneScrollableBoard {
 
 	showUsedState(domCard) {
 
-		if (domCard.getUsed()) {
+		if (domCard.getStatus().used) {
 			domCard.cardImg.classList.add("usedCard");
 		} else {
 			domCard.cardImg.classList.remove("usedCard");
