@@ -20,7 +20,7 @@
 	display: none;
 }
 
-#popin_cardSelect {
+.popin_cardSelect {
 	position: absolute;
 	background-color: white;
 	border: 2px solid white;
@@ -29,6 +29,7 @@
 	width: 1510px;
 	height: 1000px;
 	background-size: 1510px 1000px;
+	box-shadow: 15px 15px 15px rgba(0,0,0,.8);
 }
 
 #popinCardDiv {
@@ -43,6 +44,7 @@
 	left: 50%;
 	height: 80%;
 	transform: translate(-50%, -50%);
+	box-shadow: 15px 15px 15px rgba(0,0,0,.8);
 }
 
 .popinSelectCardsArea {

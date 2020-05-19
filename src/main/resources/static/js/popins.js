@@ -5,8 +5,13 @@ var openedPopins = [];
  *
  */
 function showCardSelectPopin(background) {
-	document.getElementById("popin_cardSelect").style.backgroundImage = background; 
-	showPopin("popinCardSelectDiv");
+	
+	var popinDivs = getPopinDivs("popinCardSelectDiv");
+	
+	if (popinDivs.contentDiv) {
+		popinDivs.contentDiv.style.backgroundImage = background; 
+		showPopin("popinCardSelectDiv");
+	}
 }
 
 /**
@@ -52,32 +57,32 @@ function hideAllPopins() {
  * Affiche une "popin" en mode div par dessus les autres éléments de la page
  * + un "grisage" de la page derrière
  *
- * popinDivId : popin à afficher
+ * @popinDivId : popin à afficher
  *
  */
 function showPopin(popinDivId) {
 
-	openedPopins.push(popinDivId);
+	var popinDivs = getPopinDivs(popinDivId);
 	
-	var backgroundDiv = document.getElementById("popinGrayBackDiv");
-	if (backgroundDiv) {
-		backgroundDiv.style.height = document.documentElement.scrollHeight + "px";
-		backgroundDiv.style.zIndex = 100 + openedPopins.length;
-		backgroundDiv.style.display = 'block';
-	}		
+	if (popinDivs.mainDiv && popinDivs.greyBackDiv && popinDivs.contentDiv) {
 
-	var popinDiv = document.getElementById(popinDivId);
-	if (popinDiv) {
-		popinDiv.style.zIndex = 101 + openedPopins.length;
-		popinDiv.style.display = 'block';
+		openedPopins.push(popinDivId);
+		
+		popinDivs.mainDiv.style.display = 'block';
+		
+		// affichage du gris de fond
+		popinDivs.greyBackDiv.style.height = document.documentElement.scrollHeight + "px";
+		popinDivs.greyBackDiv.style.zIndex = 100 + openedPopins.length;
+		
+		// affichage de la popin
+		popinDivs.contentDiv.style.zIndex = 101 + openedPopins.length;
 	}
 }
 
 /**
- * Affiche une "popin" en mode div par dessus les autres éléments de la page
- * + un "grisage" de la page derrière
+ * Masque la "popin"
  *
- * popinDivId : popin à afficher
+ * @popinDivId : popin à masquer
  *
  */
 function hidePopin(popinDivId) {
@@ -87,15 +92,36 @@ function hidePopin(popinDivId) {
 	if (popinIndex > 0) {
 		openedPopins.splice(popinIndex, 1)
 	}
-	
-	var backgroundDiv = document.getElementById("popinGrayBackDiv");
-	if (backgroundDiv) {
-		backgroundDiv.style.display = 'none';
-	}		
 
-	var popinDiv = document.getElementById(popinDivId);
-	if (popinDiv) {
-		popinDiv.style.display = 'none';
+	var popinDivs = getPopinDivs(popinDivId);
+
+	if (popinDivs.mainDiv && popinDivs.greyBackDiv && popinDivs.contentDiv) {
+		popinDivs.mainDiv.style.display = 'none';
 	}
+	
+}
 
+/**
+ * Recherche les 3 divs principaux composant une popin et les retourne dans une structure.
+ * @param popinDivId : id de la popin donc on recherche les div.
+ * @returns : structure référençant les 3 div.
+ */
+function getPopinDivs(popinDivId) {
+
+	var popinDivs = {};
+	
+	popinDivs.mainDiv = document.getElementById(popinDivId);
+	var elements =  popinDivs.mainDiv.childNodes;
+	
+	for (var i = 0; i < elements.length; i++) {
+		if (elements[i].tagName && elements[i].tagName.toUpperCase() === "DIV") {
+			if (elements[i].className === "popin_gray_back") {
+				popinDivs.greyBackDiv = elements[i];			
+			} else {
+				popinDivs.contentDiv = elements[i];
+			}
+		}
+	}
+	
+	return popinDivs;
 }
