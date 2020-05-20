@@ -16,14 +16,92 @@ class BoardOpponentZone extends CardsZoneScrollableBoard {
 
 	addSpecificCardElements(domCard) {
 		this.addDamage(domCard);
+		this.addStatus(domCard);
 	}
 	
 	applySpecificCardProperties(domCard) {
 		this.showActivatedState(domCard);
 		this.showUsedState(domCard);
 		this.showDamage(domCard);
+		this.showStatusHidden(domCard);
+		this.showStatusStuned(domCard);
+		this.showStatusRenforced(domCard);
+		//PENSE BETE
+		//console.log(domCard.cardImg.getBoundingClientRect());
 	}	
-	
+
+	addStatus(domCard){
+		//div de dmg
+		var divStatusArea = document.createElement("div");
+		divStatusArea.id = "divstatusOppArea_" + domCard.getId();
+		divStatusArea.classList.add('statusArea');
+		domCard.divBackImg.appendChild(divStatusArea);
+
+		// status background
+		var divStatus = document.createElement("div");
+		divStatus.id = "divOpponentStatus_" + domCard.getId();
+		divStatus.classList.add("divStatus");
+		divStatusArea.appendChild(divStatus);
+
+		//manage hidden
+		var imgHidden = document.createElement("img");
+		imgHidden.id = "imgHiddenOpp_" +  domCard.getId();
+		imgHidden.classList.add("imgHidden");
+		imgHidden.title = HIDDEN;
+		divStatusArea.appendChild(imgHidden);
+
+		//manage stuned
+		var imgStuned = document.createElement("img");
+		imgStuned.id = "imgStunedOpp_" +  domCard.getId();
+		imgStuned.classList.add("imgStuned");
+		imgStuned.title = STUNED;
+		divStatusArea.appendChild(imgStuned);
+
+		//manage renforced
+		var imgRenforced = document.createElement("img");
+		imgRenforced.id = "imgRenforcedOpp_" +  domCard.getId();
+		imgRenforced.classList.add("imgRenforced");
+		imgRenforced.title = RENFORCED;
+		divStatusArea.appendChild(imgRenforced);
+	}
+
+	showStatusHidden(domCard){
+
+			var e = document.getElementById("imgHiddenOpp_" +  domCard.getId());
+			//manage hidden
+			if (domCard.getStatus().hidden) {
+				e.style.display="block";
+			}else{
+				e.style.display="none";
+			}
+
+
+	}
+
+	showStatusRenforced(domCard){
+
+		var e = document.getElementById("imgRenforcedOpp_" +  domCard.getId());
+		//manage hidden
+		if (domCard.getStatus().reinforced) {
+			e.style.display="block";
+		}else{
+			e.style.display="none";
+		}
+
+	}
+
+	showStatusStuned(domCard){
+
+		var e = document.getElementById("imgStunedOpp_" +  domCard.getId());
+		//manage hidden
+		if (domCard.getStatus().stuned) {
+			e.style.display="block";
+		}else{
+			e.style.display="none";
+		}
+
+	}
+
 	addDamage(domCard) {
 
 		//div de dmg
@@ -37,7 +115,6 @@ class BoardOpponentZone extends CardsZoneScrollableBoard {
 		divDamage.id = "divOpponentDammage_" + domCard.getId();
 		divDamage.classList.add("divDmg");
 		divDmgArea.appendChild(divDamage);
-		this.showDamage(domCard);
 
 	}
 	

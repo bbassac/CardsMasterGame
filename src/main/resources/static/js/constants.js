@@ -22,6 +22,9 @@ const CARD_DRAW_MODES_BOARD = 2;
 
 //Titles
 const PICK_A_CARD = "Piocher une carte";
+const HIDDEN = "Camouflé";
+const STUNED = "Immobilisé";
+const RENFORCED="Bonus Environnement actif";
 
 //Menus
 const MOVE_TO_BOARD = "&uArr; Déplacer sur le plateau";
