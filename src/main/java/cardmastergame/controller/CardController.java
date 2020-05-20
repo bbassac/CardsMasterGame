@@ -108,4 +108,36 @@ public class CardController extends AbstractController{
         return customRepo.getUsedOnCard(playerId,cardId);
     }
 
+    @CrossOrigin
+    @RequestMapping(path = "/player/{playerId}/board/{cardId}/hidden/{value}",method = RequestMethod.PUT)
+    @ResponseBody
+    @ApiOperation(value = "Change status of card : hidden = true ",response = boolean.class)
+    public boolean updateHiddendOnCard(
+            @ApiParam(value = "Player Id ", allowableValues ="0,1",required = true)
+            @PathVariable("playerId") int playerId,
+
+            @ApiParam(value = "Card Id ", type = "int", required = true)
+            @PathVariable("cardId") int cardId,
+
+            @ApiParam(value = "value ", type = "boolean", required = true)
+            @PathVariable("value") boolean value){
+        return customRepo.updateHiddendOnCard(playerId,cardId,value);
+    }
+
+    @CrossOrigin
+    @RequestMapping(path = "/player/{playerId}/board/{cardId}/stuned/{value}",method = RequestMethod.PUT)
+    @ResponseBody
+    @ApiOperation(value = "Change status of card : stuned = true ",response = boolean.class)
+    public boolean updateStunedOnCard(
+            @ApiParam(value = "Player Id ", allowableValues ="0,1",required = true)
+            @PathVariable("playerId") int playerId,
+
+            @ApiParam(value = "Card Id ", type = "int", required = true)
+            @PathVariable("cardId") int cardId,
+
+            @ApiParam(value = "value ", type = "boolean", required = true)
+            @PathVariable("value") boolean value){
+        return customRepo.updateStunedOnCard(playerId,cardId,value);
+    }
+
 }

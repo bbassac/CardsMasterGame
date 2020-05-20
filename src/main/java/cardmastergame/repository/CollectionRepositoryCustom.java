@@ -63,4 +63,8 @@ public interface CollectionRepositoryCustom {
     boolean updateActivatedOnEquipmentCard(int playerId, int cardId, boolean value);
 
     boolean updateUsedOnEquipmentCard(int playerId, int cardId, boolean value);
+
+    boolean updateHiddendOnCard(int playerId, int cardId, boolean value);
+
+    boolean updateStunedOnCard(int playerId, int cardId, boolean value);
 }

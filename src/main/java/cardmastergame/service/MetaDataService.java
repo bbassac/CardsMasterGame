@@ -19,13 +19,13 @@ class MetaDataService {
 
     private HashMap<String, MetaData> jsCards;
 
-    MetaDataService(final String jsonFileName) {
+    public MetaDataService(final String jsonFileName) {
         String prop = FileUtils.getCurrentJarStaticPath();
         File path = new File(prop + "\\json");
         for (File file : path.listFiles()) {
             if ((file.isFile()) && (jsonFileName.equals(file.getName()))) {
                 LogUtils.warn("json trouve");
-                this.jsCards = extractJsCards2(file);
+                this.jsCards = extractJsCards(file);
                 break;
             }
         }
@@ -73,7 +73,7 @@ class MetaDataService {
     }
 
 
-    private HashMap<String, MetaData> extractJsCards2(File jsonFile) {
+    private HashMap<String, MetaData> extractJsCards(File jsonFile) {
         HashMap<String, MetaData> toReturn = new HashMap<String, MetaData>();
 
         JSONParser jsonParser = new JSONParser();

@@ -65,13 +65,13 @@ public class CardService {
 
         int nbCards1 = loadStack(environnments, BACK_SELECT);
         LogUtils.warn("Loaded " + nbCards1 + " environement");
+        int nbCards4 = selectCurrentEnvironnement();
+        LogUtils.warn("1 environnement selectionné ");
         int nbCards2 = loadStack(invocations, BACK_SELECT_3);
         LogUtils.warn("Loaded " + nbCards2 + " invocations");
         int nbCards3 = loadStack(pioche[0], BACK_DRAW);
         loadStack(pioche[1], BACK_DRAW);
         LogUtils.warn("Loaded " + nbCards3 + " pioches");
-        int nbCards4 = selectCurrentEnvironnement();
-        LogUtils.warn("1 environnement selectionné ");
         return nbCards1+nbCards2+nbCards3+nbCards4;
     }
 
@@ -98,8 +98,7 @@ public class CardService {
     private int loadStack(Deck<Card> stack, String folder) {
         String prop = FileUtils.getCurrentJarImgPath();
         File path = new File(prop + folder);
-        File[] listOfFiles = path.listFiles();
-        for (File listOfFile : listOfFiles) {
+        for (File listOfFile : path.listFiles()) {
             if (listOfFile.isFile()) {
                 lastIndex++;
                 Card c = new Card();
@@ -111,8 +110,18 @@ public class CardService {
         }
         
         metaDataService.update(stack);
-        
-        return listOfFiles.length;
+        if (folder.equals(BACK_DRAW)) {
+            updateReinforced(stack);
+        }
+        return path.listFiles().length;
+    }
+
+    private void updateReinforced(Deck<Card> stack) {
+        for (Card c : stack){
+            if (c.getMetaData().getChakra().equals(currentEnvironnement.get(0).getMetaData().getChakra())){
+                c.getStatus().setReinforced(true);
+            }
+        }
     }
 
     private Card findCardInStackById(Deck<Card> stack ,String deckName, int cardId) {
@@ -308,6 +317,16 @@ public class CardService {
 
     public boolean updateUsedOnEquipmentCard(int playerId, int cardId, boolean value) {
         findCardInStackById(equipment[playerId],"equipement joueur " + playerId,cardId).getStatus().setUsed(value);
+        return value;
+    }
+
+    public boolean updateHiddendOnCard(int playerId, int cardId, boolean value) {
+        findCardInStackById(plateaux[playerId],"plateau joueur " + playerId,cardId).getStatus().setHidden(value);
+        return value;
+    }
+
+    public boolean updateStunedOnCard(int playerId, int cardId, boolean value) {
+        findCardInStackById(plateaux[playerId],"plateau joueur " + playerId,cardId).getStatus().setStuned(value);
         return value;
     }
 }

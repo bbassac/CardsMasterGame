@@ -186,5 +186,15 @@ public class CollectionRepositoryImpl implements CollectionRepositoryCustom {
         return cardService.updateUsedOnEquipmentCard(playerId,cardId,value);
     }
 
+    @Override
+    public boolean updateHiddendOnCard(int playerId, int cardId, boolean value) {
+        return cardService.updateHiddendOnCard(playerId,cardId,value);
+    }
+
+    @Override
+    public boolean updateStunedOnCard(int playerId, int cardId, boolean value) {
+        return cardService.updateStunedOnCard(playerId,cardId,value);
+    }
+
 
 }
