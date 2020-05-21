@@ -26,6 +26,7 @@ const HIDDEN = "Camouflé";
 const STUNED = "Immobilisé";
 const RENFORCED="Bonus Environnement actif";
 
+
 //Menus
 const MOVE_TO_BOARD = "&uArr; Déplacer sur le plateau";
 const MOVE_TO_TRAP = "&rArr; Déplacer vers les pièges";
@@ -33,9 +34,15 @@ const MOVE_TO_EQUIPMENT = "&dArr; Déplacer vers les équipements";
 const MOVE_TO_GRAVEYARD = "&#9760; Déplacer vers le cimetière";
 const MOVE_TO_HAND = "Déplacer vers la main";
 const ACTIVATE = "&#8631; Activer la carte";
-const RE_ACTIVATE= "&#8634; Redresser la carte"
+const RE_ACTIVATE= "&#8634; Redresser la carte";
 const USE = "% Déclencher pouvoir";
 const RESET_USE = "% Reset pouvoir";
+const SET_STUNED = "Immobiliser";
+const RESET_STUNED = "Libérer";
+const SET_HIDDEN = "Camoufler";
+const RESET_HIDDEN = "Rendre visible";
+
+
 
 //ERROR
 const ERROR_EQUIPMENT = "Déplacement interdit car la carte n'est pas un équipement";

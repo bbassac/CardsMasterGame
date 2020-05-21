@@ -18,12 +18,18 @@ class BoardPlayerZone extends CardsZoneScrollableBoard {
 	addSpecificCardElements(domCard) {
 		
 		this.addDamageButtons(domCard);
+		this.addStatus(domCard);
 		
 	    var activatedText = domCard.getStatus().activated ? RE_ACTIVATE : ACTIVATE;
 	    var usedText = domCard.getStatus().used ? RESET_USE : USE;
+	    var hiddenText= domCard.getStatus().hidden ? RESET_HIDDEN : SET_HIDDEN ;
+		var stunedText = domCard.getStatus().stuned ? RESET_STUNED : SET_STUNED;
+
 	    var menu = [
 	        { text: activatedText, action: (function(domCard, menuItem) { this.flipCard(domCard, menuItem); }).bind(this, domCard) },
-	        { text: usedText, action: (function(domCard, menuItem) { this.useCard(domCard, menuItem); }).bind(this, domCard) }
+	        { text: usedText, action: (function(domCard, menuItem) { this.useCard(domCard, menuItem); }).bind(this, domCard) },
+			{ text: hiddenText, action: (function(domCard, menuItem) { this.setHidden(domCard, menuItem); }).bind(this, domCard) },
+			{ text: stunedText, action: (function(domCard, menuItem) { this.setStuned(domCard, menuItem); }).bind(this, domCard) }
 	    ];
 	
 	    domCard.addMenu(menu);
@@ -34,6 +40,9 @@ class BoardPlayerZone extends CardsZoneScrollableBoard {
 		this.showActivatedState(domCard);
 		this.showUsedState(domCard);
 		this.showDamage(domCard);
+		this.showStatusHidden(domCard);
+		this.showStatusStuned(domCard);
+		this.showStatusRenforced(domCard);
 	}
 
 	allowDrop(fromZoneId, toZoneId, domCard) {
@@ -47,6 +56,78 @@ class BoardPlayerZone extends CardsZoneScrollableBoard {
 	
 	drop(fromZoneId, toZoneId, domCard) {
 		this.moveCardFromHandToBoardPlayer(domCard);
+	}
+
+	addStatus(domCard){
+		//div de dmg
+		var divStatusArea = document.createElement("div");
+		divStatusArea.id = "divstatusOppArea_" + domCard.getId();
+		divStatusArea.classList.add('statusArea');
+		domCard.divBackImg.appendChild(divStatusArea);
+
+		// status background
+		var divStatus = document.createElement("div");
+		divStatus.id = "divOpponentStatus_" + domCard.getId();
+		divStatus.classList.add("divStatusPlayer");
+		divStatusArea.appendChild(divStatus);
+
+		//manage hidden
+		var imgHidden = document.createElement("img");
+		imgHidden.id = "imgHiddenOpp_" +  domCard.getId();
+		imgHidden.classList.add("imgHiddenPlayer");
+		imgHidden.title = HIDDEN;
+		divStatusArea.appendChild(imgHidden);
+
+		//manage stuned
+		var imgStuned = document.createElement("img");
+		imgStuned.id = "imgStunedOpp_" +  domCard.getId();
+		imgStuned.classList.add("imgStunedPlayer");
+		imgStuned.title = STUNED;
+		divStatusArea.appendChild(imgStuned);
+
+		//manage renforced
+		var imgRenforced = document.createElement("img");
+		imgRenforced.id = "imgRenforcedOpp_" +  domCard.getId();
+		imgRenforced.classList.add("imgRenforcedPlayer");
+		imgRenforced.title = RENFORCED;
+		divStatusArea.appendChild(imgRenforced);
+	}
+
+	showStatusHidden(domCard){
+
+		var e = document.getElementById("imgHiddenOpp_" +  domCard.getId());
+		//manage hidden
+		if (domCard.getStatus().hidden) {
+			e.style.display="block";
+		}else{
+			e.style.display="none";
+		}
+
+
+	}
+
+	showStatusRenforced(domCard){
+
+		var e = document.getElementById("imgRenforcedOpp_" +  domCard.getId());
+		//manage hidden
+		if (domCard.getStatus().reinforced) {
+			e.style.display="block";
+		}else{
+			e.style.display="none";
+		}
+
+	}
+
+	showStatusStuned(domCard){
+
+		var e = document.getElementById("imgStunedOpp_" +  domCard.getId());
+		//manage hidden
+		if (domCard.getStatus().stuned) {
+			e.style.display="block";
+		}else{
+			e.style.display="none";
+		}
+
 	}
 	
 	addDamageButtons(domCard) {
@@ -116,6 +197,32 @@ class BoardPlayerZone extends CardsZoneScrollableBoard {
 	    domCard.setMenuItemText(menuItem, activated ? RE_ACTIVATE : ACTIVATE); 
 	    
 	    this.fill(currentPlayerId);
+	}
+
+	setHidden(domCard,menuItem){
+		var hidden = ! domCard.getStatus().hidden;
+
+		var xhttp = new XMLHttpRequest();
+		xhttp.open("PUT", "player/"+currentPlayerId+"/board/"+domCard.getId()+"/hidden/"+hidden, false);
+		xhttp.setRequestHeader("Content-type", "application/json");
+		xhttp.send();
+
+		domCard.setMenuItemText(menuItem, hidden ? RESET_HIDDEN : SET_HIDDEN );
+
+		this.fill(currentPlayerId);
+	}
+
+	setStuned(domCard,menuItem){
+		var stuned = ! domCard.getStatus().stuned;
+
+		var xhttp = new XMLHttpRequest();
+		xhttp.open("PUT", "player/"+currentPlayerId+"/board/"+domCard.getId()+"/stuned/"+stuned, false);
+		xhttp.setRequestHeader("Content-type", "application/json");
+		xhttp.send();
+
+		domCard.setMenuItemText(menuItem, stuned ? RESET_STUNED : SET_STUNED );
+
+		this.fill(currentPlayerId);
 	}
 	
 	showActivatedState(domCard) {

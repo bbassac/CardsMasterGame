@@ -40,27 +40,27 @@ class BoardOpponentZone extends CardsZoneScrollableBoard {
 		// status background
 		var divStatus = document.createElement("div");
 		divStatus.id = "divOpponentStatus_" + domCard.getId();
-		divStatus.classList.add("divStatus");
+		divStatus.classList.add("divStatusOpponent");
 		divStatusArea.appendChild(divStatus);
 
 		//manage hidden
 		var imgHidden = document.createElement("img");
 		imgHidden.id = "imgHiddenOpp_" +  domCard.getId();
-		imgHidden.classList.add("imgHidden");
+		imgHidden.classList.add("imgHiddenOpponent");
 		imgHidden.title = HIDDEN;
 		divStatusArea.appendChild(imgHidden);
 
 		//manage stuned
 		var imgStuned = document.createElement("img");
 		imgStuned.id = "imgStunedOpp_" +  domCard.getId();
-		imgStuned.classList.add("imgStuned");
+		imgStuned.classList.add("imgStunedOpponent");
 		imgStuned.title = STUNED;
 		divStatusArea.appendChild(imgStuned);
 
 		//manage renforced
 		var imgRenforced = document.createElement("img");
 		imgRenforced.id = "imgRenforcedOpp_" +  domCard.getId();
-		imgRenforced.classList.add("imgRenforced");
+		imgRenforced.classList.add("imgRenforcedOpponent");
 		imgRenforced.title = RENFORCED;
 		divStatusArea.appendChild(imgRenforced);
 	}
