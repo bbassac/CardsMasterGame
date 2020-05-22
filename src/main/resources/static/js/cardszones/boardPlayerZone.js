@@ -61,7 +61,7 @@ class BoardPlayerZone extends CardsZoneScrollableBoard {
 	addStatus(domCard){
 		//div de dmg
 		var divStatusArea = document.createElement("div");
-		divStatusArea.id = "divstatusOppArea_" + domCard.getId();
+		divStatusArea.id = "divstatusArea_" + domCard.getId();
 		divStatusArea.classList.add('statusArea');
 		domCard.divBackImg.appendChild(divStatusArea);
 
@@ -226,11 +226,15 @@ class BoardPlayerZone extends CardsZoneScrollableBoard {
 	}
 	
 	showActivatedState(domCard) {
-
+		var divStatus = document.getElementById("divstatusArea_" + domCard.getId());
 		if (domCard.getStatus().activated) {
 			domCard.cardImg.classList.add("activatedCard");
+			divStatus.classList.add("statusAreaTurned");
+			divStatus.classList.remove("statusArea");
 		} else {
 			domCard.cardImg.classList.remove("activatedCard");
+			divStatus.classList.remove("statusAreaTurned");
+			divStatus.classList.add("statusArea");
 		}
 	}
 
