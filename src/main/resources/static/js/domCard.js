@@ -178,18 +178,24 @@ class DomCard {
 	}
 	
 	buildMenuItem(divMenu, menuItemInfos) {
-	
-	    var menuItem = document.createElement("div");
-	    menuItem.classList.add('menuCardItem');
-	    menuItem.domCard = this;
-	    menuItem.menu = divMenu;
-	    menuItem.index = menuItemInfos.index;
-	    menuItem.setText = (function(menuItem, text) { this.setMenuItemText(menuItem, text); }).bind(this, menuItem);
-	
-	    
-	    if (menuItemInfos.text) {
-	    	menuItem.innerHTML = menuItemInfos.text;
-	    }
+
+		var menuItem = document.createElement("div");
+		menuItem.classList.add('menuCardItem');
+		menuItem.domCard = this;
+		menuItem.menu = divMenu;
+		menuItem.index = menuItemInfos.index;
+		menuItem.setText = (function (menuItem, text) {
+			this.setMenuItem(menuItem,{ text:text});
+		}).bind(this, menuItem);
+		menuItem.innerHTML = "";
+		if (menuItemInfos.icon) {
+			menuItem.innerHTML = "<img src=\"" + menuItemInfos.icon + "\">";
+			menuItem.innerHTML += "<div>" + menuItemInfos.text + "</div>";
+		} else {
+			if (menuItemInfos.text) {
+				menuItem.innerHTML = menuItemInfos.text;
+			}
+		}
 	    
 	    if (menuItemInfos.action) {
 	    	menuItem.addEventListener("click", this.clickOnMenuItem.bind(menuItem, menuItemInfos) );
@@ -197,10 +203,11 @@ class DomCard {
 	    
 		return menuItem;
 	}
-	
-	setMenuItemText(menuItem, text) {
+
+	setMenuItem(menuItem,obj) {
 		if (this.menu != null) {
-			this.menu[menuItem.index].text = text;
+			this.menu[menuItem.index].text = obj.text;
+			this.menu[menuItem.index].icon = obj.icon;
 		}
 	}
 	

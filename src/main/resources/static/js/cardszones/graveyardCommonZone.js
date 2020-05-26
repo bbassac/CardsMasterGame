@@ -25,7 +25,7 @@ class GraveyardCommonZone extends CardsZoneStack {
 		var who = this.divId == MY_GRAVEYARD_ID ? "me" : "you";
 	    
 		var menu = [
-			{ text: "Afficher le cimetière", action: (function() { this.showPopinGrave(who); }).bind(this) },
+			{ icon: IMG_GRAVEYARD, text: "Afficher le cimetière", action: (function() { this.showPopinGrave(who); }).bind(this) },
 		];
 	    domCard.addMenu(menu);
 	}
