@@ -21,7 +21,7 @@
 		        <a class="list-group-item" href="./README.html">Règles du jeu</a>
 		    </Doc>
 		    ID du joueur
-			<select id="currentPlayerId" onchange="refreshBoard()">
+			<select id="currentPlayerId" onchange="changePlayersId()">
 			    <option selected="selected" value="0">0</option>
 			    <option value="1">1</option>
 			</select>
@@ -90,6 +90,7 @@
 		
 		<!-- éléments techniques -->
 		<script src="js/constants.js"></script>
+		<script src="js/cookies.js"></script>
 		<script src="js/clock.js"></script>
 		<script src="js/domCard.js"></script>
 		<script src="js/loadfile.js"></script>

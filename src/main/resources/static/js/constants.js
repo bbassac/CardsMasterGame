@@ -73,3 +73,6 @@ const THEME_GREY = "grey";
 // Grayards
 const MY_GRAVEYARD_ID = "graveyardId";
 const OPP_GRAVEYARD_ID = "graveyardOppId";
+
+// Cookies
+const COOKIE_PLAYER_ID = "playerId";
