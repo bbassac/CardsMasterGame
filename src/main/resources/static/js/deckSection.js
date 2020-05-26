@@ -71,6 +71,7 @@ function refreshOpponentBoard(){
     opponentBoardPlayerZone.fill(currentPlayerId);
     opponentAffiniteZone.fill(currentPlayerId);
     graveyardOpponentZone.fill(currentPlayerId);
+    opponentEquipmenstZone.fill(currentPlayerId);
 	
     refreshLastDiceThrow();
     displayOppExtra(opponentPlayerId);

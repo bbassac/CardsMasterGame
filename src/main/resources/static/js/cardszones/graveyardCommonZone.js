@@ -1,7 +1,7 @@
 class GraveyardCommonZone extends CardsZoneStack {
 
 	constructor(graveyardId) {
-		super(graveyardId, graveyardHeight);
+		super(graveyardId, (graveyardId === MY_GRAVEYARD_ID ? graveyardHeight : oppGraveyardHeight));
 		
 		if (graveyardId == MY_GRAVEYARD_ID) {
 			this.setAsDropZone();

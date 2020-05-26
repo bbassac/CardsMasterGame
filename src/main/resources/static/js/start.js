@@ -21,6 +21,7 @@ var affiniteZone = new AffinitePlayerZone();
 var environmentZone = new EnvironmentZone();
 var opponentBoardPlayerZone = new BoardOpponentZone();
 var opponentAffiniteZone = new AffiniteOpponentZone();
+var opponentEquipmenstZone = new EquipmentsOpponentZone();
 
 
 document.addEventListener('DOMContentLoaded', function() {
