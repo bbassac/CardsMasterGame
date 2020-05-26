@@ -54,7 +54,7 @@ class EquipmentsPlayerZone extends CardsZoneScrollableBoard {
 	    xhttp.setRequestHeader("Content-type", "application/json");
 	    xhttp.send();
 	    
-	    domCard.setMenuItemText(menuItem, activated ? RE_ACTIVATE : ACTIVATE);
+	    domCard.setMenuItem(menuItem, {icon:activated ? IMG_ACTIVATE : IMG_DESACTIVATE,text:activated ? RE_ACTIVATE : ACTIVATE});
 	    
 	    this.fill(currentPlayerId);
 	}
@@ -77,7 +77,7 @@ class EquipmentsPlayerZone extends CardsZoneScrollableBoard {
 	    xhttp.setRequestHeader("Content-type", "application/json");
 	    xhttp.send();
 	    
-	    domCard.setMenuItemText(menuItem, used ? RESET_USE : USE);
+	    domCard.setMenuItem(menuItem, {text:used ? RESET_USE : USE});
 	    
 	    this.fill(currentPlayerId);
 	}

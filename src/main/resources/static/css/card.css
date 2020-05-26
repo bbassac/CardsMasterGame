@@ -9,6 +9,7 @@
  }
 
 .menuCardItem {
+    position: relative;
     white-space: nowrap;
     padding: 3px 6px;
     margin: 0;
@@ -19,6 +20,19 @@
     color: #fff;
     background-color: rgba(0, 220, 0, 1);
     line-height: 25px;
+}
+
+.menuCardItem img{
+    width:24px;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+}
+.menuCardItem div {
+    display: inline-block;
+    margin-left:27px;
+    padding:0;
 }
 
 .menuCardItem:hover {
