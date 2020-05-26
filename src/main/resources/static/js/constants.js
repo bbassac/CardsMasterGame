@@ -34,7 +34,7 @@ const IMG_FREE = "img/free.png";
 const IMG_ACTIVATE ="img/desactivated.png";
 const IMG_DESACTIVATE = "img/activated.png";
 const IMG_POWER = "img/power.png";
-
+const IMG_GRAVEYARD="img/graveyard.png";
 //Menus
 const MOVE_TO_HAND = "Déplacer vers la main";
 const ACTIVATE = "Activer la carte";
