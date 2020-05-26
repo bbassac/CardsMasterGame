@@ -7,8 +7,20 @@ function refreshByInterval() {
 }
 
 function initPlayersId() {
+	
+	currentPlayerId = initCookie(COOKIE_PLAYER_ID, 0);
+	opponentPlayerId = Math.abs(1-currentPlayerId);
+	
+	document.getElementById("currentPlayerId").value = currentPlayerId;
+}
+
+function changePlayersId() {
+	
 	currentPlayerId = document.getElementById("currentPlayerId").value;
 	opponentPlayerId = Math.abs(1-currentPlayerId);
+	
+	setCookie(COOKIE_PLAYER_ID, currentPlayerId);
+	refreshBoard();
 }
 
 function newTurn() {
@@ -41,8 +53,6 @@ function newTurn() {
 }
 
 function refreshBoard(){
-
-	initPlayersId();
 	
     fillDraw(currentPlayerId);
     fillInvocation(currentPlayerId);
