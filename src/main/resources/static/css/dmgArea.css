@@ -1,12 +1,12 @@
 .plusDmgButton{
-    top: 32px;
-    left: 3px;
+    top: 0px;
+    left: 0px;
     position: absolute;
 }
 
 .minusDmgButton{
-    top: 112px;
-    left: 3px;
+    top: 80px;
+    left: 0px;
     position: absolute;
 }
 
@@ -17,8 +17,8 @@
     height: 56px;
     text-align: center;
     position: absolute;
-    left: 3px;
-    top: 54px;
+    left: 0px;
+    top: 22px;
     background: url("../img/onglet.png") no-repeat;
     background-size: 24px 56px;
     align-content: center;
@@ -27,8 +27,35 @@
 
 .dmgArea {
     position: absolute;
-    top : 0;
-    left : 0;
+    top : 29px;
+    left : 3px;
+    padding: 0;
+    margin: 0;
+    display: block;
+}
+
+.dmgAreaTurned {
+    position: absolute;
+    top : 72px;
+    left : 3px;
+    padding: 0;
+    margin: 0;
+    display: block;
+}
+
+.dmgAreaOpponent {
+    position: absolute;
+    top : 29px;
+    left : 3px;
+    padding: 0;
+    margin: 0;
+    display: block;
+}
+
+.dmgAreaOpponentTurned {
+    position: absolute;
+    top : 72px;
+    left : 3px;
     padding: 0;
     margin: 0;
     display: block;

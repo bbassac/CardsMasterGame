@@ -228,15 +228,22 @@ class BoardPlayerZone extends CardsZoneScrollableBoard {
 	}
 	
 	showActivatedState(domCard) {
+		
 		var divStatus = document.getElementById("divstatusArea_" + domCard.getId());
+		var divDamage = document.getElementById("divDmgArea_" + domCard.getId());
+		
 		if (domCard.getStatus().activated) {
 			domCard.cardImg.classList.add("activatedCard");
 			divStatus.classList.add("statusAreaTurned");
 			divStatus.classList.remove("statusArea");
+			divDamage.classList.add("dmgAreaTurned");
+			divDamage.classList.remove("dmgArea");
 		} else {
 			domCard.cardImg.classList.remove("activatedCard");
 			divStatus.classList.remove("statusAreaTurned");
 			divStatus.classList.add("statusArea");
+			divDamage.classList.remove("dmgAreaTurned");
+			divDamage.classList.add("dmgArea");
 		}
 	}
 

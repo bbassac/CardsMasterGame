@@ -42,7 +42,6 @@ AffinityOpp {
     background-color: #ff000055;
     border: 1px solid black;
     display: flex;
-    overflow-x: auto;
 }
 
 BoardOpp {
@@ -77,8 +76,6 @@ BoardPlayer {
     background-color: rgba(138, 241, 156, 0.753);
     border: 1px solid black;
     display: flex;
-    overflow-x: auto;
-
 }
 
 boardplayer > div {
@@ -118,7 +115,6 @@ Hand {
     background-color: #6596EBb3;
     border: 1px solid black;
     display: flex;
-    overflow-x: auto;
 }
 
 
@@ -150,7 +146,6 @@ Equipments {
     border: 1px solid black;
     background-color: rgba(166, 172, 167, 0.753);
     display: flex;
-    overflow-x: auto;
 }
 
 
@@ -183,7 +178,4 @@ Traps {
     border: 1px solid black;
     background-color: #6596EBb3;
     display: flex;
-    text-align: right;
-    position: relative;
-    overflow-x: auto;
 }

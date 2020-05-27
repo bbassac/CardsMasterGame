@@ -67,14 +67,13 @@ class BoardOpponentZone extends CardsZoneScrollableBoard {
 
 	showStatusHidden(domCard){
 
-			var e = document.getElementById("imgHiddenOpp_" +  domCard.getId());
-			//manage hidden
-			if (domCard.getStatus().hidden) {
-				e.style.display="block";
-			}else{
-				e.style.display="none";
-			}
-
+		var e = document.getElementById("imgHiddenOpp_" +  domCard.getId());
+		//manage hidden
+		if (domCard.getStatus().hidden) {
+			e.style.display="block";
+		}else{
+			e.style.display="none";
+		}
 
 	}
 
@@ -119,15 +118,22 @@ class BoardOpponentZone extends CardsZoneScrollableBoard {
 	}
 	
 	showActivatedState(domCard) {
+		
 		var divStatus = document.getElementById("divstatusOppArea_" + domCard.getId());
+		var divDamage = document.getElementById("divDmgOppArea_" + domCard.getId());
+		
 		if (domCard.getStatus().activated) {
 			domCard.cardImg.classList.add("activatedCard");
 			divStatus.classList.add("statusAreaOpponentTurned");
 			divStatus.classList.remove("statusAreaOpponent");
+			divDamage.classList.add("dmgAreaOpponentTurned");
+			divDamage.classList.remove("dmgAreaOpponent");
 		} else {
 			domCard.cardImg.classList.remove("activatedCard");
 			divStatus.classList.remove("statusAreaOpponentTurned");
 			divStatus.classList.add("statusAreaOpponent");
+			divDamage.classList.remove("dmgAreaOpponentTurned");
+			divDamage.classList.add("dmgOpponentArea");
 		}
 	}
 
