@@ -135,7 +135,7 @@ class DomCard {
 		this.cardImg.oncontextmenu = (function() { return this.showCardMenu(); }).bind(this);
 		
 		// suppression du menu contextuel lors de la sortie de la souris de l'image
-		this.divCard.mouseLeaveEventTarget = (function() { this.deleteCardMenu(); }).bind(this);
+		//this.divCard.mouseLeaveEventTarget = (function() { this.deleteCardMenu(); }).bind(this);
 		this.divCard.addEventListener('mouseleave',  this.divCard.mouseLeaveEventTarget);
 	}
 	 
@@ -147,25 +147,38 @@ class DomCard {
 				this.deleteCardMenu();
 			}
 			
-			var menuTop = "0px";
-			var menuLeft = "0px";
+			var menuTop = (this.getWindowTop() + 1) + "px";
+			var menuLeft = (this.getWindowLeft() + 1) + "px";
+			
+			// back menu, utilisé pour définir la zone pour laquelle la sortie du curseur de la souris
+			// provoque la fermeture du menu
+			this.divBackMenu = document.createElement("div");
+			this.divBackMenu.style.top = menuTop;
+			this.divBackMenu.style.left = menuLeft;
+			this.divBackMenu.style.width = this.cardImg.offsetWidth + "px";
+			this.divBackMenu.style.height = this.cardImg.offsetHeight + "px";
+			this.divBackMenu.style.position = "absolute";
+			this.divBackMenu.style.zIndex= "50";
+			document.body.appendChild(this.divBackMenu);
 			
 			// menu
 			this.divMenu = document.createElement("div");
 			this.divMenu.id = "divMenu_" + this.id;
 			this.divMenu.classList.add('menuCardDiv');
-			this.divMenu.style.top = menuTop;
-			this.divMenu.style.left = menuLeft;
-		    this.divBackImg.appendChild(this.divMenu);
-		    
+			this.divMenu.style.top = "0px";
+			this.divMenu.style.left = "0px";
+			this.divBackMenu.appendChild(this.divMenu);
+		    this.divMenu.style.display = 'block';
+
 		    var menuItemIdex = 0;
 		    this.menu.forEach ((function(menuItemInfos) {
 		    	menuItemInfos.index = menuItemIdex++;
 				this.divMenu.appendChild(this.buildMenuItem(this.divMenu, menuItemInfos));
 			}).bind(this));
 
-		    this.divMenu.style.display = 'block';
-			this.divMenu.style.zIndex = 10;
+		    // Traitement des évènements de sortie du curseur de la souris
+		    this.divBackMenu.addEventListener("mouseleave", (function() { this.deleteCardMenu(); }).bind(this));
+		    this.divMenu.addEventListener("mouseleave", (function() { this.deleteCardMenu(); }).bind(this));
 		}
 		
 		return false;
@@ -174,7 +187,7 @@ class DomCard {
 	deleteCardMenu() {
 		
 		if (this.divMenu != null) {
-			this.divBackImg.removeChild(this.divMenu);
+			document.body.removeChild(this.divBackMenu);
 			this.divMenu = null;
 		}
 	}
@@ -202,7 +215,7 @@ class DomCard {
 	    if (menuItemInfos.action) {
 	    	menuItem.addEventListener("click", this.clickOnMenuItem.bind(menuItem, menuItemInfos) );
 	    }
-	    
+
 		return menuItem;
 	}
 
@@ -243,5 +256,17 @@ class DomCard {
 		}
 		
 		console.log("*****************************");
+	}
+	
+	getWindowLeft() {
+	    var rect = this.cardImg.getBoundingClientRect();
+	    var scrollLeft = window.pageXOffset || this.cardImg.scrollLeft;
+	    return rect.left + scrollLeft;
+	}
+	
+	getWindowTop() {
+	    var rect = this.cardImg.getBoundingClientRect();
+	    var scrollTop = window.pageYOffset || this.cardImg.scrollTop;
+	    return rect.top + scrollTop;
 	}
 }

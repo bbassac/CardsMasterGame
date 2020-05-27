@@ -53,7 +53,7 @@ class BoardPlayerZone extends CardsZoneScrollableBoard {
 		var isTrap = KIND_TRAP.localeCompare(domCard.getMetaData().kind) == 0;
 		var isFromHand = fromZoneId.localeCompare(handZone.getZoneId()) == 0; 
 		
-		return isFromHand && !isTrap; // && !isEquipment;
+		return isFromHand && !isTrap && !isEquipment;
 	}
 	
 	drop(fromZoneId, toZoneId, domCard) {

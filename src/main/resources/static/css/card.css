@@ -6,6 +6,9 @@
      margin: 0;
      background-color: rgba(0, 220, 0, 1);
      display: none;
+     overflow: visible;
+     z-index:20;
+     box-shadow: 5px 10px 10px rgba(0,0,0,.8);
  }
 
 .menuCardItem {
