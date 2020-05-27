@@ -1,4 +1,4 @@
-class EquipmentsOpponentZone extends CardsZoneBoard {
+class EquipmentsOpponentZone extends CardsZoneScrollableBoard {
 
 	constructor() {
 		super("equipmentOppId", equipmentHeight, THEME_RED);
