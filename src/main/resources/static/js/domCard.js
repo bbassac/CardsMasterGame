@@ -142,7 +142,10 @@ class DomCard {
 	showCardMenu() {
 
 		if ((this.menu != null) && (this.menu.length)) {
-			this.divMenu = null;
+			
+			if (this.divMenu != null) {
+				this.deleteCardMenu();
+			}
 			
 			var menuTop = "0px";
 			var menuLeft = "0px";
@@ -169,7 +172,6 @@ class DomCard {
 	}
 	
 	deleteCardMenu() {
-		//this.divMenu.style.display = 'none';
 		
 		if (this.divMenu != null) {
 			this.divBackImg.removeChild(this.divMenu);
