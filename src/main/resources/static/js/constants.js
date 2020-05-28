@@ -3,15 +3,17 @@
  */
  
 // hauteur d'affichage des différentes cartes
-const drawImageHeight = 150;
-const gameImageHeight = 250;
-const opponentCardHeight = 230;
-const graveyardHeight = 266;
-const trapImageHeight = 150;
-const trapIconHeight = 35;
+
+const opponentCardHeight = 281;
+const gameImageHeight = 281;
+const equipmentHeight = 281;
+const graveyardHeight = 160;
+const oppGraveyardHeight = 160;
+const drawImageHeight = 160;
+const trapImageHeight = 160;
+const envAndAffinityHeight = 160;
 const nbCardsHeight = 30;
-const envAndAffinityHeight = 174;
-const equipmentHeight = 172;
+const trapIconHeight = 35;
 
 // hauteur d'affichage des différentes icones
 const handIconSize = 30;

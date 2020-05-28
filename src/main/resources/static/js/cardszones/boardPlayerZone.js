@@ -53,7 +53,7 @@ class BoardPlayerZone extends CardsZoneScrollableBoard {
 		var isTrap = KIND_TRAP.localeCompare(domCard.getMetaData().kind) == 0;
 		var isFromHand = fromZoneId.localeCompare(handZone.getZoneId()) == 0; 
 		
-		return isFromHand && !isTrap; // && !isEquipment;
+		return isFromHand && !isTrap && !isEquipment;
 	}
 	
 	drop(fromZoneId, toZoneId, domCard) {
@@ -61,38 +61,32 @@ class BoardPlayerZone extends CardsZoneScrollableBoard {
 	}
 
 	addStatus(domCard){
-		//div de dmg
-		var divStatusArea = document.createElement("div");
-		divStatusArea.id = "divstatusArea_" + domCard.getId();
-		divStatusArea.classList.add('statusArea');
-		domCard.divBackImg.appendChild(divStatusArea);
 
-		// status background
 		var divStatus = document.createElement("div");
-		divStatus.id = "divOpponentStatus_" + domCard.getId();
+		divStatus.id = "divstatusArea_" + domCard.getId();
 		divStatus.classList.add("divStatusPlayer");
-		divStatusArea.appendChild(divStatus);
-
+		domCard.divBackImg.appendChild(divStatus);
+		
 		//manage hidden
 		var imgHidden = document.createElement("img");
 		imgHidden.id = "imgHiddenOpp_" +  domCard.getId();
 		imgHidden.classList.add("imgHiddenPlayer");
 		imgHidden.title = HIDDEN;
-		divStatusArea.appendChild(imgHidden);
+		divStatus.appendChild(imgHidden);
 
 		//manage stuned
 		var imgStuned = document.createElement("img");
 		imgStuned.id = "imgStunedOpp_" +  domCard.getId();
 		imgStuned.classList.add("imgStunedPlayer");
 		imgStuned.title = STUNED;
-		divStatusArea.appendChild(imgStuned);
+		divStatus.appendChild(imgStuned);
 
 		//manage renforced
 		var imgRenforced = document.createElement("img");
 		imgRenforced.id = "imgRenforcedOpp_" +  domCard.getId();
 		imgRenforced.classList.add("imgRenforcedPlayer");
 		imgRenforced.title = RENFORCED;
-		divStatusArea.appendChild(imgRenforced);
+		divStatus.appendChild(imgRenforced);
 	}
 
 	showStatusHidden(domCard){
@@ -228,15 +222,18 @@ class BoardPlayerZone extends CardsZoneScrollableBoard {
 	}
 	
 	showActivatedState(domCard) {
+		
 		var divStatus = document.getElementById("divstatusArea_" + domCard.getId());
+		var divDamage = document.getElementById("divDmgArea_" + domCard.getId());
+		
 		if (domCard.getStatus().activated) {
 			domCard.cardImg.classList.add("activatedCard");
 			divStatus.classList.add("statusAreaTurned");
-			divStatus.classList.remove("statusArea");
+			divDamage.classList.add("dmgAreaTurned");
 		} else {
 			domCard.cardImg.classList.remove("activatedCard");
 			divStatus.classList.remove("statusAreaTurned");
-			divStatus.classList.add("statusArea");
+			divDamage.classList.remove("dmgAreaTurned");
 		}
 	}
 

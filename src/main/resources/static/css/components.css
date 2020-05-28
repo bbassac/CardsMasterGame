@@ -13,12 +13,12 @@ Hand>div {
 }
 
 .imgDraw {
-    margin-left: 5px;
+    margin: auto;
     margin-top: 2px;
 }
 
 .imgInvocation {
-    margin-left: 5px;
+    margin: auto;
     margin-top: 2px;
 }
 
@@ -58,7 +58,7 @@ Hand>div {
 }
 
 #extraPlayerId {
-    margin-top: 20px;
+    margin-top: 0px;
 }
 
 #extraOppId {
@@ -86,7 +86,7 @@ Hand>div {
     border: 0;
     height: 40px;
     padding: 0 6px;
-    margin-top: 35px;
+    margin-top: 5px;
     margin-left: 15px;
     font-size: 1rem;
     text-align: center;
@@ -96,6 +96,9 @@ Hand>div {
     background-color: rgba(0, 220, 0, 1);
     background-image: linear-gradient(to top left, rgba(0, 0, 0, .2), rgba(0, 0, 0, .2) 30%, rgba(0, 0, 0, 0));
     box-shadow: inset 2px 2px 3px rgba(255, 255, 255, .6), inset -2px -2px 3px rgba(0, 0, 0, .6);
+    position: relative;
+    top: -110px;
+    left: 170px;
 }
 
 .newTurnButton:hover {
@@ -115,6 +118,6 @@ Hand>div {
 }
 
 #affiniteOppId {
-    position: relative;
+    
     display: flex;
 }
