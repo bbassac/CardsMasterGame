@@ -1,5 +1,10 @@
 @charset "ISO-8859-1";
 
+.backMenuCardDiv {
+	position: absolute;
+	z-index: 50;	
+}
+
 .menuCardDiv {
      position: absolute;
      padding: 0;

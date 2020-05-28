@@ -143,7 +143,7 @@ class DomCard {
 
 		if ((this.menu != null) && (this.menu.length)) {
 			
-			if (this.divMenu != null) {
+			if (this.divBackMenu != null) {
 				this.deleteCardMenu();
 			}
 			
@@ -152,13 +152,14 @@ class DomCard {
 			
 			// back menu, utilisé pour définir la zone pour laquelle la sortie du curseur de la souris
 			// provoque la fermeture du menu
+			var r = this.cardImg.getBoundingClientRect();
 			this.divBackMenu = document.createElement("div");
+			this.divBackMenu.classList.add("backMenuCardDiv");
 			this.divBackMenu.style.top = menuTop;
 			this.divBackMenu.style.left = menuLeft;
-			this.divBackMenu.style.width = this.cardImg.offsetWidth + "px";
-			this.divBackMenu.style.height = this.cardImg.offsetHeight + "px";
-			this.divBackMenu.style.position = "absolute";
-			this.divBackMenu.style.zIndex= "50";
+			this.divBackMenu.style.width = r.width + "px";
+			this.divBackMenu.style.height = r.height + "px";
+			this.divBackMenu.oncontextmenu = (function() { return false; }).bind(this);
 			document.body.appendChild(this.divBackMenu);
 			
 			// menu
@@ -167,8 +168,8 @@ class DomCard {
 			this.divMenu.classList.add('menuCardDiv');
 			this.divMenu.style.top = "0px";
 			this.divMenu.style.left = "0px";
-			this.divBackMenu.appendChild(this.divMenu);
 		    this.divMenu.style.display = 'block';
+			this.divBackMenu.appendChild(this.divMenu);
 
 		    var menuItemIdex = 0;
 		    this.menu.forEach ((function(menuItemInfos) {
@@ -178,9 +179,10 @@ class DomCard {
 
 		    // Traitement des évènements de sortie du curseur de la souris
 		    this.divBackMenu.addEventListener("mouseleave", (function() { this.deleteCardMenu(); }).bind(this));
-		    this.divMenu.addEventListener("mouseleave", (function() { this.deleteCardMenu(); }).bind(this));
+		    //this.divMenu.addEventListener("mouseleave", (function() { this.deleteCardMenu(); }).bind(this));
 		}
 		
+		// doit être retourné pour interdire l'affichage du menu contextuel normal du navigateur
 		return false;
 	}
 	
@@ -188,6 +190,7 @@ class DomCard {
 		
 		if (this.divMenu != null) {
 			document.body.removeChild(this.divBackMenu);
+			this.divBackMenu = null;
 			this.divMenu = null;
 		}
 	}
@@ -213,7 +216,7 @@ class DomCard {
 		}
 	    
 	    if (menuItemInfos.action) {
-	    	menuItem.addEventListener("click", this.clickOnMenuItem.bind(menuItem, menuItemInfos) );
+	    	menuItem.addEventListener("click", (function(menuItem, menuItemInfos) { this.clickOnMenuItem(menuItem, menuItemInfos); }).bind(this, menuItem, menuItemInfos) );
 	    }
 
 		return menuItem;
@@ -226,14 +229,14 @@ class DomCard {
 		}
 	}
 	
-	clickOnMenuItem(menuItemInfos) {
+	clickOnMenuItem(menuItem, menuItemInfos) {
 	
 		
 		// supprime le menu contextuel
-		this.menu.style.display = "none";
+		this.deleteCardMenu();
 		
 		// joue l'action associé au menu item qui a été cliqué
-		menuItemInfos.action(this);
+		menuItemInfos.action(menuItem);
 	
 	}
 	

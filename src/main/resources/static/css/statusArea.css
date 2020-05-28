@@ -1,63 +1,45 @@
 .divStatusOpponent{
     font-size: medium;
     font-weight: bold;
-    width: 59px;
-    height: 300px;
+    top : 32px;
+    left : 172px;
+    width: 28px;
+    height: 100px;
     text-align: center;
-    position: absolute;
     background: url(../img/onglet-droit.png) no-repeat;
     background-size: 26px 101px;
     align-content: center;
     display: grid;
+    padding: 0;
+    margin: 0;
+    position: absolute;;
 }
 
 .divStatusPlayer{
     font-size: medium;
     font-weight: bold;
-    width: 59px;
-    height: 300px;
+    top : 32px;
+    left : 172px;
+    width: 28px;
+    height: 100px;
     text-align: center;
-    position: absolute;
     background: url(../img/onglet-droit.png) no-repeat;
     background-size: 26px 101px;
     align-content: center;
     display: grid;
-}
-
-.statusArea {
-    position: absolute;
-    top : 32px;
-    left : 145px;
     padding: 0;
     margin: 0;
-    display: block;
+    position: absolute;
 }
-
 
 .statusAreaTurned {
-    position: absolute;
-    top : 92px;
-    left : 216px;
-    padding: 0;
-    margin: 0;
-    display: block;
+    top: 122px;
+    left: 251px;
 }
 
-.statusAreaOpponent {
-     position: absolute;
-     top : 32px;
-     left : 145px;
-     padding: 0;
-     margin: 0;
-     display: block;
- }
 .statusAreaOpponentTurned {
-    position: absolute;
-    top: 92px;
-    left: 216px;
-    padding: 0;
-    margin: 0;
-    display: block;
+    top: 122px;
+    left: 251px;
 }
 
 .imgHiddenOpponent{

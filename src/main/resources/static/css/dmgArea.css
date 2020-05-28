@@ -35,12 +35,8 @@
 }
 
 .dmgAreaTurned {
-    position: absolute;
     top : 72px;
     left : 3px;
-    padding: 0;
-    margin: 0;
-    display: block;
 }
 
 .dmgAreaOpponent {
@@ -53,10 +49,6 @@
 }
 
 .dmgAreaOpponentTurned {
-    position: absolute;
     top : 72px;
     left : 3px;
-    padding: 0;
-    margin: 0;
-    display: block;
 }

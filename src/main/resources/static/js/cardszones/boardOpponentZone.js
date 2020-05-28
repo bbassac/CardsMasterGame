@@ -31,38 +31,32 @@ class BoardOpponentZone extends CardsZoneScrollableBoard {
 	}	
 
 	addStatus(domCard){
-		//div de dmg
-		var divStatusArea = document.createElement("div");
-		divStatusArea.id = "divstatusOppArea_" + domCard.getId();
-		divStatusArea.classList.add('statusAreaOpponent');
-		domCard.divBackImg.appendChild(divStatusArea);
-
-		// status background
+		
 		var divStatus = document.createElement("div");
-		divStatus.id = "divOpponentStatus_" + domCard.getId();
+		divStatus.id = "divstatusOppArea_" + domCard.getId();
 		divStatus.classList.add("divStatusOpponent");
-		divStatusArea.appendChild(divStatus);
+		domCard.divBackImg.appendChild(divStatus);
 
 		//manage hidden
 		var imgHidden = document.createElement("img");
 		imgHidden.id = "imgHiddenOpp_" +  domCard.getId();
 		imgHidden.classList.add("imgHiddenOpponent");
 		imgHidden.title = HIDDEN;
-		divStatusArea.appendChild(imgHidden);
+		divStatus.appendChild(imgHidden);
 
 		//manage stuned
 		var imgStuned = document.createElement("img");
 		imgStuned.id = "imgStunedOpp_" +  domCard.getId();
 		imgStuned.classList.add("imgStunedOpponent");
 		imgStuned.title = STUNED;
-		divStatusArea.appendChild(imgStuned);
+		divStatus.appendChild(imgStuned);
 
 		//manage renforced
 		var imgRenforced = document.createElement("img");
 		imgRenforced.id = "imgRenforcedOpp_" +  domCard.getId();
 		imgRenforced.classList.add("imgRenforcedOpponent");
 		imgRenforced.title = RENFORCED;
-		divStatusArea.appendChild(imgRenforced);
+		divStatus.appendChild(imgRenforced);
 	}
 
 	showStatusHidden(domCard){
@@ -125,15 +119,11 @@ class BoardOpponentZone extends CardsZoneScrollableBoard {
 		if (domCard.getStatus().activated) {
 			domCard.cardImg.classList.add("activatedCard");
 			divStatus.classList.add("statusAreaOpponentTurned");
-			divStatus.classList.remove("statusAreaOpponent");
 			divDamage.classList.add("dmgAreaOpponentTurned");
-			divDamage.classList.remove("dmgAreaOpponent");
 		} else {
 			domCard.cardImg.classList.remove("activatedCard");
 			divStatus.classList.remove("statusAreaOpponentTurned");
-			divStatus.classList.add("statusAreaOpponent");
 			divDamage.classList.remove("dmgAreaOpponentTurned");
-			divDamage.classList.add("dmgOpponentArea");
 		}
 	}
 
