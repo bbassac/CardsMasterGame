@@ -18,11 +18,11 @@ class EquipmentsPlayerZone extends CardsZoneScrollableBoard {
 	addSpecificCardElements(domCard) {
 		
 	    var activatedText = domCard.getStatus().activated ? RE_ACTIVATE : ACTIVATE;
-		var activatedIcon = domCard.getStatus().activated ? IMG_ACTIVATE : IMG_DESACTIVATE;
+		var activatedIcon = domCard.getStatus().activated ? document.menuImgActivate : document.menuImgDesactivate;
 	    var usedText = domCard.getStatus().used ? RESET_USE : USE;
 	    var menu = [
 	        { icon: activatedIcon,text: activatedText, action: (function(domCard, menuItem) { this.flipCard(domCard, menuItem); }).bind(this, domCard) },
-	        { icon:IMG_POWER,text: usedText, action: (function(domCard, menuItem) { this.useCard(domCard, menuItem); }).bind(this, domCard) }
+	        { icon:document.menuImgPower,text: usedText, action: (function(domCard, menuItem) { this.useCard(domCard, menuItem); }).bind(this, domCard) }
 	    ];
 	
 	    domCard.addMenu(menu);
@@ -55,7 +55,7 @@ class EquipmentsPlayerZone extends CardsZoneScrollableBoard {
 	    xhttp.setRequestHeader("Content-type", "application/json");
 	    xhttp.send();
 	    
-	    domCard.setMenuItem(menuItem, {icon:activated ? IMG_ACTIVATE : IMG_DESACTIVATE,text:activated ? RE_ACTIVATE : ACTIVATE});
+	    domCard.setMenuItem(menuItem, {icon:activated ? document.menuImgActivate : document.menuImgDesactivate,text:activated ? RE_ACTIVATE : ACTIVATE});
 	    
 	    this.fill(currentPlayerId);
 	}
@@ -78,7 +78,7 @@ class EquipmentsPlayerZone extends CardsZoneScrollableBoard {
 	    xhttp.setRequestHeader("Content-type", "application/json");
 	    xhttp.send();
 	    
-	    domCard.setMenuItem(menuItem, {icon: IMG_POWER,text:used ? RESET_USE : USE});
+	    domCard.setMenuItem(menuItem, {icon: document.menuImgPower,text:used ? RESET_USE : USE});
 	    
 	    this.fill(currentPlayerId);
 	}

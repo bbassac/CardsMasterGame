@@ -207,8 +207,10 @@ class DomCard {
 		}).bind(this, menuItem);
 		menuItem.innerHTML = "";
 		if (menuItemInfos.icon) {
-			menuItem.innerHTML = "<img src=\"" + menuItemInfos.icon + "\">";
-			menuItem.innerHTML += "<div>" + menuItemInfos.text + "</div>";
+			menuItem.appendChild(menuItemInfos.icon);
+			var txtDiv = document.createElement("div");
+			txtDiv.innerHTML = menuItemInfos.text;
+			menuItem.appendChild(txtDiv);
 		} else {
 			if (menuItemInfos.text) {
 				menuItem.innerHTML = menuItemInfos.text;

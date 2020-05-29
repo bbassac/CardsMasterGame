@@ -23,13 +23,6 @@ var opponentBoardPlayerZone = new BoardOpponentZone();
 var opponentAffiniteZone = new AffiniteOpponentZone();
 var opponentEquipmenstZone = new EquipmentsOpponentZone();
 
-
-var hidenImage = new Image();
-hidenImage.src = IMG_HIDDEN;
-var visibleImage = new Image();
-visibleImage.src = IMG_VISIBLE;
-
-
 document.addEventListener('DOMContentLoaded', function() {
     refreshBoard();
 }, false);
