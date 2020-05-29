@@ -214,4 +214,5 @@ AffinityOpp {
 	width: 10px;
 	height: 10px;
 	background: deepskyblue;
+	z-index: 2;
 }
