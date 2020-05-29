@@ -25,22 +25,15 @@
 ## Bugs / Evolutions
 
 * [ ] Ajouter des sorts de destruction d'équipement
-* [X] Introduire nouvelle ligne pour cartes équipement adverse (réorganisation du plateau finalement)
-* [X] Dimensions du menu contextuel + Look and feel
 * [ ] Gestion des cartes affinité
-* [X] Utiliser metadata pour un feedback visuel du current environnement sur les ninjas
-* [X] Utiliser les menus contextuels pour retirer des boutons d'action
-* [X] Animation activation carte piege qui s'affiche  
+* [ ] Animation activation carte piege qui s'affiche  
 * [ ] Doubler le nombre des invocations
-* [X] ajouter flag camouflé sur carte en jeu
-* [X] evol : Position du scroll à mémoriser lors de l'ajout / suppression d'une carte de la zone de scroll.
-* [X] evol : Mettre en place le drag-and-drop sur toutes les interactions entre zones (si POC ok).
 * [ ] bug : Synchronisation de la popin cimetière si le même cimetière est ouvert par les deux joueurs en même temps.
-* [X] evol : Mettre en places les services pour la zone équipement (activate, use, etc...).
 * [ ] evol : Utiliser l'espace du bas (répartir sur les autres ligne, à voir comment).
 * [ ] evol : Mettre les bordures rouge et bleue pour bien distinguer les zones player et opp.
 * [ ] evol : Styliser les zones PVs.
 * [ ] evol : Externaliser le menu de domCard (@Bruno).
+* [X] evol : Mise en cache des images de menu
 
 ## Background
 
