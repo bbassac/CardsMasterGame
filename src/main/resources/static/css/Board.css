@@ -3,7 +3,7 @@ Board {
     display: grid;
     display: -ms-grid;
     border: 1px solid black;
-    grid-template-columns: 120px 120px 120px 260px 104px 120px 348px 126px 126px 348px 126px;
+    grid-template-columns: 126px 120px 120px 254px 110px 120px 345px 126px 126px 345px 126px;
     grid-template-rows: 287px 287px 287px 190px;
     -ms-grid-columns: 120px 120px 120px 260px 104px 120px 357px 120px 120px 357px 120px;
     -ms-grid-rows: 287px 287px 287px 190px;
@@ -150,7 +150,6 @@ PvPlayer {
     display: block;
 }
 
-
 Affinite {
     grid-row: 4;
 	grid-column: 8;
@@ -163,7 +162,6 @@ Affinite {
     background-color: #6596EBb3;
     display: flex;
 }
-
 
 GraveyardOpp {
     grid-row: 4;
@@ -207,4 +205,14 @@ AffinityOpp {
 	box-shadow: 0px -6px 0 deepskyblue;
 	z-index: 3;
     display: flex;
+}
+
+#border_angle {
+	position: absolute;
+	left: 1316px;
+	top: 878px;
+	width: 10px;
+	height: 10px;
+	background: deepskyblue;
+	z-index: 2;
 }

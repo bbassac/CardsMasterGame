@@ -30,7 +30,7 @@
 * [ ] Doubler le nombre des invocations
 * [ ] bug : Synchronisation de la popin cimetière si le même cimetière est ouvert par les deux joueurs en même temps.
 * [ ] evol : Utiliser l'espace du bas (répartir sur les autres ligne, à voir comment).
-* [ ] evol : Mettre les bordures rouge et bleue pour bien distinguer les zones player et opp.
+* [X] evol : Mettre les bordures rouge et bleue pour bien distinguer les zones player et opp.
 * [ ] evol : Styliser les zones PVs.
 * [ ] evol : Externaliser le menu de domCard (@Bruno).
 * [X] evol : Mise en cache des images de menu
