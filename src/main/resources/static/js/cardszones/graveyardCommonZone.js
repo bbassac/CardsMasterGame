@@ -3,14 +3,14 @@ class GraveyardCommonZone extends CardsZoneStack {
 	constructor(graveyardId) {
 		super(graveyardId, (graveyardId === MY_GRAVEYARD_ID ? graveyardHeight : oppGraveyardHeight));
 		
-		if (graveyardId == MY_GRAVEYARD_ID) {
+		if (graveyardId === MY_GRAVEYARD_ID) {
 			this.setAsDropZone();
     	}
 	}
 
 	getCards(playerId) {
 
-		var graveyardPlayerId = (this.divId == MY_GRAVEYARD_ID) ? currentPlayerId : opponentPlayerId;
+		var graveyardPlayerId = (this.divId === MY_GRAVEYARD_ID) ? currentPlayerId : opponentPlayerId;
 
 	    var xhttp = new XMLHttpRequest();
 	    xhttp.open("GET", "player/"+graveyardPlayerId+"/graveyard", false);
@@ -22,7 +22,7 @@ class GraveyardCommonZone extends CardsZoneStack {
 
 	addSpecificCardElements(domCard) {
 
-		var who = this.divId == MY_GRAVEYARD_ID ? "me" : "you";
+		var who = this.divId === MY_GRAVEYARD_ID ? "me" : "you";
 	    
 		var menu = [
 			{ icon: document.menuImgGraveyard, text: "Afficher le cimetière", action: (function() { this.showPopinGrave(who); }).bind(this) },
@@ -57,7 +57,7 @@ class GraveyardCommonZone extends CardsZoneStack {
 	showPopinGrave(who){
 	
 	    var xhttp = new XMLHttpRequest();
-	    if(who=="me") {
+	    if(who==="me") {
 	        xhttp.open("GET", "player/" + currentPlayerId + "/graveyard", false);
 	    }else{
 	        xhttp.open("GET", "player/" + opponentPlayerId + "/graveyard", false);
@@ -71,7 +71,7 @@ class GraveyardCommonZone extends CardsZoneStack {
 	
 	putCardFromGraveyardToPlayerBoard(playerId, domCard, who) {
 	
-		if(who=="me"){
+		if(who==="me"){
 			this.addGraveyardCardToMe(playerId, domCard);
 			this.fill(playerId);
 		} else {
