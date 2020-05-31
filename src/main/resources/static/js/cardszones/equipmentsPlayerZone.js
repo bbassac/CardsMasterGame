@@ -25,7 +25,7 @@ class EquipmentsPlayerZone extends CardsZoneScrollableBoard {
 	        { icon:document.menuImgPower,text: usedText, action: (function(domCard, menuItem) { this.useCard(domCard, menuItem); }).bind(this, domCard) }
 	    ];
 	
-	    domCard.addMenu(menu);
+	    domCard.getMenu().addMenu(menu);
 	    domCard.setDraggable(true);
 	}
 	
@@ -55,7 +55,7 @@ class EquipmentsPlayerZone extends CardsZoneScrollableBoard {
 	    xhttp.setRequestHeader("Content-type", "application/json");
 	    xhttp.send();
 	    
-	    domCard.setMenuItem(menuItem, {icon:activated ? document.menuImgActivate : document.menuImgDesactivate,text:activated ? RE_ACTIVATE : ACTIVATE});
+	    domCard.getMenu().setMenuItem(menuItem, {icon:activated ? document.menuImgActivate : document.menuImgDesactivate,text:activated ? RE_ACTIVATE : ACTIVATE});
 	    
 	    this.fill(currentPlayerId);
 	}
@@ -78,7 +78,7 @@ class EquipmentsPlayerZone extends CardsZoneScrollableBoard {
 	    xhttp.setRequestHeader("Content-type", "application/json");
 	    xhttp.send();
 	    
-	    domCard.setMenuItem(menuItem, {icon: document.menuImgPower,text:used ? RESET_USE : USE});
+	    domCard.getMenu().setMenuItem(menuItem, {icon: document.menuImgPower,text:used ? RESET_USE : USE});
 	    
 	    this.fill(currentPlayerId);
 	}

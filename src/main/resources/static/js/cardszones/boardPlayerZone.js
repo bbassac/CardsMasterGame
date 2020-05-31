@@ -37,7 +37,7 @@ class BoardPlayerZone extends CardsZoneScrollableBoard {
 			{ icon: stunedIcon, text: stunedText, action: (function(domCard, menuItem) { this.setStuned(domCard, menuItem); }).bind(this, domCard) }
 	    ];
 	
-	    domCard.addMenu(menu);
+	    domCard.getMenu().addMenu(menu);
 	    domCard.setDraggable(true);
 	}
 	
@@ -193,7 +193,7 @@ class BoardPlayerZone extends CardsZoneScrollableBoard {
 	    xhttp.setRequestHeader("Content-type", "application/json");
 	    xhttp.send();
 	    
-	    domCard.setMenuItem(menuItem,  {icon:activated ? document.menuImgActivate : document.menuImgDesactivate,text:activated ? RE_ACTIVATE : ACTIVATE});
+	    domCard.getMenu().setMenuItem(menuItem,  {icon:activated ? document.menuImgActivate : document.menuImgDesactivate,text:activated ? RE_ACTIVATE : ACTIVATE});
 	    
 	    this.fill(currentPlayerId);
 	}
@@ -206,7 +206,7 @@ class BoardPlayerZone extends CardsZoneScrollableBoard {
 		xhttp.setRequestHeader("Content-type", "application/json");
 		xhttp.send();
 		var hiddenIcon = hidden ? document.menuImgVisible : document.menuImgHidden ;
-		domCard.setMenuItem(menuItem, {icon: hiddenIcon ,text: hidden ? RESET_HIDDEN : SET_HIDDEN });
+		domCard.getMenu().setMenuItem(menuItem, {icon: hiddenIcon ,text: hidden ? RESET_HIDDEN : SET_HIDDEN });
 
 		this.fill(currentPlayerId);
 	}
@@ -219,7 +219,7 @@ class BoardPlayerZone extends CardsZoneScrollableBoard {
 		xhttp.setRequestHeader("Content-type", "application/json");
 		xhttp.send();
 
-		domCard.setMenuItem(menuItem, {icon :stuned ? document.menuImgFree : document.menuImgStuned ,text:stuned ? RESET_STUNED : SET_STUNED });
+		domCard.getMenu().setMenuItem(menuItem, {icon :stuned ? document.menuImgFree : document.menuImgStuned ,text:stuned ? RESET_STUNED : SET_STUNED });
 
 		this.fill(currentPlayerId);
 	}
@@ -249,7 +249,7 @@ class BoardPlayerZone extends CardsZoneScrollableBoard {
 	    xhttp.setRequestHeader("Content-type", "application/json");
 	    xhttp.send();
 	    
-	    domCard.setMenuItem(menuItem, {icon: document.menuImgPower,text:used ? RESET_USE : USE});
+	    domCard.getMenu().setMenuItem(menuItem, {icon: document.menuImgPower,text:used ? RESET_USE : USE});
 	    
 	    this.fill(currentPlayerId);
 	}
