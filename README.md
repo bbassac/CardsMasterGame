@@ -34,6 +34,8 @@
 * [ ] evol : Externaliser le menu de domCard (passer des références de nom de fonction pour retirer l'adhérence dans menu)
 * [ ] evol : Reprendre le style pour les zones PV
 * [ ] evol : Mettre un dos de carte de fond pour les cimetières
+* [ ] evol : Ajouter une zone de status pour le renforcement dans la zone main
+* [ ] bug : Déplacement de carte au cimetière : réinitialiser les status pour les ninjas ET les equipements
 
 
 ## Background
