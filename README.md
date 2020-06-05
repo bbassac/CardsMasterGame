@@ -32,6 +32,8 @@
 * [ ] evol : Utiliser l'espace du bas (répartir sur les autres ligne, à voir comment).
 * [ ] evol : Styliser les zones PVs.
 * [ ] evol : Externaliser le menu de domCard (passer des références de nom de fonction pour retirer l'adhérence dans menu)
+* [ ] evol : Reprendre le style pour les zones PV
+* [ ] evol : Mettre un dos de carte de fond pour les cimetières
 
 
 ## Background
