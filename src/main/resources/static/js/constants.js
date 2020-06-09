@@ -48,6 +48,10 @@ const RESET_STUNED = "Libérer";
 const SET_HIDDEN = " Camoufler";
 const RESET_HIDDEN = "Rendre visible";
 
+// Images des cartes
+const CARD_IMG_BACK_DRAW = encodeURI("img/Back-Draw.png");
+const CARD_IMG_BACK_AFFINITE = encodeURI("img/Back-Select.png")
+const CARD_IMG_BACK_OPPONENT_TRAPS = encodeURI("img/0-Back.jpg")
 
 
 //ERROR

@@ -16,7 +16,8 @@ class TrapsOpponentZone extends CardsZoneBoard {
 
 	addSpecificCardElements(domCard) {
 	    domCard.setDraggable(true);
-	    domCard.setBackImg("0-Back.jpg");
+	    domCard.setBackImg(CARD_IMG_BACK_OPPONENT_TRAPS);
+	    domCard.showBack();
 	}
 	
 	applySpecificCardProperties(domCard) {

@@ -52,12 +52,14 @@ class DomCard {
 	showBack() {
 		if (this.backImgPath) {
 			this.cardImg.src = this.backImgPath;
+		} else {
+			this.cardImg.src = CARD_IMG_BACK_DRAW;
 		}
 	}
 
 	setBackImg(path) {
 		if (path) {
-			this.backImgPath = "img/" + encodeURI(path);
+			this.backImgPath = path;
 		}
 		else {
 			this.backImgPath = null;

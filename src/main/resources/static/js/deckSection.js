@@ -65,7 +65,7 @@ function refreshBoard(){
 function refreshOpponentBoard(){
     
     fillPVs(opponentPlayerId,"oppPvsId");
-    fillChakras(currentPlayerId,"oppChakraId");
+    fillChakras(opponentPlayerId,"oppChakraId");
     fillNbCards(opponentPlayerId,"nbCardsId",nbCardsHeight);
     opponentBoardPlayerZone.fill(currentPlayerId);
     opponentAffiniteZone.fill(currentPlayerId);

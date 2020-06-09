@@ -3,7 +3,7 @@ Board {
     display: grid;
     display: -ms-grid;
     border: 1px solid black;
-    grid-template-columns: 126px 120px 120px 254px 110px 120px 163px 126px 126px 163px 364px 126px;
+    grid-template-columns: 126px 120px 120px 265px 99px 120px 163px 126px 126px 163px 364px 126px;
     grid-template-rows: 287px 287px 287px 190px;
     -ms-grid-columns: 126px 120px 120px 254px 110px 120px 163px 126px 126px 163px 364px 126px;
     -ms-grid-rows: 287px 287px 287px 190px;
@@ -228,7 +228,7 @@ AffinityOpp {
 
 #border_angle {
 	position: absolute;
-	left: 1316px;
+	left: 1134px;
 	top: 878px;
 	width: 10px;
 	height: 10px;
