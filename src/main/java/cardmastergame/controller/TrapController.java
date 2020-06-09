@@ -50,7 +50,7 @@ public class TrapController extends AbstractController{
     }
 
     @CrossOrigin
-    @RequestMapping(path = "/player/{playerId}/trap/{cardId}/activated/{value}",method = RequestMethod.PUT)
+    @RequestMapping(path = "/player/{playerId}/trap/{cardId}/used/{value}",method = RequestMethod.PUT)
     @ResponseBody
     @ApiOperation(value = "Change status of card : activated = true ",response = boolean.class)
     public boolean updateActivatedOnTrapCard(
@@ -62,7 +62,7 @@ public class TrapController extends AbstractController{
 
             @ApiParam(value = "value ", type = "boolean", required = true)
             @PathVariable("value") boolean value){
-        return cardService.updateActivatedOnTrapCard(playerId,cardId,value);
+        return cardService.updateUsedOnTrapCard(playerId,cardId,value);
     }
 
 }

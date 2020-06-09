@@ -17,7 +17,20 @@ class TrapsPlayerZone extends CardsZoneBoard {
 
 	addSpecificCardElements(domCard) {
 		domCard.setDraggable(true);
+
+        var usedText = domCard.getStatus().used ? RESET_USE : USE;
+        var menu = [
+
+            { icon:document.menuImgPower, text: usedText, action: (function(domCard, menuItem) { this.useCard(domCard, menuItem); }).bind(this, domCard) },
+
+        ];
+        domCard.getMenu().addMenu(menu);
 	}
+
+
+    applySpecificCardProperties(domCard) {
+        this.showUsedState(domCard);
+    }
 
 	allowDrop(fromZoneId, toZoneId, domCard) {
 		
@@ -32,6 +45,29 @@ class TrapsPlayerZone extends CardsZoneBoard {
 	drop(fromZoneId, toZoneId, domCard) {
 		this.moveCardFromHandToTraps(domCard);
 	}
+
+    useCard(domCard, menuItem){
+
+        var used = ! domCard.getStatus().used;
+
+        var xhttp = new XMLHttpRequest();
+        xhttp.open("PUT", "player/"+currentPlayerId+"/trap/"+domCard.getId()+"/used/"+used, false);
+        xhttp.setRequestHeader("Content-type", "application/json");
+        xhttp.send();
+
+        domCard.getMenu().setMenuItem(menuItem, {icon: document.menuImgPower,text:used ? RESET_USE : USE});
+
+        this.fill(currentPlayerId);
+    }
+
+    showUsedState(domCard) {
+
+        if (domCard.getStatus().used) {
+            domCard.cardImg.classList.add("usedCard");
+        } else {
+            domCard.cardImg.classList.remove("usedCard");
+        }
+    }
 
 	moveCardFromHandToTraps(domCard){
 		
