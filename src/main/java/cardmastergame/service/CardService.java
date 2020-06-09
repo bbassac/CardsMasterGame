@@ -333,4 +333,9 @@ public class CardService {
     public String getCardById(Integer id) {
         return getAllCards().get(id).getPath();
     }
+
+    public boolean updateActivatedOnTrapCard(int playerId, int cardId, boolean value) {
+        findCardInStackById(pieges[playerId],"piège joueur " + playerId,cardId).getStatus().setActivated(value);
+        return value;
+    }
 }

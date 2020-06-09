@@ -49,4 +49,20 @@ public class TrapController extends AbstractController{
         cardService.moveCardFromPiegeToGraveyardForPlayer(playerId,cardId);
     }
 
+    @CrossOrigin
+    @RequestMapping(path = "/player/{playerId}/trap/{cardId}/activated/{value}",method = RequestMethod.PUT)
+    @ResponseBody
+    @ApiOperation(value = "Change status of card : activated = true ",response = boolean.class)
+    public boolean updateActivatedOnTrapCard(
+            @ApiParam(value = "Player Id ", allowableValues ="0,1",required = true)
+            @PathVariable("playerId") int playerId,
+
+            @ApiParam(value = "Card Id ", type = "int", required = true)
+            @PathVariable("cardId") int cardId,
+
+            @ApiParam(value = "value ", type = "boolean", required = true)
+            @PathVariable("value") boolean value){
+        return cardService.updateActivatedOnTrapCard(playerId,cardId,value);
+    }
+
 }
