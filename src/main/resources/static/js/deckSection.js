@@ -66,12 +66,12 @@ function refreshOpponentBoard(){
     
     fillPVs(opponentPlayerId,"oppPvsId");
     fillChakras(currentPlayerId,"oppChakraId");
-    fillNbTraps(opponentPlayerId, "nbTrapsId",trapIconHeight);
     fillNbCards(opponentPlayerId,"nbCardsId",nbCardsHeight);
     opponentBoardPlayerZone.fill(currentPlayerId);
     opponentAffiniteZone.fill(currentPlayerId);
     graveyardOpponentZone.fill(currentPlayerId);
     opponentEquipmenstZone.fill(currentPlayerId);
+    opponentTrapsZone.fill(currentPlayerId);
 	
     refreshLastDiceThrow();
     displayOppExtra(opponentPlayerId);

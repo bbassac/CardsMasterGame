@@ -22,6 +22,7 @@ var environmentZone = new EnvironmentZone();
 var opponentBoardPlayerZone = new BoardOpponentZone();
 var opponentAffiniteZone = new AffiniteOpponentZone();
 var opponentEquipmenstZone = new EquipmentsOpponentZone();
+var opponentTrapsZone = new TrapsOpponentZone();
 
 document.addEventListener('DOMContentLoaded', function() {
     refreshBoard();
