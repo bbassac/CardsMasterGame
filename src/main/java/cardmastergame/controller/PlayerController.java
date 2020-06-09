@@ -18,7 +18,7 @@ public class PlayerController extends AbstractController{
     public int pvs(
             @ApiParam(value = "Player Id ", allowableValues ="0,1",required = true)
             @PathVariable("playerId") int playerId)  {
-        return customRepo.getPlayerPvs(playerId);
+        return playerService.getPlayerPvs(playerId);
 
     }
 
@@ -33,8 +33,8 @@ public class PlayerController extends AbstractController{
             @ApiParam(value = "Pv value", type = "int",required = true)
             @PathVariable("value") int value)  {
 
-        customRepo.updatePlayerPvs(playerId,value);
-        return customRepo.getPlayerPvs(playerId);
+        playerService.updatePlayerPvs(playerId,value);
+        return playerService.getPlayerPvs(playerId);
     }
 
     @CrossOrigin
@@ -44,7 +44,7 @@ public class PlayerController extends AbstractController{
     public int getChakra(
             @ApiParam(value = "Player Id ", allowableValues ="0,1",required = true)
             @PathVariable("playerId") int playerId)  {
-        return customRepo.getChakras(playerId);
+        return playerService.getChakras(playerId);
 
     }
 
@@ -58,7 +58,7 @@ public class PlayerController extends AbstractController{
 
             @ApiParam(value = "Chakra value", type = "int",required = true)
             @PathVariable("value") int value){
-        return customRepo.updateChakras(playerId,value);
+        return playerService.updateChakras(playerId,value);
 
     }
 
@@ -69,7 +69,7 @@ public class PlayerController extends AbstractController{
     public String getExtra(
             @ApiParam(value = "Player Id ", allowableValues ="0,1",required = true)
             @PathVariable("playerId") int playerId)  {
-        return customRepo.getExtra(playerId);
+        return playerService.getExtra(playerId);
 
     }
 
@@ -83,7 +83,7 @@ public class PlayerController extends AbstractController{
 
             @ApiParam(value = "Extra value", type = "String",required = true)
             @PathVariable("value") String value){
-        return customRepo.updateExtra(playerId,value);
+        return playerService.updateExtra(playerId,value);
 
     }
 
@@ -94,7 +94,7 @@ public class PlayerController extends AbstractController{
     public Card getAffinite(
             @ApiParam(value = "Player Id ", allowableValues ="0,1",required = true)
             @PathVariable("playerId") int playerId)  {
-        return customRepo.getAffinite(playerId);
+        return playerService.getAffinite(playerId);
 
     }
 

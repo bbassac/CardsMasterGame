@@ -18,7 +18,9 @@ public class GameController extends AbstractController{
     @ApiOperation(value = "Start a new game",response = String.class)
     public String restart() {
 
-        customRepo.startNewGame();
+        playerService.startNewGame();
+        cardService.startNewGame();
+
         return "Loaded";
     }
 
@@ -30,7 +32,7 @@ public class GameController extends AbstractController{
             @ApiParam(value = "Card Id ", type = "int", required = true)
             @PathVariable("cardId") Integer id)  {
 
-        return customRepo.getCardById(id);
+        return cardService.getCardById(id);
     }
 
     @CrossOrigin
@@ -45,7 +47,7 @@ public class GameController extends AbstractController{
             @ApiResponse(code = 500, message = "500")})
     public int getMaxChakra() {
 
-        return customRepo.getMaxChakra();
+        return playerService.getMaxChakra();
     }
 
     @CrossOrigin
@@ -63,7 +65,7 @@ public class GameController extends AbstractController{
                     allowableValues = "ENVIRONNEMENT,ENVIRONNEMENTS,DRAW0,DRAW1,INVOCATIONS,GRAVEYARD0,GRAVEYARD1,BOARD0,BOARD1,HAND0,HAND1,TRAP0,TRAP1")
             @PathVariable("value") StackConstants stackName) {
 
-        return customRepo.getStack(stackName);
+        return cardService.getStack(stackName);
     }
 
     

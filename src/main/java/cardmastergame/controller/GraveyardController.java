@@ -20,7 +20,7 @@ public class GraveyardController extends AbstractController{
     public Deck<Card> cimetary(
             @ApiParam(value = "Player Id ", allowableValues ="0,1",required = true)
             @PathVariable("playerId") int playerId)  {
-        return playerId == 0 ? customRepo.getStack(StackConstants.GRAVEYARD0) : customRepo.getStack(StackConstants.GRAVEYARD1);
+        return playerId == 0 ? cardService.getStack(StackConstants.GRAVEYARD0) : cardService.getStack(StackConstants.GRAVEYARD1);
 
     }
 
@@ -34,7 +34,7 @@ public class GraveyardController extends AbstractController{
 
             @ApiParam(value = "Card Id ", type = "int", required = true)
             @PathVariable("cardId") int cardId)  {
-        customRepo.moveCardFromGameToGraveyardForPlayer(playerId,cardId);
+        cardService.moveCardFromGameToGraveyardForPlayer(playerId,cardId);
     }
 
     @CrossOrigin
@@ -47,7 +47,7 @@ public class GraveyardController extends AbstractController{
 
             @ApiParam(value = "Card Id ", type = "int", required = true)
             @PathVariable("cardId") int cardId)  {
-        customRepo.moveCardFromHandToGraveyardForPlayer(playerId,cardId);
+        cardService.moveCardFromHandToGraveyardForPlayer(playerId,cardId);
     }
 
     @CrossOrigin
@@ -60,7 +60,7 @@ public class GraveyardController extends AbstractController{
 
             @ApiParam(value = "Card Id ", type = "int", required = true)
             @PathVariable("cardId") int cardId)  {
-        customRepo.moveCardFromGraveyardToPlayerHand(playerId,cardId);
+        cardService.moveCardFromGraveyardToPlayerHand(playerId,cardId);
     }
 
     @CrossOrigin
@@ -76,6 +76,6 @@ public class GraveyardController extends AbstractController{
 
             @ApiParam(value = "Opponent Player Id ", allowableValues ="0,1",required = true)
             @PathVariable("oppPlayerId") int oppPlayerId) {
-        customRepo.moveCardFromOtherGraveyardToHand(playerId,cardId,oppPlayerId);
+        cardService.moveCardFromOtherGraveyardToHand(playerId,cardId,oppPlayerId);
     }
 }

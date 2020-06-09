@@ -19,7 +19,7 @@ class MetaDataService {
 
     private HashMap<String, MetaData> jsCards;
 
-    public MetaDataService(final String jsonFileName) {
+    MetaDataService(final String jsonFileName) {
         String prop = FileUtils.getCurrentJarStaticPath();
         File path = new File(prop + "\\json");
         for (File file : path.listFiles()) {

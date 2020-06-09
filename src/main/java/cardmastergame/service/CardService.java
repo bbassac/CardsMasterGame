@@ -329,4 +329,8 @@ public class CardService {
         findCardInStackById(plateaux[playerId],"plateau joueur " + playerId,cardId).getStatus().setStuned(value);
         return value;
     }
+
+    public String getCardById(Integer id) {
+        return getAllCards().get(id).getPath();
+    }
 }

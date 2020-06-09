@@ -23,7 +23,7 @@ public class EquipmentController extends AbstractController{
 
             @ApiParam(value = "Card Id ", type = "int", required = true)
             @PathVariable("cardId") int cardId) {
-       customRepo.moveCardFromHandToEquipmentForPlayer(playerId,cardId);
+        cardService.moveCardFromHandToEquipmentForPlayer(playerId,cardId);
     }
 
     @CrossOrigin
@@ -33,7 +33,7 @@ public class EquipmentController extends AbstractController{
     public Deck<Card> displayEquipments(
             @ApiParam(value = "Player Id ", allowableValues ="0,1",required = true)
             @PathVariable("playerId") int playerId) {
-        return playerId == 0 ? customRepo.getStack(StackConstants.EQUIPMENT0) : customRepo.getStack(StackConstants.EQUIPMENT1);
+        return playerId == 0 ? cardService.getStack(StackConstants.EQUIPMENT0) : cardService.getStack(StackConstants.EQUIPMENT1);
     }
 
     @CrossOrigin
@@ -46,7 +46,7 @@ public class EquipmentController extends AbstractController{
 
             @ApiParam(value = "Card Id ", type = "int", required = true)
             @PathVariable("cardId") int cardId) {
-        customRepo.moveCardFromEquipmentToGraveyard(playerId,cardId);
+        cardService.moveCardFromEquipmentToGraveyard(playerId,cardId);
     }
 
     @CrossOrigin
@@ -62,7 +62,7 @@ public class EquipmentController extends AbstractController{
 
             @ApiParam(value = "value ", type = "boolean", required = true)
             @PathVariable("value") boolean value){
-        return customRepo.updateActivatedOnEquipmentCard(playerId,cardId,value);
+        return cardService.updateActivatedOnEquipmentCard(playerId,cardId,value);
     }
 
     @CrossOrigin
@@ -78,7 +78,7 @@ public class EquipmentController extends AbstractController{
 
             @ApiParam(value = "value ", type = "boolean", required = true)
             @PathVariable("value") boolean value){
-        return customRepo.updateUsedOnEquipmentCard(playerId,cardId,value);
+        return cardService.updateUsedOnEquipmentCard(playerId,cardId,value);
     }
 
 }
