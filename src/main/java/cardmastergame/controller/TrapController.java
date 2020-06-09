@@ -23,7 +23,7 @@ public class TrapController extends AbstractController{
 
             @ApiParam(value = "Card Id ", type = "int", required = true)
             @PathVariable("cardId") int cardId) {
-       customRepo.moveCardFromHandToTrapForPlayer(playerId,cardId);
+        cardService.moveCardFromHandToPiegeForPlayer(playerId,cardId);
     }
 
     @CrossOrigin
@@ -33,7 +33,7 @@ public class TrapController extends AbstractController{
     public Deck<Card> displayTraps(
             @ApiParam(value = "Player Id ", allowableValues ="0,1",required = true)
             @PathVariable("playerId") int playerId) {
-        return playerId == 0 ? customRepo.getStack(StackConstants.TRAP0) : customRepo.getStack(StackConstants.TRAP1);
+        return playerId == 0 ? cardService.getStack(StackConstants.TRAP0) : cardService.getStack(StackConstants.TRAP1);
     }
 
     @CrossOrigin
@@ -46,7 +46,7 @@ public class TrapController extends AbstractController{
 
             @ApiParam(value = "Card Id ", type = "int", required = true)
             @PathVariable("cardId") int cardId) {
-        customRepo.moveCardFromTrapToGraveyard(playerId,cardId);
+        cardService.moveCardFromPiegeToGraveyardForPlayer(playerId,cardId);
     }
 
 }

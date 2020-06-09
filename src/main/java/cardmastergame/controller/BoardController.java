@@ -20,7 +20,7 @@ public class BoardController extends AbstractController{
             @ApiParam(value = "Player Id ", allowableValues ="0,1",required = true)
             @PathVariable("playerId") int playerId) {
 
-         return playerId == 0 ? customRepo.getStack(StackConstants.HAND0) : customRepo.getStack(StackConstants.HAND1);
+         return playerId == 0 ? cardService.getStack(StackConstants.HAND0) : cardService.getStack(StackConstants.HAND1);
 
     }
 
@@ -31,7 +31,7 @@ public class BoardController extends AbstractController{
     public Deck<Card> displayBoard(
             @ApiParam(value = "Player Id ", allowableValues ="0,1",required = true)
             @PathVariable("playerId") int playerId) {
-        return playerId == 0 ? customRepo.getStack(StackConstants.BOARD0) : customRepo.getStack(StackConstants.BOARD1);
+        return playerId == 0 ? cardService.getStack(StackConstants.BOARD0) : cardService.getStack(StackConstants.BOARD1);
     }
 
     @CrossOrigin
@@ -41,7 +41,7 @@ public class BoardController extends AbstractController{
     public void pickNewCard(
             @ApiParam(value = "Player Id ", allowableValues ="0,1",required = true)
             @PathVariable("playerId") int playerId) {
-       customRepo.moveCardFromDrawToPlayer(playerId);
+        cardService.moveCardFromDrawToPlayer(playerId);
     }
 
     @CrossOrigin
@@ -55,7 +55,7 @@ public class BoardController extends AbstractController{
             @ApiParam(value = "Card Id ", type = "int", required = true)
             @PathVariable("cardId") int cardId) {
 
-        customRepo.moveSpecificCardFromInvocationToPlayer(playerId,cardId);
+        cardService.moveSpecificCardFromInvocationToPlayer(playerId,cardId);
     }
 
 
@@ -70,7 +70,7 @@ public class BoardController extends AbstractController{
             @ApiParam(value = "Card Id ", type = "int", required = true)
             @PathVariable("cardId") int cardId) {
 
-       customRepo.moveCardFromHandToGameForPlayer(playerId,cardId);
+        cardService.moveCardFromHandToGameForPlayer(playerId,cardId);
     }
 
 

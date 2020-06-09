@@ -22,7 +22,7 @@ public class CardController extends AbstractController{
             @PathVariable("cardId") int cardId,
 
             @PathVariable("value") int value)  {
-        return customRepo.updateDmgPointsOnCard(playerId,cardId,value);
+        return cardService.updateDmgPointsOnCard(playerId,cardId,value);
     }
 
     @CrossOrigin
@@ -35,7 +35,7 @@ public class CardController extends AbstractController{
 
             @ApiParam(value = "Card Id ", type = "int", required = true)
             @PathVariable("cardId") int cardId)  {
-        return customRepo.getDmgOnCard(playerId,cardId);
+        return cardService.getDmgOnCard(playerId,cardId);
     }
 
     @CrossOrigin
@@ -51,7 +51,7 @@ public class CardController extends AbstractController{
 
             @ApiParam(value = "value ", type = "boolean", required = true)
             @PathVariable("value") boolean value){
-        return customRepo.updateActivatedOnCard(playerId,cardId,value);
+        return cardService.updateActivatedOnCard(playerId,cardId,value);
     }
 
     @CrossOrigin
@@ -64,7 +64,7 @@ public class CardController extends AbstractController{
 
             @ApiParam(value = "Card Id ", type = "int", required = true)
             @PathVariable("cardId") int cardId) {
-        return customRepo.getActivatedOnCard(playerId,cardId);
+        return cardService.getActivatedOnCard(playerId,cardId);
     }
 
 
@@ -75,7 +75,7 @@ public class CardController extends AbstractController{
     public void setAllcardsNonActive(
             @ApiParam(value = "Player Id ", allowableValues ="0,1",required = true)
             @PathVariable("playerId") int playerId){
-        customRepo.setAllcardsNonActive(playerId);
+        cardService.setAllcardsNonActive(playerId);
     }
 
 
@@ -92,7 +92,7 @@ public class CardController extends AbstractController{
 
             @ApiParam(value = "value ", type = "boolean", required = true)
             @PathVariable("value") boolean value){
-        return customRepo.updateUsedOnCard(playerId,cardId,value);
+        return cardService.updateUsedOnCard(playerId,cardId,value);
     }
 
     @CrossOrigin
@@ -105,7 +105,7 @@ public class CardController extends AbstractController{
 
             @ApiParam(value = "Card Id ", type = "int", required = true)
             @PathVariable("cardId") int cardId) {
-        return customRepo.getUsedOnCard(playerId,cardId);
+        return cardService.getUsedOnCard(playerId,cardId);
     }
 
     @CrossOrigin
@@ -121,7 +121,7 @@ public class CardController extends AbstractController{
 
             @ApiParam(value = "value ", type = "boolean", required = true)
             @PathVariable("value") boolean value){
-        return customRepo.updateHiddendOnCard(playerId,cardId,value);
+        return cardService.updateHiddendOnCard(playerId,cardId,value);
     }
 
     @CrossOrigin
@@ -137,7 +137,7 @@ public class CardController extends AbstractController{
 
             @ApiParam(value = "value ", type = "boolean", required = true)
             @PathVariable("value") boolean value){
-        return customRepo.updateStunedOnCard(playerId,cardId,value);
+        return cardService.updateStunedOnCard(playerId,cardId,value);
     }
 
 }

@@ -1,6 +1,8 @@
 package cardmastergame;
 
-import cardmastergame.repository.CollectionRepositoryCustom;
+
+import cardmastergame.service.CardService;
+import cardmastergame.service.PlayerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.ApplicationListener;
@@ -12,12 +14,16 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class ApplicationStartup implements ApplicationListener<ApplicationReadyEvent> {
-    @Autowired
-    CollectionRepositoryCustom customRepo;
 
+    @Autowired
+    CardService cardService;
+
+    @Autowired
+    PlayerService playerService;
 
     @Override
     public void onApplicationEvent(ApplicationReadyEvent applicationReadyEvent) {
-         customRepo.startNewGame();
+        playerService.startNewGame();
+        cardService.startNewGame();
     }
 }

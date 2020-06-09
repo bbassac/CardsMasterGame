@@ -1,6 +1,7 @@
 package cardmastergame.controller;
 
-import cardmastergame.repository.CollectionRepositoryCustom;
+import cardmastergame.service.CardService;
+import cardmastergame.service.PlayerService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**
@@ -9,7 +10,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class AbstractController {
 
     @Autowired
-    CollectionRepositoryCustom customRepo;
+    CardService cardService;
+
+    @Autowired
+    PlayerService playerService;
 
 
 }

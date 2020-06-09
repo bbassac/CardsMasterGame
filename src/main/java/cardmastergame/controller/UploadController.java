@@ -53,7 +53,7 @@ public class UploadController extends AbstractController{
             System.err.println(e.getMessage());
         }
 
-        customRepo.filterDraw(playerId,result);
+        cardService.filterDraw(playerId,result);
 
         return result.size();
     }
