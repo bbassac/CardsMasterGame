@@ -8,7 +8,7 @@
     src.innerHTML = '';
 
     var img = document.createElement("img");
-    img.src = encodeURI("img/Back-Select.png");
+    img.src = CARD_IMG_BACK_AFFINITE;
     img.height = drawImageHeight;
     img.id = "imgDraw";
     img.classList.add("imgInvocation");

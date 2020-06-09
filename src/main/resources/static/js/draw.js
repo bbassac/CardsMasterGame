@@ -4,7 +4,7 @@ function fillDraw(playerId){
     src.innerHTML = '';
 
     var img = document.createElement("img");
-    img.src = encodeURI("img/Back-Draw.png");
+    img.src = CARD_IMG_BACK_DRAW;
     img.height = drawImageHeight;
     img.id = "imgDraw";
     img.classList.add("imgDraw");
