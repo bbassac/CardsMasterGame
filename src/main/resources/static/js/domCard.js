@@ -13,6 +13,8 @@ class DomCard {
         // par défaut la carte ne doit pas être draggable 
         this.setDraggable(false);
 		this.menu = new Menu(this);
+		
+		this.backImgPath = null;
   	}
 
   	getMenu(){
@@ -41,6 +43,25 @@ class DomCard {
         	// force l'ajout d'un menu de test
         	this.menu.addMenu([]);
         }
+	}
+	
+	showFront() {
+		this.cardImg.src = this.imgPath;
+	}
+	
+	showBack() {
+		if (this.backImgPath) {
+			this.cardImg.src = this.backImgPath;
+		}
+	}
+
+	setBackImg(path) {
+		if (path) {
+			this.backImgPath = "img/" + encodeURI(path);
+		}
+		else {
+			this.backImgPath = null;
+		}
 	}
 	
 	applyStyle(cardDrawMode) {
@@ -74,6 +95,7 @@ class DomCard {
 		this.setDamage(card.dammagePoints);
 		this.setStatus(card.status);
 		this.setMetaData(card.metaData);
+		this.imgPath = "img/" + encodeURI(card.path); 
 	}
 
 	getZone() {

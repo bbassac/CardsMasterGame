@@ -31,6 +31,10 @@
 		    <a  class="list-group-item" href="./gallery.html">Gallerie</a>
 		    <button class="buttonLoad" onclick="loadFile()">Load</button>
 		    <span id="div_horloge"></span>
+
+	        <button class="newTurnButton" type="button" onclick="newTurn()">
+	            Nouveau Tour
+	        </button>
 		
 		</Header>
 		<Board>
@@ -54,10 +58,6 @@
 		        <div id="diceId" ></div>
 		        <div id="diceResultId" >Result :</div>
 		        <div id="extraPlayerId"></div>
-		        <button class="newTurnButton"
-		                 type="button" onclick="newTurn()">
-		            Nouveau <br />Tour
-		        </button>
 		    </PvPlayer>
 
 		    <Hand id="hand"></Hand>
@@ -67,6 +67,7 @@
 		    <CurrentEnvironment id="currentEnvironment"></CurrentEnvironment>
 		    <Affinite id = "affiniteId"></Affinite>
 		    <Traps id="traps"></Traps>
+		    <TrapsOpp id="trapsOppId"></TrapsOpp>
 		
 		</Board>
 		
@@ -129,7 +130,7 @@
 		<script src="js/cardszones/boardOpponentZone.js"></script>
 		<script src="js/cardszones/affiniteOpponentZone.js"></script>
 		<script src="js/cardszones/equipmentsOpponentZone.js"></script>
-		<script src="js/trapsOpponent.js"></script>
+		<script src="js/cardszones/trapsOpponent.js"></script>
 		<script src="js/nbCardsOpponent.js"></script>
 
 		<!-- plateau -->
