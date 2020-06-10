@@ -29,12 +29,9 @@
 * [ ] Animation activation carte piege qui s'affiche  
 * [ ] Doubler le nombre des invocations
 * [ ] bug : Synchronisation de la popin cimetière si le même cimetière est ouvert par les deux joueurs en même temps.
-* [ ] evol : Utiliser l'espace du bas (répartir sur les autres ligne, à voir comment).
-* [ ] evol : Styliser les zones PVs.
 * [ ] evol : Externaliser le menu de domCard (passer des références de nom de fonction pour retirer l'adhérence dans menu)
 * [ ] evol : Reprendre le style pour les zones PV
-* [ ] evol : Mettre un dos de carte de fond pour les cimetières
-* [ ] evol : Ajouter une zone de status pour le renforcement dans la zone main
+* [ ] evol : Mettre un dos de carte de fond pour les cimetières (refaire la carte aux bonnes sizes)
 * [ ] bug : Déplacement de carte au cimetière : réinitialiser les status pour les ninjas ET les equipements
 
 
