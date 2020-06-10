@@ -60,12 +60,8 @@
 
 .cardDice {
 	margin: auto;
-	margin-top: 2px;
 }
 .cardBoard {
-	/*margin-top: auto;
-	margin-bottom: auto;*/
-	margin-top: 2px;
-	margin-left: 5px;
+	margin: auto 2px;
 }
 
