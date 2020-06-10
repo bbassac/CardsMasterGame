@@ -45,6 +45,7 @@ class BoardPlayerZone extends CardsZoneScrollableBoard {
 		this.showActivatedState(domCard);
 		this.showUsedState(domCard);
 		this.showDamage(domCard);
+		this.showStatusArea(domCard);
 		this.showStatusHidden(domCard);
 		this.showStatusStuned(domCard);
 		this.showStatusRenforced(domCard);
@@ -77,6 +78,13 @@ class BoardPlayerZone extends CardsZoneScrollableBoard {
 		imgHidden.title = HIDDEN;
 		divStatus.appendChild(imgHidden);
 
+		//manage renforced
+		var imgRenforced = document.createElement("img");
+		imgRenforced.id = "imgRenforcedOpp_" +  domCard.getId();
+		imgRenforced.classList.add("imgRenforcedPlayer");
+		imgRenforced.title = RENFORCED;
+		divStatus.appendChild(imgRenforced);
+
 		//manage stuned
 		var imgStuned = document.createElement("img");
 		imgStuned.id = "imgStunedOpp_" +  domCard.getId();
@@ -84,12 +92,15 @@ class BoardPlayerZone extends CardsZoneScrollableBoard {
 		imgStuned.title = STUNED;
 		divStatus.appendChild(imgStuned);
 
-		//manage renforced
-		var imgRenforced = document.createElement("img");
-		imgRenforced.id = "imgRenforcedOpp_" +  domCard.getId();
-		imgRenforced.classList.add("imgRenforcedPlayer");
-		imgRenforced.title = RENFORCED;
-		divStatus.appendChild(imgRenforced);
+	}
+
+	showStatusArea(domCard) {
+		var e = document.getElementById("divstatusArea_" +  domCard.getId());
+		if (!domCard.getStatus().hidden && !domCard.getStatus().reinforced && !domCard.getStatus().stuned){
+			e.style.display="none";
+		}else{
+			e.style.display="block";
+		}
 	}
 
 	showStatusHidden(domCard){
