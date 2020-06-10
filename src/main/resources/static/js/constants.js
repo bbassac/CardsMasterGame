@@ -47,6 +47,8 @@ const SET_STUNED = "Immobiliser";
 const RESET_STUNED = "Libérer";
 const SET_HIDDEN = " Camoufler";
 const RESET_HIDDEN = "Rendre visible";
+const RESET_TRAP = "Reset piège";
+const USE_TRAP = "Déclencher le piège"
 
 // Images des cartes
 const CARD_IMG_BACK_DRAW = encodeURI("img/Back-Draw.png");

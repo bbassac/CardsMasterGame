@@ -18,7 +18,7 @@ class TrapsPlayerZone extends CardsZoneBoard {
 	addSpecificCardElements(domCard) {
 		domCard.setDraggable(true);
 
-        var usedText = domCard.getStatus().used ? RESET_USE : USE;
+        var usedText = domCard.getStatus().used ? RESET_TRAP : USE_TRAP;
         var menu = [
 
             { icon:document.menuImgPower, text: usedText, action: (function(domCard, menuItem) { this.useCard(domCard, menuItem); }).bind(this, domCard) },
@@ -55,7 +55,7 @@ class TrapsPlayerZone extends CardsZoneBoard {
         xhttp.setRequestHeader("Content-type", "application/json");
         xhttp.send();
 
-        domCard.getMenu().setMenuItem(menuItem, {icon: document.menuImgPower,text:used ? RESET_USE : USE});
+        domCard.getMenu().setMenuItem(menuItem, {icon: document.menuImgPower,text:used ? RESET_TRAP : USE_TRAP});
 
         this.fill(currentPlayerId);
     }
