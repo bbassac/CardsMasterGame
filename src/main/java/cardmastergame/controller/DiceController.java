@@ -10,6 +10,7 @@ import com.bernardomg.tabletop.dice.parser.DiceParser;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -38,15 +39,17 @@ public class DiceController extends AbstractController{
             @ApiParam(value = "value ", example ="3D12+4",type ="String",required = true)
             @PathVariable("value") String value) {
 
+        if (!StringUtils.isEmpty(value)){
+            final RollHistory history = parser.parse(value, roller);
 
-        final RollHistory history = parser.parse(value, roller);
+            Dice dice = new Dice();
+            dice.setExpression(value);
+            dice.setDetail(history.toString());
+            dice.setValue(history.getTotalRoll());
+            lastResult=dice;
+        }
 
-        Dice dice = new Dice();
-        dice.setExpression(value);
-        dice.setDetail(history.toString());
-        dice.setValue(history.getTotalRoll());
-        lastResult=dice;
-        return dice;
+        return lastResult;
     }
 
 }
