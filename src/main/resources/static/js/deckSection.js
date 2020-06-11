@@ -44,7 +44,7 @@ function newTurn() {
     xhttp3.send();
     var maxChakra = xhttp3.responseText;
 
-    buttonMoreChakra = document.getElementById("ButtonMoreChakraID");
+    buttonMoreChakra = document.getElementById("playerChakraMorePointId");
     if (buttonMoreChakra.tag <= maxChakra) {
         updateChakras(buttonMoreChakra.tag);
     }

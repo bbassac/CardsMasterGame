@@ -10,11 +10,9 @@ function displayOppExtra(oppPlayerId){
 }
 
 function displayExtraArea(currentPlayerId,areaId){
-    var divExtra = document.createElement("div");
-    //text area
     var textArea = document.createElement("INPUT");
     textArea.setAttribute("id","extraAreaId");
-    textArea.size = 11;
+    textArea.size = 8;
 
     var xhttp = new XMLHttpRequest();
     xhttp.open("GET", "player/"+currentPlayerId+"/extra", false);
@@ -24,11 +22,10 @@ function displayExtraArea(currentPlayerId,areaId){
     textArea.value = result;
 
     textArea.setAttribute('onkeypress','updateExtra(event,this.value);');
-    divExtra.appendChild(textArea);
 
     var divArea = document.getElementById(areaId);
     divArea.innerHTML="";
-    divArea.appendChild(divExtra);
+    divArea.appendChild(textArea);
 }
 
 function updateExtra(event,value) {

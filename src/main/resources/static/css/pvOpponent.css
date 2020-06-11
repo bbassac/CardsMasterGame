@@ -1,0 +1,108 @@
+OppPv {
+    grid-row: 1;
+	grid-column: 1 / span 2;
+    -ms-grid-row: 1;
+    -ms-grid-column: 1;
+    -ms-grid-column-span: 2;
+    padding: 5px;
+    background: url("../img/heart.png") no-repeat;
+    background-size: auto 45px;
+    background-position: center top;
+    
+    display: grid;
+    display: -ms-grid;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: 30px 27px;
+    -ms-grid-columns: 50% 50%;
+    -ms-grid-rows: 30px 27px;
+}
+
+OppPvPoints {
+    grid-row: 1;
+	grid-column: 1 / span 2;
+    -ms-grid-row: 1;
+    -ms-grid-column: 1;
+    -ms-grid-column-span: 2;
+    display: block;
+    text-align: center;
+    font-size: 1.8em;
+    text-shadow: 2px 2px 3px #000;
+    color: #FFF;
+    margin-top: 2px;
+}
+
+OppChakra {
+    grid-row: 1;
+	grid-column: 3;
+    -ms-grid-row: 1;
+    -ms-grid-column: 3;
+    padding: 5px;
+    background: url("../img/chakra3.png") no-repeat;
+    background-size: auto 45px;
+    background-position: center top;
+    
+    display: grid;
+    display: -ms-grid;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: 30px 27px;
+    -ms-grid-columns: 50% 50%;
+    -ms-grid-rows: 30px 27px;
+}
+
+OppChakraPoints {
+    grid-row: 1;
+	grid-column: 1 / span 2;
+    -ms-grid-row: 1;
+    -ms-grid-column: 1;
+    -ms-grid-column-span: 2;
+    display: block;
+    text-align: center;
+    font-size: 1.8em;
+    text-shadow: 2px 2px 3px #000;
+    color: #FFF;
+    margin-top: 2px;
+}
+
+OppNbCardsIcon {
+    grid-row: 2;
+	grid-column: 1;
+    -ms-grid-row: 2;
+    -ms-grid-column: 1;
+    display: block;
+    background: url("../img/hand.png") no-repeat;
+    background-size: auto 90%;
+    background-position: center;
+}
+
+OppNbCardsValue {
+    grid-row: 2;
+	grid-column: 2 / span 2;
+    -ms-grid-row: 2;
+    -ms-grid-column: 2;
+    -ms-grid-column-span: 2;
+    display: block;
+}
+
+OppMessageIcon {
+    grid-row: 3;
+	grid-column: 1;
+    -ms-grid-row: 3;
+    -ms-grid-column: 1;
+    background: url("../img/messages.png") no-repeat;
+    background-size: auto 90%;
+    background-position: center;
+}
+
+OppMessageText {
+    grid-row: 3;
+	grid-column: 2 / span 2;
+    -ms-grid-row: 3;
+    -ms-grid-column: 2;
+    -ms-grid-column-span: 2;
+    display: block;
+}
+OppMessageText div {
+	vertical-align: middle;
+	display: table-cell;
+	height: 22px;
+}

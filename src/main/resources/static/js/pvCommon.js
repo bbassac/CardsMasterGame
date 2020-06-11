@@ -6,22 +6,17 @@ function fillPVs(playerId,componentId) {
     xhttp.send();
     
     var component = document.getElementById(componentId);
-    component.textContent =  "Player Pvs : " + xhttp.responseText;
-    var linebreak = document.createElement("br");
-    component.appendChild(linebreak);
+    component.textContent =  xhttp.responseText;
     
     if (componentId=="playerPvsId"){
-        var buttonLessPv = document.createElement("button");
-        buttonLessPv.innerHTML = "-";
-        buttonLessPv.tag = parseInt(xhttp.responseText)-1;
-        buttonLessPv.setAttribute('onclick','updatePvs(this.tag);');
-        component.appendChild(buttonLessPv);
+    	
+    	var div = document.getElementById("playerPvLessPointId");
+    	div.tag = parseInt(xhttp.responseText)-1;
+    	div.setAttribute('onclick','updatePvs(this.tag);');
 
-        var buttonMorePv = document.createElement("button");
-        buttonMorePv.innerHTML = "+";
-        buttonMorePv.tag = parseInt(xhttp.responseText)+1;
-        buttonMorePv.setAttribute('onclick','updatePvs(this.tag);');
-        component.appendChild(buttonMorePv);
+        div = document.getElementById("playerPvMorePointId");
+        div.tag = parseInt(xhttp.responseText)+1;
+        div.setAttribute('onclick','updatePvs(this.tag);');
     }
 }
 
