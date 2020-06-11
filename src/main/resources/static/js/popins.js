@@ -44,6 +44,39 @@ function hideCardPopin() {
 
 
 /**
+ * Affiche la "popin" de lancement des dés
+ *
+ */
+function showDicesPopin() {
+	showPopin("popinDicesDiv");
+}
+
+/**
+ * Masque la "popin" de lancement des dés
+ *
+ */
+function hideDicesPopin() {
+	hidePopin("popinDicesDiv");
+}
+
+
+/**
+ * Affiche la "popin" des messages
+ *
+ */
+function showMessagesPopin() {
+	showPopin("popinMessagesDiv");
+}
+
+/**
+ * Masque la "popin" des messages
+ *
+ */
+function hideMessagesPopin() {
+	hidePopin("popinMessagesDiv");
+}
+
+/**
  * Masque toutes les popins
  *
  */

@@ -25,6 +25,8 @@ function changePlayersId() {
 
 function newTurn() {
 
+	document.getElementById("newTurnButton").blur();
+	
     //Piocher une carte
     var xhttp = new XMLHttpRequest();
     xhttp.open("GET", "player/"+currentPlayerId+"/newcard", false);

@@ -158,10 +158,10 @@ PvPlayer {
     
     display: grid;
     display: -ms-grid;
-    grid-template-columns: 63px 18px 82px;
-    grid-template-rows: 70px 22px 22px 22px 22px;
-    -ms-grid-columns: 63px 18px 82px;
-    -ms-grid-rows: 70px 22px 22px 22px 22px;
+    grid-template-columns: 54px 28px 28px 54px;
+    grid-template-rows: 71px 47px 20px 20px;
+    -ms-grid-columns: 4px 28px 28px 54px;
+    -ms-grid-rows: 71px 47px 20px 20px;
 }
 
 Affinite {
@@ -211,10 +211,10 @@ PvOpp {
     
     display: grid;
     display: -ms-grid;
-    grid-template-columns: 63px 18px 82px;
-    grid-template-rows: 50px 22px 22px 22px 22px;
-    -ms-grid-columns: 63px 18px 82px;
-    -ms-grid-rows: 70px 22px 22px 22px 22px;
+    grid-template-columns: 50px 21px 82px;
+    grid-template-rows: 55px 29px 29px 29px;
+    -ms-grid-columns: 50px 21px 82px;
+    -ms-grid-rows: 55px 29px 29px 29px;
 }
 
 TrapsOpp {
