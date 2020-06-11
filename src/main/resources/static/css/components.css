@@ -85,8 +85,8 @@ Hand>div {
 .newTurnButton {
     border: 0;
     padding: 0 6px;
-    margin-top: 5px;
-    margin-left: 5px;
+    width: 140px;
+    margin: auto;
     font-size: 1rem;
     text-align: center;
     color: #fff;

@@ -14,36 +14,25 @@ function fillChakras(playerId,componentId) {
     xhttpMaxChakra.send();
     var maxChakra = Number(xhttpMaxChakra.responseText);
 
-    if ((oldChakra[playerId].count != countChakra) || (countChakra == 0) || (oldChakra[playerId].max != maxChakra)) {
+    var component = document.getElementById(componentId);
+    component.textContent = xhttp.responseText;
+    if (countChakra > maxChakra) {
+        component.style.color="red";
+    }else{
+        component.style.color="white";
+    }
     
-    	oldChakra[playerId].count = countChakra;
-    	oldChakra[playerId].max = maxChakra;
-    	
-	    var component = document.getElementById(componentId);
-	    component.textContent = "Chakras : " + xhttp.responseText;
-	    if (countChakra> maxChakra) {
-	        component.style.color="red";
-	    }else{
-	        component.style.color="black";
-	    }
-	    
-	    if (componentId == "playerChakraId") {
-		    var linebreak = document.createElement("br");
-		    component.appendChild(linebreak);
-		
-		    var buttonLessChakra = document.createElement("button");
-		    buttonLessChakra.innerHTML = "-";
-		    buttonLessChakra.tag = parseInt(xhttp.responseText)-1;
-		    buttonLessChakra.setAttribute('onclick','updateChakras(this.tag);');
-		    component.appendChild(buttonLessChakra);
-		
-		    var buttonMoreChakra = document.createElement("button");
-		    buttonMoreChakra.id = "ButtonMoreChakraID";
-		    buttonMoreChakra.innerHTML = "+";
-		    buttonMoreChakra.tag = parseInt(xhttp.responseText)+1;
-		    buttonMoreChakra.setAttribute('onclick','updateChakras(this.tag);');
-		    component.appendChild(buttonMoreChakra);
-	    }
+	oldChakra[playerId].count = countChakra;
+	oldChakra[playerId].max = maxChakra;
+	
+    if (componentId == "playerChakraId") {
+    	var div = document.getElementById("playerChakraLessPointId");
+    	div.tag = parseInt(xhttp.responseText)-1;
+    	div.setAttribute('onclick','updateChakras(this.tag);');
+	
+    	div = document.getElementById("playerChakraMorePointId");
+    	div.tag = parseInt(xhttp.responseText)+1;
+    	div.setAttribute('onclick','updateChakras(this.tag);');
     }
 
 }

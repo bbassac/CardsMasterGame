@@ -1,15 +1,17 @@
 function fillDiceArea(currentPlayerId,diceId){
-    var divDice = document.createElement("div");
-    //text area
-    var textArea = document.createElement("INPUT");
-    textArea.setAttribute("id","diceAreaId");
-    textArea.size = 7;
-    textArea.setAttribute('onkeypress','throwDice(event,this.value);');
-    divDice.appendChild(textArea);
 
-    var diceArea = document.getElementById(diceId);
-    diceArea.innerHTML="";
-    diceArea.appendChild(divDice);
+	var textArea = document.getElementById("diceAreaId");
+    if (textArea == null) {
+	    var textArea = document.createElement("INPUT");
+	    textArea.id = "diceAreaId";
+	    textArea.size = 8;
+	    textArea.setAttribute('onkeypress','throwDice(event,this.value);');
+
+	    var diceArea = document.getElementById(diceId);
+	    diceArea.appendChild(textArea);
+    }
+    
+    textArea.value = "";
 }
 
 function refreshLastDiceThrow(){
@@ -22,8 +24,11 @@ function refreshLastDiceThrow(){
     if (result.detail != null){
         detailedResult += ("(" + result.detail + ")");
     }
-    document.getElementById("diceResultId").textContent = "Result :" +detailedResult ;
-
+    
+    var textArea = document.getElementById("diceResultId");
+    if (textArea) {
+    	textArea.textContent = detailedResult ;
+    }
 }
 
 function throwDice(event,diceExp){
@@ -37,6 +42,6 @@ function throwDice(event,diceExp){
         if (result.detail != null){
             detailedResult += ("(" + result.detail + ")");
         }
-        document.getElementById("diceResultId").textContent = "Result :" +detailedResult ;
+        document.getElementById("diceResultId").value = detailedResult ;
     }
 }

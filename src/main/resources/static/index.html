@@ -11,6 +11,8 @@
 		<link rel="stylesheet" href="css/components.css" type="text/css" />
 		<link rel="stylesheet" href="css/dmgArea.css" type="text/css" />
 		<link rel="stylesheet" href="css/statusArea.css" type="text/css" />
+		<link rel="stylesheet" href="css/pvPlayer.css" type="text/css" />
+		<link rel="stylesheet" href="css/pvOpponent.css" type="text/css" />
 	</head>
 	
 	<body>
@@ -39,25 +41,40 @@
 			<AffinityOpp id="affiniteOppId"></AffinityOpp>
 		    <BoardOpp id="boardOpp"></BoardOpp>
 		    <PvOpp>
-		        <div id="oppPvsId"></div>
-		        <div id="oppChakraId"></div>
-		        <div id="nbTrapsId"></div>
-		        <div id="nbCardsId"></div>
-		        <div id="extraOppId"></div>
+		    	<OppPv>
+		    		<OppPvPoints id="oppPvsId"></OppPvPoints>
+		    	</OppPv>
+		    	<OppChakra>
+		    		<OppChakraPoints id="oppChakraId"></OppChakraPoints>
+		    	</OppChakra>
+				<OppMessageIcon></OppMessageIcon>
+		        <OppMessageText id="extraOppId"></OppMessageText>
+		        <OppNbCardsIcon></OppNbCardsIcon>
+		        <OppNbCardsValue id="nbCardsId"></OppNbCardsValue>
 		    </PvOpp>
 		    <BoardPlayer id="boardPlayer"></BoardPlayer>
 		    <GraveyardPlayer id="graveyardId"></GraveyardPlayer>
 		    <PvPlayer>
-		        <div id="playerPvsId"></div>
-		        <div id="playerChakraId"></div>
-		        <div id="diceId" ></div>
-		        <div id="diceResultId" >Result :</div>
-		        <div id="extraPlayerId"></div>
-
-		        <button class="newTurnButton" type="button" onclick="newTurn()">
-		            Nouveau Tour
-		        </button>
-
+		    	<PlayerPv>
+		    		<PlayerPvPoints id="playerPvsId"></PlayerPvPoints>
+		    		<PlayerPvLessPoint id="playerPvLessPointId"></PlayerPvLessPoint>
+		    		<PlayerPvMorePoint id="playerPvMorePointId"></PlayerPvMorePoint>
+		    	</PlayerPv>
+		    	<PlayerChakra>
+		    		<PlayerChakraPoints id="playerChakraId"></PlayerChakraPoints>
+		    		<PlayerChakraLessPoint id="playerChakraLessPointId"></PlayerChakraLessPoint>
+		    		<PlayerChakraMorePoint id="playerChakraMorePointId"></PlayerChakraMorePoint>
+		    	</PlayerChakra>
+				<PlayerDiceIcon></PlayerDiceIcon>
+				<PlayerDiceValue id="diceId"></PlayerDiceValue>
+				<PlayerDiceResult id="diceResultId"></PlayerDiceResult>
+				<PlayerMessageIcon></PlayerMessageIcon>
+		        <PlayerMessageText id="extraPlayerId"></PlayerMessageText>
+		        <NewTurn>
+			        <button class="newTurnButton" type="button" onclick="newTurn()">
+			            Nouveau Tour
+			        </button>
+		        </NewTurn>
 		    </PvPlayer>
 
 		    <Hand id="hand"></Hand>
