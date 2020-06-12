@@ -106,4 +106,7 @@ OppMessageText div {
 	vertical-align: middle;
 	display: table-cell;
 	height: 22px;
+    font-family: "naruto", Helvetica, Arial, sans-serif;
+    font-size: 0.9em;
+    font-weight: 800;
 }
