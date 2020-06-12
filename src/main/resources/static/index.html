@@ -7,6 +7,10 @@
 		<link rel="stylesheet" href="css/cardsZone.css" type="text/css" />
 		<link rel="stylesheet" href="css/menus.css" type="text/css" />
 	    <link rel="stylesheet" href="css/popins.css" type="text/css" />
+	    <link rel="stylesheet" href="css/popinCard.css" type="text/css" />
+	    <link rel="stylesheet" href="css/popinCardSelect.css" type="text/css" />
+	    <link rel="stylesheet" href="css/popinMessage.css" type="text/css" />
+	    <link rel="stylesheet" href="css/popinDice.css" type="text/css" />
 		<link rel="stylesheet" href="css/card.css" type="text/css" />
 		<link rel="stylesheet" href="css/components.css" type="text/css" />
 		<link rel="stylesheet" href="css/dmgArea.css" type="text/css" />
@@ -69,7 +73,7 @@
 				<PlayerMessageIcon onclick="displayPopinMessages()"></PlayerMessageIcon>
 		        <NewTurn>
 			        <button id="newTurnButton" class="newTurnButton" type="button" onclick="newTurn()">
-			            Nouv.<br/>Tour
+			            Nouveau<br/>Tour
 			        </button>
 		        </NewTurn>
 				<PlayerDiceResult id="diceResultId"></PlayerDiceResult>
@@ -114,9 +118,11 @@
 					<div class="popinDicesInputDiv">
 						<input type="text" id="popinDicesInput" size="10">
 					</div>
+					<div id="popinDicesErrorDiv"></div>
 					<div id="popinDicesResult" class="popinDicesResult">
 						<div id="popinDicesResultWrapper" class="popinDicesResultWrapper"></div>
 					</div>
+					<div id="popinTotalDicesResultDiv"></div>
 				</div>
 			</div>
 		</div>
