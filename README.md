@@ -32,6 +32,7 @@
 * [ ] evol : Externaliser le menu de domCard (passer des références de nom de fonction pour retirer l'adhérence dans menu)
 * [X] evol : Reprendre le style pour les zones PV
 * [X] evol : Mettre un dos de carte de fond pour les cimetières (refaire la carte aux bonnes sizes)
+* [ ] evol : tooltips sur les éléments de PV, dés etc ....
 * [ ] bug : Déplacement de carte au cimetière : réinitialiser les status pour les ninjas ET les equipements
 
 
