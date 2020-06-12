@@ -65,16 +65,15 @@
 		    		<PlayerChakraLessPoint id="playerChakraLessPointId"></PlayerChakraLessPoint>
 		    		<PlayerChakraMorePoint id="playerChakraMorePointId"></PlayerChakraMorePoint>
 		    	</PlayerChakra>
-				<PlayerDiceIcon></PlayerDiceIcon>
-				<PlayerDiceValue id="diceId"></PlayerDiceValue>
-				<PlayerDiceResult id="diceResultId"></PlayerDiceResult>
-				<PlayerMessageIcon></PlayerMessageIcon>
-		        <PlayerMessageText id="extraPlayerId"></PlayerMessageText>
+				<PlayerDiceIcon id="diceIconId"></PlayerDiceIcon>
+				<PlayerMessageIcon onclick="displayPopinMessages()"></PlayerMessageIcon>
 		        <NewTurn>
-			        <button class="newTurnButton" type="button" onclick="newTurn()">
-			            Nouveau Tour
+			        <button id="newTurnButton" class="newTurnButton" type="button" onclick="newTurn()">
+			            Nouv.<br/>Tour
 			        </button>
 		        </NewTurn>
+				<PlayerDiceResult id="diceResultId"></PlayerDiceResult>
+				<PlayerMessage id="extraPlayerId"></PlayerMessage>
 		    </PvPlayer>
 
 		    <Hand id="hand"></Hand>
@@ -106,7 +105,35 @@
 			</div>
 		</div>
 		
+		<!-- div de la popin des dés -->
+		<div id="popinDicesDiv" >
+			<div class="popin_gray_back" onclick="hideDicesPopin()"></div>
+			<div class="popin_dices">
+				<div id="popinDicesArea" class="popinDicesArea">
+					<img class="closePopin" src="img/ClosePopin.png" onclick="hideDicesPopin()"></img>
+					<div class="popinDicesInputDiv">
+						<input type="text" id="popinDicesInput" size="10">
+					</div>
+					<div id="popinDicesResult" class="popinDicesResult">
+						<div id="popinDicesResultWrapper" class="popinDicesResultWrapper"></div>
+					</div>
+				</div>
+			</div>
+		</div>
 		
+		<!-- div de la popin des messages -->
+		<div id="popinMessagesDiv" >
+			<div class="popin_gray_back" onclick="hideMessagesPopin()"></div>
+			<div class="popin_messages">
+				<div id="popinMessagesArea" class="popinMessagesArea">
+					<img class="closePopin" src="img/ClosePopin.png" onclick="hideMessagesPopin()"></img>
+					<div class="popinMessagesInputDiv">
+						<input type="text" id="popinMessagesInput" size="20">
+					</div>
+				</div>
+			</div>
+		</div>
+
 		<!-- éléments techniques -->
 		<script src="js/constants.js"></script>
 		<script src="js/imageLoader.js"></script>
@@ -119,6 +146,8 @@
 		<!-- popins -->
 		<script src="js/popins.js"></script>
 		<script src="js/popinSelectCard.js"></script>
+		<script src="js/popinDices.js"></script>
+		<script src="js/popinMessages.js"></script>
 		
 		<!-- zones abstraites -->
 		<script src="js/cardszones/abstract/cardsZone.js"></script>
