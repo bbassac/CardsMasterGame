@@ -1,0 +1,54 @@
+#popinCardSelectDiv {
+	display: none;
+}
+
+.popin_cardSelect {
+	position: absolute;
+	background-color: white;
+	border: 2px solid white;
+	top: 20px;
+	left: 10%;
+	width: 1510px;
+	height: 1000px;
+	background-size: 1510px 1000px;
+	box-shadow: 15px 15px 15px rgba(0,0,0,.8);
+}
+
+.popinSelectCardsArea {
+	position: absolute;
+	top: 30px;
+	left: 5px;
+	width: 1505px;
+	height: 970px;
+	overflow-y: auto;
+}
+
+.selectCardDiv {
+	float:left;	
+}
+
+.popinSelectDivButton {
+    position: absolute;
+    width: 40px;
+    bottom: 5px;
+    right: 5px;
+    display: none;
+}
+
+.popinSelectButton {
+    width: 40px;
+    border: 0;
+    height: 18px;
+    font-size: 1rem;
+    text-align: center;
+    color: #fff;
+    text-shadow: 1px 1px 1px #000;
+    border-radius: 10px;
+    background-color: rgba(0, 220, 0, 1);
+    background-image: linear-gradient(to top left,
+    rgba(0, 0, 0, .2),
+    rgba(0, 0, 0, .2) 30%,
+    rgba(0, 0, 0, 0));
+    box-shadow: inset 2px 2px 3px rgba(255, 255, 255, .6),
+    inset -2px -2px 3px rgba(0, 0, 0, .6);
+}

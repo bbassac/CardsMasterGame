@@ -1,6 +1,9 @@
 function displayPopinDices() {
 	showDicesPopin();
 	
+	hideError();
+	hideTotal();
+	
 	var divDices = document.getElementById("popinDicesResultWrapper");
 	divDices.innerHTML = "";	
 	
@@ -13,22 +16,54 @@ function displayPopinDices() {
 function throwDice(event, diceExp){
 
     if (event.keyCode === 13) {
-    	sendDices(diceExp.toUpperCase());
+    	sendDices(diceExp);
     }
+}
+
+function showError(errMessage) {
+	var errDiv = document.getElementById("popinDicesErrorDiv");
+	errDiv.innerHTML = errMessage;
+	errDiv.style.display = "block";
+}
+
+function hideError() {
+	var errDiv = document.getElementById("popinDicesErrorDiv");
+	errDiv.style.display = "none";
+}
+
+function hideTotal() {
+	var errDiv = document.getElementById("popinTotalDicesResultDiv");
+	errDiv.style.display = "none";
 }
 
 function sendDices(diceExp) {
 	
-    var xhttp = new XMLHttpRequest();
-    xhttp.open("GET", "dice/" + diceExp, false);
-    xhttp.setRequestHeader("Content-type", "application/json");
-    xhttp.send();
-    var result = JSON.parse(xhttp.responseText);
-
-    var maxDicesValues = getMaxDicesValues(diceExp);
-    var finalDices = getDicesValues(result.detail);
-    
-    showDices(finalDices, maxDicesValues);
+	hideError();
+	hideTotal();
+	
+	diceExp = diceExp.toUpperCase();
+	var maxDicesValues = getMaxDicesValues(diceExp);
+	
+	if (maxDicesValues.length > MAX_DICES) {
+		showError(ERROR_DICE_NUMBER);
+	
+	} else {
+	    var xhttp = new XMLHttpRequest();
+	    xhttp.open("GET", "dice/" + diceExp, false);
+	    xhttp.setRequestHeader("Content-type", "application/json");
+	    xhttp.send();
+	    
+	    if (xhttp.status !== 200) {
+	    	showError(ERROR_DICE);
+	    	
+	    } else {
+		    var result = JSON.parse(xhttp.responseText);
+		
+		    var finalDices = getDicesValues(result.detail);
+		    
+		    showDices(finalDices, maxDicesValues);
+	    }
+	}
 }
 
 function getDicesValues(detail) {
@@ -97,6 +132,7 @@ function loopDices(loopCount, maxDicesValues, dicesText, finalDices) {
 
 	if (loopCount === 0) {
 		showResults(dicesText, finalDices);
+		showTotal(finalDices);
 
 	} else {
 		
@@ -105,8 +141,6 @@ function loopDices(loopCount, maxDicesValues, dicesText, finalDices) {
 		for (var i = 0; i < dicesText.length; i++) {
 			rndDices.push(getRnd(1, maxDicesValues[i]));
 		}
-		
-		console.log(rndDices);
 		
 		showResults(dicesText, rndDices);
 		setTimeout(loopDices, 100, loopCount, maxDicesValues, dicesText, finalDices);
@@ -123,5 +157,17 @@ function showResults(dicesText, dices) {
 	for (var i = 0; i < dices.length; i++) {
 		dicesText[i].innerHTML = dices[i];
 	}
+}
 	
+function showTotal(dices) {
+	
+	var ttl = 0;
+	
+	for (var i = 0; i < dices.length; i++) {
+		ttl += dices[i];
+	}
+	
+	var errDiv = document.getElementById("popinTotalDicesResultDiv");
+	errDiv.innerHTML = ttl;
+	errDiv.style.display = "block";
 }

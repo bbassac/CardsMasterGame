@@ -1,0 +1,36 @@
+#popinMessagesDiv {
+	display: none;	
+}
+
+.popin_messages {
+	position: absolute;
+	background-color: white;
+	border: 1px solid white;
+	top: 40%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 400px;
+	height: 100px;
+	background-size: 1510px 1000px;
+	box-shadow: 15px 15px 15px rgba(0,0,0,.8);
+}
+
+.popinMessagesArea {
+	position: absolute;
+	background: deepskyblue;
+	top: 0px;
+	left: 0px;
+	width: 400px;
+	height: 100px;
+}
+
+.popinMessagesArea input {
+	width: 300px;
+	height: 30px;
+	background: #eeeeee;
+	font-size: 1.2em;
+	font-weight: bold;
+	text-align: center;
+	margin-top: 30px;
+	margin-left: 50px;
+}

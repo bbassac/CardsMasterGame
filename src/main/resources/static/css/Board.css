@@ -1,3 +1,7 @@
+/*@font-face {
+	font-family: "naruto";
+	src: url('../font/njnaruto.ttf');
+}*/
 
 Board {
     display: grid;
@@ -159,8 +163,8 @@ PvPlayer {
     display: grid;
     display: -ms-grid;
     grid-template-columns: 54px 28px 28px 54px;
-    grid-template-rows: 71px 47px 20px 20px;
-    -ms-grid-columns: 4px 28px 28px 54px;
+    grid-template-rows: 55px 40px 15px 15px 36px;
+    -ms-grid-columns: 54px 28px 28px 54px;
     -ms-grid-rows: 71px 47px 20px 20px;
 }
 

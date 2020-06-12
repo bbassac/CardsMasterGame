@@ -37,6 +37,7 @@ const IMG_ACTIVATE ="img/desactivated.png";
 const IMG_DESACTIVATE = "img/activated.png";
 const IMG_POWER = "img/power.png";
 const IMG_GRAVEYARD="img/graveyard.png";
+
 //Menus
 const MOVE_TO_HAND = "Déplacer vers la main";
 const ACTIVATE = "Activer la carte";
@@ -59,6 +60,8 @@ const CARD_IMG_BACK_OPPONENT_TRAPS = encodeURI("img/0-Back.jpg")
 //ERROR
 const ERROR_EQUIPMENT = "Déplacement interdit car la carte n'est pas un équipement";
 const ERROR_TRAP = "Déplacement interdit car la carte n'est pas un piège";
+const ERROR_DICE = "Saisie invalide. Ex. attendu : 1D6+2D5";
+const ERROR_DICE_NUMBER = "Saisie invalide. Maximum 5 dés autorisés.";
 
 //Kinds
 const KIND_TRAP = "Piège";
@@ -84,3 +87,6 @@ const OPP_GRAVEYARD_ID = "graveyardOppId";
 
 // Cookies
 const COOKIE_PLAYER_ID = "playerId";
+
+// Dés
+const MAX_DICES = 5;
