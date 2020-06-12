@@ -22,7 +22,13 @@ public class SwaggerConfig {
                 .build().pathProvider(new RelativePathProvider(null){
                     @Override
                     public String getApplicationBasePath(){
-                        return "/naruto";
+                        String property = System.getProperty("production.mode");
+                        LogUtils.warn("Mode production =  " + property);
+                        if (("true").equals(property)) {
+                            return "/naruto";
+                        }else {
+                            return "";
+                        }
                     }
                 })
                 ;
