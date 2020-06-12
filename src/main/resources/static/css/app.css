@@ -1,0 +1,11 @@
+body {
+    margin: 0;
+    user-select: none;
+    background-color: black;
+    /* font-family: "naruto";" */
+}
+
+/*@font-face {
+	font-family: "naruto";
+	src: url('../font/njnaruto.ttf');
+}*/

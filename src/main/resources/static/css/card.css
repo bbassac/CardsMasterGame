@@ -63,3 +63,13 @@
 	margin: auto 2px;
 }
 
+.usedCard {
+    outline: 3px dashed yellow;
+    outline-offset: -3px;
+}
+
+.activatedCard {
+    transform: rotate(90deg);
+    margin-left: 38px;
+    margin-right: 38px;
+}

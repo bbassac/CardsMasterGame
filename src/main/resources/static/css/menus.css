@@ -1,10 +1,3 @@
-body {
-    margin: 0;
-    user-select: none;
-    background-color: black;
-    /* font-family: "naruto";" */
-}
-
 Header {
     background-color: white;
     padding-left: 10px;

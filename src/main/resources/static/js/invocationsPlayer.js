@@ -10,8 +10,7 @@
     var img = document.createElement("img");
     img.src = CARD_IMG_BACK_AFFINITE;
     img.height = drawImageHeight;
-    img.id = "imgDraw";
-    img.classList.add("imgInvocation");
+    img.id = "imgInvocation";
     img.title = "Piocher une carte";
     img.draggable = false;
 	

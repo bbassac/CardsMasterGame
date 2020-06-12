@@ -7,7 +7,6 @@ function fillDraw(playerId){
     img.src = CARD_IMG_BACK_DRAW;
     img.height = drawImageHeight;
     img.id = "imgDraw";
-    img.classList.add("imgDraw");
     img.setAttribute('title', PICK_A_CARD);
     img.draggable = false;
     
