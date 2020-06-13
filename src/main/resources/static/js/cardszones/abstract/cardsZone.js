@@ -35,6 +35,9 @@ class CardsZone {
 		return [];
 	}
 	
+	domCardAdded(domCard, position) {
+	}
+	
 	domCardUpdated(domCard) {
 	}
 	
@@ -129,6 +132,8 @@ class CardsZone {
 	 */
 	addDomCard(domCard) {		
 
+		var position = this.divCardsContainer.childNodes.length;
+		
 		domCard.divCardsContainer = this.divCardsContainer;
 		domCard.setZone(this);
 
@@ -138,6 +143,7 @@ class CardsZone {
 		this.applySpecificCardProperties(domCard);
 		
 		this.domCardUpdated(domCard);
+		this.domCardAdded(domCard, position);
 		
 		return domCard;
 	}
@@ -176,6 +182,7 @@ class CardsZone {
 		this.applySpecificCardProperties(domCard);
 		
 		this.domCardUpdated(domCard);
+		this.domCardAdded(domCard, position);
 		
 		return domCard;
 	}
