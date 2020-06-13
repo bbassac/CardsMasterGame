@@ -71,6 +71,7 @@ class CardsZoneScrollableBoard extends CardsZoneBoard {
 		
 		this.theme = theme;
 		this.divBack = document.getElementById(divId);
+		this.autoScroll = false;
 		
 		if (this.divBack != null) {
 			
@@ -83,6 +84,10 @@ class CardsZoneScrollableBoard extends CardsZoneBoard {
 		}
 	}
 	
+	setAutoScrollOnadd(autoScroll) {
+		this.autoScroll = autoScroll;
+	}
+	
 	/**
 	 * "Tranforme" un div simple en un composant scrollable par bouton.
 	 * 
@@ -93,7 +98,6 @@ class CardsZoneScrollableBoard extends CardsZoneBoard {
 	 *   éléments (div, img) qui constitueront le composant.
 	 */
 	transformZone() {
-		this.consolelog(this.divBack.id + " transform to CardsZone")
 		
 		// préfixe d'id utilisé pour fournir un id unique aux éléments utilisés pour constituer le composant scrollable.
 		var id = this.divBack.id + "_";
@@ -170,6 +174,15 @@ class CardsZoneScrollableBoard extends CardsZoneBoard {
 	
 	/**
 	 * Appelée une fois qu'une carte à été ajoutée à la zone
+	 */
+	domCardAdded(domCard, position) {
+		if (this.autoScroll) {
+			this.scrollToEnd();
+		}
+	}	
+	
+	/**
+	 * Appelée une fois qu'une carte à été mise à jour sur la zone
 	 */
 	domCardUpdated(domCard) {
 		this.tryUpdateScrollArrows(0);
@@ -271,6 +284,10 @@ class CardsZoneScrollableBoard extends CardsZoneBoard {
 	scrollToRight(event) {
 		this.startScroll(event, SCROLL_FREQUENCY);
 	}
+
+	scrollToEnd() {
+		this.startScroll(event, SCROLL_FREQUENCY * 4);
+	}
 	
 	/**
 	 * Fonction permettant le lancement du scroll vers la gauche ou vers la droite selon la valeur du pas.
@@ -287,7 +304,7 @@ class CardsZoneScrollableBoard extends CardsZoneBoard {
 		this.stopScrolling();
 	
 		// ajout sur la structure de la distance de scroll maximale actuelle
-		this.scrollMax = this.divScrollCards.scrollWidth - this.divScrollCards.clientWidth;
+		this.scrollMax = this.divScrollCards.scrollWidth - this.divScrollCards.clientWidth + 5;
 		
 		// lancement du scroll en commançant par un premier pas pour assurer un déplacement
 		// même si l'enchaînement mousedown/mouseup est très rapide (inférieure à la fréquence de scroll).
@@ -320,11 +337,10 @@ class CardsZoneScrollableBoard extends CardsZoneBoard {
 	/**
 	 * Fonction effectuant un pas de déplacement de scroll.
 	 * 
-	 * @param offset taille du pas a effectuer. Peut e^tre négatif (scroll gauche) ou positif (scroll droit).
-	 * @param elements structure de onnées référençant certains élément du composant scrollable et la distance maximale de scroll possible. 
+	 * @param offset taille du pas a effectuer. Peut être négatif (scroll gauche) ou positif (scroll droit).
 	 */
 	doScroll(offset) {
-	
+
 		// div de scroll (div situé sous le div où poser les cartes).
 		var div = this.divScrollCards;
 		
@@ -350,13 +366,13 @@ class CardsZoneScrollableBoard extends CardsZoneBoard {
 			x = (x < (-offset)) ? 0 : x + offset;
 			div.scrollLeft = x;
 		}
-	
+
 		if (x == 0) {
 			// si la nouvelle position est 0 (max à gauche) alors arrêt forcé du scrolling et masquage de la flèche gauche.
 			this.stopScrolling();
 			this.imgLeftArrow.style.display = "none";
 		} else {
-			// sinon affichage de la flèche droite.
+			// sinon affichage de la flèche gauche.
 			this.imgLeftArrow.style.display = "block";
 		}
 		
@@ -364,6 +380,7 @@ class CardsZoneScrollableBoard extends CardsZoneBoard {
 			// si la nouvelle position est max (max à droite) alors arrêt forcé du scrolling et masquage de la flèche droite.
 			this.stopScrolling();
 			this.imgRightArrow.style.display = "none";
+
 		} else {
 			// sinon affichage de la flèche droite.
 			this.imgRightArrow.style.display = "block";

@@ -15,6 +15,7 @@ class BoardOpponentZone extends CardsZoneScrollableBoard {
 	}
 
 	addSpecificCardElements(domCard) {
+		this.setAutoScrollOnadd(true);
 		this.addDamage(domCard);
 		this.addStatus(domCard);
 	}
