@@ -155,6 +155,7 @@ public class CardService {
     }
     public void moveCardFromPiegeToGraveyardForPlayer(int playerId, int cardId) {
         Card c = findCardInStackById(pieges[playerId],"piege joueur " + playerId, cardId);
+        cleanCard(c);
         pieges[playerId].remove(c);
         cimetieres[playerId].push(c);
     }
@@ -171,6 +172,8 @@ public class CardService {
         c.setDammagePoints(0);
         c.getStatus().setActivated(false);
         c.getStatus().setUsed(false);
+        c.getStatus().setHidden(false);
+        c.getStatus().setStuned(false);
     }
 
     public void moveCardFromHandToGraveyardForPlayer(int playerId, int cardId) {
