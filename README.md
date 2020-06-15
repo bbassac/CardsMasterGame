@@ -30,10 +30,6 @@
 * [ ] Doubler le nombre des invocations
 * [ ] bug : Synchronisation de la popin cimetière si le même cimetière est ouvert par les deux joueurs en même temps.
 * [ ] evol : Externaliser le menu de domCard (passer des références de nom de fonction pour retirer l'adhérence dans menu)
-* [X] evol : Reprendre le style pour les zones PV
-* [X] evol : Mettre un dos de carte de fond pour les cimetières (refaire la carte aux bonnes sizes)
-* [X] evol : tooltips sur les éléments de PV, dés etc ....
-* [ ] bug : Déplacement de carte au cimetière : réinitialiser les status pour les ninjas ET les equipements
 
 
 ## Background
