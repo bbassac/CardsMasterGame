@@ -6,7 +6,7 @@ function  fillNbCards(currentOppId,componentId,nbCardsHeight){
     xhttp.send();
     var cards = JSON.parse(xhttp.responseText);
     var nbCards = cards.length;
-    
+    document.getElementById('oppNbCardId').title=OPP_NB_CARD;
     if (nbCards !== oldNbCards) {
     	
         oldNbCards=nbCards;

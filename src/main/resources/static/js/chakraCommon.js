@@ -26,6 +26,8 @@ function fillChakras(playerId,componentId) {
 	oldChakra[playerId].max = maxChakra;
 	
     if (componentId == "playerChakraId") {
+        component.title=PLAYER_CHAKRA;
+
     	var div = document.getElementById("playerChakraLessPointId");
     	div.tag = parseInt(xhttp.responseText)-1;
     	div.setAttribute('onclick','updateChakras(this.tag);');
@@ -33,6 +35,8 @@ function fillChakras(playerId,componentId) {
     	div = document.getElementById("playerChakraMorePointId");
     	div.tag = parseInt(xhttp.responseText)+1;
     	div.setAttribute('onclick','updateChakras(this.tag);');
+    }else {
+        component.title = OPP_CHAKRA;
     }
 
 }

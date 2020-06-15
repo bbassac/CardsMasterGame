@@ -7,9 +7,10 @@ function fillPVs(playerId,componentId) {
     
     var component = document.getElementById(componentId);
     component.textContent =  xhttp.responseText;
-    
     if (componentId=="playerPvsId"){
-    	
+
+        component.title=PLAYER_PV;
+
     	var div = document.getElementById("playerPvLessPointId");
     	div.tag = parseInt(xhttp.responseText)-1;
     	div.setAttribute('onclick','updatePvs(this.tag);');
@@ -17,6 +18,8 @@ function fillPVs(playerId,componentId) {
         div = document.getElementById("playerPvMorePointId");
         div.tag = parseInt(xhttp.responseText)+1;
         div.setAttribute('onclick','updatePvs(this.tag);');
+    }else {
+        component.title=OPP_PV;
     }
 }
 

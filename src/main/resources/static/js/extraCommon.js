@@ -5,7 +5,7 @@ function displayOppExtra(oppPlayerId){
     xhttp.setRequestHeader("Content-type", "application/json");
     xhttp.send();
     var result = decodeURIComponent(xhttp.responseText);
-
+    document.getElementById('oppMessageIconId').title=OPP_SHARE_MESSAGE;
     document.getElementById("extraOppId").textContent = result ;
 }
 
@@ -16,31 +16,10 @@ function displayExtraArea(currentPlayerId,areaId){
     xhttp.setRequestHeader("Content-type", "application/json");
     xhttp.send();
     var result = decodeURIComponent(xhttp.responseText);
-/*
-    var textArea = document.getElementById("extraAreaId");
-    if (textArea == null) {
-    	textArea = document.createElement("INPUT");
-	    textArea.setAttribute("id","extraAreaId");
-	    textArea.size = 10;
-	    textArea.setAttribute('onkeypress','updateExtra(event,this.value);');
 
-        var divArea = document.getElementById(areaId);
-        divArea.innerHTML="";
-	    divArea.appendChild(textArea);
-    }
-
-    textArea.value = result;*/
-    
     var divArea = document.getElementById(areaId);
     divArea.innerHTML = result;
 
+    document.getElementById('messageIconId').title=SHARE_MESSAGE;
+
 }
-/*
-function updateExtra(event,value) {
-    if (event.keyCode === 13) {
-        var xhttp = new XMLHttpRequest();
-        xhttp.open("PUT", encodeURIComponent("player/" + currentPlayerId + "/extra/" + value), false);
-        xhttp.setRequestHeader("Content-type", "application/json");
-        xhttp.send();
-    }
-}*/

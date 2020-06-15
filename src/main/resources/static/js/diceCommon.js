@@ -1,6 +1,7 @@
 function fillDiceArea(currentPlayerId,diceId){
 
     var diceIconDiv = document.getElementById("diceIconId");
+    diceIconDiv.title =DICE;
     diceIconDiv.onclick = (function() { displayPopinDices(); });
 }
 

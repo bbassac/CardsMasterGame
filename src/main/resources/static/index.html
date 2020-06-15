@@ -19,6 +19,8 @@
 		<link rel="stylesheet" href="css/statusArea.css" type="text/css" />
 		<link rel="stylesheet" href="css/pvPlayer.css" type="text/css" />
 		<link rel="stylesheet" href="css/pvOpponent.css" type="text/css" />
+
+
 	</head>
 	
 	<body>
@@ -53,9 +55,9 @@
 		    	<OppChakra>
 		    		<OppChakraPoints id="oppChakraId"></OppChakraPoints>
 		    	</OppChakra>
-				<OppMessageIcon></OppMessageIcon>
+				<OppMessageIcon id="oppMessageIconId"></OppMessageIcon>
 		        <OppMessageText id="extraOppId"></OppMessageText>
-		        <OppNbCardsIcon></OppNbCardsIcon>
+		        <OppNbCardsIcon id="oppNbCardId"></OppNbCardsIcon>
 		        <OppNbCardsValue id="nbCardsId"></OppNbCardsValue>
 		    </PvOpp>
 		    <BoardPlayer id="boardPlayer"></BoardPlayer>
@@ -72,7 +74,7 @@
 		    		<PlayerChakraMorePoint id="playerChakraMorePointId"></PlayerChakraMorePoint>
 		    	</PlayerChakra>
 				<PlayerDiceIcon id="diceIconId"></PlayerDiceIcon>
-				<PlayerMessageIcon onclick="displayPopinMessages()"></PlayerMessageIcon>
+				<PlayerMessageIcon id="messageIconId" onclick="displayPopinMessages()"></PlayerMessageIcon>
 		        <NewTurn>
 			        <button id="newTurnButton" class="newTurnButton" type="button" onclick="newTurn()">
 			            Nouveau<br/>Tour

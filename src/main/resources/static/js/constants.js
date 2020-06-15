@@ -27,7 +27,14 @@ const PICK_A_CARD = "Piocher une carte";
 const HIDDEN = "Camouflé";
 const STUNED = "Immobilisé";
 const RENFORCED="Bonus Environnement actif";
-
+const PLAYER_PV = "Points de vie restants du joueur";
+const OPP_PV = "Points de vie restants de l'adversaire";
+const PLAYER_CHAKRA = "Points de chakra restants du joueur";
+const OPP_CHAKRA = "Points de chakra restants de l'adversaire";
+const DICE = "Lancer les dés";
+const SHARE_MESSAGE= "Partager un message";
+const OPP_SHARE_MESSAGE = "Message de l'adversaire";
+const OPP_NB_CARD = "Nombre de cartes dans la main de l'adversaire";
 //IMAGES MENU
 const IMG_HIDDEN = "img/hidden.png";
 const IMG_VISIBLE = "img/visible.png";
@@ -53,8 +60,8 @@ const USE_TRAP = "Déclencher le piège"
 
 // Images des cartes
 const CARD_IMG_BACK_DRAW = encodeURI("img/Back-Draw.png");
-const CARD_IMG_BACK_AFFINITE = encodeURI("img/Back-Select.png")
-const CARD_IMG_BACK_OPPONENT_TRAPS = encodeURI("img/0-Back.jpg")
+const CARD_IMG_BACK_AFFINITE = encodeURI("img/Back-Select.png");
+const CARD_IMG_BACK_OPPONENT_TRAPS = encodeURI("img/0-Back.jpg");
 
 
 //ERROR
