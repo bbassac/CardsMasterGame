@@ -6,13 +6,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
 import cardmastergame.FileUtils;
 import cardmastergame.LogUtils;
 import cardmastergame.bean.Card;
 import cardmastergame.bean.Deck;
+import org.springframework.stereotype.Service;
 
 @Component
 public class CardService {
@@ -32,6 +35,8 @@ public class CardService {
     private Deck<Card> currentEnvironnement;
 
     private MetaDataService metaDataService = new MetaDataService("Naruto.json");
+    @Autowired
+    private PlayerService playerService;
 
     @Value("${game.trap.max}")
     private int MAX_TRAP;
@@ -63,14 +68,14 @@ public class CardService {
         equipment[1]= new Deck<>();
         allCards = new HashMap<>();
 
-        int nbCards1 = loadStack(environnments, BACK_SELECT);
+        int nbCards1 = loadStack(environnments,null, BACK_SELECT);
         LogUtils.warn("Loaded " + nbCards1 + " environement");
         int nbCards4 = selectCurrentEnvironnement();
         LogUtils.warn("1 environnement selectionné ");
-        int nbCards2 = loadStack(invocations, BACK_SELECT_3);
+        int nbCards2 = loadStack(invocations,null, BACK_SELECT_3);
         LogUtils.warn("Loaded " + nbCards2 + " invocations");
-        int nbCards3 = loadStack(pioche[0], BACK_DRAW);
-        loadStack(pioche[1], BACK_DRAW);
+        int nbCards3 = loadStack(pioche[0],0, BACK_DRAW);
+        loadStack(pioche[1],1, BACK_DRAW);
         LogUtils.warn("Loaded " + nbCards3 + " pioches");
         return nbCards1+nbCards2+nbCards3+nbCards4;
     }
@@ -95,7 +100,7 @@ public class CardService {
         }
     }
 
-    private int loadStack(Deck<Card> stack, String folder) {
+    private int loadStack(Deck<Card> stack, Integer player, String folder) {
         String prop = FileUtils.getCurrentJarImgPath();
         File path = new File(prop + folder);
         for (File listOfFile : path.listFiles()) {
@@ -112,14 +117,31 @@ public class CardService {
         metaDataService.update(stack);
         if (folder.equals(BACK_DRAW)) {
             updateReinforced(stack);
+            updateEquipmentChakra(player,stack);
         }
         return path.listFiles().length;
     }
 
+    private void updateEquipmentChakra(Integer player,Deck<Card> stack) {
+        if (player != null) {
+
+            String chakra = playerService.getAffinite(player).getMetaData().getChakra();
+            for (Card c : stack) {
+                if (c.isWeaponOrArmor()){
+                    LogUtils.warn("Affinite joueur "+ player + " nature " + chakra);
+                    c.getMetaData().setChakra(chakra);
+                }
+            }
+        }
+    }
+
+
     private void updateReinforced(Deck<Card> stack) {
         for (Card c : stack){
-            if (c.getMetaData().getChakra().equals(currentEnvironnement.get(0).getMetaData().getChakra())){
-                c.getStatus().setReinforced(true);
+            if ("Ninja".equals(c.getMetaData().getKind())) {
+                if (c.getMetaData().getChakra().equals(currentEnvironnement.get(0).getMetaData().getChakra())) {
+                    c.getStatus().setReinforced(true);
+                }
             }
         }
     }
@@ -274,7 +296,7 @@ public class CardService {
                 return equipment[1];
             case ALL:
                 Deck<Card> fullDeck = new Deck<>();
-                loadStack(fullDeck, BACK_DRAW);
+                loadStack(fullDeck,0, BACK_DRAW);
                 return fullDeck;
             default:
                 throw new CardNotFoundException("Stack name " + stackName +" not found");
@@ -286,7 +308,7 @@ public class CardService {
         //Clear de la pioches
         pioche[playerId].clear();
         //Reinit from Scratch
-        loadStack(pioche[playerId], BACK_DRAW);
+        loadStack(pioche[playerId],playerId, BACK_DRAW);
         if (result.size()>0) {
             Deck<Card> newDeck = new Deck<>();
             for (Object c : pioche[playerId]) {

@@ -105,6 +105,7 @@ class MetaDataService {
             metaData.setDefense(String.valueOf(card.get("Defense")));
             metaData.setChakra(String.valueOf(card.get("Chakra")));
             metaData.setCost(String.valueOf(card.get("Cost")));
+            metaData.setTeam(String.valueOf(card.get("Team")));
             toReturn.put(name, metaData);
         }
 
