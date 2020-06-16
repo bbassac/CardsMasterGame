@@ -62,4 +62,17 @@ public class MetaData {
 	public void setTeam(String team) {
 		this.team = team;
 	}
+
+	public MetaData reinstanciante(){
+		MetaData toReturn = new MetaData();
+		toReturn.setChakra(this.getChakra());
+		toReturn.setTeam(this.getTeam());
+		toReturn.setKind(this.getKind());
+		toReturn.setCost(this.getCost());
+		toReturn.setDefense(this.getDefense());
+		toReturn.setAttack(this.getAttack());
+		return  toReturn;
+
+
+	}
 }

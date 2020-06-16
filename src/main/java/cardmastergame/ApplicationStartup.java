@@ -23,6 +23,9 @@ public class ApplicationStartup implements ApplicationListener<ApplicationReadyE
 
     @Override
     public void onApplicationEvent(ApplicationReadyEvent applicationReadyEvent) {
+        String property = System.getProperty("production.mode");
+        String text = property==null?"false":property;
+        LogUtils.warn("Mode production =  " + text );
         playerService.startNewGame();
         cardService.startNewGame();
     }

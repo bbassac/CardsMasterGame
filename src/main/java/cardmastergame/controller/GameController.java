@@ -24,16 +24,7 @@ public class GameController extends AbstractController{
         return "Loaded";
     }
 
-    @CrossOrigin
-    @RequestMapping(path = "/card/{cardId}",method = RequestMethod.GET)
-    @ResponseBody
-    @ApiOperation(value = "Get the image card path",response = String.class)
-    public String getCardPath(
-            @ApiParam(value = "Card Id ", type = "int", required = true)
-            @PathVariable("cardId") Integer id)  {
 
-        return cardService.getCardById(id);
-    }
 
     @CrossOrigin
     @RequestMapping(path="/maxchakra",method = RequestMethod.GET)

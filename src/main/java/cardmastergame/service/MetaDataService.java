@@ -14,12 +14,16 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+import org.springframework.context.annotation.Bean;
+import org.springframework.stereotype.Component;
 
+@Component
 class MetaDataService {
 
     private HashMap<String, MetaData> jsCards;
 
-    MetaDataService(final String jsonFileName) {
+    MetaDataService() {
+        String jsonFileName="Naruto.json";
         String prop = FileUtils.getCurrentJarStaticPath();
         File path = new File(prop + "\\json");
         for (File file : path.listFiles()) {
@@ -31,7 +35,7 @@ class MetaDataService {
         }
     }
 
-    void update(Deck<Card> stack) {
+    void update(Deck<Card> stack,String deckName) {
 
         if (jsCards != null) {
 
@@ -45,7 +49,7 @@ class MetaDataService {
 
                 name = getCardName(card.getPath());
 
-                metaData = jsCards.get(name);
+                metaData = jsCards.get(name).reinstanciante();
 
                 if (metaData == null) {
                     notFound++;
@@ -57,7 +61,7 @@ class MetaDataService {
             }
 
             int percent = found * 100 / (found + notFound);
-            LogUtils.warn("Deck updated : " + percent + "%");
+            LogUtils.warn("Deck "+deckName +" updated : " + percent + "%");
         }
 
     }

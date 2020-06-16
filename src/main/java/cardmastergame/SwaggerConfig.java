@@ -23,7 +23,6 @@ public class SwaggerConfig {
                     @Override
                     public String getApplicationBasePath(){
                         String property = System.getProperty("production.mode");
-                        LogUtils.warn("Mode production =  " + property);
                         if (("true").equals(property)) {
                             return "/naruto";
                         }else {

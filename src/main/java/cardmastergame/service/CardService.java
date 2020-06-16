@@ -1,21 +1,17 @@
 package cardmastergame.service;
 
 import java.io.File;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
 import cardmastergame.FileUtils;
 import cardmastergame.LogUtils;
 import cardmastergame.bean.Card;
 import cardmastergame.bean.Deck;
-import org.springframework.stereotype.Service;
 
 @Component
 public class CardService {
@@ -23,7 +19,6 @@ public class CardService {
     private static final String BACK_SELECT = "/Back-Select";
     private static final String BACK_SELECT_3 = "/Back-Select3";
     private int lastIndex;
-    private Map<Integer, Card> allCards;
     private Deck<Card> environnments;
     private Deck<Card>[] pioche;
     private Deck<Card> invocations;
@@ -33,8 +28,8 @@ public class CardService {
     private Deck<Card>[] pieges;
     private Deck<Card>[] equipment;
     private Deck<Card> currentEnvironnement;
-
-    private MetaDataService metaDataService = new MetaDataService("Naruto.json");
+    @Autowired
+    private MetaDataService metaDataService;
     @Autowired
     private PlayerService playerService;
 
@@ -43,7 +38,7 @@ public class CardService {
 
     private Random rand = new Random();
 
-    public int startNewGame(){
+    public void startNewGame(){
         lastIndex = 0;
         environnments = new Deck<>();
         currentEnvironnement = new Deck<>();
@@ -66,18 +61,12 @@ public class CardService {
         equipment = new Deck[2];
         equipment[0]= new Deck<>();
         equipment[1]= new Deck<>();
-        allCards = new HashMap<>();
 
-        int nbCards1 = loadStack(environnments,null, BACK_SELECT);
-        LogUtils.warn("Loaded " + nbCards1 + " environement");
-        int nbCards4 = selectCurrentEnvironnement();
-        LogUtils.warn("1 environnement selectionné ");
-        int nbCards2 = loadStack(invocations,null, BACK_SELECT_3);
-        LogUtils.warn("Loaded " + nbCards2 + " invocations");
-        int nbCards3 = loadStack(pioche[0],0, BACK_DRAW);
-        loadStack(pioche[1],1, BACK_DRAW);
-        LogUtils.warn("Loaded " + nbCards3 + " pioches");
-        return nbCards1+nbCards2+nbCards3+nbCards4;
+        LogUtils.warn("Loaded " + loadStack(environnments, BACK_SELECT) + " environement");
+        LogUtils.warn("Loaded " + selectCurrentEnvironnement() + " environnement courant");
+        LogUtils.warn("Loaded " + loadStack(invocations, BACK_SELECT_3) + " invocations");
+        LogUtils.warn("Loaded " + loadAndDecorateDeck(pioche[0],0, BACK_DRAW) + " pioche joueur 0");
+        LogUtils.warn("Loaded " + loadAndDecorateDeck(pioche[1],1, BACK_DRAW) + " pioche joueur 1");
     }
 
     private int selectCurrentEnvironnement() {
@@ -99,8 +88,15 @@ public class CardService {
             pioche[player].remove(randomPoition);
         }
     }
+private int loadAndDecorateDeck(Deck<Card> stack, Integer player, String folder){
+        int i = loadStack(stack,folder);
 
-    private int loadStack(Deck<Card> stack, Integer player, String folder) {
+        updateReinforced(stack);
+        updateEquipmentChakra(player,stack);
+        return i;
+}
+
+    private int loadStack(Deck<Card> stack, String folder) {
         String prop = FileUtils.getCurrentJarImgPath();
         File path = new File(prop + folder);
         for (File listOfFile : path.listFiles()) {
@@ -109,16 +105,12 @@ public class CardService {
                 Card c = new Card();
                 c.setId(lastIndex);
                 c.setPath(folder + "\\" + listOfFile.getName());
-                allCards.put(c.getId(), c);
                 stack.push(c);
             }
         }
         
-        metaDataService.update(stack);
-        if (folder.equals(BACK_DRAW)) {
-            updateReinforced(stack);
-            updateEquipmentChakra(player,stack);
-        }
+        metaDataService.update(stack,folder);
+
         return path.listFiles().length;
     }
 
@@ -128,7 +120,6 @@ public class CardService {
             String chakra = playerService.getAffinite(player).getMetaData().getChakra();
             for (Card c : stack) {
                 if (c.isWeaponOrArmor()){
-                    LogUtils.warn("Affinite joueur "+ player + " nature " + chakra);
                     c.getMetaData().setChakra(chakra);
                 }
             }
@@ -228,10 +219,6 @@ public class CardService {
         mains[playerId].push(c);
     }
 
-    public Map<Integer, Card> getAllCards() {
-        return allCards;
-    }
-
     public boolean updateActivatedOnCard(int playerId, int cardId, boolean value) {
         findCardInStackById(plateaux[playerId],"plateau joueur " + playerId,cardId).getStatus().setActivated(value);
         return value;
@@ -296,7 +283,7 @@ public class CardService {
                 return equipment[1];
             case ALL:
                 Deck<Card> fullDeck = new Deck<>();
-                loadStack(fullDeck,0, BACK_DRAW);
+                loadStack(fullDeck, BACK_DRAW);
                 return fullDeck;
             default:
                 throw new CardNotFoundException("Stack name " + stackName +" not found");
@@ -308,7 +295,7 @@ public class CardService {
         //Clear de la pioches
         pioche[playerId].clear();
         //Reinit from Scratch
-        loadStack(pioche[playerId],playerId, BACK_DRAW);
+        loadAndDecorateDeck(pioche[playerId],playerId, BACK_DRAW);
         if (result.size()>0) {
             Deck<Card> newDeck = new Deck<>();
             for (Object c : pioche[playerId]) {
@@ -355,9 +342,6 @@ public class CardService {
         return value;
     }
 
-    public String getCardById(Integer id) {
-        return getAllCards().get(id).getPath();
-    }
 
     public boolean updateUsedOnTrapCard(int playerId, int cardId, boolean value) {
         findCardInStackById(pieges[playerId],"piège joueur " + playerId,cardId).getStatus().setUsed(value);
