@@ -1,6 +1,7 @@
 package cardmastergame.service;
 
 import cardmastergame.bean.Card;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -17,11 +18,14 @@ public class PlayerService {
     @Value( "${game.pv.max}" )
     private int MAX_PV;
 
+    @Autowired
+    AffiniteService affiniteService;
+
     public void startNewGame(){
         pvs = new int[]{MAX_PV, MAX_PV};
         chakras = new int[] {0,0};
         extraInfos = new String[] {"",""};
-        affinite= AffiniteService.initialize("/Back-Select2");
+        affinite= affiniteService.initialize("/Back-Select2");
     }
 
     public void updatePlayerPvs(int playerId, int newPVs){

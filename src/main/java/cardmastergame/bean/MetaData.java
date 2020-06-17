@@ -17,6 +17,8 @@ public class MetaData {
 	private String cost;
 	@ApiModelProperty(notes = "Nature of chakra")
 	private String chakra;
+	@ApiModelProperty(notes = "Team (or equipment type)")
+	private String team;
 
 	public String getCost() {
 		return cost;
@@ -54,5 +56,23 @@ public class MetaData {
 	public void setKind(String kind) {
 		this.kind = kind;
 	}
+	public String getTeam() {
+		return team;
+	}
+	public void setTeam(String team) {
+		this.team = team;
+	}
 
+	public MetaData reinstanciante(){
+		MetaData toReturn = new MetaData();
+		toReturn.setChakra(this.getChakra());
+		toReturn.setTeam(this.getTeam());
+		toReturn.setKind(this.getKind());
+		toReturn.setCost(this.getCost());
+		toReturn.setDefense(this.getDefense());
+		toReturn.setAttack(this.getAttack());
+		return  toReturn;
+
+
+	}
 }

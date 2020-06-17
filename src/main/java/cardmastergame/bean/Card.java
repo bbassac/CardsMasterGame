@@ -45,4 +45,16 @@ public class Card {
     public void setStatus(Status status) {
         this.status = status;
     }
+
+    public boolean isWeaponOrArmor(){
+        boolean isWeapon ="Arme".equals(getMetaData().getTeam());
+        boolean isArmor = "Armure".equals(getMetaData().getTeam());
+        return isWeapon || isArmor;
+    }
+
+
+
+    boolean isEquipment(){
+        return "Equipement".equals(getMetaData().getKind());
+    }
 }

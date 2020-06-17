@@ -1,22 +1,23 @@
 package cardmastergame.service;
 
-import java.io.File;
-import java.util.Random;
-
 import cardmastergame.FileUtils;
 import cardmastergame.bean.Card;
 import cardmastergame.bean.Deck;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+import java.io.File;
+import java.util.Random;
+
+@Component
 public class AffiniteService {
 
     private static Random rand = new Random();
-    private static MetaDataService metaDataService = new MetaDataService("Naruto.json");
+    @Autowired
+    private MetaDataService metaDataService ;
 
-    public static Card[] initialize(String folder) {
+    public Card[] initialize(String folder) {
         Card[] result = new Card[2];
-
-     
-
         Deck<Card> stack = new Deck<>();
         int lastIndex = 0;
         String prop = FileUtils.getCurrentJarImgPath();
@@ -28,14 +29,12 @@ public class AffiniteService {
                 Card c = new Card();
                 c.setId(lastIndex);
                 c.setPath(folder + "\\" + listOfFile.getName());
-                //allCards.put(c.getId(), c);
                 stack.push(c);
             }
         }
-        metaDataService.update(stack);
+        metaDataService.update(stack,folder);
         result[0] = stack.get(rand.nextInt(stack.size()-1));
         result[1] = stack.get(rand.nextInt(stack.size()-1));
-
 
         return result;
     }
