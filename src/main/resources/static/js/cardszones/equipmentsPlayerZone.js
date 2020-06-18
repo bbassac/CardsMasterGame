@@ -3,6 +3,7 @@ class EquipmentsPlayerZone extends CardsZoneScrollableBoard {
 	constructor() {
 		super("equipments", equipmentHeight, THEME_GREY);
 		this.setAsDropZone();
+		this.setAutoScrollOnadd(true);
 	}
 
 	getCards(playerId) {
@@ -24,7 +25,6 @@ class EquipmentsPlayerZone extends CardsZoneScrollableBoard {
 	        { icon: activatedIcon,text: activatedText, action: (function(domCard, menuItem) { this.flipCard(domCard, menuItem); }).bind(this, domCard) },
 	        { icon:document.menuImgPower,text: usedText, action: (function(domCard, menuItem) { this.useCard(domCard, menuItem); }).bind(this, domCard) }
 	    ];
-		this.setAutoScrollOnadd(true);
 	    domCard.getMenu().addMenu(menu);
 	    domCard.setDraggable(true);
 		this.addAffinite(domCard);

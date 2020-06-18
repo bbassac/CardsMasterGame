@@ -2,6 +2,7 @@ class EquipmentsOpponentZone extends CardsZoneScrollableBoard {
 
 	constructor() {
 		super("equipmentOppId", equipmentHeight, THEME_RED);
+		this.setAutoScrollOnadd(true);
 	}
 
 	getCards(playerId) {
@@ -16,7 +17,6 @@ class EquipmentsOpponentZone extends CardsZoneScrollableBoard {
 
 	addSpecificCardElements(domCard) {
 	    domCard.setDraggable(true);
-		this.setAutoScrollOnadd(true);
 		this.addAffinite(domCard);
 	}
 	

@@ -2,6 +2,7 @@ class BoardOpponentZone extends CardsZoneScrollableBoard {
 
 	constructor() {
 		super("boardOpp", opponentCardHeight, THEME_RED);
+		this.setAutoScrollOnadd(true);
 	}
 
 	getCards(playerId) {
@@ -15,7 +16,6 @@ class BoardOpponentZone extends CardsZoneScrollableBoard {
 	}
 
 	addSpecificCardElements(domCard) {
-		this.setAutoScrollOnadd(true);
 		this.addDamage(domCard);
 		this.addStatus(domCard);
 	}
