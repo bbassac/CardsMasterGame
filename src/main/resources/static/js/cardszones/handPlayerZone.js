@@ -2,6 +2,7 @@ class HandPlayerZone extends CardsZoneScrollableBoard {
 
 	constructor() {
 		super("hand", gameImageHeight, THEME_BLUE);
+		this.setAutoScrollOnadd(true);
 	}
 
 	getCards(playerId) {
@@ -15,7 +16,6 @@ class HandPlayerZone extends CardsZoneScrollableBoard {
 	}
 
 	addSpecificCardElements(domCard) {
-		this.setAutoScrollOnadd(true);
 		domCard.setDraggable(true);
 		this.addStatus(domCard);
 	}

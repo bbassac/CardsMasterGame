@@ -3,6 +3,7 @@ class BoardPlayerZone extends CardsZoneScrollableBoard {
 	constructor() {
 		super("boardPlayer", gameImageHeight, THEME_GREEN);
 		this.setAsDropZone();
+		this.setAutoScrollOnadd(true);
 	}
 
 	getCards(playerId) {
@@ -36,7 +37,6 @@ class BoardPlayerZone extends CardsZoneScrollableBoard {
 			{ icon:hiddenIcon, text: hiddenText, action: (function(domCard, menuItem) { this.setHidden(domCard, menuItem); }).bind(this, domCard) },
 			{ icon: stunedIcon, text: stunedText, action: (function(domCard, menuItem) { this.setStuned(domCard, menuItem); }).bind(this, domCard) }
 	    ];
-		this.setAutoScrollOnadd(true);
 	    domCard.getMenu().addMenu(menu);
 	    domCard.setDraggable(true);
 	}

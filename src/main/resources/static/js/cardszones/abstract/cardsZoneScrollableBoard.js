@@ -123,7 +123,7 @@ class CardsZoneScrollableBoard extends CardsZoneBoard {
 		this.imgLeftArrow.src = "img/" + encodeURI(this.theme + "_arrow_left.png");
 		this.imgLeftArrow.classList.add("imgLeftArrow");
 		this.imgLeftArrow.style.display = "none";
-		this.imgLeftArrow.addEventListener("mousedown", (function(event) { this.scrollToLeft(event); }).bind(this) );
+		this.imgLeftArrow.addEventListener("mousedown", (function(event) { this.scrollToLeft(SCROLL_FREQUENCY); }).bind(this) );
 		this.imgLeftArrow.addEventListener("mouseup", (function(event) { this.stopScrolling(); }).bind(this) );
 	
 		// création d'un div intermédiaire
@@ -157,7 +157,7 @@ class CardsZoneScrollableBoard extends CardsZoneBoard {
 		this.imgRightArrow.src = "img/" + encodeURI(this.theme + "_arrow_right.png");
 		this.imgRightArrow.classList.add("imgRightArrow");
 		this.imgRightArrow.style.display = "none";
-		this.imgRightArrow.addEventListener("mousedown", (function(event) { this.scrollToRight(event); }).bind(this) );
+		this.imgRightArrow.addEventListener("mousedown", (function(event) { this.scrollToRight(SCROLL_FREQUENCY); }).bind(this) );
 		this.imgRightArrow.addEventListener("mouseup", (function(event) { this.stopScrolling(); }).bind(this) );
 		
 		// Empilements des éléments constituant le composant
@@ -177,7 +177,7 @@ class CardsZoneScrollableBoard extends CardsZoneBoard {
 	 */
 	domCardAdded(domCard, position) {
 		if (this.autoScroll) {
-			this.scrollToEnd();
+			this.scrollToEnd(SCROLL_FREQUENCY * 4);
 		}
 	}	
 	
@@ -268,25 +268,21 @@ class CardsZoneScrollableBoard extends CardsZoneBoard {
 	/**
 	 * Fonction permettant le lancement du scroll vers la gauche.
 	 * Est appelée lors d'un mousedown sur l'img fléche gauche.
-	 * 
-	 * @param event évènement mousedown à l'origine de l'appel
 	 */
-	scrollToLeft(event) {
-		this.startScroll(event, -SCROLL_FREQUENCY);
+	scrollToLeft(scrollFerquency) {
+		this.startScroll(-SCROLL_STEP, scrollFerquency);
 	}
 	
 	/**
 	 * Fonction permettant le lancement du scroll vers la droite.
 	 * Est appelée lors d'un mousedown sur l'img fléche froite.
-	 * 
-	 * @param event évènement mousedown à l'origine de l'appel
 	 */
-	scrollToRight(event) {
-		this.startScroll(event, SCROLL_FREQUENCY);
+	scrollToRight(scrollFerquency) {
+		this.startScroll(SCROLL_STEP, scrollFerquency);
 	}
 
-	scrollToEnd() {
-		this.startScroll(event, SCROLL_FREQUENCY * 4);
+	scrollToEnd(scrollFerquency) {
+		this.startScroll(SCROLL_STEP, scrollFerquency);
 	}
 	
 	/**
@@ -294,23 +290,30 @@ class CardsZoneScrollableBoard extends CardsZoneBoard {
 	 * - un pas négatif : scroll vers la gauche.
 	 * - un pas position : scroll vers la droite.
 	 * 
-	 * @param event évènement mousedown à l'origine de l'appel
 	 * @param scrollStep pas de déplacement du scroll
 	 */
-	startScroll(event, scrollStep) {
-		
+	startScroll(scrollStep, scrollFerquency) {
 		// force l'arrêt d'un éventuel scrolling du composant 
 		// au cas où mousedown soit intercepté plus qu'un précéent mouseup 
 		this.stopScrolling();
+
+		// attente du chargement de toutes les cartes
+		this.waitAllCardsLoaded(this.getDivCardsContainer().childNodes, 0, this.continueScroll.bind(this, scrollStep, scrollFerquency));
+	}
 	
-		// ajout sur la structure de la distance de scroll maximale actuelle
-		this.scrollMax = this.divScrollCards.scrollWidth - this.divScrollCards.clientWidth + 5;
+	continueScroll(scrollStep, scrollFerquency) {
+
+		this.onScroll = true;
 		
+		// ajout sur la structure de la distance de scroll maximale actuelle
+		this.scrollMax = this.divScrollCards.scrollWidth - this.divScrollCards.clientWidth; // + 5;
+
 		// lancement du scroll en commançant par un premier pas pour assurer un déplacement
 		// même si l'enchaînement mousedown/mouseup est très rapide (inférieure à la fréquence de scroll).
-		this.doScroll(scrollStep);
+		this.doScroll(scrollStep, scrollFerquency);
 		// puis en lançant une boucle de scroll que sera arrêtée lors d'un mouseup sur l'img.
-		this.scrollingTaskId = setInterval( (function(){ this.doScroll(scrollStep); }).bind(this), SCROLL_FREQUENCY);
+		//this.scrollingTaskId = setInterval( (function(){ this.doScroll(scrollStep); }).bind(this), scrollFerquency);
+		//setTimeout( (function(){ this.doScroll(scrollStep); }).bind(this), scrollFerquency);
 	}
 	
 	/**
@@ -321,7 +324,10 @@ class CardsZoneScrollableBoard extends CardsZoneBoard {
 	 * @returns
 	 */
 	stopScrolling() {
+
+		this.onScroll = false;
 		
+		/*
 		if (this.scrollingTaskId != null) {
 			// Si un scroll est en cours l'id de timeout permettant la boucle de scroll a été enregistré
 			
@@ -331,6 +337,7 @@ class CardsZoneScrollableBoard extends CardsZoneBoard {
 			// suprression de l'id du timeout indiquant qu'ancun scroll est en cours.
 			this.scrollingTaskId == null;
 		}
+		*/
 	
 	}
 	
@@ -341,51 +348,54 @@ class CardsZoneScrollableBoard extends CardsZoneBoard {
 	 */
 	doScroll(offset) {
 
-		// div de scroll (div situé sous le div où poser les cartes).
-		var div = this.divScrollCards;
+		if (this.onScroll == true) {
 		
-		// distance maximale de scroll possible.
-		var max = this.scrollMax;
+			// div de scroll (div situé sous le div où poser les cartes).
+			var div = this.divScrollCards;
+			
+			// distance maximale de scroll possible.
+			var max = this.scrollMax;
+		
+			// position actuelle du scroll.
+			var x = div.scrollLeft;
 	
-		// position actuelle du scroll.
-		var x = div.scrollLeft;
+			if (offset > 0) {
+				// si le pas est positif => scroll vers la droite.
+				// si la distance séparant la position actuelle et la position la plus à droite possible (max) est
+				// inférieue au pas de scroll, la nouvelle position sera la position max de droite (max).
+				// sinon la nouvelle position sera la position actuelle + 1 pas.
+				x = (x > (max - offset)) ? max : x + offset;
+				div.scrollLeft = x;
 		
-		if (offset > 0) {
-			// si le pas est positif => scroll vers la droite.
-			// si la distance séparant la position actuelle et la position la plus à droite possible (max) est
-			// inférieue au pas de scroll, la nouvelle position sera la position max de droite (max).
-			// sinon la nouvelle position sera la position actuelle + 1 pas.
-			x = (x > (max - offset)) ? max : x + offset;
-			div.scrollLeft = x;
+			} else {
+				// si le pas est négatif => scroll vers la gauche.
+				// si la distance séparant la position actuelle et la position la plus à gauche possible (0) est
+				// inférieue au pas de scroll, la nouvelle position sera la position max de gauche (0).
+				// sinon la nouvelle position sera la position actuelle - 1 pas.
+				x = (x < (-offset)) ? 0 : x + offset;
+				div.scrollLeft = x;
+			}
 	
-		} else {
-			// si le pas est négatif => scroll vers la gauche.
-			// si la distance séparant la position actuelle et la position la plus à gauche possible (0) est
-			// inférieue au pas de scroll, la nouvelle position sera la position max de gauche (0).
-			// sinon la nouvelle position sera la position actuelle - 1 pas.
-			x = (x < (-offset)) ? 0 : x + offset;
-			div.scrollLeft = x;
-		}
-
-		if (x == 0) {
-			// si la nouvelle position est 0 (max à gauche) alors arrêt forcé du scrolling et masquage de la flèche gauche.
-			this.stopScrolling();
-			this.imgLeftArrow.style.display = "none";
-		} else {
-			// sinon affichage de la flèche gauche.
-			this.imgLeftArrow.style.display = "block";
-		}
-		
-		if (x == max) {
-			// si la nouvelle position est max (max à droite) alors arrêt forcé du scrolling et masquage de la flèche droite.
-			this.stopScrolling();
-			this.imgRightArrow.style.display = "none";
-
-		} else {
-			// sinon affichage de la flèche droite.
-			this.imgRightArrow.style.display = "block";
-		}
-		
+			if (x == 0) {
+				// si la nouvelle position est 0 (max à gauche) alors arrêt forcé du scrolling et masquage de la flèche gauche.
+				//this.stopScrolling();
+				this.imgLeftArrow.style.display = "none";
+			} else {
+				// sinon affichage de la flèche gauche.
+				this.imgLeftArrow.style.display = "block";
+				setTimeout( (function(){ this.doScroll(offset); }).bind(this), SCROLL_FREQUENCY);
+			}
+			
+			if (x == max) {
+				// si la nouvelle position est max (max à droite) alors arrêt forcé du scrolling et masquage de la flèche droite.
+				this.stopScrolling();
+				this.imgRightArrow.style.display = "none";
+	
+			} else {
+				// sinon affichage de la flèche droite.
+				this.imgRightArrow.style.display = "block";
+			}
+		}		
 	}
 	
 	/**
@@ -442,32 +452,11 @@ class CardsZoneScrollableBoard extends CardsZoneBoard {
 			offsetCardLength = 0;
 		}
 		
+		this.waitAllCardsLoaded(childs, offsetCardLength, this.updateScrollArrows.bind(this, offsetCardLength));
+		/*
 		this.consolelog(id + " nombre de cartes pris en compte : " + (childs.length - offsetCardLength));
-		
-		var sw = "";
-		var sh = "";
-		var w;
-		var h;
-		var zeroWidthFound = false;
-		var badHeightFound = false
-		var img;
-		
-		// parcours des cartes (à l'offsetCardLength près) pour vérifier que toute les carte retournes un width > 0.
-		// si un zéro est trouvé, c'est que le DOM n'est pas suffisament chargé.
-		for (var i = 0; i < (childs.length - offsetCardLength); i++) {
-			img = childs[i].domCard.cardImg;
-			h = img.offsetHeight;
-			w = img.offsetWidth;
-			zeroWidthFound = (w == 0);
-			badHeightFound = (h != this.cardImgHeight)
-			sw += w + ",";
-			sh += h + ",";
-		}		
 
-		this.consolelog(id + " width: " + sw);
-		this.consolelog(id + " height (" + this.cardImgHeight + "): " + sh);
-
-		if (zeroWidthFound || badHeightFound) {
+		if (this.isUnloadedCardExists(childs, offsetCardLength)) {
 			// Une largeur de zéro a été trouvée, ou une hauteur de carte est invalide.
 			// => le DOM n'est pas suffisament chargé.
 			// => lancement d'un timeout pour retester l'état du DOM plus tard.
@@ -487,6 +476,53 @@ class CardsZoneScrollableBoard extends CardsZoneBoard {
 			this.consolelog(id + " => Lancement du calcule");
 			
 			this.updateScrollArrows(offsetCardLength);
+		}
+		*/
+	}
+	
+	/**
+	 * Teste si il existe au moins une carte mal chargée.
+	 * @return boolean true si au moins un carte est mal chargée, false sinon.
+	 */
+	waitAllCardsLoaded(childs, offsetCardLength, fct) {
+		
+		var sw = "";
+		var sh = "";
+		var w;
+		var h;
+		var badWidthFound = false;
+		var badHeightFound = false
+		var img;
+		var maxWidth = 0;
+		
+		for (var i = 0; i < (childs.length - offsetCardLength); i++) {
+			img = childs[i].domCard.cardImg;
+			w = img.offsetWidth;
+			
+			if (w > maxWidth) {
+				maxWidth = w;
+			}
+		}
+		
+		// parcours des cartes (à l'offsetCardLength près) pour vérifier que toute les carte retournes un width > 0.
+		// si un zéro est trouvé, c'est que le DOM n'est pas suffisament chargé.
+		for (var i = 0; i < (childs.length - offsetCardLength); i++) {
+			img = childs[i].domCard.cardImg;
+			h = img.offsetHeight;
+			w = img.offsetWidth;
+			badWidthFound = ((w == 0) || (w < maxWidth));
+			badHeightFound = (h != this.cardImgHeight)
+			sw += w + ",";
+			sh += h + ",";
+		}		
+
+		this.consolelog("width: " + sw);
+		this.consolelog("height (" + this.cardImgHeight + "): " + sh);
+
+		if (badWidthFound || badHeightFound) {
+			setTimeout(this.waitAllCardsLoaded.bind(this), 200, childs, offsetCardLength, fct);
+		} else {
+			fct();
 		}
 	}
 	
