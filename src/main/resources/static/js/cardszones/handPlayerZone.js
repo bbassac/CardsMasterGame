@@ -15,6 +15,7 @@ class HandPlayerZone extends CardsZoneScrollableBoard {
 	}
 
 	addSpecificCardElements(domCard) {
+		this.setAutoScrollOnadd(true);
 		domCard.setDraggable(true);
 		this.addStatus(domCard);
 	}
@@ -22,6 +23,7 @@ class HandPlayerZone extends CardsZoneScrollableBoard {
 	applySpecificCardProperties(domCard) {
 		this.showStatusArea(domCard);
 		this.showStatusRenforced(domCard);
+		this.showAffiniteEquipment(domCard);
 	}
 
 	addStatus(domCard){
@@ -37,11 +39,31 @@ class HandPlayerZone extends CardsZoneScrollableBoard {
 		imgRenforced.classList.add("imgRenforcedPlayer");
 		imgRenforced.title = RENFORCED;
 		divStatus.appendChild(imgRenforced);
+
+		if("Arme"===(domCard.getMetaData().team) || ("Armure"===(domCard.getMetaData().team))) {
+			var imgAffinite = document.createElement("img");
+			imgAffinite.id = "imgAffinite_" + domCard.getId();
+			imgAffinite.classList.add("imgAffinitePlayer");
+			imgAffinite.title = EQUIPMENT_AFFINITE + domCard.getMetaData().chakra;
+			imgAffinite.src = "img/affinite/" + domCard.getMetaData().chakra + ".png";
+			divStatus.appendChild(imgAffinite);
+		}
+	}
+
+	showAffiniteEquipment(domCard){
+		if("Arme"===(domCard.getMetaData().team) || ("Armure"===(domCard.getMetaData().team))) {
+			var img = document.getElementById("imgAffinite_" +  domCard.getId());
+			var e = document.getElementById("divstatusArea_" +  domCard.getId());
+			img.style.display="block";
+			e.style.display="block";
+		}
 	}
 
 	showStatusArea(domCard) {
 		var e = document.getElementById("divstatusArea_" +  domCard.getId());
-		if (!domCard.getStatus().hidden && !domCard.getStatus().reinforced && !domCard.getStatus().stuned){
+		if (!domCard.getStatus().hidden &&
+			!domCard.getStatus().reinforced &&
+			!domCard.getStatus().stuned){
 			e.style.display="none";
 		}else{
 			e.style.display="block";

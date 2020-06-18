@@ -89,3 +89,10 @@
     top: 41px;
     left: 0px;
 }
+
+.imgAffinitePlayer{
+    position: absolute;
+    top: 23px;
+    left: -8px;
+    height: 53px;
+}

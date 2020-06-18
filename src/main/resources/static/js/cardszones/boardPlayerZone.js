@@ -36,7 +36,7 @@ class BoardPlayerZone extends CardsZoneScrollableBoard {
 			{ icon:hiddenIcon, text: hiddenText, action: (function(domCard, menuItem) { this.setHidden(domCard, menuItem); }).bind(this, domCard) },
 			{ icon: stunedIcon, text: stunedText, action: (function(domCard, menuItem) { this.setStuned(domCard, menuItem); }).bind(this, domCard) }
 	    ];
-	
+		this.setAutoScrollOnadd(true);
 	    domCard.getMenu().addMenu(menu);
 	    domCard.setDraggable(true);
 	}

@@ -24,14 +24,17 @@ class EquipmentsPlayerZone extends CardsZoneScrollableBoard {
 	        { icon: activatedIcon,text: activatedText, action: (function(domCard, menuItem) { this.flipCard(domCard, menuItem); }).bind(this, domCard) },
 	        { icon:document.menuImgPower,text: usedText, action: (function(domCard, menuItem) { this.useCard(domCard, menuItem); }).bind(this, domCard) }
 	    ];
-	
+		this.setAutoScrollOnadd(true);
 	    domCard.getMenu().addMenu(menu);
 	    domCard.setDraggable(true);
+		this.addAffinite(domCard);
 	}
 	
 	applySpecificCardProperties(domCard) {
 		this.showActivatedState(domCard);
 		this.showUsedState(domCard);
+		this.showStatusArea(domCard);
+		this.showAffiniteEquipment(domCard);
 	}
 	
 	allowDrop(fromZoneId, toZoneId, domCard) {
@@ -58,6 +61,38 @@ class EquipmentsPlayerZone extends CardsZoneScrollableBoard {
 	    domCard.getMenu().setMenuItem(menuItem, {icon:activated ? document.menuImgActivate : document.menuImgDesactivate,text:activated ? RE_ACTIVATE : ACTIVATE});
 	    
 	    this.fill(currentPlayerId);
+	}
+
+	addAffinite(domCard){
+
+		var divStatus = document.createElement("div");
+		divStatus.id = "divstatusArea_" + domCard.getId();
+		divStatus.classList.add("divStatusPlayer");
+		domCard.divBackImg.appendChild(divStatus);
+
+		if("Arme"===(domCard.getMetaData().team) || ("Armure"===(domCard.getMetaData().team))) {
+			var imgAffinite = document.createElement("img");
+			imgAffinite.id = "imgAffinite_" + domCard.getId();
+			imgAffinite.classList.add("imgAffinitePlayer");
+			imgAffinite.title = EQUIPMENT_AFFINITE + domCard.getMetaData().chakra;
+			imgAffinite.src = "img/affinite/" + domCard.getMetaData().chakra + ".png";
+			divStatus.appendChild(imgAffinite);
+		}
+	}
+	showAffiniteEquipment(domCard){
+		if("Arme"===(domCard.getMetaData().team) || ("Armure"===(domCard.getMetaData().team))) {
+			var img = document.getElementById("imgAffinite_" +  domCard.getId());
+			var e = document.getElementById("divstatusArea_" +  domCard.getId());
+			img.style.display="block";
+			e.style.display="block";
+		}
+	}
+
+	showStatusArea(domCard) {
+		var e = document.getElementById("divstatusArea_" +  domCard.getId());
+
+		e.style.display="none";
+
 	}
 	
 	showActivatedState(domCard) {
