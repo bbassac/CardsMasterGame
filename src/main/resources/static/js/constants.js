@@ -35,6 +35,7 @@ const DICE = "Lancer les dés";
 const SHARE_MESSAGE= "Partager un message";
 const OPP_SHARE_MESSAGE = "Message de l'adversaire";
 const OPP_NB_CARD = "Nombre de cartes dans la main de l'adversaire";
+const EQUIPMENT_AFFINITE = "Affinité de l'équipement :";
 //IMAGES MENU
 const IMG_HIDDEN = "img/hidden.png";
 const IMG_VISIBLE = "img/visible.png";
