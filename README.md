@@ -30,7 +30,17 @@
 * [ ] Doubler le nombre des invocations
 * [ ] bug : Synchronisation de la popin cimetière si le même cimetière est ouvert par les deux joueurs en même temps.
 * [ ] evol : Externaliser le menu de domCard (passer des références de nom de fonction pour retirer l'adhérence dans menu)
-
+* [ ] 2 exemplaires de l'aible d'encre
+* [ ] Zone de status vide coté adversaire-equipement meme quand pas de besoin
+* [ ] étuis à shuriken à passer en arme cuisse
+* [ ]  chausse trappe modifier texte : inflige 1 point de dégat et immobilise
+* [ ] Bug du redressement de début de tour qui ne met pas à jour le menu des cartes
+* [ ] a réfléchir : si carte immobilisée -> impossible à activer ?
+* [ ]  A réfléchir : ammbiguité entre le simbole activate et épuiser
+* [ ] Temari : compagnon -> invocation
+* [ ] Kinkaku : check texte Ginkaku
+* [ ] Global : ennemis -> adversaire/adverse
+* [ ] A tester : cache sur cartes pour optim de scroll
 
 ## Background
 
