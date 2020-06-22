@@ -21,6 +21,7 @@ class BoardOpponentZone extends CardsZoneScrollableBoard {
 	}
 	
 	applySpecificCardProperties(domCard) {
+		this.showStatusArea(domCard);
 		this.showActivatedState(domCard);
 		this.showUsedState(domCard);
 		this.showDamage(domCard);
@@ -58,6 +59,15 @@ class BoardOpponentZone extends CardsZoneScrollableBoard {
 		imgRenforced.classList.add("imgRenforcedOpponent");
 		imgRenforced.title = RENFORCED;
 		divStatus.appendChild(imgRenforced);
+	}
+
+	showStatusArea(domCard) {
+		var e = document.getElementById("divstatusOppArea_" +  domCard.getId());
+		if (!domCard.getStatus().hidden && !domCard.getStatus().reinforced && !domCard.getStatus().stuned){
+			e.style.display="none";
+		}else{
+			e.style.display="block";
+		}
 	}
 
 	showStatusHidden(domCard){
