@@ -23,25 +23,17 @@
   * [Détail des extentions](#détail-des-extentions)
   
 ## Bugs / Evolutions
-
+cartes
 * [ ] Ajouter des sorts de destruction d'équipement
-* [ ] Gestion des cartes affinité
-* [X] Animation activation carte piege qui s'affiche  
 * [ ] Doubler le nombre des invocations
+* [ ] 2 exemplaires de l'aible d'encre
+
+jeu
+* [ ] a réfléchir : si carte immobilisée -> impossible à activer ?
 * [ ] bug : Synchronisation de la popin cimetière si le même cimetière est ouvert par les deux joueurs en même temps.
 * [ ] evol : Externaliser le menu de domCard (passer des références de nom de fonction pour retirer l'adhérence dans menu)
-* [ ] 2 exemplaires de l'aible d'encre
-* [X] Zone de status vide coté adversaire-equipement meme quand pas de besoin
-* [X] étuis à shuriken à passer en arme cuisse
-* [X]  chausse trappe modifier texte : inflige 1 point de dégat et immobilise
-* [ ] Bug du redressement de début de tour qui ne met pas à jour le menu des cartes
-* [ ] a réfléchir : si carte immobilisée -> impossible à activer ?
-* [ ]  A réfléchir : ammbiguité entre le simbole activate et épuiser
-* [X] Temari : compagnon -> invocation
-* [X] Kinkaku : check texte Ginkaku
-* [X] Global : ennemis -> adversaire/adverse
+* [ ] A réfléchir : ammbiguité entre le simbole activate et épuiser
 * [ ] A tester : cache sur cartes pour optim de scroll
-* [X] YoroI Akado : Envoi au cimetiere
 * [ ] Filtre ninja et invocation pour renforcement
 * [ ] Bug cartes retournée coté front qui se redressent pas dans les menus
 
