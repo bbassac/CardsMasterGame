@@ -41,6 +41,10 @@
 * [ ] Kinkaku : check texte Ginkaku
 * [ ] Global : ennemis -> adversaire/adverse
 * [ ] A tester : cache sur cartes pour optim de scroll
+* [ ] YoroI Akado : Envoi au cimetiere
+* [ ] Filtre ninja et invocation pour renforcement
+* [ ] Bug cartes retournée coté front qui se redressent pas dans les menus
+
 
 ## Background
 
