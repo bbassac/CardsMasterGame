@@ -24,6 +24,9 @@ var opponentAffiniteZone = new AffiniteOpponentZone();
 var opponentEquipmenstZone = new EquipmentsOpponentZone();
 var opponentTrapsZone = new TrapsOpponentZone();
 
+// Cache des images des cartes
+var cardCache = new CardCache();
+
 document.addEventListener('DOMContentLoaded', function() {
     refreshBoard();
 }, false);
