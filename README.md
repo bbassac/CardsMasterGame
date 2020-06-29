@@ -31,17 +31,17 @@
 * [ ] bug : Synchronisation de la popin cimetière si le même cimetière est ouvert par les deux joueurs en même temps.
 * [ ] evol : Externaliser le menu de domCard (passer des références de nom de fonction pour retirer l'adhérence dans menu)
 * [ ] 2 exemplaires de l'aible d'encre
-* [A TESTER] Zone de status vide coté adversaire-equipement meme quand pas de besoin
-* [ ] étuis à shuriken à passer en arme cuisse
-* [ ]  chausse trappe modifier texte : inflige 1 point de dégat et immobilise
+* [X] Zone de status vide coté adversaire-equipement meme quand pas de besoin
+* [X] étuis à shuriken à passer en arme cuisse
+* [X]  chausse trappe modifier texte : inflige 1 point de dégat et immobilise
 * [ ] Bug du redressement de début de tour qui ne met pas à jour le menu des cartes
 * [ ] a réfléchir : si carte immobilisée -> impossible à activer ?
 * [ ]  A réfléchir : ammbiguité entre le simbole activate et épuiser
-* [ ] Temari : compagnon -> invocation
-* [ ] Kinkaku : check texte Ginkaku
-* [ ] Global : ennemis -> adversaire/adverse
+* [X] Temari : compagnon -> invocation
+* [X] Kinkaku : check texte Ginkaku
+* [X] Global : ennemis -> adversaire/adverse
 * [ ] A tester : cache sur cartes pour optim de scroll
-* [ ] YoroI Akado : Envoi au cimetiere
+* [X] YoroI Akado : Envoi au cimetiere
 * [ ] Filtre ninja et invocation pour renforcement
 * [ ] Bug cartes retournée coté front qui se redressent pas dans les menus
 
