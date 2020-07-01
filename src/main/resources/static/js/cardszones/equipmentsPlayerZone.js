@@ -17,7 +17,23 @@ class EquipmentsPlayerZone extends CardsZoneScrollableBoard {
 	}
 
 	addSpecificCardElements(domCard) {
+
+		this.addAffinite(domCard);
+		domCard.setDraggable(true);
+	}
+	
+	applySpecificCardProperties(domCard) {
 		
+		this.setCardMenu(domCard);
+		
+		this.showActivatedState(domCard);
+		this.showUsedState(domCard);
+		this.showStatusArea(domCard);
+		this.showAffiniteEquipment(domCard);
+	}
+	
+	setCardMenu(domCard) {
+
 	    var activatedText = domCard.getStatus().activated ? RE_ACTIVATE : ACTIVATE;
 		var activatedIcon = domCard.getStatus().activated ? document.menuImgActivate : document.menuImgDesactivate;
 	    var usedText = domCard.getStatus().used ? RESET_USE : USE;
@@ -25,16 +41,8 @@ class EquipmentsPlayerZone extends CardsZoneScrollableBoard {
 	        { icon: activatedIcon,text: activatedText, action: (function(domCard, menuItem) { this.flipCard(domCard, menuItem); }).bind(this, domCard) },
 	        { icon:document.menuImgPower,text: usedText, action: (function(domCard, menuItem) { this.useCard(domCard, menuItem); }).bind(this, domCard) }
 	    ];
-	    domCard.getMenu().addMenu(menu);
-	    domCard.setDraggable(true);
-		this.addAffinite(domCard);
-	}
-	
-	applySpecificCardProperties(domCard) {
-		this.showActivatedState(domCard);
-		this.showUsedState(domCard);
-		this.showStatusArea(domCard);
-		this.showAffiniteEquipment(domCard);
+	    domCard.getMenu().setMenuItems(menu);
+
 	}
 	
 	allowDrop(fromZoneId, toZoneId, domCard) {

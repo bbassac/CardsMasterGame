@@ -20,6 +20,24 @@ class BoardPlayerZone extends CardsZoneScrollableBoard {
 		
 		this.addDamageButtons(domCard);
 		this.addStatus(domCard);
+	
+	    domCard.setDraggable(true);
+	}
+	
+	applySpecificCardProperties(domCard) {
+
+		this.setCardMenu(domCard);
+
+		this.showActivatedState(domCard);
+		this.showUsedState(domCard);
+		this.showDamage(domCard);
+		this.showStatusArea(domCard);
+		this.showStatusHidden(domCard);
+		this.showStatusStuned(domCard);
+		this.showStatusRenforced(domCard);
+	}
+	
+	setCardMenu(domCard) {
 		
 	    var activatedText = domCard.getStatus().activated ? RE_ACTIVATE : ACTIVATE;
 	    var activatedIcon = domCard.getStatus().activated ? document.menuImgActivate:document.menuImgDesactivate;
@@ -37,18 +55,8 @@ class BoardPlayerZone extends CardsZoneScrollableBoard {
 			{ icon:hiddenIcon, text: hiddenText, action: (function(domCard, menuItem) { this.setHidden(domCard, menuItem); }).bind(this, domCard) },
 			{ icon: stunedIcon, text: stunedText, action: (function(domCard, menuItem) { this.setStuned(domCard, menuItem); }).bind(this, domCard) }
 	    ];
-	    domCard.getMenu().addMenu(menu);
-	    domCard.setDraggable(true);
-	}
-	
-	applySpecificCardProperties(domCard) {
-		this.showActivatedState(domCard);
-		this.showUsedState(domCard);
-		this.showDamage(domCard);
-		this.showStatusArea(domCard);
-		this.showStatusHidden(domCard);
-		this.showStatusStuned(domCard);
-		this.showStatusRenforced(domCard);
+	    domCard.getMenu().setMenuItems(menu);
+
 	}
 
 	allowDrop(fromZoneId, toZoneId, domCard) {

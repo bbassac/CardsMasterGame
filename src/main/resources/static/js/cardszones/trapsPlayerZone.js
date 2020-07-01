@@ -17,18 +17,11 @@ class TrapsPlayerZone extends CardsZoneBoard {
 
 	addSpecificCardElements(domCard) {
 		domCard.setDraggable(true);
-
-        var usedText = domCard.getStatus().used ? RESET_TRAP : USE_TRAP;
-        var menu = [
-
-            { icon:document.menuImgPower, text: usedText, action: (function(domCard, menuItem) { this.useCard(domCard, menuItem); }).bind(this, domCard) },
-
-        ];
-        domCard.getMenu().addMenu(menu);
 	}
 
 
     applySpecificCardProperties(domCard) {
+    	this.setCardMenu(domCard);
         this.showUsedState(domCard);
     }
 
@@ -46,6 +39,17 @@ class TrapsPlayerZone extends CardsZoneBoard {
 		this.moveCardFromHandToTraps(domCard);
 	}
 
+	setCardMenu(domCard) {
+
+        var usedText = domCard.getStatus().used ? RESET_TRAP : USE_TRAP;
+        var menu = [
+
+            { icon:document.menuImgPower, text: usedText, action: (function(domCard, menuItem) { this.useCard(domCard, menuItem); }).bind(this, domCard) },
+
+        ];
+        domCard.getMenu().setMenuItems(menu);
+	}
+	
     useCard(domCard, menuItem){
 
         var used = ! domCard.getStatus().used;

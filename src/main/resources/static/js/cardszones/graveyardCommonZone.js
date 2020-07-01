@@ -20,14 +20,8 @@ class GraveyardCommonZone extends CardsZoneStack {
 	    return JSON.parse(xhttp.responseText);
 	}
 
-	addSpecificCardElements(domCard) {
-
-		var who = this.divId === MY_GRAVEYARD_ID ? "me" : "you";
-	    
-		var menu = [
-			{ icon: document.menuImgGraveyard, text: "Afficher le cimetière", action: (function() { this.showPopinGrave(who); }).bind(this) },
-		];
-	    domCard.getMenu().addMenu(menu);
+	applySpecificCardProperties(domCard) {
+		this.setCardMenu(domCard);
 	}
 
 	allowDrop(fromZoneId, toZoneId, domCard) {
@@ -52,7 +46,16 @@ class GraveyardCommonZone extends CardsZoneStack {
 		}
 	}
 
-
+	setCardMenu(domCard) {
+		
+		var who = this.divId === MY_GRAVEYARD_ID ? "me" : "you";
+	    
+		var menu = [
+			{ icon: document.menuImgGraveyard, text: "Afficher le cimetière", action: (function() { this.showPopinGrave(who); }).bind(this) },
+		];
+	
+		domCard.getMenu().setMenuItems(menu);
+	}
 	
 	showPopinGrave(who){
 	
