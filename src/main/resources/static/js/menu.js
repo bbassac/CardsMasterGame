@@ -1,10 +1,12 @@
+const ALLOW_PROPERTY_MNU = false;
+
 class Menu {
 
     constructor (domCard){
         this.domCard = domCard;
     }
 
-    addMenu(menu) {
+    setMenuItems(menu) {
         this.menu = menu;
 
         // ajout d'un item de test mode test
@@ -122,4 +124,21 @@ class Menu {
         menuItemInfos.action(menuItem);
 
     }
+    
+	showCardProperties() {
+		
+		console.log("*****************************");
+		console.log("* id card: " + this.getId());
+		console.log("* id zone: " + (this.getZone() == null ? "null" : this.getZone().id));
+		console.log("* id divCardsContainer: " + (this.divCardsContainer == null ? "null" : this.divCardsContainer.id));
+		console.log("* draggable: " + this.getDraggable());
+		
+		if (this.metaData != null) {
+			console.log("* kind: " + this.metaData.kind);
+		} else {
+			console.log("* metadata: null");
+		}
+		
+		console.log("*****************************");
+	}
 }
