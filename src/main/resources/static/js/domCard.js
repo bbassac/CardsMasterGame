@@ -7,7 +7,7 @@ class DomCard {
 		// mapping de card vers DomCard
 		this.mapCardToDomCard(card);
 
-		this.buildDomElemnts(height, card.path);
+		this.buildDomElemnts(height, card);
 		this.applyStyle(cardDrawMode);
 		
         // par défaut la carte ne doit pas être draggable 
@@ -21,12 +21,14 @@ class DomCard {
 		return this.menu;
 	}
 
-	buildDomElemnts(height, imgPath) {
+	buildDomElemnts(height, card) {
 		
 		this.divCard = document.createElement("div");
 		
-        this.cardImg = document.createElement("img");
-        this.cardImg.src = "img/" + encodeURI(imgPath);
+        //this.cardImg = document.createElement("img");
+        //this.cardImg.src = "img/" + encodeURI(imgPath);
+		this.cardImg = cardCache.getImageCard(card.id, card.path);
+        
         this.cardImg.height = height;
         this.cardImg.title = this.id;
         this.cardImg.onclick = (function() { showCardPopin(this.cardImg.src); }).bind(this);
