@@ -61,9 +61,10 @@ public class CardService {
         equipment[0]= new Deck<>();
         equipment[1]= new Deck<>();
 
-        LogUtils.warn("Loaded " + loadStack(environnments, BACK_SELECT) + " environement");
+        LogUtils.warn("Loaded " + loadStack(environnments, BACK_SELECT) + " environment");
         LogUtils.warn("Loaded " + selectCurrentEnvironnement() + " environnement courant");
         LogUtils.warn("Loaded " + loadStack(invocations, BACK_SELECT_3) + " invocations");
+        updateReinforced(invocations);
         LogUtils.warn("Loaded " + loadAndDecorateDeck(pioche[0],0, BACK_DRAW) + " pioche joueur 0");
         LogUtils.warn("Loaded " + loadAndDecorateDeck(pioche[1],1, BACK_DRAW) + " pioche joueur 1");
     }
@@ -98,7 +99,8 @@ private int loadAndDecorateDeck(Deck<Card> stack, Integer player, String folder)
     private int loadStack(Deck<Card> stack, String folder) {
         String prop = FileUtils.getCurrentJarImgPath();
         File path = new File(prop + folder);
-        for (File listOfFile : path.listFiles()) {
+        File[] files = path.listFiles();
+        for (File listOfFile : files) {
             if (listOfFile.isFile()) {
                 lastIndex++;
                 Card c = new Card();
@@ -110,7 +112,7 @@ private int loadAndDecorateDeck(Deck<Card> stack, Integer player, String folder)
         
         metaDataService.update(stack,folder);
 
-        return path.listFiles().length;
+        return files.length;
     }
 
     private void updateEquipmentChakra(Integer player,Deck<Card> stack) {
