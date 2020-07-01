@@ -34,9 +34,10 @@ jeu
 * [ ] evol : Externaliser le menu de domCard (passer des références de nom de fonction pour retirer l'adhérence dans menu)
 * [ ] A réfléchir : ammbiguité entre le simbole activate et épuiser
 * [ ] A tester : cache sur cartes pour optim de scroll
-* [ ] Filtre ninja et invocation pour renforcement
-* [ ] Bug cartes retournée coté front qui se redressent pas dans les menus
-
+* [X] Filtre ninja et invocation pour renforcement
+* [X] Bug cartes retournée coté front qui se redressent pas dans les menus
+* [ ] Ajouter zone de status et renforcement dans écran cimetierre
+* [ ] Ajouter zone de status et renforcement dans écran invocations
 
 ## Background
 
