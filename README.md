@@ -22,20 +22,20 @@
     + [Cas particuliers](#cas-particuliers)
   * [Détail des extentions](#détail-des-extentions)
   
-## Bugs / Evolutions
-cartes
+## Bugs 
+
+## Evolutions
+Cartes
 * [ ] Ajouter des sorts de destruction d'équipement
 * [ ] Doubler le nombre des invocations
 * [ ] 2 exemplaires de l'aible d'encre
 
-jeu
+Jeu
 * [ ] a réfléchir : si carte immobilisée -> impossible à activer ?
-* [ ] bug : Synchronisation de la popin cimetière si le même cimetière est ouvert par les deux joueurs en même temps.
-* [ ] evol : Externaliser le menu de domCard (passer des références de nom de fonction pour retirer l'adhérence dans menu)
+* [ ] Synchronisation de la popin cimetière si le même cimetière est ouvert par les deux joueurs en même temps.
+* [ ] Externaliser le menu de domCard (passer des références de nom de fonction pour retirer l'adhérence dans menu)
 * [ ] A réfléchir : ammbiguité entre le simbole activate et épuiser
 * [ ] A tester : cache sur cartes pour optim de scroll
-* [X] Filtre ninja et invocation pour renforcement
-* [X] Bug cartes retournée coté front qui se redressent pas dans les menus
 * [ ] Ajouter zone de status et renforcement dans écran cimetierre
 * [ ] Ajouter zone de status et renforcement dans écran invocations
 
