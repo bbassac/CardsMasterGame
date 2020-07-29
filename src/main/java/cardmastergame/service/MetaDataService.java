@@ -45,7 +45,7 @@ class MetaDataService {
             int notFound = 0;
             for (Card card : stack) {
                 name = getCardName(card.getPath());
-                metaData = jsCards.get(name).reinstanciante();
+                metaData = jsCards.get(name).cloneMetadata();
                 if (metaData == null) {
                     notFound++;
                     LogUtils.warn("Non Trouve :" +  name);

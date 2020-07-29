@@ -63,7 +63,7 @@ public class MetaData {
 		this.team = team;
 	}
 
-	public MetaData reinstanciante(){
+	public MetaData cloneMetadata(){
 		MetaData toReturn = new MetaData();
 		toReturn.setChakra(this.getChakra());
 		toReturn.setTeam(this.getTeam());
