@@ -23,14 +23,27 @@
   * [Détail des extentions](#détail-des-extentions)
   
 ## Bugs 
+* [ ] Le move to cimetiere doit redresser les cartes
+* [ ] Le cimetiere est invisible si on l'ouvre puis le ferme par sa croix
+* [ ] Autoriser les déplacements du jeu à la main du joueur 
+* [ ] L'affinité adverse ne s'affiche pas parfois
+
 
 ## Evolutions
 Cartes
+
 * [ ] Ajouter des sorts de destruction d'équipement
 * [ ] Doubler le nombre des invocations
-* [ ] 2 exemplaires de l'aible d'encre
+* [X] 2 exemplaires de l'aigle d'encre
+* [ ] Kotohime : 1 pv retiré pour chaque jeton posé
+* [ ] Kigiri : expliciter son sort
+* [ ] Jirobo : les autres alliés en jeu
+* [ ] Katasuke -> extension boruto
+* [ ] Gengo : 2 ninjas
+* [ ] Affinités, +1 pour la force, retirer faiblesse
 
 Jeu
+
 * [ ] a réfléchir : si carte immobilisée -> impossible à activer ?
 * [ ] Synchronisation de la popin cimetière si le même cimetière est ouvert par les deux joueurs en même temps.
 * [ ] Externaliser le menu de domCard (passer des références de nom de fonction pour retirer l'adhérence dans menu)
