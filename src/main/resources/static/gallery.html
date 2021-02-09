@@ -9,17 +9,38 @@
 <body>
 
         <div id="areaId">
-            <select id="cardList" multiple onchange="display();"></select>
-            <img id="vignetteID">
-            <textarea id="textAreaId"></textarea>
-            <button id="copyButtonId" onclick="copy()">Copy</button>
-            <button id="addButtonId" onclick="add()">+</button>
-            <button id="removeButtonId" onclick="remove()">-</button>
-            <button id="openButtonId" onclick="loadDeck()">Open...</button>
-            <select id="deckList" multiple onchange="displayDeck();"></select>
-            <button id="saveButtonId" onclick="save()">Save</button>
-            <span id="counterId">0</span>
-            <span id="libelleCounterId">Cards</span>
+            <div id = "cardListDiv">
+                <select id="cardList" multiple onchange="display();"></select><br />
+                <span id="filterCounterId" />
+            </div>
+            <div id="filters">
+                <label>Chakra<select name="chakras" id="chakra-select">
+                    <option value="">--Chakra Type--</option>
+                    <option value="Feu">Feu</option>
+                    <option value="Spécial">Spécial</option>
+                    <option value="Eau">Eau</option>
+                    <option value="Terre">Terre</option>
+                    <option value="Foudre">Foudre</option>
+                    <option value="Physique">Physique</option>
+                </select></label><br />
+                <label>Nom<input type="text" id="nameFilter" name="Nom" /></label><br />
+                <button id="searchButton" onclick="refreshImages()">Search</button>
+            </div>
+            <div>
+                <img id="vignetteID">
+            </div>
+            <div>
+                <textarea id="textAreaId"></textarea>
+                <button id="copyButtonId" onclick="copy()">Copy</button>
+                <button id="addButtonId" onclick="add()">+</button>
+                <button id="removeButtonId" onclick="remove()">-</button>
+                <button id="openButtonId" onclick="loadDeck()">Open...</button>
+                <button id="saveButtonId" onclick="save()">Save</button>
+            </div>
+            <div>
+                <select id="deckList" multiple onchange="displayDeck();"></select>
+                <span id="libelleCounterId" />
+            </div>
         </div>
     <script src="js/gallery.js"></script>
     <script src="js/FileSaver.js"></script>

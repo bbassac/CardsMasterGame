@@ -65,6 +65,7 @@ public class MetaData {
 
 	public MetaData cloneMetadata(){
 		MetaData toReturn = new MetaData();
+		toReturn.setName(this.getName());
 		toReturn.setChakra(this.getChakra());
 		toReturn.setTeam(this.getTeam());
 		toReturn.setKind(this.getKind());

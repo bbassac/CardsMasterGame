@@ -13,11 +13,23 @@ function copy(i){
 } 
 
 function refreshImages() {
+    var selectList = document.getElementById("cardList");
+    var length = selectList.options.length;
+    for (i = length-1; i >= 0; i--) {
+        selectList.options[i] = null;
+    }
 
     var xhttp = new XMLHttpRequest();
-    xhttp.open("GET", "stack/ALL", false);
+    xhttp.open("POST", "stack/search", false);
+
     xhttp.setRequestHeader("Content-type", "application/json");
-    xhttp.send();
+
+    var body = {
+        "name": document.getElementById("nameFilter").value,
+        "chakra": document.getElementById("chakra-select").value
+    }
+
+    xhttp.send(JSON.stringify(body));
     var cards = JSON.parse(xhttp.responseText);
 
     var selectList = document.getElementById("cardList");
@@ -29,8 +41,10 @@ function refreshImages() {
     }
 
     selectList.options[0].selected = 'selected';
+    document.getElementById("filterCounterId").innerText = cards.length + " Cards"
     display();
 
+    updateCounter(0);
 }
 
 function display(){
@@ -109,8 +123,8 @@ function save(){
 }
 
 function updateCounter(nbCards){
-    var spanCounter = document.getElementById("counterId");
-    spanCounter.innerText=nbCards;
+    var spanCounter = document.getElementById("libelleCounterId");
+    spanCounter.innerText=nbCards + " Cards";
 
 }
 

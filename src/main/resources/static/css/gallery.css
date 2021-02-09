@@ -1,7 +1,30 @@
 #areaId{
-    display: inline-block;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
 }
 
+#filters{
+    margin: 10px;
+}
+
+#searchButton{
+    margin-left: 76px;
+    margin-top: 21px;
+}
+
+#nameFilter{
+    margin-left: 25px;
+    margin-top: 21px;
+    width: 140px;
+}
+
+#chakra-select{
+    margin-left: 12px;
+    margin-top: 21px;
+    width: 147px;
+}
 
 #cardList {
     width: 350px;
@@ -9,7 +32,7 @@
 }
 
 #vignetteID{
-    height: 850px;
+    height: 800px;
 }
 
 #copyButtonId {
@@ -17,14 +40,14 @@
     width: 64px;
     position: absolute;
     margin-top: 424px;
-    margin-left: 382px;
+    margin-left: 343px;
 }
 #addButtonId {
     height: 25px;
     width: 64px;
     position: absolute;
     margin-top: 200px;
-    margin-left: 382px;
+    margin-left: 343px;
     background-color: lawngreen;
 }
 
@@ -33,7 +56,7 @@
     width: 64px;
     position: absolute;
     margin-top: 230px;
-    margin-left: 382px;
+    margin-left: 343px;
     background-color: crimson;
 }
 
@@ -42,8 +65,12 @@
     width: 64px;
     position: absolute;
     margin-top: 550px;
-    margin-left: 382px;
+    margin-left: 342px;
     background-color: cornflowerblue;
+}
+
+#filterCounterId{
+    margin-left: 117px;
 }
 
 #openButtonId{
@@ -51,7 +78,7 @@
     width: 64px;
     position: absolute;
     margin-top: 50px;
-    margin-left: 382px;
+    margin-left: 343px;
 }
 
 #deckList {
@@ -60,22 +87,16 @@
     resize: none;
     position: absolute;
     margin-top: 0px;
-    margin-left: 455px;
+    margin-left: 409px;
 }
 
 #textAreaId {
     /*text area*/
-    width: 440px;
+    width: 400px;
     height: 16px;
     resize: none;
     position: absolute;
     margin-top: 400px;
-}
-
-#counterId{
-    position: absolute;
-    margin-top: 855px;
-    margin-left: 480px;
 }
 
 #libelleCounterId{

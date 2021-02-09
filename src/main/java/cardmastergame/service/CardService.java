@@ -4,6 +4,7 @@ import cardmastergame.FileUtils;
 import cardmastergame.LogUtils;
 import cardmastergame.bean.Card;
 import cardmastergame.bean.Deck;
+import cardmastergame.controller.MyFilters;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Component;
 import java.io.File;
 import java.util.List;
 import java.util.Random;
+import java.util.stream.Collectors;
 
 @Component
 public class CardService {
@@ -37,13 +39,13 @@ public class CardService {
 
     private Random rand = new Random();
 
-    public void startNewGame(){
+    public void startNewGame() {
         lastIndex = 0;
         environnments = new Deck<>();
         currentEnvironnement = new Deck<>();
         pioche = new Deck[2];
-        pioche[0]= new Deck<>();
-        pioche[1]= new Deck<>();
+        pioche[0] = new Deck<>();
+        pioche[1] = new Deck<>();
         invocations = new Deck<>();
         cimetieres = new Deck[2];
         cimetieres[0] = new Deck<>();
@@ -58,15 +60,15 @@ public class CardService {
         plateaux[0] = new Deck<>();
         plateaux[1] = new Deck<>();
         equipment = new Deck[2];
-        equipment[0]= new Deck<>();
-        equipment[1]= new Deck<>();
+        equipment[0] = new Deck<>();
+        equipment[1] = new Deck<>();
 
         LogUtils.warn("Loaded " + loadStack(environnments, BACK_SELECT) + " environment");
         LogUtils.warn("Loaded " + selectCurrentEnvironnement() + " environnement courant");
         LogUtils.warn("Loaded " + loadStack(invocations, BACK_SELECT_3) + " invocations");
         updateReinforced(invocations);
-        LogUtils.warn("Loaded " + loadAndDecorateDeck(pioche[0],0, BACK_DRAW) + " pioche joueur 0");
-        LogUtils.warn("Loaded " + loadAndDecorateDeck(pioche[1],1, BACK_DRAW) + " pioche joueur 1");
+        LogUtils.warn("Loaded " + loadAndDecorateDeck(pioche[0], 0, BACK_DRAW) + " pioche joueur 0");
+        LogUtils.warn("Loaded " + loadAndDecorateDeck(pioche[1], 1, BACK_DRAW) + " pioche joueur 1");
     }
 
     private int selectCurrentEnvironnement() {
@@ -76,25 +78,25 @@ public class CardService {
     }
 
     private int getRandomPosition(Deck<Card> stack) {
-        return rand.nextInt(stack.size() );
+        return rand.nextInt(stack.size());
     }
 
 
-
     public void moveCardFromDrawToPlayer(int player) {
-        if(pioche[player].size()>0) {
+        if (pioche[player].size() > 0) {
             int randomPoition = getRandomPosition(pioche[player]);
             mains[player].push(pioche[player].get(randomPoition));
             pioche[player].remove(randomPoition);
         }
     }
-private int loadAndDecorateDeck(Deck<Card> stack, Integer player, String folder){
-        int i = loadStack(stack,folder);
+
+    private int loadAndDecorateDeck(Deck<Card> stack, Integer player, String folder) {
+        int i = loadStack(stack, folder);
 
         updateReinforced(stack);
-        updateEquipmentChakra(player,stack);
+        updateEquipmentChakra(player, stack);
         return i;
-}
+    }
 
     private int loadStack(Deck<Card> stack, String folder) {
         String prop = FileUtils.getCurrentJarImgPath();
@@ -109,18 +111,18 @@ private int loadAndDecorateDeck(Deck<Card> stack, Integer player, String folder)
                 stack.push(c);
             }
         }
-        
-        metaDataService.update(stack,folder);
+
+        metaDataService.update(stack, folder);
 
         return files.length;
     }
 
-    private void updateEquipmentChakra(Integer player,Deck<Card> stack) {
+    private void updateEquipmentChakra(Integer player, Deck<Card> stack) {
         if (player != null) {
 
             String chakra = playerService.getAffinite(player).getMetaData().getChakra();
             for (Card c : stack) {
-                if (c.isWeaponOrArmor()){
+                if (c.isWeaponOrArmor()) {
                     c.getMetaData().setChakra(chakra);
                 }
             }
@@ -129,7 +131,7 @@ private int loadAndDecorateDeck(Deck<Card> stack, Integer player, String folder)
 
 
     private void updateReinforced(Deck<Card> stack) {
-        for (Card c : stack){
+        for (Card c : stack) {
             if ("Ninja".equals(c.getMetaData().getKind())) {
                 if (c.getMetaData().getChakra().equals(currentEnvironnement.get(0).getMetaData().getChakra())) {
                     c.getStatus().setReinforced(true);
@@ -138,37 +140,38 @@ private int loadAndDecorateDeck(Deck<Card> stack, Integer player, String folder)
         }
     }
 
-    private Card findCardInStackById(Deck<Card> stack ,String deckName, int cardId) {
-        for (Card c : stack){
-            if(c.getId()== cardId){
+    private Card findCardInStackById(Deck<Card> stack, String deckName, int cardId) {
+        for (Card c : stack) {
+            if (c.getId() == cardId) {
                 return c;
             }
         }
 
-        throw new CardNotFoundException(" Card " + cardId +" not found in "+deckName);
+        throw new CardNotFoundException(" Card " + cardId + " not found in " + deckName);
     }
 
     public void moveSpecificCardFromInvocationToPlayer(int playerId, int cardId) {
-        Card c = findCardInStackById(invocations,"invocations", cardId);
+        Card c = findCardInStackById(invocations, "invocations", cardId);
         invocations.remove(c);
         mains[playerId].push(c);
     }
 
     public void moveCardFromHandToGameForPlayer(int playerId, int cardId) {
-        Card c = findCardInStackById(mains[playerId],"main joueur " + playerId, cardId);
+        Card c = findCardInStackById(mains[playerId], "main joueur " + playerId, cardId);
         mains[playerId].remove(c);
         plateaux[playerId].push(c);
     }
 
     public void moveCardFromHandToPiegeForPlayer(int playerId, int cardId) {
         if (pieges[playerId].size() < MAX_TRAP) {
-            Card c = findCardInStackById(mains[playerId],"main joueur " + playerId, cardId);
+            Card c = findCardInStackById(mains[playerId], "main joueur " + playerId, cardId);
             mains[playerId].remove(c);
             pieges[playerId].push(c);
         }
     }
+
     public void moveCardFromPiegeToGraveyardForPlayer(int playerId, int cardId) {
-        Card c = findCardInStackById(pieges[playerId],"piege joueur " + playerId, cardId);
+        Card c = findCardInStackById(pieges[playerId], "piege joueur " + playerId, cardId);
         cleanCard(c);
         pieges[playerId].remove(c);
         cimetieres[playerId].push(c);
@@ -176,7 +179,7 @@ private int loadAndDecorateDeck(Deck<Card> stack, Integer player, String folder)
 
 
     public void moveCardFromGameToGraveyardForPlayer(int playerId, int cardId) {
-        Card c = findCardInStackById(plateaux[playerId],"plateau joueur " + playerId ,cardId);
+        Card c = findCardInStackById(plateaux[playerId], "plateau joueur " + playerId, cardId);
         cleanCard(c);
         plateaux[playerId].remove(c);
         cimetieres[playerId].push(c);
@@ -191,67 +194,66 @@ private int loadAndDecorateDeck(Deck<Card> stack, Integer player, String folder)
     }
 
     public void moveCardFromHandToGraveyardForPlayer(int playerId, int cardId) {
-        Card c = findCardInStackById(mains[playerId],"main joueur " + playerId, cardId);
+        Card c = findCardInStackById(mains[playerId], "main joueur " + playerId, cardId);
         cleanCard(c);
         mains[playerId].remove(c);
         cimetieres[playerId].push(c);
     }
 
     public int updateDmgPointsOnCard(int playerId, int cardId, int value) {
-        findCardInStackById(plateaux[playerId],"plateaux joueur " + playerId,cardId).setDammagePoints(value);
+        findCardInStackById(plateaux[playerId], "plateaux joueur " + playerId, cardId).setDammagePoints(value);
         return value;
     }
 
 
     public int getDmgOnCard(int playerId, int cardId) {
-        return  findCardInStackById(plateaux[playerId],"plateau joueur " + playerId,cardId).getDammagePoints();
+        return findCardInStackById(plateaux[playerId], "plateau joueur " + playerId, cardId).getDammagePoints();
     }
 
     public void moveCardFromGraveyardToPlayerHand(int playerId, int cardId) {
-        Card c = findCardInStackById(cimetieres[playerId],"cimetière joueur " + playerId, cardId);
+        Card c = findCardInStackById(cimetieres[playerId], "cimetière joueur " + playerId, cardId);
         cimetieres[playerId].remove(c);
         mains[playerId].push(c);
     }
 
 
     public void moveCardFromOtherGraveyardToHand(int playerId, int cardId, int oppPlayerId) {
-        Card c = findCardInStackById(cimetieres[oppPlayerId],"cimetière joueur " + playerId, cardId);
+        Card c = findCardInStackById(cimetieres[oppPlayerId], "cimetière joueur " + playerId, cardId);
         cimetieres[oppPlayerId].remove(c);
         mains[playerId].push(c);
     }
 
     public boolean updateActivatedOnCard(int playerId, int cardId, boolean value) {
-        findCardInStackById(plateaux[playerId],"plateau joueur " + playerId,cardId).getStatus().setActivated(value);
+        findCardInStackById(plateaux[playerId], "plateau joueur " + playerId, cardId).getStatus().setActivated(value);
         return value;
     }
 
     public boolean getActivatedOnCard(int playerId, int cardId) {
-        return findCardInStackById(plateaux[playerId],"plateau joueur " + playerId,cardId).getStatus().isActivated();
+        return findCardInStackById(plateaux[playerId], "plateau joueur " + playerId, cardId).getStatus().isActivated();
     }
 
-    public boolean updateUsedOnCard(int playerId, int cardId,boolean value) {
-        findCardInStackById(plateaux[playerId],"plateau joueur " + playerId,cardId).getStatus().setUsed(value);
+    public boolean updateUsedOnCard(int playerId, int cardId, boolean value) {
+        findCardInStackById(plateaux[playerId], "plateau joueur " + playerId, cardId).getStatus().setUsed(value);
         return value;
     }
 
     public boolean getUsedOnCard(int playerId, int cardId) {
-        return  findCardInStackById(plateaux[playerId],"plateau joueur " + playerId,cardId).getStatus().isUsed();
+        return findCardInStackById(plateaux[playerId], "plateau joueur " + playerId, cardId).getStatus().isUsed();
     }
 
 
     public void setAllcardsNonActive(int playerId) {
-        for ( Object c : plateaux[playerId]) {
-            ((Card)c).getStatus().setActivated(false);
+        for (Object c : plateaux[playerId]) {
+            ((Card) c).getStatus().setActivated(false);
         }
-        for ( Object c : equipment[playerId]) {
-            ((Card)c).getStatus().setActivated(false);
+        for (Object c : equipment[playerId]) {
+            ((Card) c).getStatus().setActivated(false);
         }
     }
 
 
-
     public Deck<Card> getStack(StackConstants stackName) {
-        switch (stackName){
+        switch (stackName) {
             case ENVIRONNEMENT:
                 return currentEnvironnement;
             case ENVIRONNEMENTS:
@@ -287,7 +289,7 @@ private int loadAndDecorateDeck(Deck<Card> stack, Integer player, String folder)
                 loadStack(fullDeck, BACK_DRAW);
                 return fullDeck;
             default:
-                throw new CardNotFoundException("Stack name " + stackName +" not found");
+                throw new CardNotFoundException("Stack name " + stackName + " not found");
         }
 
     }
@@ -296,8 +298,8 @@ private int loadAndDecorateDeck(Deck<Card> stack, Integer player, String folder)
         //Clear de la pioches
         pioche[playerId].clear();
         //Reinit from Scratch
-        loadAndDecorateDeck(pioche[playerId],playerId, BACK_DRAW);
-        if (result.size()>0) {
+        loadAndDecorateDeck(pioche[playerId], playerId, BACK_DRAW);
+        if (result.size() > 0) {
             Deck<Card> newDeck = new Deck<>();
             for (Object c : pioche[playerId]) {
                 Card card = (Card) c;
@@ -311,41 +313,58 @@ private int loadAndDecorateDeck(Deck<Card> stack, Integer player, String folder)
     }
 
     public void moveCardFromHandToEquipmentForPlayer(int playerId, int cardId) {
-        Card c = findCardInStackById(mains[playerId],"equipment joueur " + playerId, cardId);
+        Card c = findCardInStackById(mains[playerId], "equipment joueur " + playerId, cardId);
         mains[playerId].remove(c);
         equipment[playerId].push(c);
     }
 
     public void moveCardFromEquipmentToGraveyard(int playerId, int cardId) {
-        Card c = findCardInStackById(equipment[playerId],"equipment joueur " + playerId, cardId);
+        Card c = findCardInStackById(equipment[playerId], "equipment joueur " + playerId, cardId);
         cleanCard(c);
         equipment[playerId].remove(c);
         cimetieres[playerId].push(c);
     }
 
     public boolean updateActivatedOnEquipmentCard(int playerId, int cardId, boolean value) {
-        findCardInStackById(equipment[playerId],"equipement joueur " + playerId,cardId).getStatus().setActivated(value);
+        findCardInStackById(equipment[playerId], "equipement joueur " + playerId, cardId).getStatus().setActivated(value);
         return value;
     }
 
     public boolean updateUsedOnEquipmentCard(int playerId, int cardId, boolean value) {
-        findCardInStackById(equipment[playerId],"equipement joueur " + playerId,cardId).getStatus().setUsed(value);
+        findCardInStackById(equipment[playerId], "equipement joueur " + playerId, cardId).getStatus().setUsed(value);
         return value;
     }
 
     public boolean updateHiddendOnCard(int playerId, int cardId, boolean value) {
-        findCardInStackById(plateaux[playerId],"plateau joueur " + playerId,cardId).getStatus().setHidden(value);
+        findCardInStackById(plateaux[playerId], "plateau joueur " + playerId, cardId).getStatus().setHidden(value);
         return value;
     }
 
     public boolean updateStunedOnCard(int playerId, int cardId, boolean value) {
-        findCardInStackById(plateaux[playerId],"plateau joueur " + playerId,cardId).getStatus().setStuned(value);
+        findCardInStackById(plateaux[playerId], "plateau joueur " + playerId, cardId).getStatus().setStuned(value);
         return value;
     }
 
 
     public boolean updateUsedOnTrapCard(int playerId, int cardId, boolean value) {
-        findCardInStackById(pieges[playerId],"piège joueur " + playerId,cardId).getStatus().setUsed(value);
+        findCardInStackById(pieges[playerId], "piège joueur " + playerId, cardId).getStatus().setUsed(value);
         return value;
+    }
+
+    public Deck<Card> searchCards(MyFilters filters) {
+        Deck<Card> fullDeck = new Deck<>();
+        loadStack(fullDeck, BACK_DRAW);
+
+        if (!filters.getName().isEmpty()) {
+            fullDeck = fullDeck.stream().filter(
+                    p -> p.getMetaData().getName().toLowerCase().contains(filters.getName().toLowerCase()))
+                    .collect(Collectors.toCollection(Deck::new));
+        }
+        if (!filters.getChakra().isEmpty()) {
+            fullDeck = fullDeck.stream().filter(
+                    p -> p.getMetaData().getChakra().equals(filters.getChakra()))
+                    .collect(Collectors.toCollection(Deck::new));
+        }
+        return fullDeck;
     }
 }

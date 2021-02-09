@@ -1,8 +1,9 @@
-
-<h1>Jeux Naruto</h1>
+# Jeux Naruto
 
 [TOC levels=2-3]: # "#### Sommaire"
+
 ## Table of Contents
+
   * [Bugs](#bugs)
   * [Background](#background)
   * [Présentation du jeux](#présentation-du-jeux)
@@ -22,14 +23,15 @@
     + [Cas particuliers](#cas-particuliers)
   * [Détail des extentions](#détail-des-extentions)
   
-## Bugs 
+## Bugs
+
 * [ ] Le move to cimetiere doit redresser les cartes
 * [ ] Le cimetiere est invisible si on l'ouvre puis le ferme par sa croix
-* [ ] Autoriser les déplacements du jeu à la main du joueur 
+* [ ] Autoriser les déplacements du jeu à la main du joueur (ajouter les services + endPoints + cablage dans le js)
 * [ ] L'affinité adverse ne s'affiche pas parfois
 
-
 ## Evolutions
+
 Cartes
 
 * [ ] Ajouter des sorts de destruction d'équipement
@@ -44,6 +46,7 @@ Cartes
 
 Jeu
 
+* [ ] Gallerie : Ajouter des filtres : "Kind": "Name" : "Team": "Chakra" : "Element" : "Cost" : "Attack" : "Defense"
 * [ ] a réfléchir : si carte immobilisée -> impossible à activer ?
 * [ ] Synchronisation de la popin cimetière si le même cimetière est ouvert par les deux joueurs en même temps.
 * [ ] Externaliser le menu de domCard (passer des références de nom de fonction pour retirer l'adhérence dans menu)
@@ -64,11 +67,13 @@ Tous les coups sont permis .... surtout les pires !
 ## Présentation du jeux
 
 ### Les cartes d'environnement
+
 Exemple de carte                        | Description
 :--------------------------------------:|----------------------------------
 <img src="https://raw.githubusercontent.com/bbassac/CardsMasterGame/master/src/main/resources/static/img/doc/environnement.png" width="350px"> | A. Nom du lieu  <br />B. Nature de l'affinité du lieu  <br />C. Intitullé du pouvoir pour l'ensemble de la partie  
 
 ### Les cartes de ninjas
+
 Exemple de carte                        | Description
 :--------------------------------------:|----------------------------------
 <img src="https://raw.githubusercontent.com/bbassac/CardsMasterGame/master/src/main/resources/static/img/doc/ninja.png" width="350px"> | A. Nom du ninja  <br />B. Coût de la carte  <br />C. Nature de l'affinité de l'invocation  <br />D. Valeur de l'attaque de base du ninja  <br />E. Intitullé du pouvoir du ninja  <br />F. Nom de l'extension dans laquelle apparaît la carte  <br />G. Nombre de PV de la carte  
@@ -85,21 +90,25 @@ Exemple de carte                        | Description
 <img src="https://raw.githubusercontent.com/bbassac/CardsMasterGame/master/src/main/resources/static/img/doc/arme.png" width="350px"> | A. Nom de l'équipement <br/>B. Coût de la carte équipement<br />  C. Restriction sur l'emplacement de l'équipement (1 max) <br /> D. Valeur d'attaque de l'équipement  <br />E. Descriptif de l'équipement  <br />F. Nom de l'extension dans laquelle apparaît la carte  
 
 ### Les cartes de quêtes
+
 Exemple de carte                        | Description
 :--------------------------------------:|----------------------------------
 <img src="https://raw.githubusercontent.com/bbassac/CardsMasterGame/master/src/main/resources/static/img/doc/quete.png" width="350px"> | A. Nom de la quête <br/>B. Les cartes de quête n'ont pas de coût, elle se mettent en jeu sitôt les conditions réunies <br />  C. Rappel du type de carte  <br />D. Condition(s) de déclenchement de la quête  <br />E. Récompense d'accomplissement de la quête  <br />F. Nom de l'extension dans laquelle apparaît la carte  
 
 ### Les cartes de ninjutsu
+
 Exemple de carte                        | Description
 :--------------------------------------:|----------------------------------
 <img src="https://raw.githubusercontent.com/bbassac/CardsMasterGame/master/src/main/resources/static/img/doc/kinjutsu.png" width="350px"> | A. Nom du ninjutsu  <br>B. Coût de la carte <br>ninjutsu  <br>C. Nature du ninjutsu  <br>D. Conditions d'utilisation et effets  <br>E. Parfois les sorts ont un effet négatif à appliquer selon la règle écrite  <br>F. Nom de l'extension dans laquelle apparaît la carte  
 
 ### Les cartes d'invocation
+
 Exemple de carte                        | Description
 :--------------------------------------:|----------------------------------
 <img src="https://raw.githubusercontent.com/bbassac/CardsMasterGame/master/src/main/resources/static/img/doc/invocation.png" width="350px"> | A. Nom de l'invocation  <br />B. Les cartes d'invocation n'ont pas de coût  <br />C. Nature de l'affinité de l'invocation  <br />D. Rareté de la carte  <br />E. Intitulé du pouvoir de l'invocation  <br />F. Valeur de l'attaque de base de l'invocation  <br />G. Nom de l'extension dans laquelle apparaît la carte  <br />H. Nombre de PV de la carte  
 
 ### Les cartes pièges
+
 Exemple de carte                        | Description
 :--------------------------------------:|----------------------------------
 <img src="https://raw.githubusercontent.com/bbassac/CardsMasterGame/master/src/main/resources/static/img/doc/piege.png" width="350px"> | A. Nom de la carte piège  <br />B. Coût de la carte piège  <br />C. Nature du piège <br />D. Conditions de déclenchement du piège  <br /> E. Nom de l'extension dans laquelle apparaît la carte  
@@ -144,7 +153,6 @@ Exemple de carte                        | Description
 6. Lancements des sorts
 
 7. Attaque du héros au corps à corps
-    
 
 ### Définition des symboles
 
@@ -174,7 +182,6 @@ Exemple de carte                        | Description
 * <img src="https://raw.githubusercontent.com/vpoiaghi/CardsMaster/master/data/Resources/Symbols/permanent.png" height="20" width="20">
   <img src="https://raw.githubusercontent.com/vpoiaghi/CardsMaster/master/data/Resources/Symbols/Instantané.png" height="20" width="20"> 
   : Ninjutsu permanent et actif immédiatement 
-
 
 ## Détail des extentions
 
