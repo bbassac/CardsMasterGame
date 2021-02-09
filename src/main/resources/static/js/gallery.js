@@ -20,16 +20,34 @@ function refreshImages() {
     }
 
     var xhttp = new XMLHttpRequest();
-    xhttp.open("POST", "stack/search", false);
+    var criterias ="";
+    var namefilter =  document.getElementById("nameFilter").value;
+    var chakraFilter =  document.getElementById("chakra-select").value;
+    var costFilter = document.getElementById("costFilter").value;
+    var atkFilter = document.getElementById("atqFilter").value;
+    var defFilter = document.getElementById("defFilter").value;
 
-    xhttp.setRequestHeader("Content-type", "application/json");
-
-    var body = {
-        "name": document.getElementById("nameFilter").value,
-        "chakra": document.getElementById("chakra-select").value
+    if (namefilter) {
+        criterias += ("name:"+namefilter+",")
+    }
+    if (chakraFilter) {
+        criterias += ("chakra:"+chakraFilter+",")
+    }
+    if (costFilter){
+        criterias += ("cost" + document.getElementById("cost-operator").value + costFilter+",");
+    }
+    if (atkFilter){
+        criterias += ("attack" + document.getElementById("atk-operator").value + atkFilter+",");
+    }
+    if (defFilter){
+        criterias += ("defense" + document.getElementById("def-operator").value + defFilter+",");
     }
 
-    xhttp.send(JSON.stringify(body));
+
+    xhttp.open("GET", "stack/search?filters="+criterias, false);
+    xhttp.setRequestHeader("Content-type", "application/json");
+
+    xhttp.send();
     var cards = JSON.parse(xhttp.responseText);
 
     var selectList = document.getElementById("cardList");
@@ -39,8 +57,8 @@ function refreshImages() {
         option.text = cards[i].path;
         selectList.appendChild(option);
     }
-
-    selectList.options[0].selected = 'selected';
+    //auto delect first
+    //selectList.options[0].selected = 'selected';
     document.getElementById("filterCounterId").innerText = cards.length + " Cards"
     display();
 

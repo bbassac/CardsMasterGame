@@ -5,6 +5,7 @@ import cardmastergame.LogUtils;
 import cardmastergame.bean.Card;
 import cardmastergame.bean.Deck;
 import cardmastergame.controller.MyFilters;
+import cardmastergame.controller.SearchCriteria;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -19,6 +20,8 @@ public class CardService {
     private static final String BACK_DRAW = "/Back-Draw";
     private static final String BACK_SELECT = "/Back-Select";
     private static final String BACK_SELECT_3 = "/Back-Select3";
+    @Autowired
+    private SearchEngine searchEngine ;
     private int lastIndex;
     private Deck<Card> environnments;
     private Deck<Card>[] pioche;
@@ -365,6 +368,15 @@ public class CardService {
                     p -> p.getMetaData().getChakra().equals(filters.getChakra()))
                     .collect(Collectors.toCollection(Deck::new));
         }
+
+
         return fullDeck;
     }
+
+    public Deck<Card> searchCards(List<SearchCriteria> params) {
+        Deck<Card> fullDeck = new Deck<Card>();
+        loadStack(fullDeck, CardService.BACK_DRAW);
+        return searchEngine.searchCards(params, fullDeck);
+    }
+
 }

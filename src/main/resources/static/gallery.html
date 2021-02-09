@@ -23,7 +23,35 @@
                     <option value="Foudre">Foudre</option>
                     <option value="Physique">Physique</option>
                 </select></label><br />
-                <label>Nom<input type="text" id="nameFilter" name="Nom" /></label><br />
+                <label>Nom<input type="search" id="nameFilter" name="Nom" /></label><br />
+                <label>Coût
+                    <select id="cost-operator">
+                        <option value="=">=</option>
+                        <option value="<"><</option>
+                        <option value=">">></option>
+                    </select>
+                    <input type="search" id="costFilter"  />
+                </label>
+                    <br />
+                    <label>Attaque
+                        <select id="atk-operator">
+                            <option value="=">=</option>
+                            <option value="<"><</option>
+                            <option value=">">></option>
+                        </select>
+                        <input type="search" id="atqFilter" />
+                    </label>
+                    <br />
+                    <label>Défense
+                        <select id="def-operator">
+                            <option value="=">=</option>
+                            <option value="<"><</option>
+                            <option value=">">></option>
+                        </select>
+                        <input type="search" id="defFilter"  />
+                    </label>
+                    <br />
+
                 <button id="searchButton" onclick="refreshImages()">Search</button>
             </div>
             <div>

@@ -26,6 +26,35 @@
     width: 147px;
 }
 
+#cost-operator{
+    margin-left: 50px;
+}
+
+#costFilter{
+    margin-top: 21px;
+    width: 40px;
+    margin-left: 36px;
+}
+
+#atk-operator{
+    margin-left: 30px;
+}
+
+#atqFilter{
+    margin-top: 21px;
+    width: 40px;
+    margin-left: 37px;
+}
+
+#defFilter{
+    margin-top: 21px;
+    width: 40px;
+    margin-left: 37px;
+}
+#def-operator{
+    margin-left: 30px;
+}
+
 #cardList {
     width: 350px;
     height: 850px;
