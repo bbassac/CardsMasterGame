@@ -4,7 +4,6 @@ import cardmastergame.FileUtils;
 import cardmastergame.LogUtils;
 import cardmastergame.bean.Card;
 import cardmastergame.bean.Deck;
-import cardmastergame.controller.MyFilters;
 import cardmastergame.controller.SearchCriteria;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -13,7 +12,6 @@ import org.springframework.stereotype.Component;
 import java.io.File;
 import java.util.List;
 import java.util.Random;
-import java.util.stream.Collectors;
 
 @Component
 public class CardService {
@@ -352,25 +350,6 @@ public class CardService {
     public boolean updateUsedOnTrapCard(int playerId, int cardId, boolean value) {
         findCardInStackById(pieges[playerId], "piège joueur " + playerId, cardId).getStatus().setUsed(value);
         return value;
-    }
-
-    public Deck<Card> searchCards(MyFilters filters) {
-        Deck<Card> fullDeck = new Deck<>();
-        loadStack(fullDeck, BACK_DRAW);
-
-        if (!filters.getName().isEmpty()) {
-            fullDeck = fullDeck.stream().filter(
-                    p -> p.getMetaData().getName().toLowerCase().contains(filters.getName().toLowerCase()))
-                    .collect(Collectors.toCollection(Deck::new));
-        }
-        if (!filters.getChakra().isEmpty()) {
-            fullDeck = fullDeck.stream().filter(
-                    p -> p.getMetaData().getChakra().equals(filters.getChakra()))
-                    .collect(Collectors.toCollection(Deck::new));
-        }
-
-
-        return fullDeck;
     }
 
     public Deck<Card> searchCards(List<SearchCriteria> params) {

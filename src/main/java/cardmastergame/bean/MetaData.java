@@ -3,7 +3,7 @@ package cardmastergame.bean;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
-@ApiModel(value="Card model", description="MetaData model")
+@ApiModel(value="MetaData model", description="MetaData model")
 public class MetaData {
 	@ApiModelProperty(notes = "Card Name")
 	private String name;

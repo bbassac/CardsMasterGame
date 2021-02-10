@@ -1,32 +1,24 @@
 package cardmastergame.controller;
 
-import cardmastergame.LogUtils;
 import cardmastergame.bean.Card;
 import cardmastergame.bean.Deck;
 import cardmastergame.service.StackConstants;
 import io.swagger.annotations.*;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 @RestController
 @Api(description = "CardService API Used for general actions")
 public class GameController extends AbstractController{
-
-
 
     @CrossOrigin
     @RequestMapping(path = "/restart",method = RequestMethod.GET)
     @ResponseBody
     @ApiOperation(value = "Start a new game",response = String.class)
     public String restart() {
-
         playerService.startNewGame();
         cardService.startNewGame();
-
         return "Loaded";
     }
 
@@ -67,26 +59,15 @@ public class GameController extends AbstractController{
 
     @CrossOrigin
     @ResponseBody
-    @RequestMapping(path="/stack/search",method = RequestMethod.POST)
-    public Deck<Card> searchCards (@RequestBody MyFilters filters){
-        return cardService.searchCards(filters);
-    }
-
-
-    @CrossOrigin
-    @ResponseBody
+    @ApiOperation(value = "Search card with parameters")
     @RequestMapping(path="/stack/search",method = RequestMethod.GET)
-    public Deck<Card> filterCards (@RequestParam String filters){
-        List<SearchCriteria> params = new ArrayList<>();
-        if (filters != null) {
-            Pattern pattern = Pattern.compile("(\\w+?)(:|<|>|=)(\\w+?),");
-            Matcher matcher = pattern.matcher(filters + ",");
-            while (matcher.find()) {
-                params.add(new SearchCriteria(matcher.group(1),
-                        matcher.group(2), matcher.group(3)));
-            }
-        }
-        params.stream().forEach(s -> System.out.println(s));
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Success", response = Card.class)})
+    public Deck<Card> filterCards (
+            @ApiParam(value = "filters", type = "String", required = true,
+                    allowableValues = "?filters=name:b,chakra:Sp%C3%A9cial,cost=6,attack%3E2,defense%3C5 operators | like : | equals = | less < %3C | greater > %3E ")
+            @RequestParam String filters){
+        List<SearchCriteria> params = convertFiltersToCriteria(filters);
         return cardService.searchCards(params);
     }
 

@@ -1,7 +1,8 @@
 package cardmastergame.bean;
 
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-
+@ApiModel(value="Status model", description="Status model")
 public class Status {
 
     @ApiModelProperty(notes = "Card Orientation (activated or not")

@@ -54,7 +54,7 @@ public class Card {
 
 
 
-    boolean isEquipment(){
-        return "Equipement".equals(getMetaData().getKind());
-    }
+//    boolean isEquipment(){
+//        return "Equipement".equals(getMetaData().getKind());
+//    }
 }
