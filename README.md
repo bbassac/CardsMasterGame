@@ -37,12 +37,12 @@ Cartes
 * [ ] Ajouter des sorts de destruction d'équipement
 * [ ] Doubler le nombre des invocations
 * [X] 2 exemplaires de l'aigle d'encre
-* [ ] Kotohime : 1 pv retiré pour chaque jeton posé
-* [ ] Kigiri : expliciter son sort
-* [ ] Jirobo : les autres alliés en jeu
-* [ ] Katasuke -> extension boruto
-* [ ] Gengo : 2 ninjas
-* [ ] Affinités, +1 pour la force, retirer faiblesse
+* [X] Kotohime : 1 pv retiré pour chaque jeton posé
+* [X] Kigiri : expliciter son sort
+* [X] Jirobo : les autres alliés en jeu
+* [X] Katasuke -> extension boruto
+* [X] Gengo : 2 ninjas
+* [X] Affinités, +1 pour la force, retirer faiblesse
 
 Jeu
 
