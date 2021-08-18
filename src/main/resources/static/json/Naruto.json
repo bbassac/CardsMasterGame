@@ -1541,7 +1541,7 @@
       "Background": null,
       "Powers": [
         {
-          "Description": "<<Permanent>><<Instantané>>Ultrason : Un flot de chauve-souris empêche les 2 camps de lancer des ninjutsu tant qu'il est en vie"
+          "Description": "<<Permanent>><<Instantané>>Ultrason : Un flot de chauve-souris empêche les 2 camps de lancer des ninjutsu tant que celui-ci est en vie"
         }
       ],
       "Warning": false
@@ -1605,7 +1605,7 @@
       "Background": null,
       "Powers": [
         {
-          "Description": "<<Permanent>><<Instantané>>Nuage de fumée : Empêche les 2 camps de lancer des ninjutsu tant qu'il est en vie"
+          "Description": "<<Permanent>><<Instantané>>Nuage de fumée : Empêche les 2 camps de lancer tout ninjutsu tant que celui-ci est en vie"
         }
       ],
       "Warning": false
@@ -1637,7 +1637,7 @@
       "Background": null,
       "Powers": [
         {
-          "Description": "<<Permanent>><<Instantané>>Nuage de fumée : Empêche les 2 camps de lancer des ninjutsu tant qu'il est en vie"
+          "Description": "<<Permanent>><<Instantané>>Nuage de fumée : Empêche les 2 camps de lancer tout ninjutsu tant que celui-ci est en vie"
         }
       ],
       "Warning": false
@@ -4239,7 +4239,7 @@
       "Background": null,
       "Powers": [
         {
-          "Description": "<<Instantané>>   Rempart de terre : les alliés gagnent 2 points de vie supplémentaires tant qu'il est en vie"
+          "Description": "<<Instantané>>  Rempart de terre : les autres alliés gagnent 2 points de vie supplémentaires tant qu'il est en vie"
         }
       ],
       "Warning": false
@@ -18499,7 +18499,7 @@
       "Background": null,
       "Powers": [
         {
-          "Description": "<<Permanent>> Tout adversaire touché par Kotohime prend un jeton poison, et perds 1 point de vie à chacun des tours de la cible"
+          "Description": "<<Permanent>> Tout adversaire touché par Kotohime perd 1 point de vie au debut de chacun des tours de la cible"
         }
       ],
       "Warning": false
@@ -19017,7 +19017,7 @@
       "Background": null,
       "Powers": [
         {
-          "Description": "<<Permanent>> A chaque début de son tour, fait s'affronter 2 personnages"
+          "Description": "<<Permanent>> A chaque début de son tour, fait s'affronter 2 ninjas au choix"
         }
       ],
       "Warning": false
@@ -19916,13 +19916,10 @@
       "Background": null,
       "Powers": [
         {
-          "Description": "- Insensible aux attaques de Feu "
+          "Description": "<<Permanent>> Insensible aux attaques de Feu "
         },
         {
-          "Description": "- Fort contre le Vent "
-        },
-        {
-          "Description": "- Faible contre les attaques d'Eau"
+          "Description": "<<spécial>> Fort contre le Vent (Le héros inflige +1 point de dégat lorsqu'il attaque avec une arme)"
         }
       ],
       "Warning": false
@@ -19954,13 +19951,10 @@
       "Background": null,
       "Powers": [
         {
-          "Description": "- Insensible aux attaques de Vent"
+          "Description": "<<Permanent>> Insensible aux attaques de Vent"
         },
         {
-          "Description": "- Fort contre la Foudre "
-        },
-        {
-          "Description": "- Faible contre les attaques de Feu"
+          "Description": "<<spécial>> Fort contre la Foudre (Le héros inflige +1 point de dégat lorsqu'il attaque avec une arme)"
         }
       ],
       "Warning": false
@@ -19992,13 +19986,10 @@
       "Background": null,
       "Powers": [
         {
-          "Description": "- Insensible aux attaques de Foudre"
+          "Description": "<<Permanent>> Insensible aux attaques de Foudre"
         },
         {
-          "Description": "- Fort contre le Spécial"
-        },
-        {
-          "Description": "- Faible contre les attaques de Vent"
+          "Description": "<<spécial>> Fort contre le Spécial (Le héros inflige +1 point de dégat lorsqu'il attaque avec une arme)"
         }
       ],
       "Warning": false
@@ -20030,13 +20021,10 @@
       "Background": null,
       "Powers": [
         {
-          "Description": "- Insensible aux attaques Spéciales"
+          "Description": "<<Permanent>> Insensible aux attaques Spéciales"
         },
         {
-          "Description": "- Fort contre le Physique"
-        },
-        {
-          "Description": "- Faible contre les attaques de Foudre"
+          "Description": "<<spécial>> Fort contre le Physique (Le héros inflige +1 point de dégat lorsqu'il attaque avec une arme)"
         }
       ],
       "Warning": false
@@ -20068,13 +20056,10 @@
       "Background": null,
       "Powers": [
         {
-          "Description": "- Insensible aux attaques Physiques"
+          "Description": "<<Permanent>> Insensible aux attaques Physiques"
         },
         {
-          "Description": "- Fort contre la Terre "
-        },
-        {
-          "Description": "- Faible contre les attaques Spéciales"
+          "Description": "<<spécial>> Fort contre la Terre (Le héros inflige +1 point de dégat lorsqu'il attaque avec une arme)"
         }
       ],
       "Warning": false
@@ -20106,13 +20091,10 @@
       "Background": null,
       "Powers": [
         {
-          "Description": "- Insensible aux attaques de Terre "
+          "Description": "<<Permanent>> Insensible aux attaques de Terre "
         },
         {
-          "Description": "- Fort contre l'Eau"
-        },
-        {
-          "Description": "- Faible contre les attaques Physiques"
+          "Description": "<<spécial>> Fort contre l'Eau (Le héros inflige +1 point de dégat lorsqu'il attaque avec une arme)"
         }
       ],
       "Warning": false
@@ -20144,13 +20126,10 @@
       "Background": null,
       "Powers": [
         {
-          "Description": "- Insensible aux attaques d'Eau"
+          "Description": "<<Permanent>> Insensible aux attaques d'Eau"
         },
         {
-          "Description": "- Fort contre le Feu"
-        },
-        {
-          "Description": "- Faible contre les attaques de Terre"
+          "Description": "<<spécial>> Fort contre le Feu (Le héros inflige +1 point de dégat lorsqu'il attaque avec une arme)"
         }
       ],
       "Warning": false
@@ -20238,7 +20217,7 @@
       "BackSide": "Back-Draw",
       "BackSkinName": "BackSkin1",
       "FrontSkinName": "FrontSkin1",
-      "StringField1": "<<Shippuden>>Naruto Shippuden",
+      "StringField1": "<<Boruto>>Boruto",
       "StringField2": "",
       "StringField3": "",
       "StringField4": "",
@@ -20562,11 +20541,11 @@
       "Name": "Garō",
       "Rank": "",
       "Team": "Externe Kara",
-      "Chakra": "Eau",
+      "Chakra": "Feu",
       "Element": "",
-      "Cost": "",
-      "Attack": "",
-      "Defense": "",
+      "Cost": "3",
+      "Attack": "1",
+      "Defense": "2",
       "Citation": "",
       "Comments": "",
       "Nb": 1,
@@ -20584,16 +20563,10 @@
       "Background": null,
       "Powers": [
         {
-          "Description": "Power 1"
-        },
-        {
-          "Description": "Power 2"
-        },
-        {
-          "Description": "Power 3"
+          "Description": "<<Activate>> Rayon laser : Inflige 2 point de dégâts à un adversaire sans contre-attaque possible"
         }
       ],
-      "Warning": true
+      "Warning": false
     },
     {
       "Kind": "Ninja",
@@ -20631,12 +20604,12 @@
       "Kind": "Ninja",
       "Name": "Delta (I)",
       "Rank": "",
-      "Team": "Kara",
-      "Chakra": "Eau",
-      "Element": "",
-      "Cost": "",
-      "Attack": "",
-      "Defense": "",
+      "Team": "Interne Kara",
+      "Chakra": "Spécial",
+      "Element": "Outils ninja",
+      "Cost": "5",
+      "Attack": "2",
+      "Defense": "4",
       "Citation": "",
       "Comments": "",
       "Nb": 1,
@@ -20654,28 +20627,22 @@
       "Background": null,
       "Powers": [
         {
-          "Description": "Power 1"
-        },
-        {
-          "Description": "Power 2"
-        },
-        {
-          "Description": "Power 3"
+          "Description": "<<Instantané>> Rayon de lumière : Inflige 3 points de dégâts à 2 cibles conjointes"
         }
       ],
-      "Warning": true
+      "Warning": false
     },
     {
       "Kind": "Ninja",
       "Name": "Koji Kashin (II)",
       "Rank": "",
       "Team": "Interne Kara",
-      "Chakra": "Eau",
-      "Element": "",
-      "Cost": "",
-      "Attack": "",
-      "Defense": "",
-      "Citation": "",
+      "Chakra": "Feu",
+      "Element": "Outils ninja",
+      "Cost": "5",
+      "Attack": "2",
+      "Defense": "4",
+      "Citation": "Zanmai no Shinka",
       "Comments": "",
       "Nb": 1,
       "BackSide": "Back-Draw",
@@ -20692,16 +20659,10 @@
       "Background": null,
       "Powers": [
         {
-          "Description": "Power 1"
-        },
-        {
-          "Description": "Power 2"
-        },
-        {
-          "Description": "Power 3"
+          "Description": "<<Permanent>> Feu de Samadhi : La cible désignée perd 1 point de vie par tour. Ne peut être annulé que par une annulation du sort (La mort du lanceur n'arrête pas le sort)"
         }
       ],
-      "Warning": true
+      "Warning": false
     },
     {
       "Kind": "Ninja",
@@ -20709,11 +20670,11 @@
       "Rank": "",
       "Team": "Interne kara",
       "Chakra": "Feu",
-      "Element": "Lave",
+      "Element": "Outils ninja",
       "Cost": "7",
       "Attack": "4",
       "Defense": "4",
-      "Citation": "Yôton : Rakuseiha",
+      "Citation": "Kuroi Moya",
       "Comments": "",
       "Nb": 1,
       "BackSide": "Back-Draw",
@@ -20730,10 +20691,7 @@
       "Background": null,
       "Powers": [
         {
-          "Description": "<<activate>> Destruction de Planète : Engloutit tous les adversaires dans la lave et les envoie au cimetiere"
-        },
-        {
-          "Description": "<<spécial>> Nécessite 5 points de chakras qui seront consommés à l'utilisation"
+          "Description": "<<Permanent>> Nuage noir :  La cible désignée perd 1 point de vie par tour. Ne peut être annulé que par une annulation du sort (La mort du lanceur n'arrête pas le sort)"
         }
       ],
       "Warning": false
@@ -20743,12 +20701,12 @@
       "Name": "Jigen (IV)",
       "Rank": "",
       "Team": "Interne Kara",
-      "Chakra": "Eau",
-      "Element": "",
-      "Cost": "",
-      "Attack": "",
-      "Defense": "",
-      "Citation": "",
+      "Chakra": "Physique",
+      "Element": "Outils ninja",
+      "Cost": "6",
+      "Attack": "3",
+      "Defense": "3",
+      "Citation": "Kâma",
       "Comments": "",
       "Nb": 1,
       "BackSide": "Back-Draw",
@@ -20765,16 +20723,13 @@
       "Background": null,
       "Powers": [
         {
-          "Description": "Power 1"
+          "Description": "<<permanent>> Kâma : Quand il attaque, ses dégat sont infligés avant que la contre-attaque ait lieu "
         },
         {
-          "Description": "Power 2"
-        },
-        {
-          "Description": "Power 3"
+          "Description": "<<spécial>>La cible peut donc mourrir sans pouvoir infliger de contre attaque, ne s'applique pas s'il défend d'une attaque sans contre-attaque possible ou d'un ninjutsu"
         }
       ],
-      "Warning": true
+      "Warning": false
     },
     {
       "Kind": "Ninja",
@@ -20782,11 +20737,11 @@
       "Rank": "",
       "Team": "Interne Kara",
       "Chakra": "Terre",
-      "Element": "",
-      "Cost": "",
-      "Attack": "",
-      "Defense": "",
-      "Citation": "",
+      "Element": "Outils ninja",
+      "Cost": "3",
+      "Attack": "1",
+      "Defense": "4",
+      "Citation": "Doton : Retsudo Tenshô",
       "Comments": "",
       "Nb": 1,
       "BackSide": "Back-Draw",
@@ -20803,28 +20758,22 @@
       "Background": null,
       "Powers": [
         {
-          "Description": "Power 1"
-        },
-        {
-          "Description": "Power 2"
-        },
-        {
-          "Description": "Power 3"
+          "Description": "<<Permanent>> Régenération : Une fois un combat terminé, s'il n'est pas mort, se soigne de 3 points de vie"
         }
       ],
-      "Warning": true
+      "Warning": false
     },
     {
       "Kind": "Ninja",
       "Name": "Code (VI)",
       "Rank": "",
       "Team": "Interne Kara",
-      "Chakra": "Eau",
-      "Element": "",
-      "Cost": "",
-      "Attack": "",
-      "Defense": "",
-      "Citation": "",
+      "Chakra": "Physique",
+      "Element": "Outils ninja",
+      "Cost": "4",
+      "Attack": "3",
+      "Defense": "3",
+      "Citation": "Kâma",
       "Comments": "",
       "Nb": 1,
       "BackSide": "Back-Draw",
@@ -20841,16 +20790,13 @@
       "Background": null,
       "Powers": [
         {
-          "Description": "Power 1"
+          "Description": "<<permanent>> Kâma : Quand il attaque, ses dégat sont infligés avant que la contre-attaque ait lieu "
         },
         {
-          "Description": "Power 2"
-        },
-        {
-          "Description": "Power 3"
+          "Description": "<<spécial>>La cible peut donc mourrir sans pouvoir infliger de contre attaque, ne s'applique pas s'il défend d'une attaque sans contre-attaque possible ou d'un ninjutsu"
         }
       ],
-      "Warning": true
+      "Warning": false
     },
     {
       "Kind": "Ninja",
@@ -20858,7 +20804,7 @@
       "Rank": "",
       "Team": "Interne Kara",
       "Chakra": "Terre",
-      "Element": "",
+      "Element": "Outils ninja",
       "Cost": "5",
       "Attack": "3",
       "Defense": "4",
@@ -20880,6 +20826,12 @@
       "Powers": [
         {
           "Description": "<<permanent>> Manipulation du carbone : Insensible aux attaque de corps à corps"
+        },
+        {
+          "Description": "Power 2"
+        },
+        {
+          "Description": "Power 3"
         }
       ],
       "Warning": false
@@ -20890,11 +20842,11 @@
       "Rank": "",
       "Team": "Interne Kara",
       "Chakra": "Physique",
-      "Element": "",
-      "Cost": "2",
-      "Attack": "1",
-      "Defense": "2",
-      "Citation": "",
+      "Element": "Outils ninja",
+      "Cost": "4",
+      "Attack": "3",
+      "Defense": "3",
+      "Citation": "Kâma",
       "Comments": "",
       "Nb": 1,
       "BackSide": "Back-Draw",
@@ -20911,10 +20863,13 @@
       "Background": null,
       "Powers": [
         {
-          "Description": "<<Spécial>> Revient dans la main du joueur quand il meurt, sauf s'il est envoyé directement au cimetière"
+          "Description": "<<permanent>> Kâma : Quand il attaque, ses dégat sont infligés avant que la contre-attaque ait lieu "
+        },
+        {
+          "Description": "<<spécial>>La cible peut donc mourrir sans pouvoir infliger de contre attaque, ne s'applique pas s'il défend d'une attaque sans contre-attaque possible ou d'un ninjutsu"
         }
       ],
-      "Warning": false
+      "Warning": true
     },
     {
       "Kind": "Ninja",
@@ -20953,12 +20908,12 @@
       "Name": "Isshiki Ōtsutsuki",
       "Rank": "",
       "Team": "Interne Kara",
-      "Chakra": "Eau",
+      "Chakra": "Spécial",
       "Element": "",
-      "Cost": "",
-      "Attack": "",
-      "Defense": "",
-      "Citation": "",
+      "Cost": "7",
+      "Attack": "4",
+      "Defense": "5",
+      "Citation": "Kâma",
       "Comments": "",
       "Nb": 1,
       "BackSide": "Back-Draw",
@@ -20973,17 +20928,7 @@
       "IntField3": null,
       "IntField4": null,
       "Background": null,
-      "Powers": [
-        {
-          "Description": "Power 1"
-        },
-        {
-          "Description": "Power 2"
-        },
-        {
-          "Description": "Power 3"
-        }
-      ],
+      "Powers": [],
       "Warning": true
     },
     {
@@ -20991,10 +20936,42 @@
       "Name": "Amado",
       "Rank": "",
       "Team": "Interne Kara",
-      "Chakra": "Eau",
-      "Element": "",
-      "Cost": "",
-      "Attack": "",
+      "Chakra": "Spécial",
+      "Element": "Outils ninja",
+      "Cost": "4",
+      "Attack": "1",
+      "Defense": "3",
+      "Citation": "",
+      "Comments": "",
+      "Nb": 1,
+      "BackSide": "Back-Draw",
+      "BackSkinName": "BackSkin1",
+      "FrontSkinName": "FrontSkin1",
+      "StringField1": "<<Boruto>>Boruto",
+      "StringField2": "",
+      "StringField3": "",
+      "StringField4": "",
+      "IntField1": null,
+      "IntField2": null,
+      "IntField3": null,
+      "IntField4": null,
+      "Background": null,
+      "Powers": [
+        {
+          "Description": "<<permanent>> Les alliés gagnent 1 point de vie et un point d'attaque tant qu'il est en vie"
+        }
+      ],
+      "Warning": false
+    },
+    {
+      "Kind": "Equipement",
+      "Name": "Epée de chakra",
+      "Rank": "",
+      "Team": "Arme",
+      "Chakra": "Equipement",
+      "Element": "Main D",
+      "Cost": "4",
+      "Attack": "2",
       "Defense": "",
       "Citation": "",
       "Comments": "",
@@ -21013,16 +20990,10 @@
       "Background": null,
       "Powers": [
         {
-          "Description": "Power 1"
-        },
-        {
-          "Description": "Power 2"
-        },
-        {
-          "Description": "Power 3"
+          "Description": "<<Permanent>> Draine l'intégralité des points de chakra quand utilisée"
         }
       ],
-      "Warning": true
+      "Warning": false
     },
     {
       "Kind": "Ninja",
@@ -21032,8 +21003,8 @@
       "Chakra": "Physique",
       "Element": "",
       "Cost": "",
-      "Attack": "",
-      "Defense": "",
+      "Attack": "2",
+      "Defense": "1",
       "Citation": "",
       "Comments": "",
       "Nb": 1,
@@ -21051,16 +21022,10 @@
       "Background": null,
       "Powers": [
         {
-          "Description": "Power 1"
-        },
-        {
-          "Description": "Power 2"
-        },
-        {
-          "Description": "Power 3"
+          "Description": "<<Instantané>> Peut attaquer sitôt en jeu"
         }
       ],
-      "Warning": true
+      "Warning": false
     },
     {
       "Kind": "Ninja",
@@ -21069,9 +21034,9 @@
       "Team": "Maître chien",
       "Chakra": "Physique",
       "Element": "",
-      "Cost": "",
-      "Attack": "",
-      "Defense": "",
+      "Cost": "4",
+      "Attack": "2",
+      "Defense": "1",
       "Citation": "",
       "Comments": "",
       "Nb": 1,
@@ -21090,15 +21055,9 @@
       "Powers": [
         {
           "Description": "<<Instantané>> Invoque Chamaru"
-        },
-        {
-          "Description": "Power 2"
-        },
-        {
-          "Description": "Power 3"
         }
       ],
-      "Warning": true
+      "Warning": false
     }
   ],
   "SkinFile": "Naruto.original.skin"
